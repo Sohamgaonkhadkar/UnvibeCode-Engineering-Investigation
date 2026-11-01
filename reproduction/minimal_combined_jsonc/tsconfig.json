@@ -1,0 +1,10 @@
+{
+  // Combined JSONC audit fixture: comments, trailing commas, and string literals.
+  "x-note": "literal text, not syntax: // /* */ ,",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/app/*", /* the array ends after this comment */]
+    },
+  }
+}

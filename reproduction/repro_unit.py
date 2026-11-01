@@ -17,7 +17,9 @@ Modes:
     on 0.3.15 it FAILS (exit 1) — that failure is the expected pre-fix state.
 
 Fixtures (subdirs of this folder): minimal_strict / minimal_jsonc (// comment) /
-minimal_blockcomment (/* */) / minimal_trailingcomma / minimal_noalias (negative control).
+minimal_blockcomment (/* */) / minimal_trailingcomma / minimal_combined_jsonc
+(comments + trailing commas + comment-like string literal) / minimal_noalias
+(negative control).
 """
 import importlib, importlib.metadata, importlib.util, sys
 from pathlib import Path
@@ -65,7 +67,7 @@ def probe(fixture):
 EXPECTED_ALIASES = {"@app": "src/app"}
 EXPECTED_RESOLUTION = ("src/app/util.ts", "node_ts_module_resolution")
 
-for fixture in ("minimal_strict", "minimal_jsonc", "minimal_blockcomment", "minimal_trailingcomma"):
+for fixture in ("minimal_strict", "minimal_jsonc", "minimal_blockcomment", "minimal_trailingcomma", "minimal_combined_jsonc"):
     aliases, resolution = probe(fixture)
     if EXPECT_FIXED:
         check(fixture, aliases == EXPECTED_ALIASES and resolution == EXPECTED_RESOLUTION,

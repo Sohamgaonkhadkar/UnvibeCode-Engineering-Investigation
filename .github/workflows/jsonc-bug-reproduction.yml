@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir -p ci-logs
           set -o pipefail
-          for fixture in minimal_strict minimal_jsonc minimal_blockcomment minimal_trailingcomma minimal_stringsafety; do
+          for fixture in minimal_strict minimal_jsonc minimal_blockcomment minimal_trailingcomma minimal_stringsafety minimal_combined_jsonc; do
             echo "=== ${fixture} ==="
             npm exec --yes --package typescript@5.9.3 -- tsc \
               -p "reproduction/${fixture}/tsconfig.json" --showConfig \
@@ -63,6 +63,37 @@ jobs:
             --output-root "$RUNNER_TEMP/jsonc-cli-comparison" \
             --timeout 600 2>&1 | tee ci-logs/cli-comparison.log
           cp "$RUNNER_TEMP/jsonc-cli-comparison/cli-comparison-summary.json" ci-logs/
+
+      - name: Publish CLI comparison key facts as an annotation
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("ci-logs/cli-comparison-summary.json")
+          if not path.exists():
+              print("::notice title=Ordinary-install CLI comparison::summary unavailable")
+              raise SystemExit(0)
+          summary = json.loads(path.read_text(encoding="utf-8"))
+
+          def facts(label):
+              run = summary[label]
+              stage = run.get("stage1", {})
+              return (
+                  f"{label}: cli_exit={run.get('cli_exit')}, timed_out={run.get('cli_timed_out')}, "
+                  f"files={stage.get('files')}, file_edges={stage.get('file_edges')}, "
+                  f"unresolved={stage.get('unresolved')}, "
+                  f"file_import={len(run.get('alias_file_import_connections', []))}, "
+                  f"symbol_fallback={len(run.get('alias_symbol_connections', []))}, "
+                  f"grammar_download_error={run.get('grammar_download_error')}"
+              )
+
+          print(
+              "::notice title=Ordinary-install CLI comparison::"
+              f"status={summary['status']}; {facts('strict')}; {facts('jsonc')}"
+          )
+          PY
 
       - name: Upload sanitized verification logs
         if: always()

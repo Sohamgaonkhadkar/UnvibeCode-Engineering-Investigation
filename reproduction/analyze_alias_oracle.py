@@ -37,8 +37,7 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def strip_jsonc(text: str) -> str:
-    """String-aware JSONC-to-JSON conversion for this audit's config parsing."""
+def _strip_comments(text: str) -> str:
     out: list[str] = []
     i, n = 0, len(text)
     in_string = escaped = False
@@ -65,9 +64,40 @@ def strip_jsonc(text: str) -> str:
             continue
         if ch == "/" and i + 1 < n and text[i + 1] == "*":
             i += 2
-            while i + 1 < n and not (text[i] == "*" and text[i + 1] == "/"):
+            out.append(" ")
+            while i < n:
+                if text[i] == "\n":
+                    out.append("\n")
+                if i + 1 < n and text[i] == "*" and text[i + 1] == "/":
+                    i += 2
+                    break
                 i += 1
-            i += 2
+            continue
+        out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def _strip_trailing_commas(text: str) -> str:
+    out: list[str] = []
+    i, n = 0, len(text)
+    in_string = escaped = False
+    while i < n:
+        ch = text[i]
+        if in_string:
+            out.append(ch)
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            i += 1
+            continue
+        if ch == '"':
+            in_string = True
+            out.append(ch)
+            i += 1
             continue
         if ch == ",":
             j = i + 1
@@ -79,6 +109,12 @@ def strip_jsonc(text: str) -> str:
         out.append(ch)
         i += 1
     return "".join(out)
+
+
+def strip_jsonc(text: str) -> str:
+    """String-aware JSONC-to-JSON conversion for this audit's config parsing."""
+    # Two passes also handle the valid JSONC shape `..., /* comment */}`.
+    return _strip_trailing_commas(_strip_comments(text))
 
 
 def normalize_posix(path: str) -> str:
