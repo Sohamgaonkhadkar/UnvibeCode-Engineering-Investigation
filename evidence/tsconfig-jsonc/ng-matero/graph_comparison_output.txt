@@ -1,0 +1,14 @@
+workspace A=/tmp/work/ngmatero  B=/tmp/work/ngmatero_ctrl
+[scan] node file sets identical: True  (A=300, B=300; only-A=0, only-B=0)
+[extract] extracted import records identical: True  (A=1192, B=1192)
+[file edges] A=130 B=241  only-in-control=111  only-in-asis=0
+  only-in-control by specifier class: Counter({'alias_prefix': 111})
+  only-in-control by strategy: Counter({'node_ts_module_resolution': 111})
+  only-in-asis by specifier class: Counter()
+[symbol edges] A=189 B=292  only-in-control=103  by class: Counter({'alias_prefix': 103})
+[unresolved imports] A=1062 B=951  resolved-only-in-control=111  by class: Counter({'alias_prefix': 111})
+[unresolved in BOTH, by class] Counter({'bare_external_or_other': 865, 'relative_or_absolute': 73, 'alias_prefix': 13})
+[unresolved only in control (new)] 0
+  sample gained file edge: schematics/ng-add/files/module-files/app/material-module.ts -> src/app/core/index.ts | raw= @core | line= 45 | strategy= node_ts_module_resolution
+  sample gained file edge: src/app/routes/material/checkbox/checkbox.ts -> src/app/shared/index.ts | raw= @shared | line= 6 | strategy= node_ts_module_resolution
+  sample gained file edge: src/app/routes/material/bottom-sheet/bottom-sheet.ts -> src/app/shared/index.ts | raw= @shared | line= 18 | strategy= node_ts_module_resolution

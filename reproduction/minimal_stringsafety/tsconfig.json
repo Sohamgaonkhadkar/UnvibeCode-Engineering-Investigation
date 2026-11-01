@@ -1,8 +1,8 @@
 {
-  // a URL in a string must survive: see note
+  // a URL in a string must survive: see x-note
+  "x-note": "docs at https://example.com/a/*not-a-comment*/,",
   "compilerOptions": {
     "baseUrl": ".",
-    "note": "docs at https://example.com/a/*not-a-comment*/,",
     "paths": { "@app/*": ["src/app/*"] }
   }
 }

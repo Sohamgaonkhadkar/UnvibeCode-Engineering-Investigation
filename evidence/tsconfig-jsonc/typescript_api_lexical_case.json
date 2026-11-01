@@ -1,0 +1,45 @@
+{
+  "typescript_version": "5.9.3",
+  "config_path": "tsconfig.json",
+  "config_error": null,
+  "paths_pattern_count": 220,
+  "source_file": "packages/lexical-react/src/ReactExtension.tsx",
+  "resolutions": [
+    {
+      "specifier": "lexical",
+      "resolved_path": "packages/lexical/src/index.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@lexical/internal/invariant",
+      "resolved_path": "packages/lexical-internal/src/invariant.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@lexical/react/LexicalComposerContext",
+      "resolved_path": "packages/lexical-react/src/LexicalComposerContext.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@lexical/react/LexicalContentEditable",
+      "resolved_path": "packages/lexical-react/src/LexicalContentEditable.tsx",
+      "extension": ".tsx",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@lexical/react/LexicalErrorBoundary",
+      "resolved_path": "packages/lexical-react/src/LexicalErrorBoundary.tsx",
+      "extension": ".tsx",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@lexical/react/ReactProviderExtension",
+      "resolved_path": "packages/lexical-react/src/ReactProviderExtension.tsx",
+      "extension": ".tsx",
+      "is_external_library_import": false
+    }
+  ]
+}
