@@ -15,3 +15,14 @@
 **Workaround used for CLI-scale measurements, and why it cannot create this defect:** grammars were supplied through the engine's own documented fallback (`tree_sitter_languages.get_parser`) backed by official PyPI grammar wheels. It affects only AST production (import/entity extraction). Proof extraction was *not* the variable in the lexical comparison: both runs' extracted import records are identical (9,562 = 9,562) while only alias resolution changes. Shim fidelity was independently validated by reproducing `docs/GO_SUPPORT.md`'s chi reference run exactly (89 / 1,050 / 58).
 
 **Environment-dependent claims:** only the lexical CLI edge counts depend on grammar availability (any correct grammar source — standard download on an unrestricted machine — should reproduce them; bundles were byte-identical across repeated runs). All mechanism claims are verified at unit level on the vanilla install.
+
+## Addendum — limitation closed in GitHub Actions (2026-11-02)
+
+The paragraph above records the sandbox state at the time of the first audit. It
+is no longer the limiting evidence. In clean GitHub-hosted runners, a normal
+pinned install successfully ran both the minimal CLI comparison and the full
+lexical original/control comparison, reproducing 1,263 → 5,519 file edges and
+the 2,707 Optimal direct-dependency recoveries. See `CI_VERIFICATION.md`.
+The sandbox shim is retained only as provenance for the locally generated
+large intermediate artifacts; the lexical conclusion is independently
+confirmed without it.

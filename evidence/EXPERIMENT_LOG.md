@@ -3,6 +3,11 @@
 **Environment (all runs):** UnvibeCode **0.3.15** (PyPI wheel), Python **3.11.2**, Linux 6.1.158+ x86_64 sandbox. Command: `python3 -m unvibecode review --repository <path>`.
 **Sandbox network limits (disclosed):** egress allows github.com/api.github.com/PyPI/npm only. Consequences: (1) hosted business stages unreachable — every CLI run ends `PARTIAL` at Step 02 (tiktoken BPE download blocked; already upstream as #323) *after* the local Fast Lane + graph stages complete; no claim in this investigation depends on hosted output. (2) `tree-sitter-language-pack` grammar downloads (GitHub release assets) are blocked, so for JS/TS/Go/Rust/PHP/Ruby parsing I supplied the engine's own documented fallback backend `tree_sitter_languages` via a shim backed by the official PyPI grammar wheels (`tree-sitter-javascript` 0.25.0 etc., `tree_sitter` 0.26.0). **Shim validation:** go-chi/chi @ `9f8adb1` reproduced `docs/GO_SUPPORT.md`'s reference run *exactly* — 89 files, 1,050 file edges, 58 package edges. The defect eventually filed lives in pure-Python config parsing and is reproducible with **no grammar at all** (`reproduction/repro_unit.py`).
 
+**2026-11-02 strengthening addendum:** this sandbox paragraph describes the
+environment for the original local runs. It is superseded for the minimal CLI
+and lexical conclusions by the ordinary-install GitHub Actions runs in C7; the
+sandbox provenance is retained rather than rewritten.
+
 ## Results in execution order
 
 | # | Experiment (expectation stated first) | Result |
@@ -37,6 +42,24 @@
 | A5 | Correction PoC (`correction_poc.py`) | String-aware JSONC stripper restores resolution on all fixtures incl. string-safety case; **PASS**. Labeled proof-of-concept, not a production fix. |
 | A6 | Standard-install attempt (no shim) | Fresh vanilla install: unit repro **PASS** (bug reproduced, grammar-free). CLI-scale vanilla run **not completable in sandbox** — `tree-sitter-language-pack` `DownloadError` (release-asset host blocked); recorded verbatim in `evidence/tsconfig-jsonc/STANDARD_INSTALL_ATTEMPT.md`. Not claimed as completed. |
 | A7 | Originality re-audit | Search-API sweep (terms incl. `jsonc`=0, `_load_tsconfig_aliases`=0); #153/#272/#320/#374 re-read at body level — linker `hard_path_skipped` / extraction mechanisms, distinct from Stage-1 alias-table loading. No issues beyond #417. |
+
+## Competitor-informed strengthening round (2026-11-02)
+
+The defect and locked strategy were not reopened. Benchmark issues/repos were
+reviewed for method only (full mapping in `evidence/BENCHMARK_METHOD_AUDIT.md`),
+then the following experiments were run against the same JSONC mechanism.
+
+| # | Strengthening experiment | Result |
+|---|---|---|
+| C1 | **Strict TypeScript `paths` oracle for lexical** (`analyze_alias_oracle.py`): actual 220 patterns (184 exact, 36 wildcard), exact/longest-prefix wildcard semantics and module-file probing instead of shared textual prefixes; then batch `ts.resolveModuleName` cross-check | **4,256 survived unchanged.** All 4,256 control-only file relationships point to the oracle-identified target; 0 as-is-only. They represent 4,218 distinct source→target pairs. TypeScript 5.9.3 independently matched all 4,256 rows with 0 mismatches. The old prefixes would falsely classify 2 of 1,543 distinct extracted specifiers, but neither contributes a gained edge. Full list: `lost_relationships.jsonl`. |
+| C2 | **Exhaustive exported-selection comparison** (`compare_selections.py`): all 2,044 lexical files × Narrow/Optimal/Wider, joining selected chunk IDs to files | Selections changed for 1,494 files. Direct verified dependencies absent as-is and restored in control: **2,707 Optimal** (1,133 sources) and **3,345 Wider** (1,233); 3,364 distinct pairs in either. Honest bounds: 434 Optimal pairs are present in both via other links; 1,062 absent in both; Narrow has no recovered neighbours, as expected at radius 0. |
+| C3 | **Representative causal case + compiler resolver**: `ReactExtension.tsx`, TypeScript 5.9.3 API | All six aliases resolve to claimed internal files. As-is Optimal has 4 files and omits `LexicalComposerContext.ts`, `LexicalContentEditable.tsx`, `ReactProviderExtension.tsx`, `invariant.ts`, and lexical's entry file; control Optimal has 28 files and includes chunks from all five. Record: `selection_case_react_extension.json`. |
+| C4 | **Independent second repository**: `ng-matero/ng-matero@d351bf59…`; same tree as-is vs only two leading block comments removed | Independent and consistent: 300 files and 1,192 extracted imports identical; file edges 130 → 241. Strict oracle and TypeScript's batch resolver each verify all **111** gained relationships (90 exact, 21 wildcard), with 0 compiler mismatches. 107/111 direct pairs are absent as-is and restored in both Optimal and Wider. |
+| C5 | Second-repository screening, `jekip/naive-ui-admin@c9db4c…` | Screened out by inspection only (no CLI result claimed): most aliases use hardcoded `@/`, while `/#/*` targets `.d.ts` files not probed by the shipped resolver's extension list. It would confound the JSONC question with a separate resolver-shape limitation. |
+| C6 | Correction-parser hardening | Found and fixed two audit defects in our own evidence: (1) the original one-pass PoC failed valid `..., /* comment */}`; it is now two-pass and string-aware in both passes. (2) `minimal_stringsafety` originally put a custom `note` inside `compilerOptions`, which TypeScript 5.9.3 rejects as TS5023; the literal was moved to top-level `x-note`, preserving the hazard while making the fixture accepted by `tsc`. Added `minimal_combined_jsonc`; bug mode passes, expected-fixed mode now fails on 4 JSONC checks, PoC passes all 6 alias fixtures. |
+| C7 | **Clean GitHub Actions environments** at investigation commit `d133818…` | Standard pinned install: (a) unit/TypeScript/PoC/minimal-CLI workflow **passed** (strict 1 file edge vs JSONC 0, no grammar error); (b) a separate lexical ordinary-CLI workflow **passed with exactly 1,263 → 5,519 and 2,707 Optimal recoveries**; (c) the separately named expected-behavior workflow **failed** on `--expect-fixed`, correctly red on 0.3.15. Details: `CI_VERIFICATION.md`. |
+| C8 | Package/root-cause audit | Verified both duplicated engine files against the 0.3.15 wheel `RECORD`. Separated the chain into config parse failure → empty alias table → resolver candidate failure → graph loss → selection loss. Extraction is correct and identical; fallback symbol links are explicitly not treated as a substitute for the missing file edge. |
+| C9 | Fresh duplicate sweep | Tracker still has 322 issues through #417. `jsonc`, `trailing comma`, `_load_tsconfig_aliases`, and `comment tsconfig` return 0; `tsconfig` and `compilerOptions.paths` return only #153/#272/#374. Mechanism-level differences are updated in `DUPLICATE_CHECK.md`. |
 
 ## Candidate disposition summary
 Filed candidate: **E12/E14/E15/E16 (one mechanism)**. Rejected with reasons: Express 0-edges (environment, #378), `../` normalization (duplicate cause #262), tokenizer Step-02 crash (#323), bundle-integrity hypotheses (falsified E1–E5), zustand alias shapes (different pattern mechanism, unfiled by us).

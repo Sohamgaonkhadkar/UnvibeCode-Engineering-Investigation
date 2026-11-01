@@ -1,37 +1,123 @@
-# Root cause — tsconfig.json (JSONC) silently ignored during path-alias resolution
+# Root cause — a valid JSONC `tsconfig.json` silently empties the path-alias table
 
-## Observation → localization chain
+## One-sentence mechanism
 
-1. **CLI level (minimal fixture):** identical 2-file TS projects differing only inside `tsconfig.json`. Strict JSON → Stage-1 reports `1 internal file edges, 0 unresolved`; bundle contains `file_import` + `imports_symbol` for `@app/util`. Adding one `//` comment *or* one trailing comma → `0 internal file edges, 1 unresolved`; resolved graph records the import as `external_or_unresolved`; the bundle keeps at most a fallback `imports_symbol` edge (and none when the symbol name is not globally unique). No warning is emitted (`warnings: []` in the resolved graph).
-2. **Real repository (facebook/lexical @ `164af6a`):** removing only the five `//` comment lines from its root `tsconfig.json` raises Stage-1 internal file edges **1,263 → 5,519** on the identical tree — the comments alone cost ~4,256 edges. (Residual unresolved imports in the control are separate limitations/externals, not this defect.)
-3. **Unit level:** `LanguageAwareImportResolver.tsconfig_aliases == {}` for the JSONC fixture vs `{'@app': 'src/app'}` for strict JSON; `_resolve_node_ts('@app/util')` returns `(None, None)` vs `('src/app/util.ts', 'node_ts_module_resolution')`. A comment-stripping parse applied in-memory restores resolution — the parse step is the sole cause.
-4. **Expected behavior (independent oracle):** `tsconfig.json` is **JSONC** — comments and trailing commas are legal. Verified with the actual compiler: TypeScript 5.9.3 `tsc --showConfig` accepts both fixture variants and reports the `paths` mapping.
+`LanguageAwareImportResolver._load_tsconfig_aliases` reads the repository-root
+`tsconfig.json` with strict `json.loads` and catches every exception with a bare
+`pass`; because TypeScript config files are JSONC, one legal comment or trailing
+comma aborts the parse, leaves `tsconfig_aliases = {}`, and makes otherwise
+supported path-alias imports unresolvable without any warning.
 
-## Responsible code (installed wheel, unvibecode 0.3.15)
+## Stage-by-stage decomposition
 
-`shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py`, **`LanguageAwareImportResolver._load_tsconfig_aliases`, lines 1913–1931** (duplicated in `01_shipreadyv2_merged_graph_pipeline_5chunks.py`, line 1870):
+| Stage | Expected behaviour | Observed behaviour | Responsibility |
+|---|---|---|---|
+| TypeScript config input | Comments and trailing commas are accepted; `compilerOptions.paths` remains available | TypeScript 5.9.3 accepts every fixture and both real configs; compiler API returns their paths targets | External semantic oracle |
+| Config read | Root `tsconfig.json` is located and read | File is found; removing only comments changes behaviour, proving the intended file is being read | `_load_tsconfig_aliases` |
+| Config parse | JSONC syntax should either be parsed or produce a diagnostic | Strict `json.loads` throws on the first JSONC feature; `except Exception: pass` suppresses it | **Earliest failure** |
+| Alias-table construction | Configured mappings populate the resolver | Function returns `{}`; the mapping-transform loop is never reached | Direct consequence of the parse failure |
+| Import extraction | Imports and line numbers should be extracted | Lexical extracted the identical 9,562 file/specifier/line records in both runs | Working correctly |
+| Node/TS module resolution | Configured aliases should produce candidate files | `_resolve_node_ts` receives no custom alias prefixes, so candidates are empty and imports are `external_or_unresolved` | Propagated failure, not an extractor failure |
+| Graph construction | Internal alias imports should become `file_import` relationships | 4,256 verified lexical relationships and 111 ng-matero relationships are absent | Primary product effect |
+| Symbol linking/context selection | Connected implementations should be eligible for selections | Some are rescued by fallbacks, but thousands of verified direct dependencies are absent from exported Optimal/Wider selections | Demonstrated downstream effect |
+
+The shipped code is:
+
+`shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py:1913-1931`
 
 ```python
 try:
     data = json.loads(safe_read_text(tsconfig))   # strict JSON only
     ...
 except Exception:
-    pass                                            # silent: aliases stay {}
+    pass                                            # aliases stay {}
 return aliases
 ```
 
-Any `json.loads` failure — comment, trailing comma, or any JSONC feature — discards **the entire alias table** with no log or warning. `_resolve_node_ts` then has no alias candidates for non-hardcoded prefixes, so alias imports fall through to `external_or_unresolved`. The later linker stage may resurrect an `imports_symbol` edge by global unique-symbol search, which (a) loses the `file_import` edge/map link, and (b) disappears entirely when another file exports the same name — making the failure look inconsistent rather than systematic.
+The same implementation is duplicated at
+`01_shipreadyv2_merged_graph_pipeline_5chunks.py:1870-1887`. Both installed
+files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
 
-**Earliest corrupted stage:** Stage-1 resolver construction (both lanes share the code). Parsing/extraction of the import itself is correct (the import appears, correctly attributed, in unresolved records).
+## Causal controls
 
-## Specificity proof (graph-record level, lexical as-is vs control — `reproduction/compare_graphs.py`, full output in `evidence/tsconfig-jsonc/lexical_graph_comparison.txt`)
-- Scanned file sets **identical** (2,044 = 2,044); extracted import records **identical** (9,562 = 9,562, same file/specifier/line tuples). The control changes no analyzer input except parseability of the config.
-- File edges only-in-control: **4,256 — 100% have alias-prefixed specifiers** (`lexical`, `@lexical/…`), 100% via `node_ts_module_resolution`; edges only-in-as-is: **0**. These are the *directly* lost alias-resolution relationships.
-- Symbol edges only-in-control: **10,091**, also 100% alias-class — the quantified *secondary* propagation into the linker/symbol layer.
-- Unresolved imports resolved only in control: exactly 4,256, 100% alias-class. Unresolved in **both** runs (unrelated): 2,448 bare/external specifiers, 1,592 relative/absolute (includes the known `../` class #262 and genuinely missing targets), and **2** alias-prefixed imports that stay unresolved even with aliases loaded — other pattern limitations, excluded from this report's scope.
+- Two-file strict-JSON and JSONC fixtures differ only in config lexical syntax.
+  Strict JSON yields `{'@app': 'src/app'}` and `@app/util -> src/app/util.ts`;
+  line-comment, block-comment, trailing-comma, and combined JSONC fixtures yield
+  `{}` and `(None, None)`.
+- A negative-control fixture with no alias declared remains unresolved, while
+  its relative import still resolves. The empty table alone is not being treated
+  as a bug.
+- On lexical, deleting only five comment lines raises Stage-1 internal file
+  edges from 1,263 to 5,519. On ng-matero, deleting only two leading block
+  comments raises them from 130 to 241.
+- Replacing only the parse step in memory—while retaining the shipped resolver
+  and its downstream alias use—restores the expected result on every fixture.
+- The full lexical result was reproduced in a normal GitHub Actions install, so
+  it does not depend on this investigation sandbox's temporary grammar shim.
 
-## Correction validation status
-`reproduction/correction_poc.py` is a **tested proof of concept, not a production fix**: a string-aware state machine strips comments/trailing commas only outside string literals (fixture `minimal_stringsafety` protects `https://…/*…*/` inside quotes) and restores resolution on all fixtures without modifying the installed package. A production fix should prefer a maintained JSONC parser and add a visible warning on parse failure.
+## Strict recount of the lexical delta
 
-## Fix direction (for maintainer validation, not submitted as code)
-Parse `tsconfig.json` with a JSONC-tolerant loader (strip `//`/`/* */` comments and trailing commas outside string literals, or use a JSONC parser), and record a graph `warnings` entry when a tsconfig file exists but cannot be parsed. The correction experiment in `evidence/EXPERIMENT_LOG.md` (E15) demonstrates that tolerant parsing alone restores correct resolution.
+The previous graph comparison classified specifiers by the textual prefixes
+`lexical`/`@lexical/`. That was not a sufficient oracle: among all 1,543 distinct
+extracted lexical specifiers, two (`@lexical/eslint-plugin-internal` and
+`lexicalOriginal`) share those prefixes but match no configured `paths` pattern.
+
+`reproduction/analyze_alias_oracle.py` therefore parses lexical's actual config
+(220 patterns: 184 exact and 36 wildcard), applies exact-before-wildcard and
+longest-wildcard-prefix matching, performs TypeScript-style file probing, and
+compares the resulting file with each control-only graph edge.
+
+Result:
+
+- scanned files identical: 2,044 = 2,044;
+- extracted import records identical: 9,562 = 9,562;
+- control-only file relationships: **4,256**;
+- all **4,256** targets match the configured `paths` oracle;
+- as-is-only file relationships: **0**;
+- the count corresponds to **4,218 distinct source→target file pairs**.
+
+Thus the 4,256 headline survives the stricter recount unchanged. As a further
+cross-check, `reproduction/tsc_verify_relationships.mjs` submitted every one of
+the 4,218 unique source/specifier pairs to TypeScript 5.9.3's own
+`resolveModuleName`; all 4,256 rows again matched the graph target, with zero
+mismatches (`typescript_api_verification.json`). Symbol edges are reported
+separately because a symbol edge normally targets the defining file, not
+necessarily the module-entry file returned by `paths`.
+
+## Downstream effect
+
+Missing file edges were not assumed to imply missing context. Comparing the
+actual exported bundles shows 2,707 verified direct dependencies absent from
+lexical **Optimal** selections as-is and restored in the control; 3,345 in
+**Wider**. At the same time, 434 Optimal pairs are present in both through other
+links/fallbacks and 1,062 are absent in both due to selection limits. The
+conservative conclusion is therefore not “4,256 missing edges means 4,256 missing
+context files,” but that the parse failure demonstrably removes thousands of
+direct implementations from customer context selections. See
+`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`.
+
+## Boundary and non-claims
+
+- Relative imports and the resolver's hardcoded `@/`, `~/`, and `src/` branches
+  are unaffected by this loader failure.
+- This report is about the supported repository-root `tsconfig.json` loader. It
+  does not ask the single fix to add nested-config discovery, `extends` support,
+  Vite aliases, or all TypeScript `paths` pattern semantics.
+- Separate limitations in how already-loaded alias patterns are transformed or
+  probed can still leave some imports unresolved. Those were observed (for
+  example in zustand) and are deliberately outside this one-defect claim.
+- No claim is made about hosted business-workflow/risk findings. All established
+  consequences are in the local graph and exported context bundle.
+
+## Correction status
+
+`reproduction/correction_poc.py` is a proof of concept, not a submitted
+production patch. It uses a two-pass, string-aware JSONC-to-JSON conversion:
+comments are removed only outside string literals, then trailing commas are
+removed only outside string literals. That ordering also handles the legal shape
+`..., /* comment */}`. The harness asserts that comment-like contents and commas
+inside fixture string literals survive byte-for-byte.
+
+A production fix should use a maintained TypeScript-compatible JSONC parser,
+fail visibly if an existing config still cannot be parsed, and keep the
+post-fix regression (`repro_unit.py --expect-fixed`) green.

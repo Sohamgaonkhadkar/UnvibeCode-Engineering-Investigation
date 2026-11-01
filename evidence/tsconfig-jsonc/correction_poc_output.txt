@@ -3,4 +3,5 @@ PASS  minimal_jsonc: stock=({}, (None, None))  corrected aliases={'@app': 'src/a
 PASS  minimal_blockcomment: stock=({}, (None, None))  corrected aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution')
 PASS  minimal_trailingcomma: stock=({}, (None, None))  corrected aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution')
 PASS  minimal_stringsafety: stock=({}, (None, None))  corrected aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution')
+PASS  minimal_combined_jsonc: stock=({}, (None, None))  corrected aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution')
 RESULT: PASS — tolerant parse restores resolution (proof of concept)

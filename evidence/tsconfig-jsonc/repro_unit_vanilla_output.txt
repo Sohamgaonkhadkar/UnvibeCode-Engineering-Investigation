@@ -1,11 +1,12 @@
 unvibecode version : 0.3.15
-engine under test  : /tmp/std_pkg/shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py
+engine under test  : /tmp/work/vanilla-venv/lib/python3.11/site-packages/shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py
 mode               : BUG-REPRO (expect 0.3.15 defect)
 ------------------------------------------------------------------------------
 PASS  minimal_strict: strict-JSON control resolves: aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution')
 PASS  minimal_jsonc: JSONC defect present: aliases={} resolution=(None, None) (config silently discarded)
 PASS  minimal_blockcomment: JSONC defect present: aliases={} resolution=(None, None) (config silently discarded)
 PASS  minimal_trailingcomma: JSONC defect present: aliases={} resolution=(None, None) (config silently discarded)
+PASS  minimal_combined_jsonc: JSONC defect present: aliases={} resolution=(None, None) (config silently discarded)
 PASS  minimal_noalias (negative control): aliases={} absent-alias=(None, None) relative-import-still-works=('src/feature/local.ts', 'node_ts_module_resolution')
 ------------------------------------------------------------------------------
 RESULT: PASS — BUG REPRODUCED (JSONC tsconfig silently discarded; strict-JSON control resolves)
