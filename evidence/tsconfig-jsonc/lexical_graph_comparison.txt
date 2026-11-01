@@ -1,0 +1,14 @@
+workspace A=/tmp/lexical  B=/tmp/lexical_ctrl
+[scan] node file sets identical: True  (A=2044, B=2044; only-A=0, only-B=0)
+[extract] extracted import records identical: True  (A=9562, B=9562)
+[file edges] A=1263 B=5519  only-in-control=4256  only-in-asis=0
+  only-in-control by specifier class: Counter({'alias_prefix': 4256})
+  only-in-control by strategy: Counter({'node_ts_module_resolution': 4256})
+  only-in-asis by specifier class: Counter()
+[symbol edges] A=3600 B=13691  only-in-control=10091  by class: Counter({'alias_prefix': 10091})
+[unresolved imports] A=8298 B=4042  resolved-only-in-control=4256  by class: Counter({'alias_prefix': 4256})
+[unresolved in BOTH, by class] Counter({'bare_external_or_other': 2448, 'relative_or_absolute': 1592, 'alias_prefix': 2})
+[unresolved only in control (new)] 0
+  sample gained file edge: packages/lexical-playground/src/__tests__/browser/LinksHTMLCopyAndPaste.test.ts -> packages/lexical-link/src/index.ts | raw= @lexical/link | line= 9 | strategy= node_ts_module_resolution
+  sample gained file edge: packages/lexical-playground/src/plugins/VisibleNonPrintingExtension.ts -> packages/lexical-list/src/index.ts | raw= @lexical/list | line= 18 | strategy= node_ts_module_resolution
+  sample gained file edge: packages/lexical-extension/src/__tests__/unit/BlockIdExtension.structure.test.ts -> packages/lexical-list/src/index.ts | raw= @lexical/list | line= 22 | strategy= node_ts_module_resolution

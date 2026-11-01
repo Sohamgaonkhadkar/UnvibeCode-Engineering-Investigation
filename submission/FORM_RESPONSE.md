@@ -3,7 +3,7 @@
 **Form:** https://docs.google.com/forms/d/1an-hce3EQ8bUVArnZJnD1VwxQIxgmNzLKYQ8h814CVE/viewform
 
 - **Official GitHub issue URL:** ⏳ PENDING — issue prepared in `submission/GITHUB_ISSUE.md`, not yet published (awaiting approval). Paste the real URL here after filing; do not invent one.
-- **Analyzed public repository URL:** https://github.com/facebook/lexical (commit `164af6a4df7114f35724c472152ca74877b6bd04`)
+- **Analyzed public repository URL:** https://github.com/meta/lexical (commit `164af6a4df7114f35724c472152ca74877b6bd04`)
 - **Evidence workspace:** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation
 
 ## Short technical summary (for the form)

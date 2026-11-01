@@ -12,5 +12,20 @@ Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevan
 | **#372** — PHP `require/include` never extracted | Missing extractor branch in `_extract_php`. | Different language/stage (extraction vs config parsing). |
 | **#378 / #323** — grammar-download / tokenizer failures still ending in “complete”/partial states | Environment failure handling. | Our runs needed a grammar shim in-sandbox (documented in the log); the filed defect is grammar-independent and reproduces at unit level with no parser involved. |
 
+## Final audit re-check — 2026-11-02 (GitHub issue search API, `repo:FinanceFlash/unvibecode is:issue`)
+
+| Search term | Hits | Relevant |
+|---|---|---|
+| `tsconfig` | 3 | #153, #272, #374 only |
+| `jsonc` | **0** | — |
+| `trailing comma` | **0** | — |
+| `_load_tsconfig_aliases` | **0** | — |
+| `path alias` | 22 | above + #320/#305/#297 (unrelated alias senses) |
+| `external_or_unresolved` | 8 | #84/#103 (`../` normalization), #134, #284, #308, #386 — none about config parsing |
+| `json.loads` | 22 | none about tsconfig loading |
+| `comment` | 27 | none about tsconfig comments |
+
+Body-level re-reads this round: **#153** (0.3.3, `fsousac/Dragg`): `@/*` imports recorded `resolution_status: hard_path_skipped`, `detail: alias_prefix_@/` — a Stage-2 *linker* hard-skip of alias-prefixed specifiers. **#272** (0.3.15): same `hard_path_skipped` family (262 records). **#374**: same family, alias defined only in `vite.config.ts`. **#320**: `_js_import_symbols` mis-extracts local binding names — extraction stage. **Our defect differs on every axis**: Stage-1 resolver (`_load_tsconfig_aliases`), trigger = lexical JSONC syntax in a config the engine already supports, observed status `external_or_unresolved` with the alias table empty, fix = tolerant JSONC parsing. No new issues beyond #417 as of this check (322 total). URLs: https://github.com/FinanceFlash/unvibecode/issues/153 · /272 · /320 · /374 (same pattern).
+
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).

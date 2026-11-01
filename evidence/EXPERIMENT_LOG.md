@@ -24,5 +24,19 @@
 | E15 | Unit-level isolation + correction experiment (`reproduction/repro_unit.py`) | `minimal_strict`: aliases `{'@app':'src/app'}`, `@app/util → src/app/util.ts`. `minimal_jsonc`: aliases `{}`, `(None, None)`. Comment-stripping parse in-memory restores resolution — causation isolated to the parse step. |
 | E16 | Oracle: TypeScript 5.9.3 `tsc --showConfig` on both fixtures (comment + trailing-comma variants) | Both accepted; `paths` visible. JSONC tsconfig is valid input per the actual compiler. |
 
+| E17 | Verifier re-run on lexical bundle during final review | 10 violations, all one pattern: very long single lines (e.g., an 11,330-char HTML fixture line) are split into `*_line_fragment_N` chunks that all claim `line_range 1–1` and reuse line number 1 in `numbered_code`, so chunk text ≠ the source line and naive reconstruction conflicts. Fragments *are* labeled via `kind`. Judged adjacent to the already-filed oversized-chunking family (#340/#397) — recorded as an **unfiled observation**, deliberately kept out of the single-issue submission. |
+
+## Phase-3 audit addendum (2026-11-02) — strengthening, not restarting
+
+| # | Audit action | Result |
+|---|---|---|
+| A1 | Canonical-repo confirmation | `facebook/lexical` redirects to **`meta/lexical`**; commit `164af6a…` verified present via GitHub API; my clone HEAD matches exactly. Docs updated to canonical URL. |
+| A2 | Deterministic rerun of both lexical variants | Stage-1 lines identical (1,263/8,298 and 5,519/4,042); **bundles byte-identical** to the original Phase-2 artifacts. Original temp graph folders had been auto-cleaned (large-repo `CONNECTED_CODE_MAP_ONLY` path deletes its work dir on clean completion, `customer_runner.py:2942/3087`); graphs recaptured mid-run from the new work dirs — rerun artifacts, labeled as such, never presented as originals. |
+| A3 | JSONC-specificity analysis (`compare_graphs.py`) | Scanned sets + extracted imports identical (2,044 / 9,562); all 4,256 gained file edges alias-class; +10,091 symbol edges (secondary); 0 edges lost; common unresolved split 2,448 external / 1,592 relative / 2 alias-other-cause. Full output preserved in `evidence/tsconfig-jsonc/`. |
+| A4 | Reproducer hardening | `repro_unit.py` rewritten: version check via `importlib.metadata`, package located via installed `shipreadyv2` (no hardcoded paths), 5 fixtures (strict, `//`, `/* */`, trailing comma, negative control), assertions + exit codes. Bug-repro mode: **PASS exit 0**. Regression mode (`--expect-fixed`): **FAIL exit 1 on 0.3.15** (expected pre-fix). My first negative control used `../` and failed due to the separate #262 defect — replaced with `./local` and re-verified. |
+| A5 | Correction PoC (`correction_poc.py`) | String-aware JSONC stripper restores resolution on all fixtures incl. string-safety case; **PASS**. Labeled proof-of-concept, not a production fix. |
+| A6 | Standard-install attempt (no shim) | Fresh vanilla install: unit repro **PASS** (bug reproduced, grammar-free). CLI-scale vanilla run **not completable in sandbox** — `tree-sitter-language-pack` `DownloadError` (release-asset host blocked); recorded verbatim in `evidence/tsconfig-jsonc/STANDARD_INSTALL_ATTEMPT.md`. Not claimed as completed. |
+| A7 | Originality re-audit | Search-API sweep (terms incl. `jsonc`=0, `_load_tsconfig_aliases`=0); #153/#272/#320/#374 re-read at body level — linker `hard_path_skipped` / extraction mechanisms, distinct from Stage-1 alias-table loading. No issues beyond #417. |
+
 ## Candidate disposition summary
 Filed candidate: **E12/E14/E15/E16 (one mechanism)**. Rejected with reasons: Express 0-edges (environment, #378), `../` normalization (duplicate cause #262), tokenizer Step-02 crash (#323), bundle-integrity hypotheses (falsified E1–E5), zustand alias shapes (different pattern mechanism, unfiled by us).

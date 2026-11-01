@@ -1,0 +1,8 @@
+{
+  // a URL in a string must survive: see note
+  "compilerOptions": {
+    "baseUrl": ".",
+    "note": "docs at https://example.com/a/*not-a-comment*/,",
+    "paths": { "@app/*": ["src/app/*"] }
+  }
+}

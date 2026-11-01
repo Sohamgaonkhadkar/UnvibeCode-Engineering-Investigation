@@ -24,5 +24,14 @@ Any `json.loads` failure — comment, trailing comma, or any JSONC feature — d
 
 **Earliest corrupted stage:** Stage-1 resolver construction (both lanes share the code). Parsing/extraction of the import itself is correct (the import appears, correctly attributed, in unresolved records).
 
+## Specificity proof (graph-record level, lexical as-is vs control — `reproduction/compare_graphs.py`, full output in `evidence/tsconfig-jsonc/lexical_graph_comparison.txt`)
+- Scanned file sets **identical** (2,044 = 2,044); extracted import records **identical** (9,562 = 9,562, same file/specifier/line tuples). The control changes no analyzer input except parseability of the config.
+- File edges only-in-control: **4,256 — 100% have alias-prefixed specifiers** (`lexical`, `@lexical/…`), 100% via `node_ts_module_resolution`; edges only-in-as-is: **0**. These are the *directly* lost alias-resolution relationships.
+- Symbol edges only-in-control: **10,091**, also 100% alias-class — the quantified *secondary* propagation into the linker/symbol layer.
+- Unresolved imports resolved only in control: exactly 4,256, 100% alias-class. Unresolved in **both** runs (unrelated): 2,448 bare/external specifiers, 1,592 relative/absolute (includes the known `../` class #262 and genuinely missing targets), and **2** alias-prefixed imports that stay unresolved even with aliases loaded — other pattern limitations, excluded from this report's scope.
+
+## Correction validation status
+`reproduction/correction_poc.py` is a **tested proof of concept, not a production fix**: a string-aware state machine strips comments/trailing commas only outside string literals (fixture `minimal_stringsafety` protects `https://…/*…*/` inside quotes) and restores resolution on all fixtures without modifying the installed package. A production fix should prefer a maintained JSONC parser and add a visible warning on parse failure.
+
 ## Fix direction (for maintainer validation, not submitted as code)
 Parse `tsconfig.json` with a JSONC-tolerant loader (strip `//`/`/* */` comments and trailing commas outside string literals, or use a JSONC parser), and record a graph `warnings` entry when a tsconfig file exists but cannot be parsed. The correction experiment in `evidence/EXPERIMENT_LOG.md` (E15) demonstrates that tolerant parsing alone restores correct resolution.
