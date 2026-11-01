@@ -1,0 +1,13 @@
+# Google Form content — Cohort 3, Track 1 (DO NOT SUBMIT until approved)
+
+**Form:** https://docs.google.com/forms/d/1an-hce3EQ8bUVArnZJnD1VwxQIxgmNzLKYQ8h814CVE/viewform
+
+- **Official GitHub issue URL:** ⏳ PENDING — issue prepared in `submission/GITHUB_ISSUE.md`, not yet published (awaiting approval). Paste the real URL here after filing; do not invent one.
+- **Analyzed public repository URL:** https://github.com/facebook/lexical (commit `164af6a4df7114f35724c472152ca74877b6bd04`)
+- **Evidence workspace:** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation
+
+## Short technical summary (for the form)
+UnvibeCode 0.3.15 silently ignores a repository's `tsconfig.json` if it contains comments or trailing commas — both legal, because tsconfig files are JSONC. `_load_tsconfig_aliases` (both engine lanes) parses the file with strict `json.loads` inside a bare `except: pass`, so any JSONC feature empties the whole path-alias table with no warning. Every custom-alias import (`@app/*`, `@lexical/*`, …) is then filed as `external_or_unresolved` and loses its Connected Code Map/context edges. Proven three ways: (1) a 2-file fixture matrix where adding one comment line is the only change and flips resolution from correct to zero file edges; (2) facebook/lexical @ pinned commit, where removing only its five `//` comment lines raises Stage-1 internal file edges from 1,263 to 5,519 (~77% were missing); (3) a unit-level isolation plus in-memory correction showing the parse step is the sole cause, with `tsc --showConfig` (TypeScript 5.9.3) confirming the configs are valid. Fix: JSONC-tolerant tsconfig parsing and a visible warning when parsing fails.
+
+## Genuine product feedback (<200 words)
+I stress-tested the local pipeline hard — bundle integrity, determinism across runs, metamorphic edits, symlinks, adversarial files, Go reference numbers — and it held up impressively; chi reproduced your GO_SUPPORT figures exactly. The one theme I'd flag is *silent degradation*: when something can't be loaded (this tsconfig case, tree-sitter grammars, the tokenizer), the tool tends to continue and present results that look complete. Surfacing a short "degraded inputs" section in the report (what was skipped and why) would materially raise trust, because today a sparse Connected Code Map is indistinguishable from a genuinely disconnected codebase. I'd also love the bundle's connection records to expose which resolution strategy produced each edge (the graph JSON has it; the exported bundle drops it) — it would make downstream auditing much easier. Overall, the context-bundle concept worked as advertised and was genuinely useful to navigate lexical's monorepo once aliases resolved.
