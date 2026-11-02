@@ -1,4 +1,4 @@
-# Duplicate check — performed 2026-11-02 against all 322 issues (open + closed, to #417)
+# Duplicate check — latest final-QC sweep 2026-11-02 against all 325 issues (open + closed, to #420)
 
 ## Searches run
 Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full re-listing immediately before drafting (no new issues after #417). Closest issues read in full:
@@ -47,6 +47,29 @@ Our failure occurs before that stage: the root config's whole alias table is
 empty because strict JSON parsing fails on legal JSONC. The new clean-CI and
 selection experiments use the same mechanism and do not introduce a second
 defect.
+
+## Final-QC re-check — 2026-11-02
+
+The tracker has advanced to **325 issues, newest #420**. A fresh
+GitHub issue-search API sweep (`repo:FinanceFlash/unvibecode is:issue`,
+open + closed) returned:
+
+| Search term | Hits | Assessment |
+|---|---:|---|
+| `jsonc` | 0 | No report of the config format itself |
+| `trailing comma` | 0 | No report of this trigger |
+| `_load_tsconfig_aliases` | 0 | No report names the responsible function |
+| `comment tsconfig` / `comments tsconfig` | 0 | No report connects comments to tsconfig loading |
+| `tsconfig` | 3 | #153, #272, #374 only |
+| `compilerOptions.paths` | 3 | #153, #272, #374 only |
+| `tsconfig aliases` | 2 | #153, #272 only |
+| `json.loads tsconfig` | 2 | #272, #374 only |
+
+The three newest issues are unrelated mechanisms: #418 concerns Python
+`from . import <symbol>` resolution, #419 is a responsive-layout report, and
+#420 concerns PHP trait/inheritance extraction. The nearest TypeScript
+neighbours remain #153/#272/#374 and are distinguished by stage, status, and
+remediation above.
 
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).

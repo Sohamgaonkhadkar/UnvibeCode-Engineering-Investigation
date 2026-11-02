@@ -123,7 +123,7 @@ Suggested fix direction:
 Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched; and the direct-dependency selection omissions should disappear relative to the comment-stripped control.
 
 ## 9. Duplicate check
-Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 322 issues through #417):
+Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 325 issues through #420):
 
 - `jsonc` → 0; `trailing comma` → 0; `_load_tsconfig_aliases` → 0; `comment tsconfig` → 0.
 - `tsconfig` and `compilerOptions.paths` → only #153, #272, and #374.
