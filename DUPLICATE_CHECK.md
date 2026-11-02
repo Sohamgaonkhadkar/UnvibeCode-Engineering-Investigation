@@ -1,4 +1,4 @@
-# Duplicate check — latest strengthening sweep 2026-11-02 against all 331 issues (open + closed, to #427)
+# Duplicate check — latest strengthening sweep 2026-11-02 against all 332 issues (open + closed, to #428)
 
 ## Searches run
 Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full re-listing immediately before drafting (no new issues after #417). Closest issues read in full:
@@ -84,12 +84,15 @@ selection mechanisms (#424 is a pull request).
 ## Causal-strengthening re-check — 2026-11-02
 
 Before finalizing the reversible-intervention strengthening, the tracker had
-advanced to **331 issues, newest #427**. The exact-mechanism results remained
+advanced to **332 issues, newest #428**. The exact-mechanism results remained
 unchanged: `jsonc`, `trailing comma`, `_load_tsconfig_aliases`, `comment
 tsconfig`, and `comments tsconfig` each returned 0; `tsconfig` and
 `compilerOptions.paths` still returned only #153/#272/#374. Issue #427 concerns
 duplicate Pass 1 activation facts, an unrelated hosted-analysis validation
-mechanism.
+mechanism. Issue #428 concerns an exported local symbol binding
+(`Select = SelectPrimitive.Root`) not found while its module and sibling
+exports resolve; that is a symbol-export mechanism, not root-tsconfig parsing
+or Stage-1 alias-table loading.
 
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).

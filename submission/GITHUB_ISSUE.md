@@ -147,7 +147,7 @@ Suggested fix direction:
 Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases on both resolver copies; malformed existing configs should produce a visible diagnostic rather than a silent empty table; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched; and the direct-dependency selection omissions should disappear relative to the comment-stripped control. The reversible intervention's B/D states are the expected restored behaviour, while its A/C/E states document the current stock failure.
 
 ## 9. Duplicate check
-Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 331 issues through #427):
+Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 332 issues through #428):
 
 - `jsonc` → 0; `trailing comma` → 0; `_load_tsconfig_aliases` → 0; `comment tsconfig` → 0.
 - `tsconfig` and `compilerOptions.paths` → only #153, #272, and #374.
@@ -157,6 +157,7 @@ Closest issues differ by mechanism:
 - **#153/#272:** `@/` imports are recorded `hard_path_skipped` by the later linker. Here the Stage-1 resolver's alias table is empty before resolution, records are `external_or_unresolved`, and resolution returns immediately when config comments are removed.
 - **#374:** the alias is only in `vite.config.ts`/a non-root setup. Here it is in the supported repository-root `tsconfig.json`.
 - **#320:** `_js_import_symbols` extracts local binding names incorrectly. Here extraction is identical between as-is and control.
+- **#428:** an exported local binding (`Select = SelectPrimitive.Root`) is `symbol_not_found` although the module and sibling exports resolve. Here the configured module file relationship itself is absent because the alias table was never loaded.
 - **#262/#84:** a separate `../` path-normalization defect, excluded from this report.
 
 No existing issue reports legal JSONC syntax in `tsconfig.json` silently emptying UnvibeCode's root path-alias table.
