@@ -1,7 +1,26 @@
-# Duplicate check — latest strengthening sweep 2026-11-02 against all 332 issues (open + closed, to #428)
+# Duplicate check — latest strengthening sweep 2026-11-02 against all 333 issues (open + closed, to #429)
 
-## Searches run
-Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full re-listing immediately before drafting (no new issues after #417). Closest issues read in full:
+## Current result — read this first
+
+The **current** conclusion is the 2026-11-02 sweep of **333 open/closed
+issues through #429**, detailed under “Causal-strengthening re-check” below:
+`jsonc`, `trailing comma`, `_load_tsconfig_aliases`, `comment tsconfig`, and
+`comments tsconfig` return 0; `tsconfig` and `compilerOptions.paths` return only
+#153/#272/#374. Newer #428 and #429 are distinct symbol-export and Python
+package-layout mechanisms, respectively.
+
+The older sections in this file are retained as a chronological audit trail.
+Their issue totals and “newest issue” statements were correct when those
+searches were run but are **superseded by the current result above** and should
+not be quoted as the present tracker state. The mechanism-comparison table
+immediately below remains the current nearest-neighbour analysis.
+
+## Historical searches and mechanism comparison
+Historical title sweeps for: `tsconfig` (**0 title hits at that stage**; later
+body-level API searches return #153/#272/#374), `jsonc` (**0**), `comment`
+(0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full
+re-listing immediately before drafting (no new issues after #417 at that
+historical point). Closest issues read in full:
 
 | Issue | What it claims | Why ours is a different underlying cause |
 |---|---|---|
@@ -84,7 +103,7 @@ selection mechanisms (#424 is a pull request).
 ## Causal-strengthening re-check — 2026-11-02
 
 Before finalizing the reversible-intervention strengthening, the tracker had
-advanced to **332 issues, newest #428**. The exact-mechanism results remained
+advanced to **333 issues, newest #429**. The exact-mechanism results remained
 unchanged: `jsonc`, `trailing comma`, `_load_tsconfig_aliases`, `comment
 tsconfig`, and `comments tsconfig` each returned 0; `tsconfig` and
 `compilerOptions.paths` still returned only #153/#272/#374. Issue #427 concerns
@@ -92,7 +111,8 @@ duplicate Pass 1 activation facts, an unrelated hosted-analysis validation
 mechanism. Issue #428 concerns an exported local symbol binding
 (`Select = SelectPrimitive.Root`) not found while its module and sibling
 exports resolve; that is a symbol-export mechanism, not root-tsconfig parsing
-or Stage-1 alias-table loading.
+or Stage-1 alias-table loading. Issue #429 concerns Python `src/`/`lib/`
+layout package re-exports and `module_scope_mismatch`, also unrelated.
 
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).
