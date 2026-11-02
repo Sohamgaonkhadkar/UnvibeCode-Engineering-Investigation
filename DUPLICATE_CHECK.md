@@ -1,4 +1,4 @@
-# Duplicate check — latest final-QC sweep 2026-11-02 against all 325 issues (open + closed, to #420)
+# Duplicate check — latest pre-publication sweep 2026-11-02 against all 330 issues (open + closed, to #426)
 
 ## Searches run
 Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full re-listing immediately before drafting (no new issues after #417). Closest issues read in full:
@@ -70,6 +70,16 @@ The three newest issues are unrelated mechanisms: #418 concerns Python
 #420 concerns PHP trait/inheritance extraction. The nearest TypeScript
 neighbours remain #153/#272/#374 and are distinguished by stage, status, and
 remediation above.
+
+## Pre-publication re-check — 2026-11-02
+
+Immediately before submission finalization, the tracker had advanced to **330
+issues, newest #426**. The exact-mechanism results were unchanged: `jsonc`,
+`trailing comma`, `_load_tsconfig_aliases`, `comment tsconfig`, and `comments
+tsconfig` each returned 0; `tsconfig` and `compilerOptions.paths` still returned
+only #153/#272/#374. Issues #421–#423, #425, and #426 concern unrelated Flask
+linking, CLI interruption, workflow grouping, Python imports, and Business Risk
+selection mechanisms (#424 is a pull request).
 
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).

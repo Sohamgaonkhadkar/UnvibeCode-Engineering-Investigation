@@ -14,7 +14,7 @@ This is not only a missing-edge count. On `meta/lexical`, five comment lines sup
   - https://github.com/meta/lexical @ `164af6a4df7114f35724c472152ca74877b6bd04`
   - https://github.com/ng-matero/ng-matero @ `d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`
 - Command: `python -m unvibecode review --repository "<path>"`
-- Evidence/fixtures: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/arena/a5a17da4-unvibecode-engineering-investi (the pinned clean-CI run record is indexed in `evidence/tsconfig-jsonc/CI_VERIFICATION.md`; PR #1 shows the checks for the current branch head)
+- Evidence/fixtures: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/2ff870cb3dc2802d5b52b9101752ee928d5b0c9e (commit-pinned; the clean-CI run record is indexed in `evidence/tsconfig-jsonc/CI_VERIFICATION.md`, and evidence-repo PR #1 contains the successful checks for this verified commit)
 
 Environment note: my local investigation sandbox blocks tree-sitter grammar downloads, so the locally captured large-repo artifacts used a disclosed fallback grammar environment. That workaround is no longer the sole basis for the claim: the minimal CLI comparison and full lexical original/control comparison were rerun under the ordinary install in GitHub Actions with the same counts. The resolver defect itself also reproduces in pure Python with no grammar or hosted service. Full provenance is in `evidence/tsconfig-jsonc/CI_VERIFICATION.md` and `STANDARD_INSTALL_ATTEMPT.md` in the evidence repo.
 
@@ -37,7 +37,7 @@ Strict control:
 
 JSONC variant: add one line comment, block comment, trailing comma, or use the combined fixture in the evidence repo. TypeScript accepts all of them. Then:
 
-1. Check out the evidence branch linked above, then install the tested version:
+1. Check out the evidence commit linked above, then install the tested version:
    ```bash
    python -m pip install unvibecode==0.3.15
    ```
@@ -123,7 +123,7 @@ Suggested fix direction:
 Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched; and the direct-dependency selection omissions should disappear relative to the comment-stripped control.
 
 ## 9. Duplicate check
-Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 325 issues through #420):
+Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 330 issues through #426):
 
 - `jsonc` → 0; `trailing comma` → 0; `_load_tsconfig_aliases` → 0; `comment tsconfig` → 0.
 - `tsconfig` and `compilerOptions.paths` → only #153, #272, and #374.
