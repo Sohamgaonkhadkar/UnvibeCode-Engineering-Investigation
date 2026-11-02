@@ -1,4 +1,4 @@
-name: JSONC defect reproduction (UnvibeCode 0.3.15)
+name: PR verification — JSONC defect reproduced exactly (0.3.15)
 
 on:
   pull_request:
@@ -13,7 +13,12 @@ permissions:
 
 jobs:
   reproduce:
-    name: Reproduce known defect and validate correction PoC
+    # Green here means something precise: on the pinned affected release, the
+    # strict control works, every JSONC variant fails in the specific reported
+    # way, the post-fix regression fails only for those exact checks, and the
+    # correction PoC/evidence checks pass. It does not mean expected behaviour
+    # already works; that raw regression is kept as a manual workflow.
+    name: Affected-version verification — exact defect, correction PoC, evidence
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -46,15 +51,15 @@ jobs:
               | tee "ci-logs/tsc-${fixture}-paths.txt"
           done
 
-      - name: Unit-level known-bug reproduction (expected to pass as a bug demo)
+      # verify.py runs repro_unit.py, then runs repro_unit.py --expect-fixed
+      # and accepts that child failure only if it is exit 1 with exactly the
+      # four JSONC fixtures reporting aliases={} / resolution=(None, None).
+      # Any installation error, traceback, extra failure, missing failure, or
+      # already-fixed behaviour makes this step fail. No continue-on-error.
+      - name: Unified affected-version verification (bug + exact regression failure + PoC)
         run: |
           set -o pipefail
-          python reproduction/repro_unit.py 2>&1 | tee ci-logs/repro-unit-known-bug.log
-
-      - name: Correction proof of concept
-        run: |
-          set -o pipefail
-          python reproduction/correction_poc.py 2>&1 | tee ci-logs/correction-poc.log
+          python reproduction/verify.py 2>&1 | tee ci-logs/verify-affected-version.log
 
       - name: Ordinary-install CLI comparison
         run: |

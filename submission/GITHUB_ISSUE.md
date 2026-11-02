@@ -14,7 +14,7 @@ This is not only a missing-edge count. On `meta/lexical`, five comment lines sup
   - https://github.com/meta/lexical @ `164af6a4df7114f35724c472152ca74877b6bd04`
   - https://github.com/ng-matero/ng-matero @ `d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`
 - Command: `python -m unvibecode review --repository "<path>"`
-- Evidence/fixtures: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/arena/a5a17da4-unvibecode-engineering-investi (clean-CI runs recorded from commit `d1338184f60e7282383fbf83be75afd1001badf9`)
+- Evidence/fixtures: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/arena/a5a17da4-unvibecode-engineering-investi (the pinned clean-CI run record is indexed in `evidence/tsconfig-jsonc/CI_VERIFICATION.md`; PR #1 shows the checks for the current branch head)
 
 Environment note: my local investigation sandbox blocks tree-sitter grammar downloads, so the locally captured large-repo artifacts used a disclosed fallback grammar environment. That workaround is no longer the sole basis for the claim: the minimal CLI comparison and full lexical original/control comparison were rerun under the ordinary install in GitHub Actions with the same counts. The resolver defect itself also reproduces in pure Python with no grammar or hosted service. Full provenance is in `evidence/tsconfig-jsonc/CI_VERIFICATION.md` and `STANDARD_INSTALL_ATTEMPT.md` in the evidence repo.
 
@@ -37,19 +37,16 @@ Strict control:
 
 JSONC variant: add one line comment, block comment, trailing comma, or use the combined fixture in the evidence repo. TypeScript accepts all of them. Then:
 
-1. Install the tested version:
+1. Check out the evidence branch linked above, then install the tested version:
    ```bash
    python -m pip install unvibecode==0.3.15
    ```
-2. Run the assertion reproducer from the evidence repo:
+2. Run the one-command verifier:
    ```bash
-   python reproduction/repro_unit.py
+   python reproduction/verify.py
    ```
-   On 0.3.15 it exits 0 as a known-bug demonstration: strict JSON gives `{'@app': 'src/app'}` and resolves `@app/util -> src/app/util.ts`; each JSONC variant gives `{}` and `(None, None)`. The regression form is separate and intentionally fails pre-fix:
-   ```bash
-   python reproduction/repro_unit.py --expect-fixed
-   ```
-3. Run the CLI on `reproduction/minimal_strict` and `reproduction/minimal_jsonc` (or `python reproduction/ci_cli_comparison.py --output-root <dir>`) and compare `[STAGE 1 COMPLETE]`, `connections.jsonl`, and `unresolved_relationships.jsonl`.
+   This checks the Python/package environment, runs the strict control and all JSONC variants, and then runs the original post-fix regression `python reproduction/repro_unit.py --expect-fixed`. On 0.3.15 it reports the defect only if that regression fails in exactly the four JSONC cases with `aliases={}` and `resolution=(None, None)`; the strict control gives `{'@app': 'src/app'}` and `@app/util -> src/app/util.ts`. The same verifier also runs the correction proof of concept and checks the committed lexical/ng-matero evidence counts.
+3. Run the CLI on `reproduction/minimal_strict` and `reproduction/minimal_jsonc` (or `python reproduction/ci_cli_comparison.py --output-root ./cli-comparison-output`) and compare `[STAGE 1 COMPLETE]`, `connections.jsonl`, and `unresolved_relationships.jsonl`.
 4. Real-repository check: run lexical at the pinned commit, then delete only lines 9–13 (five `//` comments) from its root `tsconfig.json` and run again.
 
 ## 4. Expected behavior
@@ -106,10 +103,10 @@ The downstream count is likewise measured in the emitted bundles, not inferred f
 
 Correction check: replacing only the parse step in memory with a string-aware two-pass JSONC stripper—including `..., /* comment */}` and comment-like text inside string literals—restores all fixture resolutions without modifying the installed package (`correction_poc.py`). This is a proof of causation/feasibility, not a proposed production parser.
 
-Clean-environment verification: GitHub Actions on a pinned ordinary install passed TypeScript fixture acceptance, known-bug unit reproduction, the correction PoC, the minimal CLI comparison, and a full lexical rerun yielding 1,263 → 5,519 with 2,707 Optimal recoveries. The separate expected-behaviour workflow using `--expect-fixed` is red on 0.3.15 by design. See `CI_VERIFICATION.md`; graph/bundle hashes and pinned inputs are in `ARTIFACT_MANIFEST.md`.
+Clean-environment verification: GitHub Actions on a pinned ordinary install passed TypeScript fixture acceptance, unified affected-version verification, the minimal CLI comparison, and a full lexical rerun yielding 1,263 → 5,519 with 2,707 Optimal recoveries. In that PR check, green means the defect was reproduced and the raw `--expect-fixed` regression failed only for the exact documented empty-alias symptom; it does not mean expected JSONC behaviour already works. The raw regression remains available as an explicitly manual post-fix workflow. See `CI_VERIFICATION.md`; graph/bundle hashes and pinned inputs are in `ARTIFACT_MANIFEST.md`.
 
 ## 7. Impact and scope
-This is a silent wrong-answer defect for any JS/TS repository whose supported root `tsconfig.json` uses comments or trailing commas and non-hardcoded path aliases. In lexical, 4,256 relationships are about 77% of the control's attainable internal file edges; source files with at least one outgoing file edge fall from 1,426 to 479. More importantly, thousands of real implementations become ineligible in exported Optimal/Wider context. Even after excluding tests/examples/playground, 446 package-source→package-source direct pairs are absent as-is and restored in at least one non-trivial scope.
+This is a silent wrong-answer defect when a JS/TS repository's supported root `tsconfig.json` uses comments or trailing commas together with non-hardcoded path aliases. In lexical, 4,256 relationships are about 77% of the control's attainable internal file edges; source files with at least one outgoing file edge fall from 1,426 to 479. More importantly, thousands of real implementations become ineligible in exported Optimal/Wider context. Even after excluding tests/examples/playground, 446 package-source→package-source direct pairs are absent as-is and restored in at least one non-trivial scope.
 
 The failure is masked in three ways: there is no parse warning, hardcoded `@/`/`~/`/relative resolution still works, and unique-symbol fallback can create some symbol links without the missing file relationship. The result is an apparently usable but materially incomplete Connected Code Map/context export.
 
@@ -123,7 +120,7 @@ Suggested fix direction:
 1. Parse root `tsconfig.json` with a maintained TypeScript-compatible JSONC parser (or equivalent string-aware handling), in both engine copies or through one shared loader.
 2. If an existing config still cannot be parsed, emit a visible graph/log warning so a degraded alias table is distinguishable from a project that genuinely declares no aliases.
 
-Validation: `repro_unit.py --expect-fixed` should pass all JSONC fixtures including string-safety cases; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched; and the direct-dependency selection omissions should disappear relative to the comment-stripped control.
+Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched; and the direct-dependency selection omissions should disappear relative to the comment-stripped control.
 
 ## 9. Duplicate check
 Re-searched on 2026-11-02 through the GitHub issue-search API (open + closed; 322 issues through #417):

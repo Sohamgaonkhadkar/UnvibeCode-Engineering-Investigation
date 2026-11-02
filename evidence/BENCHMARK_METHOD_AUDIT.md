@@ -25,9 +25,11 @@ The benchmark review changed the investigation in four material ways:
    context loss; exported selections were compared exhaustively.
 2. **The lexical count was re-derived with TypeScript `paths` semantics.** The earlier
    prefix classifier was treated as a hypothesis, not as an oracle.
-3. **Reproduction moved into clean CI.** A normal pinned install now exercises the unit
-   reproducer, TypeScript fixture acceptance, correction PoC and minimal CLI path. The
-   post-fix regression is a separate workflow that is red on 0.3.15 by design.
+3. **Reproduction moved into clean CI.** A normal pinned install now exercises the
+   unified `verify.py` entry point, TypeScript fixture acceptance, and minimal CLI path.
+   The PR gate proves that the raw post-fix regression fails only for the exact
+   documented JSONC symptom; that raw regression remains an explicitly manual post-fix
+   workflow rather than a misleading red PR check.
 4. **One independent real repository was added.** ng-matero tests whether the mechanism
    generalizes beyond lexical's unusually large exact-mapping table.
 

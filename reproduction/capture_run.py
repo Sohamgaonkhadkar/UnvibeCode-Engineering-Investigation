@@ -6,7 +6,7 @@ This helper sets a dedicated temporary root, watches for the graph belonging to 
 requested repository, and copies a stable snapshot plus the customer artifacts.
 
 Example:
-  python reproduction/capture_run.py --repository /path/to/repo --output-dir /tmp/capture
+  python reproduction/capture_run.py --repository /path/to/repo --output-dir ./capture-output
 
 Exit 0 means the resolved graph and context ZIP were captured. The CLI's own exit code
 is recorded in capture_manifest.json rather than treated as this helper's result,

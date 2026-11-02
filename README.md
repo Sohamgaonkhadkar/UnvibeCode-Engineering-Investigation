@@ -21,26 +21,36 @@ The effect is now established beyond graph counts:
   107 direct context dependencies.
 - A normal pinned install in GitHub Actions reproduces the minimal fixture,
   correction proof of concept, full lexical counts, and selection impact.
-- A separate expected-behaviour workflow is intentionally red on 0.3.15; it is
-  the post-fix regression test, not a passing check disguised by test inversion.
+- The PR check is green only when the affected release fails the post-fix
+  regression for the exact documented symptom. That means **successful defect
+  verification**, not successful expected behaviour. The raw regression is an
+  explicitly manual post-fix workflow.
 
 ## Reproduce
 
-Install the tested release and run the assertion-based unit reproducer:
+Install the tested release and run the single verification entry point:
 
 ```bash
 python -m pip install unvibecode==0.3.15
+python reproduction/verify.py
+```
+
+`verify.py` checks the Python/package environment, runs the strict control and
+all JSONC variants, asserts that `repro_unit.py --expect-fixed` fails only for
+the exact four empty-alias JSONC cases, runs the correction proof of concept,
+and checks the committed lexical/ng-matero evidence counts. The original
+scripts remain directly runnable:
+
+```bash
 python reproduction/repro_unit.py
-# Post-fix regression form (expected to FAIL on 0.3.15):
-python reproduction/repro_unit.py --expect-fixed
-# Correction feasibility proof of concept:
+python reproduction/repro_unit.py --expect-fixed  # post-fix regression; fails on 0.3.15
 python reproduction/correction_poc.py
 ```
 
 For an ordinary-install minimal CLI comparison:
 
 ```bash
-python reproduction/ci_cli_comparison.py --output-root /tmp/jsonc-cli
+python reproduction/ci_cli_comparison.py --output-root ./cli-comparison-output
 ```
 
 To regenerate the lexical graph and downstream context analysis, use
