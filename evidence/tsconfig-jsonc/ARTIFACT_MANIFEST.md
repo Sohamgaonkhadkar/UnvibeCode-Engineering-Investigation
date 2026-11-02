@@ -16,7 +16,7 @@ recomputed the same lexical counts under an ordinary installation.
 | Python, local evidence runs | 3.11.2 |
 | Python, GitHub Actions | 3.12 (setup-python) |
 | TypeScript oracle | 5.9.3 |
-| Investigation commit used for the recorded CI runs | `5eca99bf64319afdf4e04983e2b6a06c6f1e9340` |
+| Investigation commit used for the recorded CI runs | `9a1a3325930c740990be64c2e57bd92ecb8fa0eb` |
 
 Both engine files containing `_load_tsconfig_aliases` were checked against the
  hashes in the installed wheel's `RECORD`:
@@ -72,8 +72,8 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 
 See `CI_VERIFICATION.md` for run links and outcomes. Artifact digests:
 
-- `jsonc-verification-logs`: `b4439f89ab4a945797dd44d790c0040c0ea8078f47fa76391c2a5de6444861d6`
-- `lexical-clean-environment-evidence`: `ebb397b00484d0f55e050eda104d9a4652cd900a43e52a825a6da8674e661fb2`
+- `jsonc-verification-logs`: `f4ded68fdde701ed274ff614c90bdb2a645e041803a2a36f74f0e4a0df6375b0`
+- `lexical-clean-environment-evidence`: `1f8cb21c630f17a9dc223286f529a174f35ae39fc135cf0c8be2b8ceb47ece09`
 
 ## Regeneration outline
 
