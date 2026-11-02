@@ -1,0 +1,12 @@
+unvibecode version : 0.3.15
+engine under test  : /tmp/work/vanilla-venv/lib/python3.11/site-packages/shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py
+mode               : REGRESSION (expect correct JSONC handling)
+------------------------------------------------------------------------------
+PASS  minimal_strict: aliases={'@app': 'src/app'} resolution=('src/app/util.ts', 'node_ts_module_resolution') (expected aliases={'@app': 'src/app'}, resolution=('src/app/util.ts', 'node_ts_module_resolution'))
+FAIL  minimal_jsonc: aliases={} resolution=(None, None) (expected aliases={'@app': 'src/app'}, resolution=('src/app/util.ts', 'node_ts_module_resolution'))
+FAIL  minimal_blockcomment: aliases={} resolution=(None, None) (expected aliases={'@app': 'src/app'}, resolution=('src/app/util.ts', 'node_ts_module_resolution'))
+FAIL  minimal_trailingcomma: aliases={} resolution=(None, None) (expected aliases={'@app': 'src/app'}, resolution=('src/app/util.ts', 'node_ts_module_resolution'))
+FAIL  minimal_combined_jsonc: aliases={} resolution=(None, None) (expected aliases={'@app': 'src/app'}, resolution=('src/app/util.ts', 'node_ts_module_resolution'))
+PASS  minimal_noalias (negative control): aliases={} absent-alias=(None, None) relative-import-still-works=('src/feature/local.ts', 'node_ts_module_resolution')
+------------------------------------------------------------------------------
+RESULT: FAIL (4 check(s)): ['minimal_jsonc', 'minimal_blockcomment', 'minimal_trailingcomma', 'minimal_combined_jsonc']

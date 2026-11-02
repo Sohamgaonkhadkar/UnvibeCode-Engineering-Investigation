@@ -1,0 +1,200 @@
+{
+  "inputs": {
+    "graph_as_is": {
+      "path_name": "resolved_graph.json",
+      "sha256": "8ee970fe9686e6c7975fee3c5fc72bd8a4d4d087cd08de6f1a92d40ee90c903b",
+      "workspace_root_name": "lexical",
+      "generated_at": "2026-11-01T22:50:27",
+      "summary": {
+        "files_scanned": 2044,
+        "edges": 1263,
+        "package_edges": 0,
+        "unresolved_or_external_imports": 8298,
+        "unresolved_go_usages": 0,
+        "go_symbol_edges": 0,
+        "language_counts": {
+          "css": 78,
+          "html": 36,
+          "javascript": 270,
+          "python": 1,
+          "swift": 3,
+          "tsx": 316,
+          "typescript": 1340
+        },
+        "nodes_with_parse_errors": 3,
+        "nodes_without_ast_parser": 3
+      }
+    },
+    "graph_control": {
+      "path_name": "resolved_graph.json",
+      "sha256": "9e5d2d246ea731b24367bccc7ecd4f40f2b56aaa02ccb36870325517dfe3ebff",
+      "workspace_root_name": "lexical_ctrl",
+      "generated_at": "2026-11-01T22:50:57",
+      "summary": {
+        "files_scanned": 2044,
+        "edges": 5519,
+        "package_edges": 0,
+        "unresolved_or_external_imports": 4042,
+        "unresolved_go_usages": 0,
+        "go_symbol_edges": 0,
+        "language_counts": {
+          "css": 78,
+          "html": 36,
+          "javascript": 270,
+          "python": 1,
+          "swift": 3,
+          "tsx": 316,
+          "typescript": 1340
+        },
+        "nodes_with_parse_errors": 3,
+        "nodes_without_ast_parser": 3
+      }
+    },
+    "source_root_name": "lexical",
+    "tsconfig": {
+      "path_name": "tsconfig.json",
+      "sha256": "58840d3690f0a5e6917693cedc6a93cee6af4d06b883a0022abf2689f936059b",
+      "pattern_count": 220,
+      "exact_pattern_count": 184,
+      "wildcard_pattern_count": 36
+    }
+  },
+  "scan_and_extraction": {
+    "node_file_sets_identical": true,
+    "nodes_as_is": 2044,
+    "nodes_control": 2044,
+    "extracted_import_records_identical": true,
+    "extracted_import_records": 9562
+  },
+  "legacy_prefix_audit": {
+    "legacy_prefixes": [
+      "lexical",
+      "@lexical/"
+    ],
+    "gained_by_legacy_class": {
+      "alias_prefix": 4256
+    },
+    "distinct_extracted_specifiers": 1543,
+    "distinct_specifiers_matching_tsconfig_paths": 102,
+    "distinct_false_legacy_prefix_specifiers": 2,
+    "false_legacy_prefix_examples": [
+      "@lexical/eslint-plugin-internal",
+      "lexicalOriginal"
+    ]
+  },
+  "strong_oracle": {
+    "gained_file_edges_total": 4256,
+    "classification": {
+      "verified_paths_target": 4256
+    },
+    "gained_file_edges_only_in_as_is": 0,
+    "gained_symbol_edges_total": 10091,
+    "gained_symbol_edge_classification": {
+      "paths_match_symbol_target_differs_from_module_entry": 9276,
+      "verified_paths_target": 815
+    },
+    "top_tsconfig_patterns": [
+      [
+        "lexical",
+        1217
+      ],
+      [
+        "@lexical/extension",
+        564
+      ],
+      [
+        "@lexical/rich-text",
+        371
+      ],
+      [
+        "@lexical/list",
+        194
+      ],
+      [
+        "lexical/src/__tests__/utils",
+        157
+      ],
+      [
+        "@lexical/link",
+        146
+      ],
+      [
+        "@lexical/table",
+        139
+      ],
+      [
+        "@lexical/react/LexicalComposerContext",
+        137
+      ],
+      [
+        "@lexical/html",
+        124
+      ],
+      [
+        "@lexical/utils",
+        96
+      ],
+      [
+        "@lexical/internal/invariant",
+        93
+      ],
+      [
+        "@lexical/selection",
+        82
+      ],
+      [
+        "@lexical/mark",
+        80
+      ],
+      [
+        "@lexical/history",
+        60
+      ],
+      [
+        "@lexical/code-core",
+        48
+      ],
+      [
+        "@lexical/clipboard",
+        47
+      ],
+      [
+        "@lexical/code",
+        42
+      ],
+      [
+        "@lexical/react/LexicalContentEditable",
+        41
+      ],
+      [
+        "@lexical/react/LexicalExtensionComposer",
+        36
+      ],
+      [
+        "@lexical/yjs",
+        33
+      ],
+      [
+        "@lexical/markdown",
+        29
+      ],
+      [
+        "@lexical/hashtag",
+        27
+      ],
+      [
+        "@lexical/a11y",
+        24
+      ],
+      [
+        "@lexical/plain-text",
+        22
+      ],
+      [
+        "@lexical/react/useExtensionSignalValue",
+        21
+      ]
+    ],
+    "distinct_tsconfig_patterns_represented": 99
+  }
+}

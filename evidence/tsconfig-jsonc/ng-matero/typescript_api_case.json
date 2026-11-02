@@ -1,0 +1,33 @@
+{
+  "typescript_version": "5.9.3",
+  "config_path": "tsconfig.json",
+  "config_error": null,
+  "paths_pattern_count": 8,
+  "source_file": "src/app/app.config.ts",
+  "resolutions": [
+    {
+      "specifier": "@core",
+      "resolved_path": "src/app/core/index.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@env/environment",
+      "resolved_path": "src/environments/environment.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@shared",
+      "resolved_path": "src/app/shared/index.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    },
+    {
+      "specifier": "@shared/in-mem/in-mem-data.service",
+      "resolved_path": "src/app/shared/in-mem/in-mem-data.service.ts",
+      "extension": ".ts",
+      "is_external_library_import": false
+    }
+  ]
+}

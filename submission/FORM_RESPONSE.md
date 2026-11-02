@@ -1,0 +1,13 @@
+# Google Form content — Cohort 3, Track 1 (DO NOT SUBMIT until approved)
+
+**Form:** https://docs.google.com/forms/d/1an-hce3EQ8bUVArnZJnD1VwxQIxgmNzLKYQ8h814CVE/viewform
+
+- **Official GitHub issue URL:** ⏳ PENDING — issue prepared in `submission/GITHUB_ISSUE.md`, not yet published (awaiting approval). Paste the real URL here after filing; do not invent one.
+- **Analyzed public repository URL:** https://github.com/meta/lexical (commit `164af6a4df7114f35724c472152ca74877b6bd04`)
+- **Evidence workspace:** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation
+
+## Short technical summary (for the form)
+UnvibeCode 0.3.15 silently discards TypeScript path aliases when the root `tsconfig.json` contains comments or trailing commas—legal JSONC that TypeScript 5.9.3 accepts. `_load_tsconfig_aliases` (in both engine copies) uses strict `json.loads` inside a bare `except: pass`, leaving an empty alias table and no warning. Controlled fixture variants isolate the parse step. On `meta/lexical@164af6a`, deleting only five comment lines raises internal file edges from 1,263 to 5,519; a strict TypeScript-`paths` oracle verifies all 4,256 gained relationships. Comparing the emitted context bundles proves downstream impact: 2,707 verified direct dependencies are absent from as-is Optimal selections and restored in the control (3,345 in Wider). The same transformation restores 111 verified relationships on independent `ng-matero@d351bf59`, and ordinary-install GitHub Actions runs reproduce the fixture and lexical results. Fix: parse tsconfig with a JSONC-tolerant loader and warn visibly if an existing config cannot be parsed.
+
+## Genuine product feedback (<200 words)
+I stress-tested the local pipeline hard — bundle integrity, determinism across runs, metamorphic edits, symlinks, adversarial files, Go reference numbers — and it held up impressively; chi reproduced your GO_SUPPORT figures exactly. The one theme I'd flag is *silent degradation*: when something can't be loaded (this tsconfig case, tree-sitter grammars, the tokenizer), the tool tends to continue and present results that look complete. Surfacing a short "degraded inputs" section in the report (what was skipped and why) would materially raise trust, because today a sparse Connected Code Map is indistinguishable from a genuinely disconnected codebase. I'd also love the bundle's connection records to expose which resolution strategy produced each edge (the graph JSON has it; the exported bundle drops it) — it would make downstream auditing much easier. Overall, the context-bundle concept worked as advertised and was genuinely useful to navigate lexical's monorepo once aliases resolved.

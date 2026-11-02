@@ -1,0 +1,112 @@
+{
+  "inputs": {
+    "graph_as_is": {
+      "path_name": "resolved_graph.json",
+      "sha256": "88715a6f7313308d481920257b634eb307cf440880a0feb6b4df230878d0bdee",
+      "workspace_root_name": "ngmatero",
+      "generated_at": "2026-11-01T22:55:18",
+      "summary": {
+        "files_scanned": 300,
+        "edges": 130,
+        "package_edges": 0,
+        "unresolved_or_external_imports": 1062,
+        "unresolved_go_usages": 0,
+        "go_symbol_edges": 0,
+        "language_counts": {
+          "css": 1,
+          "html": 83,
+          "javascript": 5,
+          "typescript": 211
+        },
+        "nodes_with_parse_errors": 0,
+        "nodes_without_ast_parser": 0
+      }
+    },
+    "graph_control": {
+      "path_name": "resolved_graph.json",
+      "sha256": "b4fdf97748577ab113ed9755eb433737b9b4610f3255faaf671bd42b66e9dda7",
+      "workspace_root_name": "ngmatero_ctrl",
+      "generated_at": "2026-11-01T22:55:34",
+      "summary": {
+        "files_scanned": 300,
+        "edges": 241,
+        "package_edges": 0,
+        "unresolved_or_external_imports": 951,
+        "unresolved_go_usages": 0,
+        "go_symbol_edges": 0,
+        "language_counts": {
+          "css": 1,
+          "html": 83,
+          "javascript": 5,
+          "typescript": 211
+        },
+        "nodes_with_parse_errors": 0,
+        "nodes_without_ast_parser": 0
+      }
+    },
+    "source_root_name": "ngmatero",
+    "tsconfig": {
+      "path_name": "tsconfig.json",
+      "sha256": "d911557829a1cb7a18b8f89801b92dcaa4ff7d9a038b844207d372a0158a6a1c",
+      "pattern_count": 8,
+      "exact_pattern_count": 4,
+      "wildcard_pattern_count": 4
+    }
+  },
+  "scan_and_extraction": {
+    "node_file_sets_identical": true,
+    "nodes_as_is": 300,
+    "nodes_control": 300,
+    "extracted_import_records_identical": true,
+    "extracted_import_records": 1192
+  },
+  "legacy_prefix_audit": {
+    "legacy_prefixes": [
+      "@core",
+      "@shared",
+      "@theme",
+      "@env"
+    ],
+    "gained_by_legacy_class": {
+      "alias_prefix": 111
+    },
+    "distinct_extracted_specifiers": 317,
+    "distinct_specifiers_matching_tsconfig_paths": 15,
+    "distinct_false_legacy_prefix_specifiers": 0,
+    "false_legacy_prefix_examples": []
+  },
+  "strong_oracle": {
+    "gained_file_edges_total": 111,
+    "classification": {
+      "verified_paths_target": 111
+    },
+    "gained_file_edges_only_in_as_is": 0,
+    "gained_symbol_edges_total": 103,
+    "gained_symbol_edge_classification": {
+      "paths_match_symbol_target_differs_from_module_entry": 103
+    },
+    "top_tsconfig_patterns": [
+      [
+        "@shared",
+        67
+      ],
+      [
+        "@core",
+        23
+      ],
+      [
+        "@core/*",
+        12
+      ],
+      [
+        "@env/*",
+        5
+      ],
+      [
+        "@theme/*",
+        4
+      ]
+    ],
+    "distinct_tsconfig_patterns_represented": 5
+  }
+}
