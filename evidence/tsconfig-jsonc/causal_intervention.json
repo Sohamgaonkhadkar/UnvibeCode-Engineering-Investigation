@@ -1,0 +1,1301 @@
+{
+  "schema": "unvibecode-jsonc-causal-intervention/v1",
+  "status": "passed",
+  "environment": {
+    "python": "3.11.2",
+    "unvibecode": "0.3.15"
+  },
+  "engines": [
+    {
+      "label": "fast_lane_00a",
+      "file": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca"
+    },
+    {
+      "label": "merged_graph_01",
+      "file": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1"
+    }
+  ],
+  "unit_reversible_sequence": [
+    {
+      "engine": "fast_lane_00a",
+      "engine_file": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "engine_sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+      "source_hashes": {
+        "src/app/util.ts": "9e7162aa3d6e0c23ba41a59ed3e98b4869b943785599919ab31a5d2921a6d1c8",
+        "src/duplicate/util.ts": "a6fb02f5333295f04f022afd6973d4edebfb278d529fda03095e5e9533cf83f1",
+        "src/feature/local.ts": "2c50ab14f40d86f1f6910babaa10074b15bac330fc58d895bd251892c355dc72",
+        "src/feature/comp.ts": "c31e86414354b49c5c2b825d45fb9186cfc380429f552a09b5a3c354fd698b08"
+      },
+      "config_hashes": {
+        "original_jsonc": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+        "comments_removed": "0ded3674d6bb3293c2112149408cccab9d94a0f757c204bb07c84cbe19c3ee92"
+      },
+      "steps": [
+        {
+          "step": "A",
+          "description": "original valid JSONC, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "B",
+          "description": "only comments removed, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "0ded3674d6bb3293c2112149408cccab9d94a0f757c204bb07c84cbe19c3ee92",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "C",
+          "description": "exact original JSONC restored, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "D",
+          "description": "original JSONC, tolerant loader patched in memory",
+          "loader": "in_memory_tolerant_poc",
+          "loader_patched_during_probe": true,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "E",
+          "description": "correction removed and stock loader restored",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "engine_file": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "engine_sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+      "source_hashes": {
+        "src/app/util.ts": "9e7162aa3d6e0c23ba41a59ed3e98b4869b943785599919ab31a5d2921a6d1c8",
+        "src/duplicate/util.ts": "a6fb02f5333295f04f022afd6973d4edebfb278d529fda03095e5e9533cf83f1",
+        "src/feature/local.ts": "2c50ab14f40d86f1f6910babaa10074b15bac330fc58d895bd251892c355dc72",
+        "src/feature/comp.ts": "c31e86414354b49c5c2b825d45fb9186cfc380429f552a09b5a3c354fd698b08"
+      },
+      "config_hashes": {
+        "original_jsonc": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+        "comments_removed": "0ded3674d6bb3293c2112149408cccab9d94a0f757c204bb07c84cbe19c3ee92"
+      },
+      "steps": [
+        {
+          "step": "A",
+          "description": "original valid JSONC, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "B",
+          "description": "only comments removed, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "0ded3674d6bb3293c2112149408cccab9d94a0f757c204bb07c84cbe19c3ee92",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "C",
+          "description": "exact original JSONC restored, stock loader",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "D",
+          "description": "original JSONC, tolerant loader patched in memory",
+          "loader": "in_memory_tolerant_poc",
+          "loader_patched_during_probe": true,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {
+              "@app": "src/app"
+            },
+            "resolutions": {
+              "@app/util": {
+                "target": "src/app/util.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        },
+        {
+          "step": "E",
+          "description": "correction removed and stock loader restored",
+          "loader": "stock",
+          "loader_patched_during_probe": false,
+          "tsconfig_sha256": "c7d99e02bff0e78e10b73eb1389e45687a079a80cd0f9d3a0a33b0f1f7df6387",
+          "source_hashes_unchanged": true,
+          "observed": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "expected": {
+            "aliases": {},
+            "resolutions": {
+              "@app/util": {
+                "target": null,
+                "strategy": null
+              },
+              "./local": {
+                "target": "src/feature/local.ts",
+                "strategy": "node_ts_module_resolution"
+              },
+              "@app/missing": {
+                "target": null,
+                "strategy": null
+              },
+              "@other/util": {
+                "target": null,
+                "strategy": null
+              },
+              "external-pkg": {
+                "target": null,
+                "strategy": null
+              }
+            }
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "existing_fixture_boundary_checks": [
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_strict",
+      "stock": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_jsonc",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_blockcomment",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_trailingcomma",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_stringsafety",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": true,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_combined_jsonc",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": true,
+      "passed": true
+    },
+    {
+      "engine": "fast_lane_00a",
+      "fixture": "minimal_noalias",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": "src/feature/local.ts",
+            "strategy": "node_ts_module_resolution"
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": "src/feature/local.ts",
+            "strategy": "node_ts_module_resolution"
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_strict",
+      "stock": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_jsonc",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_blockcomment",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_trailingcomma",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_stringsafety",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": true,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_combined_jsonc",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "resolutions": {
+          "@app/util": {
+            "target": "src/app/util.ts",
+            "strategy": "node_ts_module_resolution"
+          },
+          "./local": {
+            "target": null,
+            "strategy": null
+          }
+        }
+      },
+      "string_literal_preserved": true,
+      "passed": true
+    },
+    {
+      "engine": "merged_graph_01",
+      "fixture": "minimal_noalias",
+      "stock": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": "src/feature/local.ts",
+            "strategy": "node_ts_module_resolution"
+          }
+        }
+      },
+      "corrected": {
+        "aliases": {},
+        "resolutions": {
+          "@app/util": {
+            "target": null,
+            "strategy": null
+          },
+          "./local": {
+            "target": "src/feature/local.ts",
+            "strategy": "node_ts_module_resolution"
+          }
+        }
+      },
+      "string_literal_preserved": null,
+      "passed": true
+    }
+  ],
+  "parser_boundary_checks": {
+    "inline_string_literal_preserved": true,
+    "committed_semantic_config_pairs": [
+      {
+        "original": "lexical_tsconfig_original.jsonc",
+        "control": "lexical_tsconfig_control.json",
+        "original_sha256": "58840d3690f0a5e6917693cedc6a93cee6af4d06b883a0022abf2689f936059b",
+        "control_sha256": "0f7733d055f7866c0985447bce9e739718c515a1379246ac3f210fcef81e61ad",
+        "semantically_equal_after_tolerant_parse": true
+      },
+      {
+        "original": "ng-matero/tsconfig_as_is.json",
+        "control": "ng-matero/tsconfig_control.json",
+        "original_sha256": "d911557829a1cb7a18b8f89801b92dcaa4ff7d9a038b844207d372a0158a6a1c",
+        "control_sha256": "49b589e011b2b9bfbab73449b670412f060d698ddd8b54ce69cdaa15f4dc39b9",
+        "semantically_equal_after_tolerant_parse": true
+      }
+    ],
+    "malformed": [
+      {
+        "case": "missing_value",
+        "parser_error": "Expecting value: line 1 column 21 (char 20)",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Expecting value: line 1 column 21 (char 20)"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Expecting value: line 1 column 21 (char 20)"
+          }
+        },
+        "passed": true
+      },
+      {
+        "case": "missing_closing_brace",
+        "parser_error": "Expecting ',' delimiter: line 1 column 34 (char 33)",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Expecting ',' delimiter: line 1 column 34 (char 33)"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Expecting ',' delimiter: line 1 column 34 (char 33)"
+          }
+        },
+        "passed": true
+      },
+      {
+        "case": "extra_token_after_root",
+        "parser_error": "Extra data: line 1 column 24 (char 23)",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Extra data: line 1 column 24 (char 23)"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "Extra data: line 1 column 24 (char 23)"
+          }
+        },
+        "passed": true
+      },
+      {
+        "case": "unterminated_string",
+        "parser_error": "unterminated string literal",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "unterminated string literal"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "unterminated string literal"
+          }
+        },
+        "passed": true
+      },
+      {
+        "case": "unterminated_block_comment",
+        "parser_error": "unterminated block comment",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "unterminated block comment"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "unterminated block comment"
+          }
+        },
+        "passed": true
+      },
+      {
+        "case": "root_not_object",
+        "parser_error": "tsconfig root value is not an object",
+        "engines": {
+          "fast_lane_00a": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "tsconfig root value is not an object"
+          },
+          "merged_graph_01": {
+            "stock_aliases": {},
+            "stock_silently_empty": true,
+            "corrected_error": "tsconfig root value is not an object"
+          }
+        },
+        "passed": true
+      }
+    ],
+    "missing_config_is_empty_not_error": {
+      "fast_lane_00a": {
+        "observed": {
+          "aliases": {},
+          "resolutions": {
+            "@app/util": {
+              "target": null,
+              "strategy": null
+            },
+            "./local": {
+              "target": "src/feature/local.ts",
+              "strategy": "node_ts_module_resolution"
+            }
+          }
+        },
+        "passed": true
+      },
+      "merged_graph_01": {
+        "observed": {
+          "aliases": {},
+          "resolutions": {
+            "@app/util": {
+              "target": null,
+              "strategy": null
+            },
+            "./local": {
+              "target": "src/feature/local.ts",
+              "strategy": "node_ts_module_resolution"
+            }
+          }
+        },
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "conclusion": "A/C/E fail and B/D restore under the stated level(s); source hashes are invariant; the correction is an in-memory diagnostic PoC, not a shipped fix."
+}

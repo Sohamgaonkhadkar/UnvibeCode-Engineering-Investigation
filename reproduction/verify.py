@@ -7,8 +7,10 @@ Default mode verifies the *affected* UnvibeCode 0.3.15 behaviour exactly:
 2. strict-JSON control and all JSONC variants reproduce the known defect;
 3. the post-fix regression (`repro_unit.py --expect-fixed`) fails, but only
    for the four JSONC fixtures and only with the exact empty-alias symptom;
-4. the correction proof of concept restores resolution; and
-5. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
+4. the correction proof of concept restores resolution;
+5. the reversible A/B/C/D/E causal intervention and targeted boundary checks
+   pass on both shipped resolver copies; and
+6. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
    with the numbers reported in the investigation.
 
 This is intentionally stricter than "a command failed, therefore pass": an
@@ -41,6 +43,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
 
@@ -190,6 +193,29 @@ def check_correction(output: str, returncode: int) -> None:
             "Correction PoC final marker missing")
 
 
+def check_causal_intervention(output: str, returncode: int, result_path: Path) -> None:
+    require(returncode == 0, f"Causal intervention exited {returncode}, expected 0")
+    require("CAUSAL_INTERVENTION_STATUS: passed" in output,
+            "Causal intervention did not report a passed status")
+    expected_sequence = "A=failed,B=restored,C=failed,D=restored,E=failed"
+    for engine in ("fast_lane_00a", "merged_graph_01"):
+        require(f"UNIT_SEQUENCE {engine}: {expected_sequence}" in output,
+                f"Causal sequence mismatch for {engine}")
+    require("EXISTING_FIXTURE_CHECKS: 14 passed" in output,
+            "Causal intervention fixture-boundary count mismatch")
+    require("MALFORMED_BOUNDARY_CHECKS: 6 passed" in output,
+            "Causal intervention malformed-boundary count mismatch")
+
+    data = load_json(result_path)
+    require(data.get("status") == "passed", "Causal intervention JSON status is not passed")
+    require(len(data.get("unit_reversible_sequence", [])) == 2,
+            "Causal intervention JSON does not contain both engine sequences")
+    require(all(sequence.get("passed") for sequence in data["unit_reversible_sequence"]),
+            "A causal intervention engine sequence is not marked passed")
+    require(data.get("parser_boundary_checks", {}).get("passed") is True,
+            "Causal intervention parser boundaries are not marked passed")
+
+
 def load_json(path: Path):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -318,6 +344,19 @@ def main() -> int:
         code, output = run_child("Correction proof of concept", "correction_poc.py")
         check_correction(output, code)
 
+        if not args.expect_fixed:
+            # This diagnostic intentionally asserts the affected 0.3.15
+            # A/C/E failure states, so it is not part of post-fix mode.
+            with tempfile.TemporaryDirectory(prefix="unvibecode-verify-causal-") as temporary:
+                causal_output = Path(temporary) / "causal-intervention.json"
+                code, output = run_child(
+                    "Reversible causal intervention and targeted boundaries",
+                    "causal_intervention.py",
+                    "--output",
+                    str(causal_output),
+                )
+                check_causal_intervention(output, code, causal_output)
+
         if not args.skip_evidence:
             check_evidence()
     except VerificationError as exc:
@@ -329,7 +368,8 @@ def main() -> int:
     else:
         print("\nFINAL RESULT: PASS — affected 0.3.15 defect reproduced exactly; "
               "regression failure is the expected JSONC empty-alias symptom; "
-              "correction PoC and committed evidence verified")
+              "correction PoC, reversible causal intervention, targeted boundaries, "
+              "and committed evidence verified")
     return 0
 
 

@@ -61,6 +61,21 @@ jobs:
           set -o pipefail
           python reproduction/verify.py 2>&1 | tee ci-logs/verify-affected-version.log
 
+      # This repeats the lightweight checks inside causal_intervention.py and
+      # then runs the same A/B/C/D/E sequence through the installed Fast Lane
+      # run_pipeline(), inspecting the actual graph and context ZIP.  Step D
+      # patches only the resolver method in memory; the repository/config and
+      # installed package files are not modified.
+      - name: Reversible causal intervention — full Fast Lane graph and context
+        run: |
+          set -o pipefail
+          python reproduction/causal_intervention.py \
+            --full-pipeline \
+            --work-root "$RUNNER_TEMP/causal-intervention" \
+            --keep-work \
+            --output ci-logs/causal-intervention-full.json \
+            2>&1 | tee ci-logs/causal-intervention-full.log
+
       - name: Ordinary-install CLI comparison
         run: |
           set -o pipefail
