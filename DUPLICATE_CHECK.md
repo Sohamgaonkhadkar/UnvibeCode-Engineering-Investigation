@@ -1,4 +1,4 @@
-# Duplicate check — latest pre-publication sweep 2026-11-02 against all 330 issues (open + closed, to #426)
+# Duplicate check — latest strengthening sweep 2026-11-02 against all 331 issues (open + closed, to #427)
 
 ## Searches run
 Title sweeps for: `tsconfig` (**0 hits**), `jsonc` (**0**), `comment` (0 relevant), `alias` (8, reviewed), `require`/CommonJS, `../`, plus full re-listing immediately before drafting (no new issues after #417). Closest issues read in full:
@@ -80,6 +80,16 @@ tsconfig` each returned 0; `tsconfig` and `compilerOptions.paths` still returned
 only #153/#272/#374. Issues #421–#423, #425, and #426 concern unrelated Flask
 linking, CLI interruption, workflow grouping, Python imports, and Business Risk
 selection mechanisms (#424 is a pull request).
+
+## Causal-strengthening re-check — 2026-11-02
+
+Before finalizing the reversible-intervention strengthening, the tracker had
+advanced to **331 issues, newest #427**. The exact-mechanism results remained
+unchanged: `jsonc`, `trailing comma`, `_load_tsconfig_aliases`, `comment
+tsconfig`, and `comments tsconfig` each returned 0; `tsconfig` and
+`compilerOptions.paths` still returned only #153/#272/#374. Issue #427 concerns
+duplicate Pass 1 activation facts, an unrelated hosted-analysis validation
+mechanism.
 
 ## Conclusion
 No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).

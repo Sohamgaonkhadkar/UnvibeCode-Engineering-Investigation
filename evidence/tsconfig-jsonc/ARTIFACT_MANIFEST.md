@@ -64,6 +64,7 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 | `selection_case_react_extension.json` | Chunk/file-level representative case |
 | `alias_oracle_summary.json` / `selection_impact_summary.json` | Aggregate lexical inputs, hashes and classifications |
 | `typescript_api_verification.json` | TypeScript-resolver batch cross-check: 4,256/4,256 lexical rows matched |
+| `causal_intervention.json` | Resolver-level A/B/C/D/E record for both shipped engine copies, invariant source hashes, existing-fixture checks, and targeted malformed/string boundaries (generated locally with UnvibeCode 0.3.15) |
 | `ng-matero/lost_relationships.jsonl` | 111 verified relationships in the independent repository |
 | `ng-matero/typescript_api_verification.json` | TypeScript-resolver batch cross-check: 111/111 rows matched |
 | `ng-matero/direct_selection_omissions.jsonl` | 214 scope instances (107 Optimal + 107 Wider) |

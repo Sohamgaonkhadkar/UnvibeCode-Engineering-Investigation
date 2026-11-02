@@ -52,6 +52,15 @@ files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
   comments raises them from 130 to 241.
 - Replacing only the parse step in memory—while retaining the shipped resolver
   and its downstream alias use—restores the expected result on every fixture.
+- The sequence is explicitly reversible on both engine copies: original JSONC
+  fails, comments-only removal restores it, restoring the exact config fails
+  again, the in-memory tolerant loader restores it, and restoring the stock
+  method fails again. Source hashes do not change; missing/unconfigured and
+  external specifiers remain unresolved throughout.
+- In clean CI, that same A–E sequence restores the minimal Fast Lane graph and
+  context bundle in B/D. On unmodified lexical, the in-memory loader alone
+  restores 5,519 edges and the control's `ReactExtension.tsx` Optimal
+  selection exactly.
 - The full lexical result was reproduced in a normal GitHub Actions install, so
   it does not depend on this investigation sandbox's temporary grammar shim.
 
@@ -112,11 +121,13 @@ direct implementations from customer context selections. See
 ## Correction status
 
 `reproduction/correction_poc.py` is a proof of concept, not a submitted
-production patch. It uses a two-pass, string-aware JSONC-to-JSON conversion:
-comments are removed only outside string literals, then trailing commas are
-removed only outside string literals. That ordering also handles the legal shape
-`..., /* comment */}`. The harness asserts that comment-like contents and commas
-inside fixture string literals survive byte-for-byte.
+production patch. Its shared diagnostic parser uses a two-pass, string-aware
+JSONC-to-JSON conversion: comments are removed only outside string literals,
+then trailing commas are removed only outside string literals. That ordering
+also handles the legal shape `..., /* comment */}`. The harness asserts that
+comment-like contents and commas inside fixture string literals survive
+byte-for-byte, and the diagnostic parser raises explicitly on targeted
+malformed shapes rather than manufacturing an empty successful config.
 
 A production fix should use a maintained TypeScript-compatible JSONC parser,
 fail visibly if an existing config still cannot be parsed, and keep the

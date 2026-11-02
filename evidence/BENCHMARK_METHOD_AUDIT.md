@@ -9,7 +9,8 @@ investigation's defect, or treat any benchmark result as evidence for ours.
 
 | Benchmark | Methodological feature worth learning from | Adaptation in this investigation | What was deliberately not copied |
 |---|---|---|---|
-| #395 | Offline replay of prepared artifacts; original/repeat/control/restored toggles; hashes; a concrete application consequence rather than a count alone | Kept the lexical source fixed while toggling only config parseability; preserved graph/bundle hashes and machine-readable deltas; added a concrete `ReactExtension.tsx` context case | No hosted-model replay is relevant to the local resolver, so none is claimed |
+| #395 | Offline replay of prepared artifacts; original/repeat/control/restored toggles; hashes; a concrete application consequence rather than a count alone | Kept the lexical source fixed while toggling only config parseability; preserved graph/bundle hashes and machine-readable deltas; added a concrete `ReactExtension.tsx` context case. The later strengthening makes the toggle explicit as A original, B comments removed, C restored, D in-memory correction, E stock restored | No hosted-model replay is relevant to the local resolver, so none is claimed |
+| #426 | Original, each partial correction, combined correction, exact restoration, and negatives recorded against unchanged fingerprints/thresholds | Adapted the sequencing discipline—not the selector finding—to separate comments-only restoration (B) from parser-only restoration (D), require the failure to return at C/E, and keep missing/unconfigured/external specifiers negative in every state | Its Business Risk identifiers, fixture, and result are unrelated and were not reused |
 | #409 | Verified installed sources against wheel `RECORD` hashes; replayed saved intermediates; used a narrow enforcement control; reconstructed a customer artifact byte-for-byte | Verified the two engine files against the 0.3.15 wheel record (see `tsconfig-jsonc/ARTIFACT_MANIFEST.md`); used a narrow in-memory parse correction while leaving the rest of resolution unchanged | We did not imply byte reconstruction of hosted output; our claim stops at local graph/context artifacts |
 | #388 + `aayush-t-exe/unvibecode-pem-repro` | Semantically matched bug/control fixtures; no-API probe of the actual intermediate request; pinned public-code checks; shipped-vs-proposed implementation compared through the real code path; deterministic evidence separated from variable hosted outcomes | Compared the actual exported `selections.jsonl`/chunks, not only graph-edge counts; used pinned lexical and ng-matero trees; ran the correction through the shipped resolver object | Hosted outcome frequencies are not used because this defect is fully local and deterministic at the tested stages |
 | #416 + `Aameen-badrul/Unvibecode-reexport-repro` | The language runtime itself supplies the expected answer; four-file cloneable fixture; deletion control; impact expressed as concrete public API usage | Used TypeScript 5.9.3—both `tsc --showConfig` and the compiler API—as the independent authority for JSONC validity and representative module targets; retained tiny assertion fixtures | No Python-runtime analogy or unrelated symbol-linker finding was imported |
@@ -19,7 +20,7 @@ investigation's defect, or treat any benchmark result as evidence for ours.
 
 ## Consequences of the audit
 
-The benchmark review changed the investigation in four material ways:
+The benchmark review changed the investigation in five material ways:
 
 1. **Downstream proof became the primary test.** Edge loss was no longer assumed to mean
    context loss; exported selections were compared exhaustively.
@@ -32,5 +33,10 @@ The benchmark review changed the investigation in four material ways:
    workflow rather than a misleading red PR check.
 4. **One independent real repository was added.** ng-matero tests whether the mechanism
    generalizes beyond lexical's unusually large exact-mapping table.
+5. **Causality is reversible at two levels.** The A/B/C/D/E intervention is
+   asserted at resolver level on both shipped engine copies and, in clean CI,
+   through actual Fast Lane graph/context artifacts on a minimal repository.
+   A separate in-memory-corrected lexical Fast Lane run checks whether the
+   diagnostic parser alone recovers the real exported context.
 
 The locked pre-benchmark strategy in `INDEPENDENT_STRATEGY.md` is unchanged.

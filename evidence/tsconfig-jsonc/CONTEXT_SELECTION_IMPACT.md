@@ -75,12 +75,25 @@ This is not an abstract graph difference. `ReactExtension.tsx` puts
 `LexicalComposerContextWithEditor` tuple passed through the React integration.
 For a task such as changing the extension's default editable surface, placeholder
 behaviour, provider checks, or composer-context/theme handling, the as-is
-Optimal export withholds the implementations that define those behaviours. An
-engineer or model working from that export must guess APIs and invariants that
-the control export supplies directly.
+Optimal export withholds the implementations that define those behaviours.
+
+The important measurement is restoration of these verified relevant
+dependencies, not the raw increase from 7,325 to 37,769 estimated tokens;
+larger context is not automatically better context. This comparison establishes
+what code is present in the exported selections. It does not test or claim a
+particular improvement in downstream LLM answer quality.
 
 Machine-readable case record: `selection_case_react_extension.json`.
 Compiler-API resolutions: `typescript_api_lexical_case.json`.
+
+A later diagnostic control repeated the lexical Fast Lane run with the
+original JSONC config bytes unchanged and only `_load_tsconfig_aliases`
+patched in memory. It restored 5,519 file edges and produced exactly the same
+`ReactExtension.tsx` Optimal included files/chunk IDs/estimated tokens as the
+comment-stripped control; a full corrected-vs-stock bundle comparison again
+found 2,707 Optimal and 3,345 Wider direct-dependency recoveries. This is
+Fast Lane graph/context evidence, not a claim about later hosted stages. The
+workflow record is indexed in `CI_VERIFICATION.md`.
 
 ## Independent confirmation on ng-matero
 
