@@ -48,14 +48,14 @@
       ]
     },
     {
-      "id": "ng_inmemory_service_negative_control",
+      "id": "ng_source_file_negative_control",
       "category": "negative_control",
-      "question": "What interface does the demo InMemDataService implement, and what is the first seeded username?",
-      "expected_answer": "It implements InMemoryDbService and seeds a user whose username is ng-matero.",
-      "answer_file": "src/app/shared/in-mem/in-mem-data.service.ts",
+      "question": "Which two services' load methods are registered as app initializers in the source file itself?",
+      "expected_answer": "TranslateLangService.load and StartupService.load are both registered with provideAppInitializer.",
+      "answer_file": "src/app/app.config.ts",
       "evidence_fragments": [
-        "export class InMemDataService implements InMemoryDbService {",
-        "username: 'ng-matero',"
+        "provideAppInitializer(() => inject(TranslateLangService).load()),",
+        "provideAppInitializer(() => inject(StartupService).load()),"
       ]
     }
   ]
