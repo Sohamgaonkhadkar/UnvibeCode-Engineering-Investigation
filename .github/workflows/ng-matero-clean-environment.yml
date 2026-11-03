@@ -136,12 +136,38 @@ jobs:
           corrected_bundle="$(find "$RUNNER_TEMP/corrected-ng-output" \
             -name shipready_complete_repository_context.zip -print -quit)"
           test -n "$corrected_bundle"
+          set +e
           python reproduction/answerability_audit.py \
             --tasks reproduction/answerability_tasks_ng_matero.json \
             --bundle "as_is=$RUNNER_TEMP/capture-ng/repository-context.zip" \
             --bundle "control=$RUNNER_TEMP/capture-ng-ctrl/repository-context.zip" \
             --bundle "corrected=$corrected_bundle" \
             --output ng-ci-evidence/answerability_audit.json
+          audit_code=$?
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("ng-ci-evidence/answerability_audit.json")
+          if path.is_file():
+              data = json.loads(path.read_text())
+              details = []
+              for bundle in data.get("bundles", []):
+                  for task in bundle.get("tasks", []):
+                      present = sum(row["present"] for row in task["evidence"])
+                      details.append(
+                          f"{bundle['label']}:{task['id']}="
+                          f"{present}/{len(task['evidence'])}"
+                          f"(selected={str(task['answer_file_selected']).lower()},"
+                          f"answerable={str(task['answerable']).lower()})"
+                      )
+              print(
+                  "::notice title=Ng-matero answerability detail::"
+                  + "; ".join(details)
+                  + f"; status={data.get('status')}; error={data.get('error')}"
+              )
+          PY
+          exit "$audit_code"
 
       - name: Assert and publish key ng-matero counts as an annotation
         run: |

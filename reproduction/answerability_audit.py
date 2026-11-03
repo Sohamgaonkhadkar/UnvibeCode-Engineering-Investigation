@@ -240,6 +240,9 @@ def main() -> int:
         summaries = {
             label: row["summary"] for label, row in by_label.items()
         }
+        # Preserve the compact summary even when an expectation below fails,
+        # so CI artifacts/annotations show which bundle diverged.
+        result["summary"] = summaries
         impact_total = summaries["as_is"]["impact_total"]
         negative_total = summaries["as_is"]["negative_control_total"]
         if summaries["as_is"]["impact_answerable"] != 0:
