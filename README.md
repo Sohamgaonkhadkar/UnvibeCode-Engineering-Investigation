@@ -5,7 +5,7 @@
 UnvibeCode **0.3.15** silently discards TypeScript path aliases when the
 repository-root `tsconfig.json` contains a comment or trailing comma. Those are
 valid JSONC features, but `LanguageAwareImportResolver._load_tsconfig_aliases`
-uses strict `json.loads` inside a bare `except: pass`; the parse failure leaves
+uses strict `json.loads` inside a swallowing `except Exception: pass`; the parse failure leaves
 an empty alias table and emits no warning.
 
 The effect is now established beyond graph counts:
