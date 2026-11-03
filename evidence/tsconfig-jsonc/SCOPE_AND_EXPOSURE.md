@@ -63,6 +63,21 @@ control and `{}` for the semantically identical JSONC config.
 - Release 0.3.12 had only one published wheel in the metadata snapshot; the
   release-level conclusion for 0.3.12 is therefore based on that sole wheel.
 
+### Ordinary-install behavioural matrix
+
+The PR workflow separately installs `unvibecode==0.3.15` normally and runs
+`reproduction/verify.py --skip-evidence` on:
+
+- CPython 3.11, 3.12, 3.13, and 3.14 on `ubuntu-latest`;
+- CPython 3.12 on `windows-latest`; and
+- CPython 3.12 on `macos-latest`.
+
+All six jobs reproduce the exact empty-alias symptom, exact post-fix
+regression failure shape, reference-loader restoration, and both-engine
+reversible sequence. This complements the static all-wheel fingerprint scan;
+it is not a claim that every one of the 106 platform wheels was installed
+and executed.
+
 ## 2. Public root-config exposure sample
 
 Script: [`../../reproduction/ecosystem_exposure.py`](../../reproduction/ecosystem_exposure.py)  

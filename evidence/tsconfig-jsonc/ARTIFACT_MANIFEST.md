@@ -20,7 +20,7 @@ recomputed the same lexical counts under an ordinary installation.
 | Node used for local differential validation | 22.22.3 |
 | Python comparison libraries (validation only) | `json-with-comments` 1.3.0; `json5` 0.17.3 |
 | Investigation commit used for the originally recorded lexical CI runs | `4acf2c5751fa01b4652d5f8c0676dc4b0c723878` |
-| Investigation commit used for latest indexed strengthening CI runs | `edb2149a8b4801614336ad9b51505731e6e716fc` |
+| Investigation commit used for latest indexed strengthening CI runs | `2667987b160b487da052603fc6d73efcf49fe297` |
 
 Both engine files containing `_load_tsconfig_aliases` were checked against the
  hashes in the installed wheel's `RECORD`:
@@ -69,6 +69,7 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 | `alias_oracle_summary.json` / `selection_impact_summary.json` | Aggregate lexical inputs, hashes and classifications |
 | `typescript_api_verification.json` | TypeScript-resolver batch cross-check: 4,256/4,256 lexical rows matched |
 | `causal_intervention.json` | Resolver-level A/B/C/D/E record for both shipped engine copies, invariant source hashes, existing-fixture checks, and targeted malformed/string boundaries; D uses the reference loader and records its structured warning for malformed configs |
+| `ANSWERABILITY_AUDIT.md` + `../../reproduction/answerability_tasks.json` | Six predeclared ReactExtension maintenance questions and one negative control; clean-CI result is 0/6 as-is and 6/6 in control/corrected actual Optimal ZIPs, with the full JSON in the lexical CI artifact |
 | `reference_solution_validation.json` | 514 valid curated/generated documents, 8 diagnosed invalid cases, TypeScript/`jsonc-parser` differential results, Python-library comparisons, explicit numeric-spelling boundary, and local timing |
 | `version_scope.json` | Digest-verified scan of all 106 PyPI wheels / 212 engine copies for 0.3.0–0.3.15, one loader AST, extracted-loader strict/JSONC behaviour |
 | `ecosystem_exposure_sample.json` | 210 first-returned public root configs from the exact 3-page GitHub code-search sample, with repo/blob/content identifiers and TypeScript verification; config bodies are not copied |
@@ -81,8 +82,8 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 
 See `CI_VERIFICATION.md` for run links and outcomes. Artifact digests:
 
-- `jsonc-verification-logs`: `e2647606804b20ac2e55cde8635945e575b9639571ce4a578084e8ebabd00211`
-- `lexical-clean-environment-evidence`: `690579897f4e25a1b2e91b1e218f3790b2fc9563d138b08da75f2276cb5d3f7f`
+- `jsonc-verification-logs`: `58ec231ec1dbb9829b63599be607a710acb03a93341d5383c25e334b51c2f6bd`
+- `lexical-clean-environment-evidence`: `c0d48e08bb92e47c3ce7d39aa34b8f2803bbc95cf0a35ef63731d66a3f473c9b`
 
 ## Regeneration outline
 

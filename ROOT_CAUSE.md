@@ -42,7 +42,9 @@ This is not only a latest-release accident. A digest-verified scan of every
 PyPI wheel published for 0.3.0–0.3.15 (106 wheels, 212 engine copies) found
 exactly one `_load_tsconfig_aliases` AST. Executing that extracted function
 returns the expected alias for strict JSON and `{}` for the semantically
-identical JSONC control. See
+identical JSONC control. Ordinary-install CI additionally reproduces the
+exact resolver symptom and reference-loader behaviour on CPython 3.11–3.14
+(Ubuntu) and CPython 3.12 on Windows/macOS. See
 `evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md`.
 
 ## Causal controls
@@ -109,8 +111,13 @@ lexical **Optimal** selections as-is and restored in the control; 3,345 in
 links/fallbacks and 1,062 are absent in both due to selection limits. The
 conservative conclusion is therefore not “4,256 missing edges means 4,256 missing
 context files,” but that the parse failure demonstrably removes thousands of
-direct implementations from customer context selections. See
-`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`.
+direct implementations from customer context selections. A final-artifact
+audit adds a concrete task-level check: for six predeclared questions about
+`ReactExtension.tsx`, none has all required answer-bearing lines in the as-is
+Optimal ZIP, while all six do in both the control and reference-corrected
+bundles; a negative control passes throughout. See
+`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md` and
+`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`.
 
 ## Boundary and non-claims
 
@@ -153,8 +160,13 @@ For 0.3.15 integration, both graph builders already have a structured
 
 The reference loader's `tsconfig_warning.as_dict()` can therefore be appended
 once immediately after resolver construction without inventing a new output
-channel. It was validated against 514 curated/generated valid documents with
-TypeScript 5.9.3 and Microsoft `jsonc-parser` 3.3.1 as differential oracles;
-see `solution/README.md`. The raw post-fix regression
+channel. The full Fast Lane harness now exercises that builder-level
+integration in memory: valid JSONC produces an exported graph with
+`warnings: []`, a malformed existing config produces exactly one
+`tsconfig_parse_failed` record in the exported graph, and the stock pipeline
+produces no warning for the same malformed input. It was validated against
+514 curated/generated valid documents with TypeScript 5.9.3 and Microsoft
+`jsonc-parser` 3.3.1 as differential oracles; see `solution/README.md`. The
+raw post-fix regression
 (`repro_unit.py --expect-fixed`) remains the acceptance test for an actual
 shipped fix.

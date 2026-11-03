@@ -164,16 +164,24 @@ numbers are documented in `../ROOT_CAUSE.md`.
   `../reproduction/causal_intervention.py`: A/C/E fail with the stock loader;
   B and D restore; malformed configs produce `{}` plus exactly one structured
   warning in D.
+- Full Fast Lane integration in clean CI: with the builder-level warning
+  wiring applied in memory, valid JSONC exports `warnings: []`; the same
+  malformed config exports exactly one `tsconfig_parse_failed` warning with
+  path/line/column/offset, while the stock pipeline exports no warning.
+- Ordinary-install behaviour matrix in CI: CPython 3.11–3.14 on Ubuntu and
+  CPython 3.12 on Windows/macOS all reproduce the stock symptom and pass the
+  reference-loader checks.
 - Local timing on the evidence-generation machine: lexical root config
   (22,614 UTF-8 bytes), median about 2.60 ms/parse; synthetic 5,000-entry
   config (301,780 bytes), about 39.17 ms/parse. Timing is
   environment-specific; the transform is linear and runs once per resolver
   construction.
 
-Default CI runs the Python corpus through `reproduction/verify.py`. The Node
-oracle comparison is committed as evidence and can be regenerated with the
-commands in `validate_reference_solution.py`; it is intentionally not a new
-runtime or default-CI dependency.
+Default CI runs the Python corpus through `reproduction/verify.py` and also
+installs TypeScript/`jsonc-parser` in a validation-only step to reproduce the
+Node differential result. The same comparison can be regenerated locally
+with the commands in `validate_reference_solution.py`; neither oracle is a
+proposed runtime dependency.
 
 ## External design references
 

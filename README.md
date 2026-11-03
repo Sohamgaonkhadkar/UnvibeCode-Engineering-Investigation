@@ -16,6 +16,10 @@ The effect is now established beyond graph counts:
 - In the actual exported context bundles, **2,707** verified direct
   dependencies are missing from as-is **Optimal** selections and restored in
   the control; **3,345** in **Wider**.
+- A deterministic final-artifact audit of the exported lexical Optimal ZIPs
+  finds **0/6** predeclared answer-bearing maintenance tasks supported as-is,
+  versus **6/6** in both the control and reference-loader corrected bundles;
+  its negative control passes in all three.
 - The same controlled transformation on independent
   `ng-matero/ng-matero@d351bf59` restores **111** verified relationships and
   107 direct context dependencies.
@@ -31,8 +35,14 @@ The effect is now established beyond graph counts:
   error positions, and returns a structured warning instead of silently
   treating a malformed existing config as an absent alias table. It agrees
   with TypeScript 5.9.3 on 514 curated/generated valid documents.
+- In full Fast Lane pipeline checks, the builder-level reference integration
+  leaves a valid JSONC graph warning-free but exports exactly one structured
+  `tsconfig_parse_failed` warning for a malformed existing config, while the
+  stock pipeline exports none.
 - A digest-verified scan of all 106 PyPI wheels for 0.3.0–0.3.15 found the
-  same vulnerable loader AST in all 212 engine copies.
+  same vulnerable loader AST in all 212 engine copies; ordinary installs also
+  reproduce the exact symptom across CPython 3.11–3.14 on Ubuntu and Python
+  3.12 on Windows/macOS in CI.
 - A bounded, explicitly non-random GitHub code-search sample found 35 unique
   affected root-config contents (174 declared path entries) among 139
   eligible unique contents; this is exposure evidence, not a prevalence
@@ -97,6 +107,8 @@ Clean-environment runs and workflow links are indexed in
 - `DUPLICATE_CHECK.md` — mechanism-level comparison with upstream issues.
 - `evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md` — exhaustive downstream
   impact and the representative `ReactExtension.tsx` case.
+- `evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md` — six concrete questions
+  whose answer-bearing lines are checked in the actual exported Optimal ZIPs.
 - `evidence/tsconfig-jsonc/ng-matero/README.md` — independent repository result.
 - `evidence/BENCHMARK_METHOD_AUDIT.md` — benchmark methods adopted after the
   defect had been found; no competitor findings are reused.
@@ -112,7 +124,8 @@ Clean-environment runs and workflow links are indexed in
 reproducers, reference-loader integration check, reversible causal
 intervention, targeted boundary checks, TypeScript paths oracle, graph
 capture, bundle selection comparison, representative-case extractor,
-TypeScript compiler-API verifiers, and optional PyPI/GitHub scope samplers.
+final-artifact answerability audit, TypeScript compiler-API verifiers, and
+optional PyPI/GitHub scope samplers.
 
 `solution/` contains the dependency-free reference parser/loader, its unit
 and generated tests, and the TypeScript/`jsonc-parser` differential

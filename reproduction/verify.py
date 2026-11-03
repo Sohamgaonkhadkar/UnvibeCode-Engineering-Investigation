@@ -372,6 +372,21 @@ def check_evidence() -> None:
             "Ecosystem exposure TypeScript oracle evidence changed")
     print("  PASS  Exposure sample: 44/184 repositories; 35/139 unique contents affected")
 
+    answerability_tasks = load_json(HERE / "answerability_tasks.json")
+    require(answerability_tasks.get("repository") == "meta/lexical"
+            and answerability_tasks.get("commit") == "164af6a4df7114f35724c472152ca74877b6bd04"
+            and answerability_tasks.get("source_file") == "packages/lexical-react/src/ReactExtension.tsx"
+            and answerability_tasks.get("scope_radius") == 1,
+            "Answerability task source/scope changed")
+    task_categories = Counter(
+        task.get("category") for task in answerability_tasks.get("tasks", [])
+    )
+    require(task_categories == {"impact": 6, "negative_control": 1},
+            "Answerability task category counts changed")
+    require(all(task.get("evidence_fragments") for task in answerability_tasks["tasks"]),
+            "An answerability task has no evidence fragments")
+    print("  PASS  Answerability audit spec: 6 impact tasks; 1 negative control")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)

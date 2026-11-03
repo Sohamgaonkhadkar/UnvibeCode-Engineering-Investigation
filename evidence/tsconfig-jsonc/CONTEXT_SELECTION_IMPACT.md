@@ -86,6 +86,18 @@ particular improvement in downstream LLM answer quality.
 Machine-readable case record: `selection_case_react_extension.json`.
 Compiler-API resolutions: `typescript_api_lexical_case.json`.
 
+A separate final-artifact audit turns that representative case into six
+predeclared maintenance questions (placeholder accessibility/rendering,
+composer-context tuple/theme fallback, provider-peer identity, `invariant`
+failure behaviour, `defineExtension` identity behaviour, and
+`shallowMergeConfig` object-identity/copy behaviour). It requires exact
+answer-bearing fragments in selected Optimal chunks from the answering files,
+so imports in `ReactExtension.tsx` cannot pass the tasks. In clean CI the
+result is **0/6 as-is, 6/6 in the comment-stripped control, and 6/6 with the
+original config plus the reference loader**; an `LexicalErrorBoundary`
+negative control is 1/1 in every bundle. This is an evidence-availability
+measurement, not an LLM-output claim. See `ANSWERABILITY_AUDIT.md`.
+
 A later diagnostic control repeated the lexical Fast Lane run with the
 original JSONC config bytes unchanged and only `_load_tsconfig_aliases`
 patched in memory. It restored 5,519 file edges and produced exactly the same
