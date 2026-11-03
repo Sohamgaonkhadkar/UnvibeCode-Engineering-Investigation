@@ -215,8 +215,6 @@ jobs:
     name: Patched-install rehearsal — file-level reference integration
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    env:
-      PATCH_BACKUP_DIR: ${{ runner.temp }}/unvibecode-stock-backup
     steps:
       - uses: actions/checkout@v4
 
@@ -237,10 +235,10 @@ jobs:
       - name: Apply the reference patch to this disposable installation
         run: |
           python solution/apply_reference_patch.py \
-            --backup-dir "$PATCH_BACKUP_DIR" \
+            --backup-dir "$RUNNER_TEMP/unvibecode-stock-backup" \
             --i-understand-this-modifies-site-packages \
             | tee patched-ci-evidence/apply-patch.log
-          cp "$PATCH_BACKUP_DIR/manifest.json" \
+          cp "$RUNNER_TEMP/unvibecode-stock-backup/manifest.json" \
             patched-ci-evidence/stock-backup-manifest.json
           python solution/apply_reference_patch.py --check \
             | tee patched-ci-evidence/patched-check.log
@@ -264,7 +262,7 @@ jobs:
         if: always()
         run: |
           python solution/apply_reference_patch.py \
-            --restore "$PATCH_BACKUP_DIR" \
+            --restore "$RUNNER_TEMP/unvibecode-stock-backup" \
             --i-understand-this-modifies-site-packages \
             | tee patched-ci-evidence/restore-patch.log
           python solution/apply_reference_patch.py --check \
