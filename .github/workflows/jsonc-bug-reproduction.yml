@@ -6,6 +6,10 @@ on:
     paths:
       - ".github/workflows/jsonc-*.yml"
       - "reproduction/**"
+      - "solution/**"
+      - "evidence/tsconfig-jsonc/reference_solution_validation.json"
+      - "evidence/tsconfig-jsonc/version_scope.json"
+      - "evidence/tsconfig-jsonc/ecosystem_exposure_sample.json"
   workflow_dispatch:
 
 permissions:
@@ -16,9 +20,9 @@ jobs:
     # Green here means something precise: on the pinned affected release, the
     # strict control works, every JSONC variant fails in the specific reported
     # way, the post-fix regression fails only for those exact checks, and the
-    # correction PoC/evidence checks pass. It does not mean expected behaviour
+    # reference-loader/evidence checks pass. It does not mean expected behaviour
     # already works; that raw regression is kept as a manual workflow.
-    name: Affected-version verification — exact defect, correction PoC, evidence
+    name: Affected-version verification — exact defect, reference loader, evidence
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -56,7 +60,7 @@ jobs:
       # four JSONC fixtures reporting aliases={} / resolution=(None, None).
       # Any installation error, traceback, extra failure, missing failure, or
       # already-fixed behaviour makes this step fail. No continue-on-error.
-      - name: Unified affected-version verification (bug + exact regression failure + PoC)
+      - name: Unified affected-version verification (bug + exact regression failure + reference loader)
         run: |
           set -o pipefail
           python reproduction/verify.py 2>&1 | tee ci-logs/verify-affected-version.log

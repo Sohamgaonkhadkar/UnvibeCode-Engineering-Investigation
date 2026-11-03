@@ -1,0 +1,193 @@
+# Reference solution: JSONC-aware root `tsconfig.json` alias loading
+
+## Status
+
+This directory contains a **tested reference implementation for maintainer
+adaptation**. It is not a shipped UnvibeCode fix and this investigation does
+not open a pull request to `FinanceFlash/unvibecode`.
+
+- Implementation: [`tsconfig_jsonc.py`](tsconfig_jsonc.py)
+- Unit/generated tests: [`test_tsconfig_jsonc.py`](test_tsconfig_jsonc.py)
+- Differential validator: [`validate_reference_solution.py`](validate_reference_solution.py)
+- Node oracle helper: [`typescript_oracle.mjs`](typescript_oracle.mjs)
+- Committed validation result: [`../evidence/tsconfig-jsonc/reference_solution_validation.json`](../evidence/tsconfig-jsonc/reference_solution_validation.json)
+
+The existing causal harness patches this exact loader into both installed
+0.3.15 engine copies in memory. It does not alter installed package files.
+
+## Contract
+
+`load_tsconfig_aliases_result(workspace_root, read_text, to_posix_rel)` keeps
+the supported scope deliberately narrow: the **root** `tsconfig.json`, its
+`compilerOptions.baseUrl`, and its `compilerOptions.paths` table.
+
+| Input state | Aliases | Warning |
+|---|---:|---|
+| No root `tsconfig.json` | `{}` | none |
+| Empty or comment-only config | `{}` | none |
+| Valid strict JSON or JSONC with aliases | extracted aliases | none |
+| Existing config cannot be read | `{}` | `tsconfig_read_failed` |
+| Existing config has syntax error | `{}` | `tsconfig_parse_failed`, with line/column/offset |
+| Parsed config has an invalid alias-table shape | `{}` | `tsconfig_invalid_shape` |
+
+This preserves the product's ability to continue with relative imports while
+making degradation visible. The important change is not merely “parse more
+syntax”; it is **never equate a malformed existing config with a legitimately
+absent alias table**.
+
+## Parser design
+
+The reference is not a regex preprocessor and does not implement a second
+JSON grammar:
+
+1. Make one string-aware lexical pass over the original text.
+   - A leading BOM becomes one space.
+   - `//` and `/* ... */` comments **outside string literals** become spaces.
+   - String contents, escapes, LF/CRLF/CR, and offsets are preserved.
+   - U+2028/U+2029 outside strings become LF, matching TypeScript's line
+     terminators.
+2. Make a second string-aware pass that blanks only a comma whose next
+   non-whitespace character is `}` or `]`. Doing this after comment blanking
+   handles `..., /* comment */}`.
+3. Delegate all remaining grammar decisions to Python's strict
+   `json.loads`.
+4. Validate the small portion of the parsed shape used for aliases.
+5. Apply the shipped alias-prefix mapping unchanged, including
+   `replace("/*", "").rstrip("/")`.
+
+Because every replacement is position-preserving, the standard-library
+parser's line/column/offset still refer to the user's original file.
+
+### Explicit grammar boundaries
+
+Accepted beyond strict JSON:
+
+- line and block comments;
+- trailing commas in objects/arrays;
+- one leading BOM;
+- empty/comment-only files as `{}` (verified against TypeScript 5.9.3);
+- CR, CRLF, U+2028, and U+2029 line-comment terminators.
+
+Rejected with a diagnostic/warning:
+
+- malformed JSON/JSONC;
+- unquoted keys and single-quoted strings;
+- other JSON5-only forms;
+- root/options/paths/baseUrl/target values with the wrong shape.
+
+TypeScript's expression-based config parser also accepts JavaScript numeric
+spellings such as `.5`, `0x10`, `0b101`, and `1_000`. Microsoft's
+`jsonc-parser` rejects those. This reference follows the JSONC subset rather
+than silently adopting JSON5 or cloning TypeScript's full expression
+grammar; that boundary is recorded in the validation evidence. It does not
+affect the reported comment/trailing-comma defect or string-valued `paths`,
+but it should not be described as byte-for-byte equivalence to every input
+TypeScript's parser accepts.
+
+Nested configs, `extends`, project references, Vite aliases, and full
+TypeScript `paths` pattern semantics are separate behaviour and are not
+changed here.
+
+## Why this design over the obvious shortcuts?
+
+| Approach | Assessment |
+|---|---|
+| Regex comment/comma stripping | Rejected: can corrupt URLs, `"@/*"`, `"//cdn..."`, and escaped strings. |
+| Python JSON5 | Rejected as the loader grammar: accepts unquoted keys/single quotes that TypeScript diagnoses, and rejects empty/comment-only configs in the tested corpus. |
+| Python `json-with-comments` 1.3.0 | Viable dependency candidate, but in this corpus it failed BOM, U+2028/U+2029, and empty/comment-only cases and does not provide the position-preserving transform used here. It would still need a wrapper and the same warning contract. |
+| Shell out to TypeScript/Node | Highest parser fidelity, but adds a runtime/process boundary to a Python package for one root-config read. Appropriate only if maintainers want full TypeScript expression-grammar fidelity. |
+| Lexical JSONC-to-JSON transform + stdlib parser | Chosen reference: no new dependency, string-safe, auditable, preserves error positions, and limits grammar widening to comments/trailing commas. |
+
+Other ecosystems have hit the same class of failure and fixed it by using a
+real JSONC/TypeScript parser and inspecting diagnostics rather than silently
+falling back—for example TSDX, Temporal's TypeScript SDK tooling, and AWS CDK.
+Those precedents informed the design constraints; no code or issue text was
+copied from them.
+
+## Maintainer integration sketch
+
+In each shipped engine copy (or, preferably, in the shared source from which
+both are generated):
+
+1. Add the parser/loader module or an equivalent maintained implementation
+   behind the same result contract.
+2. In `LanguageAwareImportResolver.__init__`, initialise
+   `self.tsconfig_warning = None` before loading aliases.
+3. Replace the body of `_load_tsconfig_aliases` with the result-returning
+   loader and store `result.warning.as_dict()` when present.
+4. Immediately after each graph builder constructs
+   `LanguageAwareImportResolver`, append that warning once to the builder's
+   existing `warnings: List[Dict[str, Any]]` so it appears in the graph's
+   existing top-level `warnings` field.
+
+Illustrative shape only:
+
+```python
+def _load_tsconfig_aliases(self):
+    result = load_tsconfig_aliases_result(
+        self.workspace_root,
+        safe_read_text,
+        to_posix_rel,
+    )
+    self.tsconfig_warning = (
+        result.warning.as_dict() if result.warning is not None else None
+    )
+    return result.aliases
+```
+
+```python
+resolver = LanguageAwareImportResolver(self.workspace_root, rel_files)
+if resolver.tsconfig_warning is not None:
+    self.warnings.append(resolver.tsconfig_warning)
+```
+
+In UnvibeCode 0.3.15 those builder sites are the Fast Lane and merged-graph
+builders that already initialise and export `warnings`; exact current line
+numbers are documented in `../ROOT_CAUSE.md`.
+
+## Validation performed
+
+- 14 curated valid cases covering strict JSON, comments, trailing commas,
+  comment-like strings, escaped backslash/quote boundaries, BOM, CR/CRLF,
+  U+2028/U+2029, empty, and comment-only input.
+- 500 deterministically generated valid JSONC documents (seed `20261103`)
+  whose expected Python values are known before serialization.
+- Differential comparison against TypeScript 5.9.3
+  `parseConfigFileTextToJson`: 514/514 valid agreements.
+- Differential comparison against Microsoft `jsonc-parser` 3.3.1 with
+  `allowTrailingComma: true`: 510/514 valid agreements; the four exceptions
+  are empty/comment-only and U+2028/U+2029, where the candidate follows
+  TypeScript.
+- 8 malformed/diagnosed JSON5-only cases rejected by the candidate and
+  diagnosed by both Node oracles.
+- Product integration through both installed engines in
+  `../reproduction/causal_intervention.py`: A/C/E fail with the stock loader;
+  B and D restore; malformed configs produce `{}` plus exactly one structured
+  warning in D.
+- Local timing on the evidence-generation machine: lexical root config
+  (22,614 UTF-8 bytes), median about 2.60 ms/parse; synthetic 5,000-entry
+  config (301,780 bytes), about 39.17 ms/parse. Timing is
+  environment-specific; the transform is linear and runs once per resolver
+  construction.
+
+Default CI runs the Python corpus through `reproduction/verify.py`. The Node
+oracle comparison is committed as evidence and can be regenerated with the
+commands in `validate_reference_solution.py`; it is intentionally not a new
+runtime or default-CI dependency.
+
+## External design references
+
+- TypeScript discussion that tsconfig files grammatically allow comments and
+  trailing commas: https://github.com/microsoft/TypeScript/issues/20384
+- Microsoft JSONC parser: https://github.com/microsoft/node-jsonc-parser
+- TSDX strict-parse/silent-catch precedent:
+  https://github.com/jaredpalmer/tsdx/issues/483 and
+  https://github.com/jaredpalmer/tsdx/pull/489
+- Temporal TypeScript SDK JSONC replacement:
+  https://github.com/temporalio/sdk-typescript/issues/2397 and
+  https://github.com/temporalio/sdk-typescript/pull/2398
+- AWS CDK JSONC parser/diagnostics change:
+  https://github.com/aws/aws-cdk/pull/39276
+- Python alternatives evaluated:
+  https://pypi.org/project/json-with-comments/ and
+  https://pypi.org/project/json5/

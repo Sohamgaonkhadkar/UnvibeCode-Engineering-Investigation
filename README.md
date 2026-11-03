@@ -21,14 +21,24 @@ The effect is now established beyond graph counts:
   107 direct context dependencies.
 - A reversible A/B/C/D/E intervention passes on both shipped resolver copies:
   original JSONC fails, removing only comments restores it, restoring the
-  config fails again, an in-memory tolerant loader restores it, and removing
-  that diagnostic patch fails again—all with source hashes unchanged.
+  config fails again, an in-memory reference loader restores it, and removing
+  that in-memory patch fails again—all with source hashes unchanged.
 - In clean GitHub Actions, the same sequence restores the minimal Fast Lane
   graph/context output, and patching only the loader in memory on unmodified
   lexical restores 5,519 edges and the exact control `ReactExtension.tsx`
   Optimal selection.
+- A tested reference solution parses the JSONC subset, preserves strings and
+  error positions, and returns a structured warning instead of silently
+  treating a malformed existing config as an absent alias table. It agrees
+  with TypeScript 5.9.3 on 514 curated/generated valid documents.
+- A digest-verified scan of all 106 PyPI wheels for 0.3.0–0.3.15 found the
+  same vulnerable loader AST in all 212 engine copies.
+- A bounded, explicitly non-random GitHub code-search sample found 35 unique
+  affected root-config contents (174 declared path entries) among 139
+  eligible unique contents; this is exposure evidence, not a prevalence
+  estimate.
 - A normal pinned install in GitHub Actions reproduces the minimal fixture,
-  correction proof of concept, full lexical counts, and selection impact.
+  reference loader, full lexical counts, and selection impact.
 - The PR check is green only when the affected release fails the post-fix
   regression for the exact documented symptom. That means **successful defect
   verification**, not successful expected behaviour. The raw regression is an
@@ -45,15 +55,18 @@ python reproduction/verify.py
 
 `verify.py` checks the Python/package environment, runs the strict control and
 all JSONC variants, asserts that `repro_unit.py --expect-fixed` fails only for
-the exact four empty-alias JSONC cases, runs the correction proof of concept,
-runs the reversible causal intervention and targeted boundary checks on both
-resolver copies, and checks the committed lexical/ng-matero evidence counts.
+the exact four empty-alias JSONC cases, runs the reference-solution corpus and
+integration check, runs the reversible causal intervention and targeted
+boundary checks on both resolver copies, and checks the committed
+lexical/ng-matero, reference-solution, version-scope, and exposure-sample
+evidence counts.
 The original scripts remain directly runnable:
 
 ```bash
 python reproduction/repro_unit.py
 python reproduction/repro_unit.py --expect-fixed  # post-fix regression; fails on 0.3.15
 python reproduction/correction_poc.py
+python solution/validate_reference_solution.py
 python reproduction/causal_intervention.py --output causal-intervention.json
 # In an environment with working tree-sitter extraction, also inspect the
 # actual Fast Lane graph/context ZIP for every A/B/C/D/E state:
@@ -77,6 +90,10 @@ Clean-environment runs and workflow links are indexed in
 ## Key documents
 
 - `ROOT_CAUSE.md` — stage-by-stage mechanism, strict recount, boundaries.
+- `solution/README.md` — reference parser/loader design, alternatives,
+  maintainer integration points, and differential validation.
+- `evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md` — all-wheel release scope
+  and the bounded public-config exposure sample.
 - `DUPLICATE_CHECK.md` — mechanism-level comparison with upstream issues.
 - `evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md` — exhaustive downstream
   impact and the representative `ReactExtension.tsx` case.
@@ -92,16 +109,22 @@ Clean-environment runs and workflow links are indexed in
 ## Evidence and scripts
 
 `reproduction/` contains the minimal strict/JSONC fixtures, resolver and CLI
-reproducers, string-aware correction PoC, reversible causal intervention,
-targeted boundary checks, TypeScript paths oracle, graph capture, bundle
-selection comparison, representative-case extractor, and TypeScript
-compiler-API representative resolver and batch verifier.
+reproducers, reference-loader integration check, reversible causal
+intervention, targeted boundary checks, TypeScript paths oracle, graph
+capture, bundle selection comparison, representative-case extractor,
+TypeScript compiler-API verifiers, and optional PyPI/GitHub scope samplers.
+
+`solution/` contains the dependency-free reference parser/loader, its unit
+and generated tests, and the TypeScript/`jsonc-parser` differential
+validator. It is a maintainer-adaptable reference implementation, not a
+shipped patch.
 
 `evidence/tsconfig-jsonc/` contains compact machine-readable results: the
 4,256-row lost-relationship list, direct selection-omission list, causal
-intervention record, aggregate summaries with input hashes, TypeScript API
-resolutions, configs/diffs, CI index, artifact manifest, and the independent
-ng-matero evidence.
+intervention record, reference-solution validation, all-wheel version scope,
+public-config exposure sample, aggregate summaries with input hashes,
+TypeScript API resolutions, configs/diffs, CI index, artifact manifest, and
+the independent ng-matero evidence.
 
 Local large-repository runs in the restricted investigation sandbox used a
 disclosed grammar shim because release-asset downloads are blocked there. That

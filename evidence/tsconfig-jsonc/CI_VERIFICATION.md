@@ -17,8 +17,8 @@ investigation was merged through PR #1.)
 - **Affected-version verification** is green only when the strict control
   resolves, the raw `repro_unit.py --expect-fixed` regression fails only for
   the four exact JSONC fixtures with `aliases={}` and
-  `resolution=(None, None)`, the correction proof of concept passes, the
-  reversible A/B/C/D/E intervention and targeted boundaries pass on both
+  `resolution=(None, None)`, the reference-solution corpus and loader pass,
+  the reversible A/B/C/D/E intervention and targeted boundaries pass on both
   resolver copies, and the committed evidence counts reconcile.
 - Therefore, a green PR check means **the 0.3.15 defect was reproduced and
   verified exactly**. It does **not** mean correct JSONC behaviour already

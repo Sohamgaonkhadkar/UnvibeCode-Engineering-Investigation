@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-"""Correction proof-of-concept (NOT a submitted patch, does not modify the package):
-replaces the alias-table loading *in memory* with a JSONC-tolerant parse and shows that
-resolution is restored for every JSONC fixture.
+"""Reference-loader integration check (not a submitted patch).
 
-The tolerant loader below is a character-level state machine: comments and trailing
-commas are removed only *outside* string literals, so values containing '//', '/*' or
-',' inside quotes survive (fixture minimal_stringsafety covers this). It is a tested
-proof-of-concept demonstrating causation and fix feasibility — a production fix should
-prefer a maintained JSONC parser and must additionally surface a warning on parse failure.
+This replaces only the alias-table loading *in memory* with the tested
+reference loader in ``solution/tsconfig_jsonc.py`` and shows that resolution is
+restored for every JSONC fixture.  The installed package files are not
+modified.  The reference loader is a position-preserving, string-aware
+lexical transform plus stdlib JSON parsing; its product-style result API
+surfaces a warning for an existing but unparseable config.
 
 Run:  python reproduction/correction_poc.py    (exit 0 = correction validated)
 """
 import importlib, importlib.util, json, sys
 from pathlib import Path
 
-from jsonc_tolerant import load_tsconfig_aliases, strip_jsonc
-
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from solution.tsconfig_jsonc import load_tsconfig_aliases, strip_jsonc  # noqa: E402
+
 shipreadyv2 = importlib.import_module("shipreadyv2")
 engine_path = sorted((Path(shipreadyv2.__file__).resolve().parent / "engine_sources").glob("00a_*.py"))[0]
 spec = importlib.util.spec_from_file_location("unvibecode_fastlane_engine", engine_path)
@@ -53,5 +56,5 @@ for fixture in ("minimal_strict", "minimal_jsonc", "minimal_blockcomment", "mini
     failures += 0 if ok else 1
     print(f"{'PASS' if ok else 'FAIL'}  {fixture}: stock={before}  corrected aliases={resolver.tsconfig_aliases} resolution={after}")
 
-print("RESULT:", "PASS — tolerant parse restores resolution (proof of concept)" if not failures else f"FAIL ({failures})")
+print("RESULT:", "PASS — reference loader restores resolution" if not failures else f"FAIL ({failures})")
 sys.exit(0 if not failures else 1)

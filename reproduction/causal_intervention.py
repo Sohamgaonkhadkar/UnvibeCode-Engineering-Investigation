@@ -7,13 +7,13 @@ both engine copies shipped in the installed UnvibeCode 0.3.15 wheel:
     A  original JSONC config, stock loader       -> alias resolution fails
     B  only the comments removed, stock loader   -> alias resolution returns
     C  exact original config restored            -> failure returns
-    D  original config + tolerant loader patched -> alias resolution returns
+    D  original config + reference loader patched -> alias resolution returns
        in memory only
-    E  stock loader restored                     -> failure returns
+    E  stock loader restored                      -> failure returns
 
 It also runs targeted boundary checks (valid fixtures on both engines,
-string-literal preservation, no-alias normality, explicit malformed-input
-failure in the diagnostic tolerant parser, and no unrelated resolutions).
+string-literal preservation, no-alias normality, explicit parser errors plus
+product-style warnings for malformed input, and no unrelated resolutions).
 
 ``--full-pipeline`` additionally performs A-E through the installed Fast Lane
 ``run_pipeline()`` on the same temporary minimal repository and inspects the
@@ -45,15 +45,19 @@ import zipfile
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
-from jsonc_tolerant import (
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from solution.tsconfig_jsonc import (  # noqa: E402
     JsoncSyntaxError,
+    TsconfigLoadError,
     aliases_from_config_data,
-    load_tsconfig_aliases,
+    load_tsconfig_aliases_result,
     parse_jsonc,
 )
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
 EVIDENCE = ROOT / "evidence" / "tsconfig-jsonc"
 EXPECTED_VERSION = "0.3.15"
 EXPECTED_ALIASES = {"@app": "src/app"}
@@ -179,14 +183,22 @@ def corrected_loader(engine: Any):
     resolver_class = engine.LanguageAwareImportResolver
     original = resolver_class.__dict__["_load_tsconfig_aliases"]
 
-    def tolerant_loader(self):  # noqa: ANN001 - mirrors the shipped method
-        return load_tsconfig_aliases(
+    def reference_loader(self):  # noqa: ANN001 - mirrors the shipped method
+        result = load_tsconfig_aliases_result(
             self.workspace_root,
             engine.safe_read_text,
             engine.to_posix_rel,
         )
+        # Product integration would copy this structured record into the
+        # graph builder's existing ``warnings`` list after constructing the
+        # resolver.  Keeping it on the instance lets this harness assert the
+        # exact degraded-input behaviour without modifying the package.
+        self.tsconfig_warning = (
+            result.warning.as_dict() if result.warning is not None else None
+        )
+        return result.aliases
 
-    resolver_class._load_tsconfig_aliases = tolerant_loader
+    resolver_class._load_tsconfig_aliases = reference_loader
     try:
         yield
     finally:
@@ -258,7 +270,7 @@ def run_unit_sequence(engine_info: dict[str, Any], work_root: Path) -> dict[str,
             {
                 "step": step,
                 "description": description,
-                "loader": "in_memory_tolerant_poc" if patched else "stock",
+                "loader": "in_memory_reference_solution" if patched else "stock",
                 "loader_patched_during_probe": resolver_is_corrected(engine, stock_method),
                 "tsconfig_sha256": sha256_file(repo / "tsconfig.json"),
                 "source_hashes_unchanged": current_hashes == hashes_before,
@@ -280,7 +292,7 @@ def run_unit_sequence(engine_info: dict[str, Any], work_root: Path) -> dict[str,
     observe("C", "exact original JSONC restored, stock loader", False, False)
 
     with corrected_loader(engine):
-        observe("D", "original JSONC, tolerant loader patched in memory", True, True)
+        observe("D", "original JSONC, reference loader patched in memory", True, True)
     require(
         engine.LanguageAwareImportResolver.__dict__["_load_tsconfig_aliases"] is stock_method,
         f"{engine_info['label']} stock loader was not restored after step D",
@@ -420,31 +432,43 @@ def check_parser_boundaries(engines: list[dict[str, Any]], work_root: Path) -> d
         try:
             parsed = parse_jsonc(text)
             # A syntactically valid non-object JSON value is still not a
-            # successful tsconfig for the diagnostic loader.
+            # successful tsconfig for the reference loader.
             aliases_from_config_data(parsed, lambda value: Path(value).as_posix())
-        except JsoncSyntaxError as exc:
+        except TsconfigLoadError as exc:
             parse_error = str(exc)
-        require(parse_error is not None, f"Diagnostic parser accepted malformed case {name}")
+        require(parse_error is not None, f"Reference parser accepted malformed case {name}")
 
         (boundary_root / "tsconfig.json").write_text(text, encoding="utf-8")
         per_engine = {}
         for info in engines:
             engine = info["module"]
-            stock_aliases = probe(engine, boundary_root, ("@app/util",))["aliases"]
-            corrected_error = None
-            try:
-                with corrected_loader(engine):
-                    probe(engine, boundary_root, ("@app/util",))
-            except JsoncSyntaxError as exc:
-                corrected_error = str(exc)
+            stock_resolver = engine.LanguageAwareImportResolver(
+                boundary_root, source_file_list(boundary_root)
+            )
+            stock_aliases = dict(stock_resolver.tsconfig_aliases)
+            stock_warning = getattr(stock_resolver, "tsconfig_warning", None)
+
+            with corrected_loader(engine):
+                corrected_resolver = engine.LanguageAwareImportResolver(
+                    boundary_root, source_file_list(boundary_root)
+                )
+            corrected_aliases = dict(corrected_resolver.tsconfig_aliases)
+            corrected_warning = getattr(corrected_resolver, "tsconfig_warning", None)
             require(
-                stock_aliases == {} and corrected_error is not None,
+                stock_aliases == {}
+                and stock_warning is None
+                and corrected_aliases == {}
+                and isinstance(corrected_warning, dict)
+                and corrected_warning.get("code")
+                in {"tsconfig_parse_failed", "tsconfig_invalid_shape"},
                 f"Malformed handling mismatch for {name}/{info['label']}",
             )
             per_engine[info["label"]] = {
                 "stock_aliases": stock_aliases,
+                "stock_warning": stock_warning,
                 "stock_silently_empty": True,
-                "corrected_error": corrected_error,
+                "corrected_aliases": corrected_aliases,
+                "corrected_warning": corrected_warning,
             }
         malformed_results.append(
             {"case": name, "parser_error": parse_error, "engines": per_engine, "passed": True}
@@ -604,7 +628,7 @@ def run_full_pipeline_sequence(engine_info: dict[str, Any], work_root: Path) -> 
         steps.append(
             {
                 "step": step_name,
-                "loader": "in_memory_tolerant_poc" if patched else "stock",
+                "loader": "in_memory_reference_solution" if patched else "stock",
                 "loader_patched_during_pipeline": resolver_is_corrected(engine, stock_method),
                 "tsconfig_sha256": sha256_file(config_path),
                 "source_hashes_unchanged": source_hashes(repo, SOURCE_FILES) == hashes_before,
@@ -802,7 +826,7 @@ def main() -> int:
         result["status"] = "passed"
         result["conclusion"] = (
             "A/C/E fail and B/D restore under the stated level(s); source hashes are invariant; "
-            "the correction is an in-memory diagnostic PoC, not a shipped fix."
+            "the correction is the reference solution patched in memory only, not a shipped fix."
         )
 
     try:

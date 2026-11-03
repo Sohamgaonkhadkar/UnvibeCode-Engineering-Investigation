@@ -7,7 +7,7 @@ Default mode verifies the *affected* UnvibeCode 0.3.15 behaviour exactly:
 2. strict-JSON control and all JSONC variants reproduce the known defect;
 3. the post-fix regression (`repro_unit.py --expect-fixed`) fails, but only
    for the four JSONC fixtures and only with the exact empty-alias symptom;
-4. the correction proof of concept restores resolution;
+4. the reference-solution corpus passes and its loader restores resolution;
 5. the reversible A/B/C/D/E causal intervention and targeted boundary checks
    pass on both shipped resolver copies; and
 6. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
@@ -92,10 +92,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def run_child(label: str, script: str, *args: str) -> tuple[int, str]:
-    command = [sys.executable, str(HERE / script), *args]
+def run_child(
+    label: str,
+    script: str,
+    *args: str,
+    script_root: Path | None = None,
+) -> tuple[int, str]:
+    base = HERE if script_root is None else script_root
+    script_path = base / script
+    command = [sys.executable, str(script_path), *args]
     print(f"\n=== {label} ===")
-    print("$", " ".join([Path(sys.executable).name, f"reproduction/{script}", *args]))
+    print(
+        "$",
+        " ".join(
+            [Path(sys.executable).name, str(script_path.relative_to(ROOT)), *args]
+        ),
+    )
     env = os.environ.copy()
     env.setdefault("PYTHONIOENCODING", "utf-8")
     env.setdefault("PYTHONUTF8", "1")
@@ -184,13 +196,33 @@ def check_expected_fixed(output: str, returncode: int) -> None:
 
 
 def check_correction(output: str, returncode: int) -> None:
-    require(returncode == 0, f"Correction PoC exited {returncode}, expected 0")
+    require(returncode == 0, f"Reference-loader integration check exited {returncode}, expected 0")
     for fixture in CORRECTION_FIXTURES:
         line = fixture_line(output, fixture)
         require(line.startswith("PASS") and "resolution=('src/app/util.ts'" in line,
-                f"Correction PoC did not restore {fixture}")
-    require("RESULT: PASS" in output and "tolerant parse restores resolution" in output,
-            "Correction PoC final marker missing")
+                f"Reference loader did not restore {fixture}")
+    require("RESULT: PASS" in output and "reference loader restores resolution" in output,
+            "Correction harness final marker missing")
+
+
+def check_reference_solution(output: str, returncode: int, result_path: Path) -> None:
+    require(returncode == 0, f"Reference-solution validation exited {returncode}, expected 0")
+    require("REFERENCE_SOLUTION_STATUS: passed" in output,
+            "Reference-solution validation did not report a passed status")
+    require(
+        "CANDIDATE_CORPUS: curated=14 generated=500 invalid_rejected=8" in output,
+        "Reference-solution corpus counts changed",
+    )
+    data = load_json(result_path)
+    require(data.get("status") == "passed", "Reference-solution JSON status is not passed")
+    corpus = data.get("candidate_corpus", {})
+    require(corpus.get("curated_valid_cases") == 14, "Reference curated-case count changed")
+    require(corpus.get("generated_valid_cases") == 500, "Reference generated-case count changed")
+    require(corpus.get("invalid_cases_rejected") == 8, "Reference invalid-case count changed")
+    require(
+        corpus.get("out_of_scope_typescript_numeric_cases_rejected") == 4,
+        "Reference numeric-boundary count changed",
+    )
 
 
 def check_causal_intervention(output: str, returncode: int, result_path: Path) -> None:
@@ -293,6 +325,53 @@ def check_evidence() -> None:
             "ng-matero Optimal/Wider omission counts changed")
     print("  PASS  ng-matero: 111 relationships; 107 recovered direct dependencies")
 
+    reference = load_json(EVIDENCE / "reference_solution_validation.json")
+    require(reference.get("status") == "passed", "Reference-solution evidence is not passed")
+    require(reference["candidate_corpus"]["curated_valid_cases"] == 14
+            and reference["candidate_corpus"]["generated_valid_cases"] == 500
+            and reference["candidate_corpus"]["invalid_cases_rejected"] == 8
+            and reference["candidate_corpus"]["out_of_scope_typescript_numeric_cases_rejected"] == 4,
+            "Reference-solution corpus evidence changed")
+    require(reference["node_oracles"]["typescript_version"] == "5.9.3"
+            and reference["node_oracles"]["typescript_valid_agreements"] == 514
+            and reference["node_oracles"]["typescript_invalid_diagnostics"] == 8
+            and reference["node_oracles"]["jsonc_parser_valid_agreements"] == 510
+            and reference["node_oracles"]["jsonc_parser_invalid_diagnostics"] == 8,
+            "Reference-solution oracle evidence changed")
+    print("  PASS  Reference solution: 514 valid differential cases; 8 invalid rejected")
+
+    scope = load_json(EVIDENCE / "version_scope.json")
+    require(scope.get("status") == "completed" and scope.get("through_version") == "0.3.15",
+            "Version-scope evidence status/range changed")
+    require(scope["summary"]["releases_scanned"] == 16
+            and scope["summary"]["wheels_scanned"] == 106
+            and scope["summary"]["engine_copies_scanned"] == 212
+            and scope["summary"]["unique_loader_ast_fingerprints"] == 1
+            and scope["summary"]["all_scanned_releases_affected"] is True,
+            "Version-scope aggregate evidence changed")
+    require(scope["versions_scanned"] == [f"0.3.{minor}" for minor in range(16)],
+            "Version-scope release list changed")
+    print("  PASS  Version scope: 106 wheels / 212 engine copies, one vulnerable loader AST")
+
+    exposure = load_json(EVIDENCE / "ecosystem_exposure_sample.json")
+    require(exposure.get("status") == "completed" and exposure.get("pages_requested") == 3
+            and exposure.get("unique_root_configs_retrieved") == 210,
+            "Ecosystem exposure sample status/size changed")
+    repo_summary = exposure["summaries"]["all_unique_repositories"]
+    content_summary = exposure["summaries"]["unique_config_contents"]
+    require(repo_summary["eligible_with_nonempty_resolved_paths"] == 184
+            and repo_summary["affected_typescript_verified"] == 44
+            and repo_summary["paths_entries_in_affected"] == 211,
+            "Repository-level ecosystem exposure evidence changed")
+    require(content_summary["eligible_with_nonempty_resolved_paths"] == 139
+            and content_summary["affected_typescript_verified"] == 35
+            and content_summary["paths_entries_in_affected"] == 174,
+            "Unique-content ecosystem exposure evidence changed")
+    require(exposure["oracle"]["typescript_version"] == "5.9.3"
+            and exposure["oracle"]["eligible_cases_checked"] == 184,
+            "Ecosystem exposure TypeScript oracle evidence changed")
+    print("  PASS  Exposure sample: 44/184 repositories; 35/139 unique contents affected")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -341,7 +420,18 @@ def main() -> int:
             )
             check_expected_regression_failure(output, code)
 
-        code, output = run_child("Correction proof of concept", "correction_poc.py")
+        with tempfile.TemporaryDirectory(prefix="unvibecode-verify-solution-") as temporary:
+            reference_output = Path(temporary) / "reference-solution-validation.json"
+            code, output = run_child(
+                "Reference-solution parser corpus",
+                "validate_reference_solution.py",
+                "--output",
+                str(reference_output),
+                script_root=ROOT / "solution",
+            )
+            check_reference_solution(output, code, reference_output)
+
+        code, output = run_child("Reference-loader integration check", "correction_poc.py")
         check_correction(output, code)
 
         if not args.expect_fixed:
@@ -364,11 +454,11 @@ def main() -> int:
         return exc.code
 
     if args.expect_fixed:
-        print("\nFINAL RESULT: PASS — correct JSONC handling and correction PoC verified")
+        print("\nFINAL RESULT: PASS — correct JSONC handling and reference loader verified")
     else:
         print("\nFINAL RESULT: PASS — affected 0.3.15 defect reproduced exactly; "
               "regression failure is the expected JSONC empty-alias symptom; "
-              "correction PoC, reversible causal intervention, targeted boundaries, "
+              "reference solution, reversible causal intervention, targeted boundaries, "
               "and committed evidence verified")
     return 0
 

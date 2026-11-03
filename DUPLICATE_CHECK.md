@@ -1,13 +1,14 @@
-# Duplicate check — latest strengthening sweep 2026-11-02 against all 333 issues (open + closed, to #429)
+# Duplicate check — latest strengthening sweep 2026-11-03 against all 346 issues (open + closed, to #442)
 
 ## Current result — read this first
 
-The **current** conclusion is the 2026-11-02 sweep of **333 open/closed
-issues through #429**, detailed under “Causal-strengthening re-check” below:
-`jsonc`, `trailing comma`, `_load_tsconfig_aliases`, `comment tsconfig`, and
-`comments tsconfig` return 0; `tsconfig` and `compilerOptions.paths` return only
-#153/#272/#374. Newer #428 and #429 are distinct symbol-export and Python
-package-layout mechanisms, respectively.
+The **current** conclusion is the 2026-11-03 sweep of **346 open/closed
+issues through #442**, detailed under “Reference-solution re-check” below:
+`jsonc` and `"trailing comma"` return 0; `tsconfig` and `alias tsconfig`
+return #153/#272/#374 plus new #442. Issue #442 names
+`_load_tsconfig_aliases`, but reports a different **target-wildcard
+substitution** defect after a config has loaded, not strict-JSON rejection of
+JSONC syntax or an emptied alias table.
 
 The older sections in this file are retained as a chronological audit trail.
 Their issue totals and “newest issue” statements were correct when those
@@ -26,6 +27,7 @@ historical point). Closest issues read in full:
 |---|---|---|
 | **#374** — `@/` aliases skipped as `hard_path_skipped` although defined in **vite.config.ts** | Linker hard-skips `@/` when the alias lives only in Vite config and the app tsconfig sits in a subdirectory (`frontend/`). | Our alias **is** in the root `tsconfig.json` that the engine already supports; it fails earlier, in `_load_tsconfig_aliases` parsing (strict `json.loads` on JSONC), and is recorded `external_or_unresolved`, not `hard_path_skipped`. Different stage, different function, different trigger, different fix. |
 | **#272 / #153** — TypeScript `@/` path aliases skipped | Older behavior for the hardcoded `@/` prefix. | 0.3.15 already resolves `@/` via a hardcoded `src/` branch and custom aliases via tsconfig *when the file is strict JSON* (proven by our strict-JSON control). Our defect disables the custom-alias table itself. |
+| **#442** — target wildcards drop core Vue implementations | A loaded mapping such as `@vue/* -> packages/*/src` has its target `*` stripped instead of substituting the captured package name. | Different later mechanism: pattern substitution after config parsing. Our config never loads at all when it contains JSONC comments/trailing commas. Our reference solution deliberately preserves shipped pattern-mapping semantics, so it neither claims nor changes #442's separate defect. |
 | **#320** — `_js_import_symbols` collects local aliases from aliased/namespace imports | Symbol-name extraction from import clauses. | Unrelated: our imports extract correctly (they appear in unresolved records); failure is alias-table loading. |
 | **#262 / #84** — `../` imports unresolved (`to_posix_rel` never normalizes `..`) | Path normalization in relative resolution. | We reproduced this too (all web/Node resolvers) and deliberately do **not** file it — same cause as #262. Mentioned here to show the check was mechanism-level, not title-level. |
 | **#372** — PHP `require/include` never extracted | Missing extractor branch in `_extract_php`. | Different language/stage (extraction vs config parsing). |
@@ -114,5 +116,32 @@ exports resolve; that is a symbol-export mechanism, not root-tsconfig parsing
 or Stage-1 alias-table loading. Issue #429 concerns Python `src/`/`lib/`
 layout package re-exports and `module_scope_mismatch`, also unrelated.
 
+## Reference-solution re-check — 2026-11-03
+
+The tracker had advanced to **346 issues, newest #442**. Fresh GitHub
+issue-search API results (`repo:FinanceFlash/unvibecode is:issue`, open +
+closed) were:
+
+| Search term | Hits | Assessment |
+|---|---:|---|
+| `jsonc` / `"JSONC"` | 0 | No report of the config format or parse mechanism |
+| `"trailing comma"` | 0 | No report of this trigger |
+| `_load_tsconfig_aliases` | 1 | #442 only; read in full |
+| `tsconfig` | 4 | #153, #272, #374, #442 |
+| `"compilerOptions.paths"` | 3 | #153, #272, #374 |
+| `comment tsconfig` | 1 | #442 as a broad text match; its mechanism is not comment parsing |
+| `alias tsconfig` | 4 | #153, #272, #374, #442 |
+
+Issue #442 is the closest new neighbour because it also involves TypeScript
+path mappings. Its stated cause is that `_load_tsconfig_aliases` strips the
+wildcard from a target such as `packages/*/src`, after which
+`_resolve_node_ts` appends the captured segment at the wrong position. That
+is a **post-load pattern-substitution** error. Our trigger and failure state
+are earlier and distinguishable: strict `json.loads` rejects a supported
+root JSONC config, the broad exception handler leaves the entire alias table
+`{}`, and comments-only removal restores it without changing any wildcard
+semantics. Fixing #442 would not make a JSONC config load; fixing this issue
+would not implement #442's requested wildcard substitution.
+
 ## Conclusion
-No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, function (`_load_tsconfig_aliases`), trigger bytes, and remediation are all distinct from the neighbors above. This check must be repeated once more immediately before public filing (tracker is moving daily).
+No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, trigger bytes, observed empty-table state, and remediation are distinct from the neighbours above, including #442's later wildcard-substitution mechanism. This check must be repeated once more immediately before public filing (tracker is moving daily).

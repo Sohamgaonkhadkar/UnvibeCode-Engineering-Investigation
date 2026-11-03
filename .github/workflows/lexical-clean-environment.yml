@@ -10,6 +10,7 @@ on:
       - "reproduction/causal_intervention.py"
       - "reproduction/compare_selections.py"
       - "reproduction/jsonc_tolerant.py"
+      - "solution/tsconfig_jsonc.py"
       - "evidence/tsconfig-jsonc/lexical_tsconfig_control.json"
       - "evidence/tsconfig-jsonc/lost_relationships.jsonl"
       - "evidence/tsconfig-jsonc/selection_case_react_extension.json"

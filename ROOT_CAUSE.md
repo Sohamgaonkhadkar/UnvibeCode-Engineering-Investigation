@@ -38,6 +38,13 @@ The same implementation is duplicated at
 `01_shipreadyv2_merged_graph_pipeline_5chunks.py:1870-1887`. Both installed
 files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
 
+This is not only a latest-release accident. A digest-verified scan of every
+PyPI wheel published for 0.3.0–0.3.15 (106 wheels, 212 engine copies) found
+exactly one `_load_tsconfig_aliases` AST. Executing that extracted function
+returns the expected alias for strict JSON and `{}` for the semantically
+identical JSONC control. See
+`evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md`.
+
 ## Causal controls
 
 - Two-file strict-JSON and JSONC fixtures differ only in config lexical syntax.
@@ -54,7 +61,7 @@ files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
   and its downstream alias use—restores the expected result on every fixture.
 - The sequence is explicitly reversible on both engine copies: original JSONC
   fails, comments-only removal restores it, restoring the exact config fails
-  again, the in-memory tolerant loader restores it, and restoring the stock
+  again, the in-memory reference loader restores it, and restoring the stock
   method fails again. Source hashes do not change; missing/unconfigured and
   external specifiers remain unresolved throughout.
 - In clean CI, that same A–E sequence restores the minimal Fast Lane graph and
@@ -118,17 +125,36 @@ direct implementations from customer context selections. See
 - No claim is made about hosted business-workflow/risk findings. All established
   consequences are in the local graph and exported context bundle.
 
-## Correction status
+## Reference-solution status
 
-`reproduction/correction_poc.py` is a proof of concept, not a submitted
-production patch. Its shared diagnostic parser uses a two-pass, string-aware
-JSONC-to-JSON conversion: comments are removed only outside string literals,
-then trailing commas are removed only outside string literals. That ordering
-also handles the legal shape `..., /* comment */}`. The harness asserts that
-comment-like contents and commas inside fixture string literals survive
-byte-for-byte, and the diagnostic parser raises explicitly on targeted
-malformed shapes rather than manufacturing an empty successful config.
+`solution/tsconfig_jsonc.py` is a dependency-free reference implementation
+for maintainer adaptation, not a shipped patch. It performs two
+position-preserving, string-aware lexical passes—blank comments outside
+strings, then blank only commas immediately before `}`/`]`—and delegates the
+remaining grammar to strict `json.loads`. That ordering handles
+`..., /* comment */}`, preserves comment-like string contents byte-for-byte,
+and preserves useful error line/column/offset values.
 
-A production fix should use a maintained TypeScript-compatible JSONC parser,
-fail visibly if an existing config still cannot be parsed, and keep the
-post-fix regression (`repro_unit.py --expect-fixed`) green.
+The product-style loader distinguishes three states that the current code
+conflates:
+
+- missing or empty/comment-only config: `{}`, no warning;
+- valid JSONC: extracted aliases, no warning;
+- existing unreadable/malformed/invalid-shape config: `{}`, plus one
+  structured warning.
+
+For 0.3.15 integration, both graph builders already have a structured
+`warnings: List[Dict[str, Any]]` that is exported in the graph:
+
+- Fast Lane (`00a...`): initialise line 2186, construct resolver line 2195,
+  export line 2350;
+- merged graph (`01...`): initialise line 2143, construct resolver line 2152,
+  export line 2307.
+
+The reference loader's `tsconfig_warning.as_dict()` can therefore be appended
+once immediately after resolver construction without inventing a new output
+channel. It was validated against 514 curated/generated valid documents with
+TypeScript 5.9.3 and Microsoft `jsonc-parser` 3.3.1 as differential oracles;
+see `solution/README.md`. The raw post-fix regression
+(`repro_unit.py --expect-fixed`) remains the acceptance test for an actual
+shipped fix.
