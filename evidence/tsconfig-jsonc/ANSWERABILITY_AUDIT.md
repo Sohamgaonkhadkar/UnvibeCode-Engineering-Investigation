@@ -50,7 +50,7 @@ be correct.
 ## Result
 
 Clean GitHub Actions run:
-https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41625867051
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41627056006
 
 | Bundle | Impact tasks answerable | Negative control |
 |---|---:|---:|
@@ -66,8 +66,8 @@ answer-bearing Optimal tasks as-is/control/corrected=0/6/6 of 6
 
 The workflow uploads the complete machine-readable
 `answerability_audit.json` in artifact `lexical-clean-environment-evidence`
-(ID `13225524618`, SHA-256
-`c0d48e08bb92e47c3ce7d39aa34b8f2803bbc95cf0a35ef63731d66a3f473c9b`).
+(ID `13226761265`, SHA-256
+`ca2c29e38093c0bc2a75aab780a89f6947703e820ef407c82628b39654bca69e`).
 
 ## Interpretation
 

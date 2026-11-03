@@ -9,7 +9,7 @@ is present. A separate matrix repeats the lightweight exact-symptom and
 reference-loader verification across CPython/platform combinations.
 
 The latest fully indexed functional verification below ran from investigation
-commit `2667987b160b487da052603fc6d73efcf49fe297`, which contains the
+commit `470a3d40fda719763a184e9c557c010d11b866a5`, which contains the
 reference solution, graph-warning integration check, final-artifact
 answerability audit, and scope evidence. Follow-up PR #2's check rollup
 remains the authoritative status for any later branch head. (The original
@@ -37,7 +37,7 @@ investigation was merged through PR #1.)
 ## 1. Unified affected-version verification + minimal standard CLI
 
 - Workflow: **PR verification — JSONC defect reproduced exactly (0.3.15)**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41625867120
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41627056044
 - Job: **Affected-version verification — exact defect, reference loader, evidence**
 - Result: **success**
 - Successful steps include:
@@ -70,9 +70,9 @@ investigation was merged through PR #1.)
   > file_edges=0, unresolved=1, file_import=0, symbol_fallback=1,
   > grammar_download_error=False`
 - Artifact `jsonc-verification-logs`:
-  - ID `13226370378`
-  - 13,467 bytes
-  - SHA-256 `58ec231ec1dbb9829b63599be607a710acb03a93341d5383c25e334b51c2f6bd`
+  - ID `13226287413`
+  - 13,546 bytes
+  - SHA-256 `a20eded5b1efdf95f0b482a452f7e7e8c81b0276ee774072f5105b91802b6519`
 
 The minimal CLI processes exit 1 after producing the local graph and context
 bundle. Those are the artifacts under test; the comparison does not claim that a
@@ -89,7 +89,7 @@ causal intervention.
 ## 2. Lexical under the same ordinary installation
 
 - Workflow: **Lexical clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41625867051
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41627056006
 - Result: **success**
 - It fetched lexical at `164af6a4df7114f35724c472152ca74877b6bd04`, ran the
   ordinary CLI as-is and on a copy with only the five comment lines removed,
@@ -113,9 +113,9 @@ causal intervention.
   > Optimal/Wider=2707/3345; answer-bearing Optimal tasks
   > as-is/control/corrected=0/6/6 of 6`
 - Artifact `lexical-clean-environment-evidence`:
-  - ID `13225524618`
-  - 186,527 bytes
-  - SHA-256 `c0d48e08bb92e47c3ce7d39aa34b8f2803bbc95cf0a35ef63731d66a3f473c9b`
+  - ID `13226761265`
+  - 186,518 bytes
+  - SHA-256 `ca2c29e38093c0bc2a75aab780a89f6947703e820ef407c82628b39654bca69e`
 
 Therefore the lexical graph and direct downstream-selection result no longer
 depends on the sandbox grammar workaround. The corrected run is Fast Lane
@@ -130,7 +130,7 @@ later hosted-stage result.
 - Selected-version command: `python reproduction/repro_unit.py --expect-fixed`
 - On UnvibeCode 0.3.15 this raw test fails for the four JSONC fixtures; that
   exact child failure is also visible inside the successful
-  `verify-affected-version.log` in run `41625867120`. It should become green
+  `verify-affected-version.log` in run `41627056044`. It should become green
   only after JSONC tsconfig aliases load correctly.
 
 ## Retrieval note
