@@ -6,10 +6,10 @@ fallback grammar shim. The runs below close that reproducibility gap in a normal
 GitHub-hosted environment. They install only the pinned public package
 (`unvibecode==0.3.15`) with Python 3.12 on `ubuntu-latest`; no shim is present.
 
-The latest fully indexed functional verification ran from investigation commit
-`4acf2c5751fa01b4652d5f8c0676dc4b0c723878`. Documentation-only commits after
-that commit may rerun the same workflows; follow-up PR #2's check rollup is the
-authoritative status for the current strengthening branch head. (The original
+The latest fully indexed functional verification below ran from investigation
+commit `edb2149a8b4801614336ad9b51505731e6e716fc`, which contains the
+reference solution and scope evidence. Follow-up PR #2's check rollup remains
+the authoritative status for any later branch head. (The original
 investigation was merged through PR #1.)
 
 ## How to read the PR checks
@@ -31,16 +31,19 @@ investigation was merged through PR #1.)
 ## 1. Unified affected-version verification + minimal standard CLI
 
 - Workflow: **PR verification — JSONC defect reproduced exactly (0.3.15)**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41466588291
-- Job: **Affected-version verification — exact defect, correction PoC, evidence**
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41618709857
+- Job: **Affected-version verification — exact defect, reference loader, evidence**
 - Result: **success**
 - Successful steps include:
   - TypeScript 5.9.3 `tsc --showConfig` on strict, line-comment, block-comment,
     trailing-comma, string-safety, and combined JSONC fixtures;
   - `python reproduction/verify.py`, which runs the known-bug reproducer,
-    asserts the exact `--expect-fixed` failure shape, runs the correction PoC,
-    runs the resolver-level reversible intervention and targeted boundaries on
-    both engine copies, and verifies committed lexical/ng-matero evidence;
+    asserts the exact `--expect-fixed` failure shape, runs the
+    reference-solution Python corpus (14 curated + 500 generated valid
+    documents) and integration check, runs the resolver-level reversible
+    intervention and targeted boundaries on both engine copies, and verifies
+    committed lexical/ng-matero, reference-validation, version-scope, and
+    exposure-sample evidence;
   - `causal_intervention.py --full-pipeline`, which repeats A/B/C/D/E through
     the installed Fast Lane `run_pipeline()` and inspects the actual resolved
     graph and complete-repository-context ZIP;
@@ -52,9 +55,9 @@ investigation was merged through PR #1.)
   > file_edges=0, unresolved=1, file_import=0, symbol_fallback=1,
   > grammar_download_error=False`
 - Artifact `jsonc-verification-logs`:
-  - ID `13153021638`
-  - 10,978 bytes
-  - SHA-256 `b94147124a22bec131d3fb00f65bc423df53c3d87eec85050d2d636fe1f10c72`
+  - ID `13222721647`
+  - 11,344 bytes
+  - SHA-256 `e2647606804b20ac2e55cde8635945e575b9639571ce4a578084e8ebabd00211`
 
 The minimal CLI processes exit 1 after producing the local graph and context
 bundle. Those are the artifacts under test; the comparison does not claim that a
@@ -64,7 +67,7 @@ cannot explain the strict-vs-JSONC file-edge difference.
 ## 2. Lexical under the same ordinary installation
 
 - Workflow: **Lexical clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41466588123
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41618709640
 - Result: **success**
 - It fetched lexical at `164af6a4df7114f35724c472152ca74877b6bd04`, ran the
   ordinary CLI as-is and on a copy with only the five comment lines removed,
@@ -81,9 +84,9 @@ cannot explain the strict-vs-JSONC file-edge difference.
   > in-memory corrected original edges=5519, corrected-vs-stock
   > Optimal/Wider=2707/3345`
 - Artifact `lexical-clean-environment-evidence`:
-  - ID `13153496022`
-  - 182,467 bytes
-  - SHA-256 `fcbdaa5510884ec280ea49efcfb741f098824f0e59452a0075b4baa328beed7c`
+  - ID `13222059310`
+  - 182,639 bytes
+  - SHA-256 `690579897f4e25a1b2e91b1e218f3790b2fc9563d138b08da75f2276cb5d3f7f`
 
 Therefore the lexical graph and direct downstream-selection result no longer
 depends on the sandbox grammar workaround. The corrected run is Fast Lane
@@ -98,7 +101,7 @@ later hosted-stage result.
 - Selected-version command: `python reproduction/repro_unit.py --expect-fixed`
 - On UnvibeCode 0.3.15 this raw test fails for the four JSONC fixtures; that
   exact child failure is also visible inside the successful
-  `verify-affected-version.log` in run `41466588291`. It should become green
+  `verify-affected-version.log` in run `41618709857`. It should become green
   only after JSONC tsconfig aliases load correctly.
 
 ## Retrieval note

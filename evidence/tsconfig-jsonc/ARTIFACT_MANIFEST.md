@@ -20,6 +20,7 @@ recomputed the same lexical counts under an ordinary installation.
 | Node used for local differential validation | 22.22.3 |
 | Python comparison libraries (validation only) | `json-with-comments` 1.3.0; `json5` 0.17.3 |
 | Investigation commit used for the originally recorded lexical CI runs | `4acf2c5751fa01b4652d5f8c0676dc4b0c723878` |
+| Investigation commit used for latest indexed strengthening CI runs | `edb2149a8b4801614336ad9b51505731e6e716fc` |
 
 Both engine files containing `_load_tsconfig_aliases` were checked against the
  hashes in the installed wheel's `RECORD`:
@@ -80,8 +81,8 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 
 See `CI_VERIFICATION.md` for run links and outcomes. Artifact digests:
 
-- `jsonc-verification-logs`: `b94147124a22bec131d3fb00f65bc423df53c3d87eec85050d2d636fe1f10c72`
-- `lexical-clean-environment-evidence`: `fcbdaa5510884ec280ea49efcfb741f098824f0e59452a0075b4baa328beed7c`
+- `jsonc-verification-logs`: `e2647606804b20ac2e55cde8635945e575b9639571ce4a578084e8ebabd00211`
+- `lexical-clean-environment-evidence`: `690579897f4e25a1b2e91b1e218f3790b2fc9563d138b08da75f2276cb5d3f7f`
 
 ## Regeneration outline
 
