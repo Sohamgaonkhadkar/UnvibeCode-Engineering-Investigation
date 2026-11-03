@@ -11,6 +11,7 @@ on:
       - "reproduction/compare_selections.py"
       - "reproduction/answerability_audit.py"
       - "reproduction/answerability_tasks.json"
+      - "reproduction/symbol_evidence_audit.py"
       - "reproduction/jsonc_tolerant.py"
       - "solution/tsconfig_jsonc.py"
       - "evidence/tsconfig-jsonc/lexical_tsconfig_control.json"
@@ -128,6 +129,26 @@ jobs:
             --bundle "corrected=$corrected_bundle" \
             --output lexical-ci-evidence/answerability_audit.json
 
+      # Scale final-artifact evidence beyond the six representative tasks:
+      # for every eligible imported symbol on a verified lost relationship,
+      # require a recognizable declaration/export line in the selected chunks
+      # for the importing source.
+      - name: Exhaustive symbol-definition evidence in exported bundles
+        run: |
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-lexical-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/symbol_evidence_audit.py \
+            --graph-control "$RUNNER_TEMP/capture_lexical_ctrl/resolved_graph.json" \
+            --lost-relationships lexical-ci-evidence/lost_relationships.jsonl \
+            --bundle "as_is=$RUNNER_TEMP/capture_lexical/repository-context.zip" \
+            --bundle "control=$RUNNER_TEMP/capture_lexical_ctrl/repository-context.zip" \
+            --bundle "corrected=$corrected_bundle" \
+            --radius 1 \
+            --radius 2 \
+            --output lexical-ci-evidence/symbol_evidence_audit.json \
+            --details-output lexical-ci-evidence/symbol_evidence_details.jsonl
+
       - name: Assert and publish key lexical counts as an annotation
         run: |
           python - <<'PY'
@@ -175,6 +196,28 @@ jobs:
           }, answers
           assert answers["control"]["impact_answerable"] == 6, answers
           assert answers["corrected"]["impact_answerable"] == 6, answers
+
+          symbols = json.loads(
+              Path("lexical-ci-evidence/symbol_evidence_audit.json").read_text()
+          )
+          assert symbols["status"] == "passed", symbols
+          derivation = symbols["task_derivation"]
+          assert derivation["eligible_symbol_tasks"] > 0, derivation
+          symbol_radii = {}
+          for radius in ("1", "2"):
+              entry = symbols["by_radius"][radius]
+              recovered_control = entry["comparisons"]["as_is_to_control"]["states"].get(
+                  "definition_recovered", 0
+              )
+              recovered_corrected = entry["comparisons"]["as_is_to_corrected"]["states"].get(
+                  "definition_recovered", 0
+              )
+              assert recovered_control > 0 and recovered_corrected > 0, entry
+              symbol_radii[radius] = (
+                  entry["definition_available_by_bundle"],
+                  recovered_control,
+                  recovered_corrected,
+              )
           print(
               "::notice title=Lexical clean-environment validation::"
               f"as-is edges={graph_a['edges']}, control edges={graph_b['edges']}, "
@@ -185,7 +228,19 @@ jobs:
               f"answer-bearing Optimal tasks as-is/control/corrected="
               f"{answers['as_is']['impact_answerable']}/"
               f"{answers['control']['impact_answerable']}/"
-              f"{answers['corrected']['impact_answerable']} of 6"
+              f"{answers['corrected']['impact_answerable']} of 6; "
+              f"eligible symbol-definition tasks={derivation['eligible_symbol_tasks']} "
+              f"(candidate={derivation['candidate_symbol_tasks']}, "
+              f"sources={derivation['distinct_source_files']}, "
+              f"definition_files={derivation['distinct_definition_files']}); "
+              f"Optimal definitions as-is/control/corrected="
+              f"{symbol_radii['1'][0]['as_is']}/{symbol_radii['1'][0]['control']}/"
+              f"{symbol_radii['1'][0]['corrected']}, recovered control/corrected="
+              f"{symbol_radii['1'][1]}/{symbol_radii['1'][2]}; "
+              f"Wider definitions as-is/control/corrected="
+              f"{symbol_radii['2'][0]['as_is']}/{symbol_radii['2'][0]['control']}/"
+              f"{symbol_radii['2'][0]['corrected']}, recovered control/corrected="
+              f"{symbol_radii['2'][1]}/{symbol_radii['2'][2]}"
           )
           PY
 

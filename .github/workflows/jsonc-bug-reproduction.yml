@@ -10,6 +10,7 @@ on:
       - "evidence/tsconfig-jsonc/reference_solution_validation.json"
       - "evidence/tsconfig-jsonc/version_scope.json"
       - "evidence/tsconfig-jsonc/ecosystem_exposure_sample.json"
+      - "evidence/tsconfig-jsonc/ecosystem_loader_behavior.json"
   workflow_dispatch:
 
 permissions:
@@ -206,3 +207,103 @@ jobs:
 
       - name: Exact affected-version resolver and reference-loader verification
         run: python reproduction/verify.py --skip-evidence
+
+  patched_install_rehearsal:
+    # Separate disposable runner: prove the maintainer-style file changes in
+    # a normally loaded installation, then restore the stock hashes.  This
+    # job does not alter the repository checkout or any persistent package.
+    name: Patched-install rehearsal — file-level reference integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PATCH_BACKUP_DIR: ${{ runner.temp }}/unvibecode-stock-backup
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the pinned public package normally
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r reproduction/requirements-ci.txt
+          python -m pip show unvibecode
+          mkdir -p patched-ci-evidence
+          python solution/apply_reference_patch.py --check \
+            | tee patched-ci-evidence/stock-check.log
+          grep -q '"state": "stock_vulnerable"' patched-ci-evidence/stock-check.log
+
+      - name: Apply the reference patch to this disposable installation
+        run: |
+          python solution/apply_reference_patch.py \
+            --backup-dir "$PATCH_BACKUP_DIR" \
+            --i-understand-this-modifies-site-packages \
+            | tee patched-ci-evidence/apply-patch.log
+          cp "$PATCH_BACKUP_DIR/manifest.json" \
+            patched-ci-evidence/stock-backup-manifest.json
+          python solution/apply_reference_patch.py --check \
+            | tee patched-ci-evidence/patched-check.log
+          grep -q '"state": "patched"' patched-ci-evidence/patched-check.log
+          grep -q '"reference_matches_solution": true' \
+            patched-ci-evidence/patched-check.log
+
+      - name: Validate patched engines and full Fast Lane without monkeypatching
+        run: |
+          python solution/validate_patched_install.py \
+            --full-pipeline \
+            --output patched-ci-evidence/patched-install-validation.json \
+            | tee patched-ci-evidence/patched-install-validation.log
+
+      - name: Raw post-fix regression on the patched installation
+        run: |
+          python reproduction/verify.py --expect-fixed --skip-evidence \
+            | tee patched-ci-evidence/verify-expect-fixed.log
+
+      - name: Restore stock files and verify their hashes
+        if: always()
+        run: |
+          python solution/apply_reference_patch.py \
+            --restore "$PATCH_BACKUP_DIR" \
+            --i-understand-this-modifies-site-packages \
+            | tee patched-ci-evidence/restore-patch.log
+          python solution/apply_reference_patch.py --check \
+            | tee patched-ci-evidence/restored-check.log
+          grep -q '"state": "stock_vulnerable"' \
+            patched-ci-evidence/restored-check.log
+          grep -q '"reference_installed": false' \
+            patched-ci-evidence/restored-check.log
+
+      - name: Publish patched-install result as an annotation
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("patched-ci-evidence/patched-install-validation.json")
+          if not path.is_file():
+              print("::notice title=Patched-install rehearsal::validation output unavailable")
+              raise SystemExit(0)
+          data = json.loads(path.read_text())
+          engines = ",".join(row["engine"] for row in data.get("resolver_checks", []))
+          full = data.get("full_pipeline", {})
+          valid_edges = full.get("valid_jsonc", {}).get("observed_source_edge_pairs", [])
+          malformed_warnings = full.get("malformed", {}).get("graph_warnings", [])
+          print(
+              "::notice title=Patched-install rehearsal::"
+              f"status={data.get('status')}; patched resolvers={engines}; "
+              f"valid JSONC source edges={valid_edges}; "
+              f"malformed graph warning codes="
+              f"{[row.get('code') for row in malformed_warnings]}; "
+              "stock restore/hash check runs in the same disposable job"
+          )
+          PY
+
+      - name: Upload patched-install rehearsal evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patched-install-rehearsal-evidence
+          path: patched-ci-evidence/
+          if-no-files-found: warn

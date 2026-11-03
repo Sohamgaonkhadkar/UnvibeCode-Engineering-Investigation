@@ -372,6 +372,35 @@ def check_evidence() -> None:
             "Ecosystem exposure TypeScript oracle evidence changed")
     print("  PASS  Exposure sample: 44/184 repositories; 35/139 unique contents affected")
 
+    loader_behavior = load_json(EVIDENCE / "ecosystem_loader_behavior.json")
+    require(loader_behavior.get("status") == "completed"
+            and loader_behavior.get("environment", {}).get("unvibecode") == "0.3.15",
+            "Public-config loader-behavior status/version changed")
+    behavior_repo = loader_behavior["summaries"]["all_unique_repositories"]
+    behavior_unique = loader_behavior["summaries"]["unique_config_contents"]
+    require(behavior_repo["eligible_records"] == behavior_repo["passed_records"] == 184
+            and behavior_repo["affected_records"] == 44
+            and behavior_repo["affected_stock_empty_both_engines"] == 44
+            and behavior_repo["affected_corrected_exact_both_engines"] == 44
+            and behavior_repo["affected_expected_aliases"] == 163
+            and behavior_repo["unaffected_records"] == 140
+            and behavior_repo["unaffected_stock_exact_both_engines"] == 140
+            and behavior_repo["unaffected_corrected_exact_both_engines"] == 140,
+            "Repository-level public-config loader behavior changed")
+    require(behavior_unique["eligible_records"] == behavior_unique["passed_records"] == 139
+            and behavior_unique["affected_records"] == 35
+            and behavior_unique["affected_stock_empty_both_engines"] == 35
+            and behavior_unique["affected_corrected_exact_both_engines"] == 35
+            and behavior_unique["affected_expected_aliases"] == 126
+            and behavior_unique["unaffected_records"] == 104
+            and behavior_unique["unaffected_stock_exact_both_engines"] == 104
+            and behavior_unique["unaffected_corrected_exact_both_engines"] == 104,
+            "Unique-content public-config loader behavior changed")
+    require(len(loader_behavior.get("records", [])) == 184
+            and all(row.get("passed") for row in loader_behavior["records"]),
+            "A public-config loader-behavior record is not passed")
+    print("  PASS  Public-config loaders: 44 affected stock-empty/corrected-exact; 140 controls exact")
+
     answerability_tasks = load_json(HERE / "answerability_tasks.json")
     require(answerability_tasks.get("repository") == "meta/lexical"
             and answerability_tasks.get("commit") == "164af6a4df7114f35724c472152ca74877b6bd04"
@@ -386,6 +415,19 @@ def check_evidence() -> None:
     require(all(task.get("evidence_fragments") for task in answerability_tasks["tasks"]),
             "An answerability task has no evidence fragments")
     print("  PASS  Answerability audit spec: 6 impact tasks; 1 negative control")
+
+    ng_tasks = load_json(HERE / "answerability_tasks_ng_matero.json")
+    require(ng_tasks.get("repository") == "ng-matero/ng-matero"
+            and ng_tasks.get("commit") == "d351bf5957d8c6dc9eca79d0c9b260c5b8d07822"
+            and ng_tasks.get("source_file") == "src/app/app.config.ts"
+            and ng_tasks.get("scope_radius") == 1,
+            "ng-matero answerability task source/scope changed")
+    ng_categories = Counter(task.get("category") for task in ng_tasks.get("tasks", []))
+    require(ng_categories == {"impact": 3, "negative_control": 1},
+            "ng-matero answerability task category counts changed")
+    require(all(task.get("evidence_fragments") for task in ng_tasks["tasks"]),
+            "An ng-matero answerability task has no evidence fragments")
+    print("  PASS  Ng-matero answerability spec: 3 impact tasks; 1 negative control")
 
 
 def main() -> int:

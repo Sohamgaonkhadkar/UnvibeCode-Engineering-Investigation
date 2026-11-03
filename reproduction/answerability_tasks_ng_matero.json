@@ -48,14 +48,14 @@
       ]
     },
     {
-      "id": "ng_relative_routes_negative_control",
+      "id": "ng_inmemory_service_negative_control",
       "category": "negative_control",
-      "question": "In the relatively imported routes file, where do the empty child path and wildcard path redirect?",
-      "expected_answer": "Both redirect to dashboard; the empty child path uses pathMatch full.",
-      "answer_file": "src/app/app.routes.ts",
+      "question": "What interface does the demo InMemDataService implement, and what is the first seeded username?",
+      "expected_answer": "It implements InMemoryDbService and seeds a user whose username is ng-matero.",
+      "answer_file": "src/app/shared/in-mem/in-mem-data.service.ts",
       "evidence_fragments": [
-        "{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },",
-        "{ path: '**', redirectTo: 'dashboard' },"
+        "export class InMemDataService implements InMemoryDbService {",
+        "username: 'ng-matero',"
       ]
     }
   ]
