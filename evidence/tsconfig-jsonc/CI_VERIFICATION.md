@@ -9,7 +9,7 @@ is present. A separate matrix repeats the lightweight exact-symptom and
 reference-loader verification across CPython/platform combinations.
 
 The latest fully indexed functional verification below ran from investigation
-commit `ae3f9c2a79f58c384db45ed3bdb5ca18dea670bf`, which contains the
+commit `3a516692d27cb1c632680efe62c11d12c5b3ccfb`, which contains the
 reference solution, graph-warning integration check, patched-install
 rehearsal, lexical and ng-matero final-artifact audits, exhaustive
 symbol-evidence audit, and direct public-config loader-behavior evidence.
@@ -44,7 +44,7 @@ investigation was merged through PR #1.)
 ## 1. Unified affected-version verification + minimal standard CLI
 
 - Workflow: **PR verification — JSONC defect reproduced exactly (0.3.15)**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056309
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639782109
 - Job: **Affected-version verification — exact defect, reference loader, evidence**
 - Result: **success**
 - Successful steps include:
@@ -78,9 +78,9 @@ investigation was merged through PR #1.)
   > file_edges=0, unresolved=1, file_import=0, symbol_fallback=1,
   > grammar_download_error=False`
 - Artifact `jsonc-verification-logs`:
-  - ID `13230967523`
-  - 13,639 bytes
-  - SHA-256 `1c7026cb8d736da796b936f8c216ad55a39a8a5c7d001858dbbb373ac0928878`
+  - ID `13232915383`
+  - 13,555 bytes
+  - SHA-256 `2817dee23ff5de2dc994e03815ee776222ee42a3bcc3f8c2c42ef9c0e4d6a02f`
 
 The minimal CLI processes exit 1 after producing the local graph and context
 bundle. Those are the artifacts under test; the comparison does not claim that a
@@ -109,14 +109,14 @@ stock files, and verified their hashes/reference-module removal.
   > ['src/feature/comp.ts', 'src/feature/local.ts']]; malformed graph
   > warning codes=['tsconfig_parse_failed']`
 - Artifact `patched-install-rehearsal-evidence`:
-  - ID `13230484494`
-  - 6,164 bytes
-  - SHA-256 `d1073d55b652d8066cbf20d2fc59431517505af8d2f90a11c5ff27260db4b811`
+  - ID `13231684614`
+  - 6,168 bytes
+  - SHA-256 `fe088ef9f04da6b3dabbf81b72141e1aeabe7fa4d0368ed108ba67eadcd08cee`
 
 ## 2. Lexical under the same ordinary installation
 
 - Workflow: **Lexical clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056381
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781771
 - Result: **success**
 - It fetched lexical at `164af6a4df7114f35724c472152ca74877b6bd04`, ran the
   ordinary CLI as-is and on a copy with only the five comment lines removed,
@@ -150,9 +150,9 @@ stock files, and verified their hashes/reference-module removal.
   > as-is/control/corrected=711/9883/9883, recovered
   > control/corrected=9182/9182`
 - Artifact `lexical-clean-environment-evidence`:
-  - ID `13232150404`
-  - 338,347 bytes
-  - SHA-256 `5152cd0ad8a6482f8ee6e59b45a07bb41bb0b6f201740d7233d99890fa068a63`
+  - ID `13231264139`
+  - 338,336 bytes
+  - SHA-256 `0ebce5ec4a3e369358ec144d8668e221f2ce23c82e8bf0474cf9e10d791c7765`
 
 Therefore the lexical graph and direct downstream-selection result no longer
 depends on the sandbox grammar workaround. The corrected run is Fast Lane
@@ -162,7 +162,7 @@ later hosted-stage result.
 ## 3. Independent ng-matero under an ordinary installation
 
 - Workflow: **Ng-matero clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056555
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781748
 - Result: **success**
 - It fetched ng-matero at `d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`,
   verified the original root-config SHA-256, ran the ordinary CLI as-is and
@@ -184,9 +184,9 @@ later hosted-stage result.
   > Optimal/Wider=107/107; answer-bearing Optimal tasks
   > as-is/control/corrected=0/3/3 of 3`
 - Artifact `ng-matero-clean-environment-evidence`:
-  - ID `13232066872`
-  - 16,135 bytes
-  - SHA-256 `2a6d88503c5672b628068fc440e2ce412432fdd580dfeea76f6c6df62d973e20`
+  - ID `13232486438`
+  - 16,123 bytes
+  - SHA-256 `070892c6051a6572e5b2fd71fe7c96a66b0b465f62c40e7f98bf21402c4af72d`
 
 This removes the earlier local grammar-fallback caveat from the ng-matero
 graph/selection/corrected/answerability claims.
@@ -199,7 +199,7 @@ graph/selection/corrected/answerability claims.
 - Selected-version command: `python reproduction/repro_unit.py --expect-fixed`
 - On UnvibeCode 0.3.15 this raw test fails for the four JSONC fixtures; that
   exact child failure is also visible inside the successful
-  `verify-affected-version.log` in run `41638056309`. It should become green
+  `verify-affected-version.log` in run `41639782109`. It should become green
   only after JSONC tsconfig aliases load correctly.
 
 ## Retrieval note

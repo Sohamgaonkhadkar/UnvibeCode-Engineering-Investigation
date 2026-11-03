@@ -50,7 +50,7 @@ be correct.
 ## Result
 
 Clean GitHub Actions run:
-https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056381
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781771
 
 | Bundle | Impact tasks answerable | Negative control |
 |---|---:|---:|
@@ -66,8 +66,8 @@ answer-bearing Optimal tasks as-is/control/corrected=0/6/6 of 6
 
 The workflow uploads the complete machine-readable
 `answerability_audit.json` in artifact `lexical-clean-environment-evidence`
-(ID `13232150404`, SHA-256
-`5152cd0ad8a6482f8ee6e59b45a07bb41bb0b6f201740d7233d99890fa068a63`).
+(ID `13231264139`, SHA-256
+`0ebce5ec4a3e369358ec144d8668e221f2ce23c82e8bf0474cf9e10d791c7765`).
 
 ## Interpretation
 
@@ -92,7 +92,7 @@ the `@shared` barrel re-exports, and what `production`/`baseUrl`/`useHash`
 values the imported environment supplies.
 
 Run:
-https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056555
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781748
 
 | Bundle | Impact tasks answerable | Source-file negative control |
 |---|---:|---:|
@@ -103,8 +103,8 @@ https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions
 Task definitions are in
 [`../../reproduction/answerability_tasks_ng_matero.json`](../../reproduction/answerability_tasks_ng_matero.json).
 The full JSON is in artifact `ng-matero-clean-environment-evidence`
-(ID `13232066872`, SHA-256
-`2a6d88503c5672b628068fc440e2ce412432fdd580dfeea76f6c6df62d973e20`).
+(ID `13232486438`, SHA-256
+`070892c6051a6572e5b2fd71fe7c96a66b0b465f62c40e7f98bf21402c4af72d`).
 
 ## Exhaustive lexical symbol-evidence companion
 

@@ -20,7 +20,7 @@ recomputed the same lexical and ng-matero counts under ordinary installations.
 | Node used for local differential validation | 22.22.3 |
 | Python comparison libraries (validation only) | `json-with-comments` 1.3.0; `json5` 0.17.3 |
 | Investigation commit used for the originally recorded lexical CI runs | `4acf2c5751fa01b4652d5f8c0676dc4b0c723878` |
-| Investigation commit used for latest indexed strengthening CI runs | `ae3f9c2a79f58c384db45ed3bdb5ca18dea670bf` |
+| Investigation commit used for latest indexed strengthening CI runs | `3a516692d27cb1c632680efe62c11d12c5b3ccfb` |
 
 Both engine files containing `_load_tsconfig_aliases` were checked against the
  hashes in the installed wheel's `RECORD`:
@@ -84,10 +84,10 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 
 See `CI_VERIFICATION.md` for run links and outcomes. Artifact digests:
 
-- `jsonc-verification-logs`: `1c7026cb8d736da796b936f8c216ad55a39a8a5c7d001858dbbb373ac0928878`
-- `patched-install-rehearsal-evidence`: `d1073d55b652d8066cbf20d2fc59431517505af8d2f90a11c5ff27260db4b811`
-- `lexical-clean-environment-evidence`: `5152cd0ad8a6482f8ee6e59b45a07bb41bb0b6f201740d7233d99890fa068a63`
-- `ng-matero-clean-environment-evidence`: `2a6d88503c5672b628068fc440e2ce412432fdd580dfeea76f6c6df62d973e20`
+- `jsonc-verification-logs`: `2817dee23ff5de2dc994e03815ee776222ee42a3bcc3f8c2c42ef9c0e4d6a02f`
+- `patched-install-rehearsal-evidence`: `fe088ef9f04da6b3dabbf81b72141e1aeabe7fa4d0368ed108ba67eadcd08cee`
+- `lexical-clean-environment-evidence`: `0ebce5ec4a3e369358ec144d8668e221f2ce23c82e8bf0474cf9e10d791c7765`
+- `ng-matero-clean-environment-evidence`: `070892c6051a6572e5b2fd71fe7c96a66b0b465f62c40e7f98bf21402c4af72d`
 
 ## Regeneration outline
 
