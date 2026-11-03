@@ -9,6 +9,8 @@ on:
       - "reproduction/capture_run.py"
       - "reproduction/causal_intervention.py"
       - "reproduction/compare_selections.py"
+      - "reproduction/answerability_audit.py"
+      - "reproduction/answerability_tasks.json"
       - "reproduction/jsonc_tolerant.py"
       - "solution/tsconfig_jsonc.py"
       - "evidence/tsconfig-jsonc/lexical_tsconfig_control.json"
@@ -111,6 +113,21 @@ jobs:
             --summary-output lexical-ci-evidence/selection_impact_corrected_vs_stock.json \
             --omissions-output lexical-ci-evidence/direct_selection_omissions_corrected_vs_stock.jsonl
 
+      # Deterministic final-artifact check: exact answer-bearing lines must
+      # be present in selected Optimal chunks from the answering files.  It
+      # makes no LLM-output claim.
+      - name: Answer-bearing lines in actual exported Optimal bundles
+        run: |
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-lexical-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/answerability_audit.py \
+            --tasks reproduction/answerability_tasks.json \
+            --bundle "as_is=$RUNNER_TEMP/capture_lexical/repository-context.zip" \
+            --bundle "control=$RUNNER_TEMP/capture_lexical_ctrl/repository-context.zip" \
+            --bundle "corrected=$corrected_bundle" \
+            --output lexical-ci-evidence/answerability_audit.json
+
       - name: Assert and publish key lexical counts as an annotation
         run: |
           python - <<'PY'
@@ -144,13 +161,31 @@ jobs:
           assert corrected["verified_relationships_present"] == 4256, corrected
           assert corrected["matches_comment_stripped_control_selection_exactly"] is True
           assert corrected_optimal == 2707 and corrected_wider == 3345, corrected_recovered
+
+          answerability = json.loads(
+              Path("lexical-ci-evidence/answerability_audit.json").read_text()
+          )
+          answers = answerability["summary"]
+          assert answerability["status"] == "passed", answerability
+          assert answers["as_is"] == {
+              "impact_answerable": 0,
+              "impact_total": 6,
+              "negative_control_answerable": 1,
+              "negative_control_total": 1,
+          }, answers
+          assert answers["control"]["impact_answerable"] == 6, answers
+          assert answers["corrected"]["impact_answerable"] == 6, answers
           print(
               "::notice title=Lexical clean-environment validation::"
               f"as-is edges={graph_a['edges']}, control edges={graph_b['edges']}, "
               f"verified lost file relationships={strong['gained_file_edges_total']}, "
               f"Optimal direct dependencies recovered={optimal}; "
               f"in-memory corrected original edges={corrected['graph_summary']['edges']}, "
-              f"corrected-vs-stock Optimal/Wider={corrected_optimal}/{corrected_wider}"
+              f"corrected-vs-stock Optimal/Wider={corrected_optimal}/{corrected_wider}; "
+              f"answer-bearing Optimal tasks as-is/control/corrected="
+              f"{answers['as_is']['impact_answerable']}/"
+              f"{answers['control']['impact_answerable']}/"
+              f"{answers['corrected']['impact_answerable']} of 6"
           )
           PY
 

@@ -1,0 +1,91 @@
+{
+  "schema": "unvibecode-lexical-answerability-tasks/v1",
+  "repository": "meta/lexical",
+  "commit": "164af6a4df7114f35724c472152ca74877b6bd04",
+  "source_file": "packages/lexical-react/src/ReactExtension.tsx",
+  "scope_radius": 1,
+  "scope_name": "Optimal",
+  "method_note": "A task is counted answerable only when every listed evidence fragment appears in a selected chunk from the named answer file. Import statements in the source file are not counted. This measures availability of answer-bearing implementation lines in the exported context; it does not claim a particular LLM will answer correctly.",
+  "tasks": [
+    {
+      "id": "contenteditable_placeholder_contract",
+      "category": "impact",
+      "question": "When ContentEditable receives a placeholder, what accessibility prop is required, and how is the placeholder rendered?",
+      "expected_answer": "An aria-placeholder string is required; a non-null placeholder renders the internal Placeholder component with the editor and content.",
+      "answer_file": "packages/lexical-react/src/LexicalContentEditable.tsx",
+      "evidence_fragments": [
+        "'aria-placeholder': string;",
+        "<Placeholder editor={editor} content={placeholder} />"
+      ]
+    },
+    {
+      "id": "composer_context_tuple_and_theme_fallback",
+      "category": "impact",
+      "question": "What are the two elements of LexicalComposerContextWithEditor, and how does getTheme fall back?",
+      "expected_answer": "The tuple is [LexicalEditor, LexicalComposerContextType]; getTheme returns EditorThemeClasses or null/undefined and falls back to the parent context getTheme result, otherwise null.",
+      "answer_file": "packages/lexical-react/src/LexicalComposerContext.ts",
+      "evidence_fragments": [
+        "export type LexicalComposerContextWithEditor = [",
+        "LexicalEditor,",
+        "LexicalComposerContextType,",
+        "getTheme: () => EditorThemeClasses | null | undefined;",
+        "return parentContext != null ? parentContext.getTheme() : null;"
+      ]
+    },
+    {
+      "id": "react_provider_peer_identity",
+      "category": "impact",
+      "question": "What extension name does ReactProviderExtension declare, and why is it a separate extension?",
+      "expected_answer": "It declares @lexical/react/ReactProvider and is separate so it can be used as a peer dependency.",
+      "answer_file": "packages/lexical-react/src/ReactProviderExtension.tsx",
+      "evidence_fragments": [
+        "name: '@lexical/react/ReactProvider',",
+        "It is a separate extension so it can be used as a peer dependency."
+      ]
+    },
+    {
+      "id": "invariant_failure_behaviour",
+      "category": "impact",
+      "question": "What does invariant do when its condition is false, including how message placeholders are handled?",
+      "expected_answer": "It throws an Error after replacing successive %s placeholders with the supplied string arguments.",
+      "answer_file": "packages/lexical-internal/src/invariant.ts",
+      "evidence_fragments": [
+        "export default function invariant(",
+        "args.reduce((msg, arg) => msg.replace('%s', String(arg)), message)"
+      ]
+    },
+    {
+      "id": "define_extension_identity_behaviour",
+      "category": "impact",
+      "question": "Does defineExtension transform the extension object it receives?",
+      "expected_answer": "No. It is an inference helper and returns the unmodified extension argument.",
+      "answer_file": "packages/lexical/src/extension-core/defineExtension.ts",
+      "evidence_fragments": [
+        "@returns The unmodified extension argument (this is only an inference helper)",
+        "return extension;"
+      ]
+    },
+    {
+      "id": "shallow_merge_identity_and_copy_behaviour",
+      "category": "impact",
+      "question": "When does shallowMergeConfig return the original config object, and when does it allocate a merged object?",
+      "expected_answer": "It returns the original config when overrides are absent/identical or no value differs; on the first differing override value it returns a shallow spread of config and overrides.",
+      "answer_file": "packages/lexical/src/extension-core/shallowMergeConfig.ts",
+      "evidence_fragments": [
+        "if (!overrides || config === overrides) {",
+        "return {...config, ...overrides};"
+      ]
+    },
+    {
+      "id": "error_boundary_negative_control",
+      "category": "negative_control",
+      "question": "How does LexicalErrorBoundary coerce a non-Error thrown value, and what is its default fallback text?",
+      "expected_answer": "It wraps non-Error values in an Error with the original value as cause; the default fallback says An error was thrown.",
+      "answer_file": "packages/lexical-react/src/LexicalErrorBoundary.tsx",
+      "evidence_fragments": [
+        "error instanceof Error ? error : new Error(String(error), {cause: error})",
+        "An error was thrown."
+      ]
+    }
+  ]
+}

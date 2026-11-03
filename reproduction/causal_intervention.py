@@ -205,6 +205,51 @@ def corrected_loader(engine: Any):
         resolver_class._load_tsconfig_aliases = original
 
 
+@contextlib.contextmanager
+def reference_graph_integration(engine: Any):
+    """Apply the reference loader and builder-warning integration in memory.
+
+    This mirrors the proposed production change without modifying installed
+    files: the resolver records ``tsconfig_warning`` while loading aliases,
+    and the active graph builder's existing ``warnings`` list receives that
+    structured record during ``build()``.  All patched methods are restored.
+    """
+
+    resolver_class = engine.LanguageAwareImportResolver
+    builder_class = engine.ShipReadyV2DeepGraphBuilder
+    original_resolver_init = resolver_class.__dict__["__init__"]
+    original_builder_build = builder_class.__dict__["build"]
+    active_warnings: list[dict[str, Any]] | None = None
+
+    def reference_resolver_init(self, *args, **kwargs):  # noqa: ANN001, ANN002, ANN003
+        original_resolver_init(self, *args, **kwargs)
+        warning = getattr(self, "tsconfig_warning", None)
+        if (
+            isinstance(warning, dict)
+            and active_warnings is not None
+            and warning not in active_warnings
+        ):
+            active_warnings.append(warning)
+
+    def reference_builder_build(self):  # noqa: ANN001
+        nonlocal active_warnings
+        previous = active_warnings
+        active_warnings = self.warnings
+        try:
+            return original_builder_build(self)
+        finally:
+            active_warnings = previous
+
+    with corrected_loader(engine):
+        resolver_class.__init__ = reference_resolver_init
+        builder_class.build = reference_builder_build
+        try:
+            yield
+        finally:
+            resolver_class.__init__ = original_resolver_init
+            builder_class.build = original_builder_build
+
+
 def resolver_is_corrected(engine: Any, stock_method: Callable) -> bool:
     return engine.LanguageAwareImportResolver.__dict__["_load_tsconfig_aliases"] is not stock_method
 
@@ -623,6 +668,7 @@ def run_full_pipeline_sequence(engine_info: dict[str, Any], work_root: Path) -> 
             edge_pairs == expected_pairs
             and (EXPECTED_RESOLUTION[0] in selection_files) == restored
             and (EXPECTED_RESOLUTION[0] in file_import_targets) == restored
+            and inspected.get("warnings") == []
             and source_hashes(repo, SOURCE_FILES) == hashes_before
         )
         steps.append(
@@ -645,7 +691,7 @@ def run_full_pipeline_sequence(engine_info: dict[str, Any], work_root: Path) -> 
     observe("B", True, False)
     config_path.write_text(ORIGINAL_CONFIG, encoding="utf-8")
     observe("C", False, False)
-    with corrected_loader(engine):
+    with reference_graph_integration(engine):
         observe("D", True, True)
     require(
         engine.LanguageAwareImportResolver.__dict__["_load_tsconfig_aliases"] is stock_method,
@@ -653,11 +699,73 @@ def run_full_pipeline_sequence(engine_info: dict[str, Any], work_root: Path) -> 
     )
     observe("E", False, False)
 
+    # A valid JSONC config must produce no warning in D (asserted above).  An
+    # existing malformed config is the complementary product boundary: the
+    # pipeline may continue with relative imports, but the exported graph
+    # must disclose that configured aliases were not loaded.
+    malformed_config = '{"compilerOptions": }'
+    config_path.write_text(malformed_config, encoding="utf-8")
+
+    def observe_malformed(label: str, expect_warning: bool) -> dict[str, Any]:
+        inspected = run_one_pipeline(engine, repo, outputs, label)
+        assert_pipeline_extraction_available(inspected)
+        edge_pairs = {
+            (row["source"], row["target"])
+            for row in inspected["file_edges"]
+            if row["source"] == SOURCE_FILE
+        }
+        warnings = inspected.get("warnings", [])
+        if expect_warning:
+            warning_passed = (
+                len(warnings) == 1
+                and isinstance(warnings[0], dict)
+                and warnings[0].get("code") == "tsconfig_parse_failed"
+                and warnings[0].get("path") == "tsconfig.json"
+                and warnings[0].get("line") == 1
+                and (warnings[0].get("column") or 0) > 1
+            )
+        else:
+            warning_passed = warnings == []
+        passed = (
+            edge_pairs == {(SOURCE_FILE, RELATIVE_RESOLUTION[0])}
+            and warning_passed
+            and source_hashes(repo, SOURCE_FILES) == hashes_before
+        )
+        require(passed, f"Full Fast Lane malformed-warning check failed: {label}")
+        return {
+            "label": label,
+            "loader": (
+                "in_memory_reference_graph_integration"
+                if expect_warning
+                else "stock"
+            ),
+            "tsconfig_sha256": sha256_file(config_path),
+            "source_hashes_unchanged": (
+                source_hashes(repo, SOURCE_FILES) == hashes_before
+            ),
+            "observed_source_file_edge_pairs": sorted(edge_pairs),
+            "graph_warnings": warnings,
+            "graph_sha256": inspected.get("graph_sha256"),
+            "bundle_sha256": inspected.get("bundle_sha256"),
+            "passed": passed,
+        }
+
+    malformed_warning_checks = [observe_malformed("malformed-stock", False)]
+    with reference_graph_integration(engine):
+        malformed_warning_checks.append(
+            observe_malformed("malformed-reference", True)
+        )
+    require(
+        engine.LanguageAwareImportResolver.__dict__["_load_tsconfig_aliases"] is stock_method,
+        "Stock Fast Lane loader was not restored after malformed-warning check",
+    )
+
     return {
         "level": "installed Fast Lane run_pipeline: resolved graph + complete context ZIP",
         "engine": engine_info["label"],
         "source_hashes": hashes_before,
         "steps": steps,
+        "malformed_graph_warning_checks": malformed_warning_checks,
         "passed": True,
     }
 
@@ -681,7 +789,7 @@ def run_lexical_corrected(
     react_hash_before = sha256_file(lexical_root / react_source)
     stock_method = engine.LanguageAwareImportResolver.__dict__["_load_tsconfig_aliases"]
 
-    with corrected_loader(engine):
+    with reference_graph_integration(engine):
         inspected = run_one_pipeline(engine, lexical_root, output_root, "lexical-corrected")
         # run_one_pipeline uses the minimal source as its default selection
         # source, so rebuild the relevant inspection from its graph location.
@@ -700,6 +808,10 @@ def run_lexical_corrected(
     summary = inspected["graph_summary"]
     require(summary.get("files_scanned") == 2044, "Corrected lexical file count changed")
     require(summary.get("edges") == 5519, "Corrected lexical Fast Lane did not restore 5,519 file edges")
+    require(
+        inspected.get("warnings") == [],
+        "Corrected lexical graph unexpectedly contains a tsconfig warning",
+    )
 
     corrected_edges = {
         (row["source"], row["target"], row["raw"], row["line"])
@@ -871,6 +983,14 @@ def main() -> int:
             print(f"MALFORMED_BOUNDARY_CHECKS: {len(malformed)} passed")
         if "full_fastlane_minimal_sequence" in result:
             print("FULL_FASTLANE_MINIMAL_SEQUENCE: passed")
+            malformed_full = result["full_fastlane_minimal_sequence"].get(
+                "malformed_graph_warning_checks", []
+            )
+            if malformed_full:
+                print(
+                    "FULL_FASTLANE_MALFORMED_GRAPH_WARNING_CHECKS: "
+                    f"{len(malformed_full)} passed"
+                )
         if "lexical_corrected_fastlane" in result:
             lexical = result["lexical_corrected_fastlane"]
             print(
