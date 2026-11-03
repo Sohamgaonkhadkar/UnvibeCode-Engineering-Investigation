@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import random
 import sys
 import tempfile
@@ -17,6 +18,7 @@ from solution.tsconfig_jsonc import (  # noqa: E402
     aliases_from_config_data,
     load_tsconfig_aliases_result,
     parse_tsconfig_jsonc,
+    read_tsconfig_text,
     transform_jsonc_to_json,
 )
 
@@ -179,6 +181,12 @@ class ReferenceParserTests(unittest.TestCase):
             '{"a": .5}',
             '{"a": 0x10}',
             '{"a": 1 "b": 2}',
+            "[,]",
+            "{,}",
+            '{"a":[,]}',
+            '{"a": NaN}',
+            '{"a": Infinity}',
+            '{"a": -Infinity}',
             "[" * 2000 + "]" * 2000,
         ]
         for text in cases:
@@ -187,6 +195,11 @@ class ReferenceParserTests(unittest.TestCase):
                     parse_tsconfig_jsonc(text)
                 self.assertGreaterEqual(caught.exception.line, 1)
                 self.assertGreaterEqual(caught.exception.column, 1)
+
+    def test_oversized_integer_overflows_without_unstructured_error(self) -> None:
+        parsed = parse_tsconfig_jsonc('{"a": ' + "1" * 5000 + "}")
+        self.assertTrue(math.isinf(parsed["a"]))
+        self.assertGreater(parsed["a"], 0)
 
     def test_alias_mapping_preserves_shipped_rules(self) -> None:
         data = {
@@ -213,6 +226,10 @@ class ReferenceParserTests(unittest.TestCase):
             {"compilerOptions": {"paths": []}},
             {"compilerOptions": {"baseUrl": None, "paths": {}}},
             {"compilerOptions": {"paths": {"@app/*": "src/app/*"}}},
+            {"compilerOptions": {"paths": {"@app/*": ""}}},
+            {"compilerOptions": {"paths": {"@app/*": None}}},
+            {"compilerOptions": {"paths": {"@app/*": 0}}},
+            {"compilerOptions": {"paths": {"@app/*": False}}},
             {"compilerOptions": {"paths": {"@app/*": [42]}}},
         ]
         for data in invalid:
@@ -221,8 +238,7 @@ class ReferenceParserTests(unittest.TestCase):
                     aliases_from_config_data(data, posix)
 
     def test_loader_missing_empty_valid_and_malformed_states(self) -> None:
-        def read_text(path: Path) -> str:
-            return path.read_text(encoding="utf-8")
+        read_text = read_tsconfig_text
 
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -252,6 +268,33 @@ class ReferenceParserTests(unittest.TestCase):
             self.assertEqual(malformed.warning.code, "tsconfig_parse_failed")
             self.assertEqual(malformed.warning.line, 1)
             self.assertGreater(malformed.warning.column or 0, 1)
+
+            config.write_bytes(b"\xff\xfe{\x00}\x00")
+            unreadable = load_tsconfig_aliases_result(root, read_text, posix)
+            self.assertEqual(unreadable.aliases, {})
+            self.assertIsNotNone(unreadable.warning)
+            assert unreadable.warning is not None
+            self.assertEqual(unreadable.warning.code, "tsconfig_read_failed")
+
+            config.unlink()
+            config.mkdir()
+            not_a_file = load_tsconfig_aliases_result(root, read_text, posix)
+            self.assertEqual(not_a_file.aliases, {})
+            self.assertIsNotNone(not_a_file.warning)
+            assert not_a_file.warning is not None
+            self.assertEqual(not_a_file.warning.code, "tsconfig_read_failed")
+            config.rmdir()
+
+            try:
+                config.symlink_to(root / "missing-target.json")
+            except (OSError, NotImplementedError):
+                pass
+            else:
+                broken = load_tsconfig_aliases_result(root, read_text, posix)
+                self.assertEqual(broken.aliases, {})
+                self.assertIsNotNone(broken.warning)
+                assert broken.warning is not None
+                self.assertEqual(broken.warning.code, "tsconfig_read_failed")
 
 
 if __name__ == "__main__":

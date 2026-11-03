@@ -18,7 +18,11 @@ ROOT = HERE.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from solution.tsconfig_jsonc import load_tsconfig_aliases, strip_jsonc  # noqa: E402
+from solution.tsconfig_jsonc import (  # noqa: E402
+    load_tsconfig_aliases,
+    read_tsconfig_text,
+    strip_jsonc,
+)
 
 shipreadyv2 = importlib.import_module("shipreadyv2")
 engine_path = sorted((Path(shipreadyv2.__file__).resolve().parent / "engine_sources").glob("00a_*.py"))[0]
@@ -31,7 +35,7 @@ spec.loader.exec_module(engine)
 def load_aliases_fixed(resolver) -> dict:
     return load_tsconfig_aliases(
         resolver.workspace_root,
-        engine.safe_read_text,
+        read_tsconfig_text,
         engine.to_posix_rel,
     )
 
@@ -50,7 +54,7 @@ for fixture in ("minimal_strict", "minimal_jsonc", "minimal_blockcomment", "mini
     after = resolver._resolve_node_ts("src/feature/comp.ts", "@app/util")
     note_ok = True
     if fixture in EXPECTED_NOTES:
-        parsed = json.loads(strip_jsonc(engine.safe_read_text(root / "tsconfig.json")))
+        parsed = json.loads(strip_jsonc(read_tsconfig_text(root / "tsconfig.json")))
         note_ok = parsed.get("x-note") == EXPECTED_NOTES[fixture]
     ok = after == EXPECTED and note_ok
     failures += 0 if ok else 1

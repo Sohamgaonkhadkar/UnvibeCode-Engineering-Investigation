@@ -49,6 +49,13 @@ Restricting attention to package implementation sources (`packages/*/src`, exclu
 tests/examples/playground), 446 distinct package-source→package-source direct pairs
 are absent as-is and recovered in at least one of Optimal/Wider.
 
+A separate concentration audit makes the denominator and its main caveat
+explicit: only 38 of the 4,256 Lexical instances are duplicate source→target
+pair instances beyond the first, but the 4,218 pairs are concentrated in 101
+direct targets (top 10 = 73.779%). It also reconciles the 2,707/3,345
+selection rows above as distinct pairs and checks that none lies outside the
+verified recovered subgraph. See `RELATIONSHIP_CONCENTRATION_AUDIT.md`.
+
 ## Representative developer consequence
 
 Source: `packages/lexical-react/src/ReactExtension.tsx`.

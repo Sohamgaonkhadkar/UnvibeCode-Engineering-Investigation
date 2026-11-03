@@ -20,6 +20,10 @@ The effect is now established beyond graph counts:
   finds **0/6** predeclared answer-bearing maintenance tasks supported as-is,
   versus **6/6** in both the control and reference-loader corrected bundles;
   its negative control passes in all three.
+- Distinct-pair accounting separates scale from duplicate-pair inflation:
+  Lexical's 4,256 verified import instances are **4,218 distinct
+  source→target pairs** across 1,290 sources. They remain hub-concentrated in
+  101 direct targets (top 10: 73.779%), a caveat retained rather than hidden.
 - An exhaustive companion derives 10,703 eligible source-specific
   imported-symbol tasks from all 4,256 verified lexical relationships. In
   Optimal selections, a recognizable definition/export line is available for
@@ -41,15 +45,19 @@ The effect is now established beyond graph counts:
 - A tested reference solution parses the JSONC subset, preserves strings and
   error positions, and returns a structured warning instead of silently
   treating a malformed existing config as an absent alias table. It agrees
-  with TypeScript 5.9.3 on 514 curated/generated valid documents.
+  with TypeScript 5.9.3 on 514 curated/generated valid documents; a separate
+  2,277-case enumerated-boundary/seeded-mutation differential probe found no
+  candidate-only acceptance, candidate-only rejection, or all-accept value
+  mismatch against TypeScript and Microsoft `jsonc-parser`.
 - In full Fast Lane pipeline checks, the builder-level reference integration
   leaves a valid JSONC graph warning-free but exports exactly one structured
   `tsconfig_parse_failed` warning for a malformed existing config, while the
   stock pipeline exports none.
 - A separate disposable-runner rehearsal applies those exact changes at file
-  level to both installed engine copies, validates both patched resolvers and
-  the full Fast Lane graph with **no monkeypatching**, passes the raw post-fix
-  regression, and then restores the stock file hashes.
+  level to both installed engine copies, validates both patched resolvers
+  (including an invalid-UTF-8 `tsconfig_read_failed` state) and the full Fast
+  Lane graph with **no monkeypatching**, passes the raw post-fix regression,
+  and then restores the stock file hashes.
 - A digest-verified scan of all 106 PyPI wheels for 0.3.0–0.3.15 found the
   same vulnerable loader AST in all 212 engine copies; ordinary installs also
   reproduce the exact symptom across CPython 3.11–3.14 on Ubuntu and Python
@@ -122,6 +130,9 @@ Clean-environment runs and workflow links are indexed in
 - `DUPLICATE_CHECK.md` — mechanism-level comparison with upstream issues.
 - `evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md` — exhaustive downstream
   impact and the representative `ReactExtension.tsx` case.
+- `evidence/tsconfig-jsonc/RELATIONSHIP_CONCENTRATION_AUDIT.md` — distinct-pair,
+  hub-concentration, area-spread, and selection-coverage accounting for the
+  verified recovered-edge subgraphs.
 - `evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md` — six lexical and three
   ng-matero concrete questions whose answer-bearing lines are checked in the
   actual exported Optimal ZIPs.
@@ -143,19 +154,22 @@ Clean-environment runs and workflow links are indexed in
 reproducers, reference-loader integration check, reversible causal
 intervention, targeted boundary checks, TypeScript paths oracle, graph
 capture, bundle selection comparison, representative-case extractor,
-final-artifact answerability and symbol-evidence audits, TypeScript
+recovered-edge concentration audit, final-artifact answerability and
+symbol-evidence audits, TypeScript
 compiler-API verifiers, generic corrected-Fast-Lane validation, and optional
 PyPI/GitHub scope and public-config loader-behavior samplers.
 
 `solution/` contains the dependency-free reference parser/loader, its unit
-and generated tests, the TypeScript/`jsonc-parser` differential validator,
-and a reversible file-level patcher/validator for disposable installed
+and generated tests, the TypeScript/`jsonc-parser` differential validator and
+adversarial boundary/mutation probe, and a reversible file-level
+patcher/validator for disposable installed
 environments. It is a maintainer-adaptable reference implementation and
 rehearsal, not a shipped patch.
 
 `evidence/tsconfig-jsonc/` contains compact machine-readable results: the
 4,256-row lost-relationship list, direct selection-omission list, causal
-intervention record, reference-solution validation, all-wheel version scope,
+intervention record, reference-solution and adversarial differential
+validation, recovered-edge concentration audit, all-wheel version scope,
 public-config exposure sample and direct installed-loader behavior audit,
 aggregate summaries with input hashes,
 TypeScript API resolutions, configs/diffs, CI index, artifact manifest, and

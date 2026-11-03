@@ -210,7 +210,7 @@ def check_reference_solution(output: str, returncode: int, result_path: Path) ->
     require("REFERENCE_SOLUTION_STATUS: passed" in output,
             "Reference-solution validation did not report a passed status")
     require(
-        "CANDIDATE_CORPUS: curated=14 generated=500 invalid_rejected=8" in output,
+        "CANDIDATE_CORPUS: curated=14 generated=500 invalid_rejected=13" in output,
         "Reference-solution corpus counts changed",
     )
     data = load_json(result_path)
@@ -218,7 +218,7 @@ def check_reference_solution(output: str, returncode: int, result_path: Path) ->
     corpus = data.get("candidate_corpus", {})
     require(corpus.get("curated_valid_cases") == 14, "Reference curated-case count changed")
     require(corpus.get("generated_valid_cases") == 500, "Reference generated-case count changed")
-    require(corpus.get("invalid_cases_rejected") == 8, "Reference invalid-case count changed")
+    require(corpus.get("invalid_cases_rejected") == 13, "Reference invalid-case count changed")
     require(
         corpus.get("out_of_scope_typescript_numeric_cases_rejected") == 4,
         "Reference numeric-boundary count changed",
@@ -329,16 +329,50 @@ def check_evidence() -> None:
     require(reference.get("status") == "passed", "Reference-solution evidence is not passed")
     require(reference["candidate_corpus"]["curated_valid_cases"] == 14
             and reference["candidate_corpus"]["generated_valid_cases"] == 500
-            and reference["candidate_corpus"]["invalid_cases_rejected"] == 8
+            and reference["candidate_corpus"]["invalid_cases_rejected"] == 13
             and reference["candidate_corpus"]["out_of_scope_typescript_numeric_cases_rejected"] == 4,
             "Reference-solution corpus evidence changed")
     require(reference["node_oracles"]["typescript_version"] == "5.9.3"
             and reference["node_oracles"]["typescript_valid_agreements"] == 514
-            and reference["node_oracles"]["typescript_invalid_diagnostics"] == 8
+            and reference["node_oracles"]["typescript_invalid_diagnostics"] == 13
             and reference["node_oracles"]["jsonc_parser_valid_agreements"] == 510
-            and reference["node_oracles"]["jsonc_parser_invalid_diagnostics"] == 8,
+            and reference["node_oracles"]["jsonc_parser_invalid_diagnostics"] == 13,
             "Reference-solution oracle evidence changed")
-    print("  PASS  Reference solution: 514 valid differential cases; 8 invalid rejected")
+    print("  PASS  Reference solution: 514 valid differential cases; 13 invalid rejected")
+
+    differential = load_json(EVIDENCE / "differential_probe.json")
+    require(differential.get("status") == "passed", "Differential-probe evidence is not passed")
+    require(differential["case_counts"]["enumerated_boundary"] == 121
+            and differential["case_counts"]["unique_seeded_mutations"] == 2156
+            and differential["case_counts"]["total_cases"] == 2277
+            and differential["case_counts"]["unique_texts_total"] == 2271,
+            "Differential-probe case counts changed")
+    require(differential["classification_counts"]["total"]["all_accept"] == 865
+            and differential["classification_counts"]["total"]["all_reject"] == 1316
+            and all(not rows for rows in differential["critical_cases"].values()),
+            "Differential-probe critical classifications changed")
+    print("  PASS  Adversarial differential probe: 2,277 cases; zero critical divergences")
+
+    concentration = load_json(EVIDENCE / "relationship_concentration_audit.json")
+    require(concentration.get("status") == "passed",
+            "Relationship-concentration evidence is not passed")
+    concentration_by_label = {row["label"]: row for row in concentration["datasets"]}
+    lexical_concentration = concentration_by_label["Lexical"]
+    require(lexical_concentration["recovered_subgraph"]["import_instances"] == 4256
+            and lexical_concentration["recovered_subgraph"]["distinct_source_target_pairs"] == 4218
+            and lexical_concentration["recovered_subgraph"]["distinct_source_files"] == 1290
+            and lexical_concentration["recovered_subgraph"]["distinct_target_files"] == 101
+            and lexical_concentration["target_concentration_on_distinct_pairs"]["top_10_share"] == 0.73779
+            and lexical_concentration["direct_selection_recovery_overlay"]["any_scope"]["distinct_recovered_pairs"] == 3364,
+            "Lexical relationship-concentration evidence changed")
+    ng_concentration = concentration_by_label["ng-matero"]
+    require(ng_concentration["recovered_subgraph"]["import_instances"] == 111
+            and ng_concentration["recovered_subgraph"]["distinct_source_target_pairs"] == 111
+            and ng_concentration["recovered_subgraph"]["distinct_source_files"] == 92
+            and ng_concentration["recovered_subgraph"]["distinct_target_files"] == 6
+            and ng_concentration["direct_selection_recovery_overlay"]["any_scope"]["distinct_recovered_pairs"] == 107,
+            "ng-matero relationship-concentration evidence changed")
+    print("  PASS  Recovered-edge concentration: Lexical 4,218 distinct pairs / 101 targets; ng-matero 111 / 6")
 
     scope = load_json(EVIDENCE / "version_scope.json")
     require(scope.get("status") == "completed" and scope.get("through_version") == "0.3.15",

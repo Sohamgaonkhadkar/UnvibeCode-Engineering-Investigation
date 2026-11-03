@@ -8,6 +8,8 @@ on:
       - "reproduction/**"
       - "solution/**"
       - "evidence/tsconfig-jsonc/reference_solution_validation.json"
+      - "evidence/tsconfig-jsonc/differential_probe.json"
+      - "evidence/tsconfig-jsonc/relationship_concentration_audit.json"
       - "evidence/tsconfig-jsonc/version_scope.json"
       - "evidence/tsconfig-jsonc/ecosystem_exposure_sample.json"
       - "evidence/tsconfig-jsonc/ecosystem_loader_behavior.json"
@@ -66,6 +68,12 @@ jobs:
           set -o pipefail
           python reproduction/verify.py 2>&1 | tee ci-logs/verify-affected-version.log
 
+      - name: Reference parser/loader unit tests
+        run: |
+          set -o pipefail
+          python -m unittest -v solution.test_tsconfig_jsonc \
+            2>&1 | tee ci-logs/reference-unit-tests.log
+
       # Reproduce the differential reference-solution evidence in CI rather
       # than relying only on the locally generated committed JSON.  These are
       # validation-only dependencies; they are not product/runtime deps.
@@ -91,14 +99,48 @@ jobs:
           assert oracle["typescript_version"] == "5.9.3", oracle
           assert oracle["jsonc_parser_version"] == "3.3.1", oracle
           assert oracle["typescript_valid_agreements"] == 514, oracle
-          assert oracle["typescript_invalid_diagnostics"] == 8, oracle
+          assert oracle["typescript_invalid_diagnostics"] == 13, oracle
           assert oracle["jsonc_parser_valid_agreements"] == 510, oracle
-          assert oracle["jsonc_parser_invalid_diagnostics"] == 8, oracle
+          assert oracle["jsonc_parser_invalid_diagnostics"] == 13, oracle
           print(
               "::notice title=Reference-solution differential validation::"
               "candidate/TypeScript valid agreements=514/514; "
               "candidate/jsonc-parser valid agreements=510/514; "
-              "diagnosed invalid cases=8"
+              "diagnosed invalid cases=13"
+          )
+          PY
+
+      # Adversarial complement to the valid corpus: enumerated grammar
+      # boundaries plus seeded mutations.  The probe fails if the candidate
+      # is the only parser to accept/reject an input on which both oracles
+      # agree, or if its value differs where all three accept.
+      - name: Adversarial differential probe (boundaries + seeded mutations)
+        run: |
+          set -o pipefail
+          python solution/differential_probe.py \
+            --oracle-package-json "$RUNNER_TEMP/tsconfig-oracles/package.json" \
+            --output ci-logs/differential-probe.json \
+            2>&1 | tee ci-logs/differential-probe.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path("ci-logs/differential-probe.json").read_text())
+          counts = result["case_counts"]
+          totals = result["classification_counts"]["total"]
+          assert result["status"] == "passed", result
+          assert counts["enumerated_boundary"] == 121, counts
+          assert counts["unique_seeded_mutations"] == 2156, counts
+          assert counts["total_cases"] == 2277, counts
+          assert counts["unique_texts_total"] == 2271, counts
+          assert totals["all_accept"] == 865, totals
+          assert totals["all_reject"] == 1316, totals
+          assert all(not rows for rows in result["critical_cases"].values()), result
+          print(
+              "::notice title=Adversarial differential probe::"
+              "cases=2277; all-accept=865; all-reject=1316; "
+              "candidate-only-accepts=0; candidate-only-rejects=0; "
+              "all-accept value mismatches=0"
           )
           PY
 
@@ -208,6 +250,9 @@ jobs:
       - name: Exact affected-version resolver and reference-loader verification
         run: python reproduction/verify.py --skip-evidence
 
+      - name: Reference parser/loader unit tests
+        run: python -m unittest -v solution.test_tsconfig_jsonc
+
   patched_install_rehearsal:
     # Separate disposable runner: prove the maintainer-style file changes in
     # a normally loaded installation, then restore the stock hashes.  This
@@ -288,12 +333,20 @@ jobs:
           full = data.get("full_pipeline", {})
           valid_edges = full.get("valid_jsonc", {}).get("observed_source_edge_pairs", [])
           malformed_warnings = full.get("malformed", {}).get("graph_warnings", [])
+          invalid_utf8_codes = [
+              row.get("observations", {})
+              .get("invalid_utf8", {})
+              .get("tsconfig_warning", {})
+              .get("code")
+              for row in data.get("resolver_checks", [])
+          ]
           print(
               "::notice title=Patched-install rehearsal::"
               f"status={data.get('status')}; patched resolvers={engines}; "
               f"valid JSONC source edges={valid_edges}; "
               f"malformed graph warning codes="
               f"{[row.get('code') for row in malformed_warnings]}; "
+              f"invalid-UTF-8 resolver warning codes={invalid_utf8_codes}; "
               "stock restore/hash check runs in the same disposable job"
           )
           PY

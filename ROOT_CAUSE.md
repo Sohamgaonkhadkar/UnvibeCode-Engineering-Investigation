@@ -3,8 +3,8 @@
 ## One-sentence mechanism
 
 `LanguageAwareImportResolver._load_tsconfig_aliases` reads the repository-root
-`tsconfig.json` with strict `json.loads` and catches every exception with a bare
-`pass`; because TypeScript config files are JSONC, one legal comment or trailing
+`tsconfig.json` with strict `json.loads` and suppresses failure with
+`except Exception: pass`; because TypeScript config files are JSONC, one legal comment or trailing
 comma aborts the parse, leaves `tsconfig_aliases = {}`, and makes otherwise
 supported path-alias imports unresolvable without any warning.
 
@@ -146,10 +146,15 @@ as-is versus 3/3 control/corrected under an ordinary install. See
 `solution/tsconfig_jsonc.py` is a dependency-free reference implementation
 for maintainer adaptation, not a shipped patch. It performs two
 position-preserving, string-aware lexical passes—blank comments outside
-strings, then blank only commas immediately before `}`/`]`—and delegates the
-remaining grammar to strict `json.loads`. That ordering handles
-`..., /* comment */}`, preserves comment-like string contents byte-for-byte,
-and preserves useful error line/column/offset values.
+strings, then blank only a comma that follows a complete value/member and
+precedes `}`/`]`—and delegates the remaining grammar to strict `json.loads`
+(with Python's non-JSON constants explicitly rejected). That ordering handles
+`..., /* comment */}`, rejects leading/elision commas rather than turning
+them into empty containers, preserves comment-like string contents
+byte-for-byte, and preserves useful error line/column/offset values. The
+integration also reads this config with a strict UTF-8 reader rather than the
+engines' lossy `errors="ignore"` source reader, so invalid bytes become a
+visible read failure instead of silently disappearing.
 
 The product-style loader distinguishes three states that the current code
 conflates:
@@ -176,10 +181,12 @@ integration in memory: valid JSONC produces an exported graph with
 produces no warning for the same malformed input. A separate disposable
 patched-install rehearsal applies the same exact reference module and
 builder insertion at file level to both installed engine copies, validates
-them and the full graph with no monkeypatching, passes the raw post-fix
-regression, and restores the stock hashes. It was validated against
-514 curated/generated valid documents with TypeScript 5.9.3 and Microsoft
-`jsonc-parser` 3.3.1 as differential oracles; see `solution/README.md`. The
+them (including invalid UTF-8) and the full graph with no monkeypatching,
+passes the raw post-fix regression, and restores the stock hashes. It was
+validated against 514 curated/generated valid documents and a separate
+2,277-case adversarial boundary/mutation probe with TypeScript 5.9.3 and
+Microsoft `jsonc-parser` 3.3.1 as differential oracles; see
+`solution/README.md`. The
 raw post-fix regression
 (`repro_unit.py --expect-fixed`) remains the acceptance test for an actual
 shipped fix.

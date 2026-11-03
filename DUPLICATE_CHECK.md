@@ -1,14 +1,16 @@
-# Duplicate check — latest strengthening sweep 2026-11-03 against all 346 issues (open + closed, to #442)
+# Duplicate check — latest strengthening sweep 2026-11-03 against all 348 issues (open + closed, to #444)
 
 ## Current result — read this first
 
-The **current** conclusion is the 2026-11-03 sweep of **346 open/closed
-issues through #442**, detailed under “Reference-solution re-check” below:
-`jsonc` and `"trailing comma"` return 0; `tsconfig` and `alias tsconfig`
-return #153/#272/#374 plus new #442. Issue #442 names
+The **current** conclusion is the 2026-11-03 sweep of **348 open/closed
+issues through #444**, detailed under “Latest re-check” below:
+`jsonc`, `"JSONC"`, and `"trailing comma"` return 0;
+`_load_tsconfig_aliases` returns only #442; `tsconfig` and `alias tsconfig`
+return #153/#272/#374 plus #442. Issue #442 names
 `_load_tsconfig_aliases`, but reports a different **target-wildcard
 substitution** defect after a config has loaded, not strict-JSON rejection of
-JSONC syntax or an emptied alias table.
+JSONC syntax or an emptied alias table. New #444 concerns Python
+`route_handler` entity-kind loss and is unrelated.
 
 The older sections in this file are retained as a chronological audit trail.
 Their issue totals and “newest issue” statements were correct when those
@@ -143,5 +145,25 @@ root JSONC config, the broad exception handler leaves the entire alias table
 semantics. Fixing #442 would not make a JSONC config load; fixing this issue
 would not implement #442's requested wildcard substitution.
 
+## Latest re-check — 2026-11-03 through #444
+
+The tracker subsequently advanced to **348 issues, newest #444**. The exact
+searches were repeated through the GitHub issue-search API:
+
+| Search term | Hits | Assessment |
+|---|---:|---|
+| `jsonc` / `"JSONC"` | 0 | No report of the config format or parse mechanism |
+| `"trailing comma"` | 0 | No report of this trigger |
+| `_load_tsconfig_aliases` | 1 | #442 only |
+| `tsconfig` / `alias tsconfig` | 4 | #153, #272, #374, #442 |
+| `"compilerOptions.paths"` | 3 | #153, #272, #374 |
+| `comment tsconfig` | 1 | #442 broad text match |
+| `json.loads tsconfig` | 2 | #272, #374 |
+
+Issue #443 is a results-dashboard/ZIP-label report. Issue #444 was read at
+body level: it reports a Python FastAPI `route_handler` kind being overwritten
+during entity merging, with contradictory pre-/post-linker records. It does
+not involve TypeScript, tsconfig parsing, JSONC, or alias-table loading.
+
 ## Conclusion
-No existing issue reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, trigger bytes, observed empty-table state, and remediation are distinct from the neighbours above, including #442's later wildcard-substitution mechanism. This check must be repeated once more immediately before public filing (tracker is moving daily).
+No existing issue through #444 reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, trigger bytes, observed empty-table state, and remediation are distinct from the neighbours above, including #442's later wildcard-substitution mechanism. This check must be repeated once more immediately before public filing (tracker is moving daily).

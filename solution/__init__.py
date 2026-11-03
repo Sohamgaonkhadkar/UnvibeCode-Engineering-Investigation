@@ -8,6 +8,7 @@ from .tsconfig_jsonc import (
     load_tsconfig_aliases,
     load_tsconfig_aliases_result,
     parse_tsconfig_jsonc,
+    read_tsconfig_text,
 )
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "load_tsconfig_aliases",
     "load_tsconfig_aliases_result",
     "parse_tsconfig_jsonc",
+    "read_tsconfig_text",
 ]

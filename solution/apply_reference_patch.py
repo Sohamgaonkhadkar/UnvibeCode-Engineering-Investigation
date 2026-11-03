@@ -73,7 +73,9 @@ else:
 REPLACEMENT_METHOD = f'''    def _load_tsconfig_aliases(self) -> Dict[str, str]:
         # {PATCH_MARKER}: parse tsconfig as JSONC and preserve degradation.
         result = _UVC_TSCONFIG_JSONC.load_tsconfig_aliases_result(
-            self.workspace_root, safe_read_text, to_posix_rel
+            self.workspace_root,
+            _UVC_TSCONFIG_JSONC.read_tsconfig_text,
+            to_posix_rel,
         )
         self.tsconfig_warning = (
             result.warning.as_dict() if result.warning is not None else None

@@ -11,7 +11,7 @@
     "seed": 20261103,
     "curated_valid_cases": 14,
     "generated_valid_cases": 500,
-    "invalid_cases_rejected": 8,
+    "invalid_cases_rejected": 13,
     "out_of_scope_typescript_numeric_cases_rejected": 4,
     "passed": true
   },
@@ -19,9 +19,9 @@
     "typescript_version": "5.9.3",
     "jsonc_parser_version": "3.3.1",
     "typescript_valid_agreements": 514,
-    "typescript_invalid_diagnostics": 8,
+    "typescript_invalid_diagnostics": 13,
     "jsonc_parser_valid_agreements": 510,
-    "jsonc_parser_invalid_diagnostics": 8,
+    "jsonc_parser_invalid_diagnostics": 13,
     "jsonc_parser_expected_disagreements": [
       "unicode_line_separator_comment",
       "unicode_paragraph_separator_comment",
@@ -51,7 +51,13 @@
         "empty",
         "comment_only"
       ],
-      "invalid_cases_accepted": []
+      "invalid_cases_accepted": [
+        "leading_object_comma",
+        "leading_array_comma",
+        "python_nan_constant",
+        "python_infinity_constant",
+        "python_negative_infinity_constant"
+      ]
     },
     "python_json5": {
       "status": "checked",
@@ -64,7 +70,10 @@
       ],
       "invalid_cases_accepted": [
         "json5_unquoted_key",
-        "json5_single_quote"
+        "json5_single_quote",
+        "python_nan_constant",
+        "python_infinity_constant",
+        "python_negative_infinity_constant"
       ]
     }
   },
@@ -76,19 +85,19 @@
         "input": "committed lexical root tsconfig",
         "bytes_utf8": 22614,
         "iterations_per_sample": 100,
-        "median_ms_per_parse": 2.6488
+        "median_ms_per_parse": 3.6599
       },
       {
         "input": "committed ng-matero root tsconfig",
         "bytes_utf8": 1292,
         "iterations_per_sample": 100,
-        "median_ms_per_parse": 0.1556
+        "median_ms_per_parse": 0.2253
       },
       {
         "input": "synthetic 5,000-entry JSONC tsconfig",
         "bytes_utf8": 301780,
         "iterations_per_sample": 3,
-        "median_ms_per_parse": 39.0379
+        "median_ms_per_parse": 55.3193
       }
     ],
     "note": "Timing is environment-specific; the transform is a single lexical pass before stdlib json parsing."

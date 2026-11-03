@@ -56,6 +56,7 @@ from solution.tsconfig_jsonc import (  # noqa: E402
     aliases_from_config_data,
     load_tsconfig_aliases_result,
     parse_jsonc,
+    read_tsconfig_text,
 )
 
 EVIDENCE = ROOT / "evidence" / "tsconfig-jsonc"
@@ -186,7 +187,7 @@ def corrected_loader(engine: Any):
     def reference_loader(self):  # noqa: ANN001 - mirrors the shipped method
         result = load_tsconfig_aliases_result(
             self.workspace_root,
-            engine.safe_read_text,
+            read_tsconfig_text,
             engine.to_posix_rel,
         )
         # Product integration would copy this structured record into the

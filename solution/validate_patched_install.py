@@ -95,6 +95,11 @@ def assert_file_patch() -> dict[str, Any]:
             2,
         )
         require(
+            "_UVC_TSCONFIG_JSONC.read_tsconfig_text" in source,
+            f"Strict tsconfig reader missing in {path.name}",
+            2,
+        )
+        require(
             "self.warnings.append(resolver.tsconfig_warning)" in source,
             f"Graph-warning insertion missing in {path.name}",
             2,
@@ -172,6 +177,29 @@ def validate_resolvers(engines: list[dict[str, Any]], work_root: Path) -> list[d
             "aliases": malformed_aliases,
             "tsconfig_warning": malformed_warning,
             "passed": malformed_passed,
+        }
+
+        # The patched loader deliberately does not reuse the engines'
+        # lossy ``errors="ignore"`` source reader for tsconfig.  An existing
+        # non-UTF-8 config must be a visible read failure, not an empty one.
+        config.write_bytes(b"\xff\xfe{\x00}\x00")
+        unreadable_resolver = engine.LanguageAwareImportResolver(repo, sorted(hashes))
+        unreadable_aliases = dict(unreadable_resolver.tsconfig_aliases)
+        unreadable_warning = getattr(unreadable_resolver, "tsconfig_warning", None)
+        unreadable_passed = (
+            unreadable_aliases == {}
+            and isinstance(unreadable_warning, dict)
+            and unreadable_warning.get("code") == "tsconfig_read_failed"
+            and unreadable_warning.get("path") == "tsconfig.json"
+        )
+        require(
+            unreadable_passed,
+            f"{info['label']} invalid-UTF-8 patched-resolver check failed",
+        )
+        observations["invalid_utf8"] = {
+            "aliases": unreadable_aliases,
+            "tsconfig_warning": unreadable_warning,
+            "passed": unreadable_passed,
         }
 
         results.append(

@@ -93,6 +93,11 @@ INVALID_CASES: list[dict[str, str]] = [
     {"name": "missing_comma", "text": '{"a": 1 "b": 2}'},
     {"name": "json5_unquoted_key", "text": "{a: 1}"},
     {"name": "json5_single_quote", "text": "{'a': 1}"},
+    {"name": "leading_object_comma", "text": "{,}"},
+    {"name": "leading_array_comma", "text": '{"a":[,]}'},
+    {"name": "python_nan_constant", "text": '{"a": NaN}'},
+    {"name": "python_infinity_constant", "text": '{"a": Infinity}'},
+    {"name": "python_negative_infinity_constant", "text": '{"a": -Infinity}'},
 ]
 
 # TypeScript's expression-based config parser accepts these JavaScript numeric

@@ -35,12 +35,19 @@ the investigation harness does not modify the installed UnvibeCode package.
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Optional
 
 _LINE_TERMINATORS = frozenset("\n\r\u2028\u2029")
 _JSON_WHITESPACE = frozenset(" \t\r\n")
+# A comma is a *trailing* comma only after a complete JSON value/member.
+# Numbers end in a digit; strings in a quote; containers in ``}``/``]``;
+# ``true``/``false`` end in ``e`` and ``null`` in ``l``.  Tracking this
+# prevents an elision/leading comma such as ``[,]`` or ``{,}`` from being
+# silently rewritten into an empty container.
+_VALUE_END_CHARS = frozenset('"0123456789el}]')
 
 
 def _line_column(text: str, offset: int) -> tuple[int, int]:
@@ -62,6 +69,60 @@ def _line_column(text: str, offset: int) -> tuple[int, int]:
             line_start = i + 1
         i += 1
     return line, offset - line_start + 1
+
+
+class _InvalidConstantError(ValueError):
+    """Internal signal for Python-json's non-JSON NaN/Infinity extensions."""
+
+    def __init__(self, constant: str) -> None:
+        super().__init__(constant)
+        self.constant = constant
+
+
+def _reject_constant(constant: str) -> Any:
+    raise _InvalidConstantError(constant)
+
+
+def _parse_json_int(value: str) -> int | float:
+    """Parse a JSON integer without leaking CPython's digit-limit error.
+
+    Normal integers remain exact Python ints.  If CPython's
+    integer-string conversion guard fires, the token is far beyond the
+    finite IEEE-754 range used for JavaScript/TypeScript numbers, so use
+    signed infinity rather than crashing or falsely reporting syntax.
+    """
+
+    try:
+        return int(value)
+    except ValueError:
+        return -math.inf if value.startswith("-") else math.inf
+
+
+def _find_token_outside_strings(text: str, token: str) -> int:
+    """Find ``token`` outside a JSON string, or return 0 if not found."""
+
+    i = 0
+    in_string = False
+    escaped = False
+    while i < len(text):
+        ch = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            i += 1
+            continue
+        if ch == '"':
+            in_string = True
+            i += 1
+            continue
+        if text.startswith(token, i):
+            return i
+        i += 1
+    return 0
 
 
 class TsconfigLoadError(ValueError):
@@ -239,6 +300,7 @@ def blank_trailing_commas(text: str, *, source: str = "tsconfig.json") -> str:
     in_string = False
     escaped = False
     string_start = -1
+    previous_significant: str | None = None
 
     while i < n:
         ch = text[i]
@@ -249,6 +311,7 @@ def blank_trailing_commas(text: str, *, source: str = "tsconfig.json") -> str:
                 escaped = True
             elif ch == '"':
                 in_string = False
+                previous_significant = '"'
             i += 1
             continue
 
@@ -259,12 +322,21 @@ def blank_trailing_commas(text: str, *, source: str = "tsconfig.json") -> str:
             i += 1
             continue
 
+        if ch in _JSON_WHITESPACE:
+            i += 1
+            continue
+
         if ch == ",":
             j = i + 1
             while j < n and text[j] in _JSON_WHITESPACE:
                 j += 1
-            if j < n and text[j] in "}]":
+            if (
+                j < n
+                and text[j] in "}]"
+                and previous_significant in _VALUE_END_CHARS
+            ):
                 chars[i] = " "
+        previous_significant = ch
         i += 1
 
     if in_string:
@@ -304,7 +376,23 @@ def parse_tsconfig_jsonc(text: str, *, source: str = "tsconfig.json") -> Any:
     if not transformed.strip():
         return {}
     try:
-        return json.loads(transformed)
+        # Python's json module otherwise accepts the non-JSON constants
+        # NaN/Infinity/-Infinity by default.  Both TypeScript and
+        # Microsoft's jsonc-parser diagnose those tokens, so reject them
+        # explicitly instead of inheriting that Python-specific extension.
+        return json.loads(
+            transformed,
+            parse_constant=_reject_constant,
+            parse_int=_parse_json_int,
+        )
+    except _InvalidConstantError as exc:
+        offset = _find_token_outside_strings(transformed, exc.constant)
+        raise TsconfigSyntaxError(
+            f"invalid JSON constant {exc.constant!r}",
+            source=source,
+            offset=offset,
+            text=text,
+        ) from exc
     except json.JSONDecodeError as exc:
         raise TsconfigSyntaxError(
             exc.msg,
@@ -316,6 +404,13 @@ def parse_tsconfig_jsonc(text: str, *, source: str = "tsconfig.json") -> Any:
     except RecursionError as exc:
         raise TsconfigSyntaxError(
             "JSON nesting is too deep",
+            source=source,
+        ) from exc
+    except ValueError as exc:
+        # Defensive: keep any remaining plain ValueError from the stdlib
+        # decoder inside the structured error contract.
+        raise TsconfigSyntaxError(
+            str(exc),
             source=source,
         ) from exc
 
@@ -353,18 +448,40 @@ def aliases_from_config_data(
 
     aliases: dict[str, str] = {}
     for alias, targets in paths.items():
-        if not targets:
-            continue
+        # Validate type before the empty-list skip: a falsy non-list such as
+        # ``""``/``None``/``0`` is an invalid shape, not an absent mapping.
         if not isinstance(targets, list) or not all(
             isinstance(target, str) for target in targets
         ):
             raise TsconfigShapeError(
                 f"tsconfig paths target for {alias!r} is not a list of strings"
             )
+        if not targets:
+            continue
         alias_prefix = str(alias).replace("/*", "").rstrip("/")
         target_prefix = targets[0].replace("/*", "").rstrip("/")
-        aliases[alias_prefix] = to_posix_rel(Path(base_url) / target_prefix)
+        try:
+            aliases[alias_prefix] = to_posix_rel(Path(base_url) / target_prefix)
+        except (OSError, ValueError) as exc:
+            raise TsconfigShapeError(
+                f"tsconfig paths target for {alias!r} cannot be normalized: {exc}"
+            ) from exc
     return aliases
+
+
+def read_tsconfig_text(path: str | Path) -> str:
+    """Read a tsconfig as strict UTF-8, preserving a leading BOM character.
+
+    Product integration should use this reader—or an equivalent strict
+    UTF-8 reader—for the config file.  The shipped engines' general
+    ``safe_read_text(..., errors="ignore")`` is appropriate for lossy source
+    scanning, but for a config file it can silently delete invalid bytes
+    and turn an existing unreadable config into an apparently empty one.
+    Letting ``UnicodeDecodeError`` reach ``load_tsconfig_aliases_result``
+    makes that state produce ``tsconfig_read_failed`` instead.
+    """
+
+    return Path(path).read_text(encoding="utf-8")
 
 
 def load_tsconfig_aliases_result(
@@ -379,14 +496,36 @@ def load_tsconfig_aliases_result(
     """
 
     tsconfig = Path(workspace_root) / "tsconfig.json"
+    if tsconfig.is_symlink() and not tsconfig.exists():
+        return TsconfigLoadResult(
+            {},
+            TsconfigWarning(
+                code="tsconfig_read_failed",
+                path="tsconfig.json",
+                message="could not read tsconfig.json: broken symlink",
+            ),
+        )
     if not tsconfig.exists():
         return TsconfigLoadResult({})
+    if not tsconfig.is_file():
+        return TsconfigLoadResult(
+            {},
+            TsconfigWarning(
+                code="tsconfig_read_failed",
+                path="tsconfig.json",
+                message="could not read tsconfig.json: not a regular file",
+            ),
+        )
 
     try:
         text = read_text(tsconfig)
+        if not isinstance(text, str):
+            raise TypeError(
+                f"tsconfig reader returned {type(text).__name__}, expected str"
+            )
     except FileNotFoundError:
         return TsconfigLoadResult({})
-    except (OSError, UnicodeDecodeError) as exc:
+    except (OSError, TypeError, UnicodeDecodeError) as exc:
         return TsconfigLoadResult(
             {},
             TsconfigWarning(
@@ -461,6 +600,7 @@ __all__ = [
     "load_tsconfig_aliases_result",
     "parse_jsonc",
     "parse_tsconfig_jsonc",
+    "read_tsconfig_text",
     "strip_jsonc",
     "transform_jsonc_to_json",
 ]

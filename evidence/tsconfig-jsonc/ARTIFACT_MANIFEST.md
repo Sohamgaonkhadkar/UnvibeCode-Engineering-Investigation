@@ -71,7 +71,9 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 | `causal_intervention.json` | Resolver-level A/B/C/D/E record for both shipped engine copies, invariant source hashes, existing-fixture checks, and targeted malformed/string boundaries; D uses the reference loader and records its structured warning for malformed configs |
 | `ANSWERABILITY_AUDIT.md` + both task JSON files | Six lexical and three ng-matero predeclared final-artifact questions, each with a negative control; clean-CI results are 0/6→6/6 and 0/3→3/3 in actual Optimal ZIPs, with full JSON in the respective CI artifacts |
 | `SYMBOL_EVIDENCE_AUDIT.md` | Method and exact clean-CI counts for 10,703 eligible source-specific lexical symbol-definition tasks; full summary/details are in the lexical CI artifact |
-| `reference_solution_validation.json` | 514 valid curated/generated documents, 8 diagnosed invalid cases, TypeScript/`jsonc-parser` differential results, Python-library comparisons, explicit numeric-spelling boundary, and local timing |
+| `reference_solution_validation.json` | 514 valid curated/generated documents, 13 diagnosed invalid cases, TypeScript/`jsonc-parser` differential results, Python-library comparisons, explicit numeric-spelling boundary, and local timing |
+| `differential_probe.json` | 121 enumerated grammar boundaries + 2,156 unique seeded mutations against candidate/TypeScript/`jsonc-parser`; zero candidate-only acceptances/rejections or all-accept value mismatches |
+| `relationship_concentration_audit.json` + `RELATIONSHIP_CONCENTRATION_AUDIT.md` | Distinct-pair, degree, hub-concentration, area-spread, and direct-selection coverage accounting for both verified recovered-edge subgraphs |
 | `version_scope.json` | Digest-verified scan of all 106 PyPI wheels / 212 engine copies for 0.3.0–0.3.15, one loader AST, extracted-loader strict/JSONC behaviour |
 | `ecosystem_exposure_sample.json` | 210 first-returned public root configs from the exact 3-page GitHub code-search sample, with repo/blob/content identifiers and TypeScript verification; config bodies are not copied |
 | `ecosystem_loader_behavior.json` | Direct execution of both installed stock loaders and the reference loader on all 184 eligible hash-verified sample blobs: 44 affected stock-empty/corrected-exact and 140 controls exact |
@@ -123,6 +125,14 @@ TSCONFIG_ORACLE_PACKAGE_JSON="$ORACLE_PACKAGE_JSON" \
 python solution/validate_reference_solution.py \
   --oracle-package-json "$ORACLE_PACKAGE_JSON" \
   --output evidence/tsconfig-jsonc/reference_solution_validation.json
+
+python solution/differential_probe.py \
+  --oracle-package-json "$ORACLE_PACKAGE_JSON" \
+  --output evidence/tsconfig-jsonc/differential_probe.json
+
+# Committed-evidence-only audit; no installed package or network required.
+python reproduction/relationship_concentration_audit.py \
+  --output evidence/tsconfig-jsonc/relationship_concentration_audit.json
 
 python reproduction/version_scope.py --all-wheels --through 0.3.15 \
   --output evidence/tsconfig-jsonc/version_scope.json

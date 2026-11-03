@@ -28,6 +28,7 @@ from solution.tsconfig_jsonc import (  # noqa: E402,F401
     load_tsconfig_aliases_result,
     parse_jsonc,
     parse_tsconfig_jsonc,
+    read_tsconfig_text,
     strip_jsonc,
     transform_jsonc_to_json,
 )
@@ -46,6 +47,7 @@ __all__ = [
     "load_tsconfig_aliases_result",
     "parse_jsonc",
     "parse_tsconfig_jsonc",
+    "read_tsconfig_text",
     "strip_jsonc",
     "transform_jsonc_to_json",
 ]
