@@ -41,7 +41,7 @@ implementation-line maintenance tasks in `ANSWERABILITY_AUDIT.md`.
 ## Clean-CI result
 
 Run:
-https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781771
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913810
 
 | Scope | As-is definitions available | Control | Corrected | Recovered vs as-is (control/corrected) |
 |---|---:|---:|---:|---:|
@@ -56,7 +56,7 @@ symbol becomes available after correction; unrelated selection limits remain.
 
 The complete `symbol_evidence_audit.json` and per-task
 `symbol_evidence_details.jsonl` are in artifact
-`lexical-clean-environment-evidence` (ID `13231264139`, SHA-256
-`0ebce5ec4a3e369358ec144d8668e221f2ce23c82e8bf0474cf9e10d791c7765`).
+`lexical-clean-environment-evidence` (ID `13248786574`, SHA-256
+`6fbe87c263845db928ae2fd133d70dc3df04eb0c2356f452a148911d1816740e`).
 The workflow now asserts these exact counts rather than only requiring a
 positive recovery.

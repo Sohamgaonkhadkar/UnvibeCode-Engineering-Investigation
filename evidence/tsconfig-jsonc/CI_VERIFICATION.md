@@ -9,9 +9,12 @@ is present. A separate matrix repeats the lightweight exact-symptom and
 reference-loader verification across CPython/platform combinations.
 
 The latest fully indexed functional verification below ran from investigation
-commit `3a516692d27cb1c632680efe62c11d12c5b3ccfb`, which contains the
-reference solution, graph-warning integration check, patched-install
-rehearsal, lexical and ng-matero final-artifact audits, exhaustive
+commit `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb`, which contains the
+hardened reference solution (true-trailing-comma tracking, Python-constant
+rejection, explicit nesting bound, strict UTF-8 config reading), its unit
+tests and 2,277-case adversarial differential probe, graph-warning
+integration check, patched-install rehearsal, recovered-edge concentration
+audit, lexical and ng-matero final-artifact audits, exhaustive
 symbol-evidence audit, and direct public-config loader-behavior evidence.
 All 10 PR checks passed at that commit. Follow-up PR #2's check rollup
 remains the authoritative status for any later branch head. (The original
@@ -22,9 +25,10 @@ investigation was merged through PR #1.)
 - **Affected-version verification** is green only when the strict control
   resolves, the raw `repro_unit.py --expect-fixed` regression fails only for
   the four exact JSONC fixtures with `aliases={}` and
-  `resolution=(None, None)`, the reference-solution corpus and loader pass,
-  the TypeScript/`jsonc-parser` differential result reproduces, the
-  reversible A/B/C/D/E intervention and targeted boundaries pass on both
+  `resolution=(None, None)`, the reference-solution corpus, unit tests, and
+  loader pass, the TypeScript/`jsonc-parser` differential and adversarial
+  boundary/mutation results reproduce, the reversible A/B/C/D/E intervention
+  and targeted boundaries pass on both
   resolver copies, the full-pipeline malformed graph-warning boundary passes,
   and the committed evidence counts reconcile. Six additional matrix jobs
   reproduce the lightweight exact symptom on ordinary installs.
@@ -44,7 +48,7 @@ investigation was merged through PR #1.)
 ## 1. Unified affected-version verification + minimal standard CLI
 
 - Workflow: **PR verification — JSONC defect reproduced exactly (0.3.15)**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639782109
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913945
 - Job: **Affected-version verification — exact defect, reference loader, evidence**
 - Result: **success**
 - Successful steps include:
@@ -55,12 +59,19 @@ investigation was merged through PR #1.)
     reference-solution Python corpus (14 curated + 500 generated valid
     documents) and integration check, runs the resolver-level reversible
     intervention and targeted boundaries on both engine copies, and verifies
-    committed lexical/ng-matero, reference-validation, version-scope,
-    exposure-sample, public-config loader-behavior, and answerability-task
-    evidence;
+    committed lexical/ng-matero, reference-validation, adversarial-probe,
+    recovered-edge-concentration, version-scope, exposure-sample,
+    public-config loader-behavior, and answerability-task evidence;
+  - `python -m unittest -v solution.test_tsconfig_jsonc` (10 tests), covering
+    the parser generated corpus, true/leading trailing commas, constants,
+    oversized integers, the explicit nesting bound, invalid shapes, strict
+    UTF-8 reading, and non-regular/broken-symlink config states;
   - a validation-only TypeScript 5.9.3 + Microsoft `jsonc-parser` 3.3.1
     differential run, reproducing 514/514 TypeScript and 510/514
-    `jsonc-parser` valid-document agreements and 8 diagnosed invalid cases;
+    `jsonc-parser` valid-document agreements and 13 diagnosed invalid cases;
+  - the adversarial differential probe, reproducing 865 all-accept cases,
+    1,316 all-reject cases, and zero critical divergences over 2,277
+    enumerated-boundary/seeded-mutation cases;
   - `causal_intervention.py --full-pipeline`, which repeats A/B/C/D/E through
     the installed Fast Lane `run_pipeline()`, inspects the actual resolved
     graph and complete-repository-context ZIP, and proves that a malformed
@@ -70,7 +81,11 @@ investigation was merged through PR #1.)
   - `ci_cli_comparison.py` using `python -m unvibecode review`.
 - Published differential annotation:
   > `candidate/TypeScript valid agreements=514/514; candidate/jsonc-parser
-  > valid agreements=510/514; diagnosed invalid cases=8`
+  > valid agreements=510/514; diagnosed invalid cases=13`
+- Published adversarial-probe annotation:
+  > `cases=2277; all-accept=865; all-reject=1316;
+  > candidate-only-accepts=0; candidate-only-rejects=0; all-accept value
+  > mismatches=0`
 - Published CLI annotation:
   > `status=PASS_KNOWN_BUG_REPRODUCED; strict: cli_exit=1, timed_out=False,
   > files=2, file_edges=1, unresolved=0, file_import=1, symbol_fallback=1,
@@ -78,9 +93,9 @@ investigation was merged through PR #1.)
   > file_edges=0, unresolved=1, file_import=0, symbol_fallback=1,
   > grammar_download_error=False`
 - Artifact `jsonc-verification-logs`:
-  - ID `13232915383`
-  - 13,555 bytes
-  - SHA-256 `2817dee23ff5de2dc994e03815ee776222ee42a3bcc3f8c2c42ef9c0e4d6a02f`
+  - ID `13248261197`
+  - 19,150 bytes
+  - SHA-256 `2c75f812efcde07d2585e5f2e8f245451eec3a9a2ab8d537dd82b2dab06bda11`
 
 The minimal CLI processes exit 1 after producing the local graph and context
 bundle. Those are the artifacts under test; the comparison does not claim that a
@@ -89,10 +104,10 @@ cannot explain the strict-vs-JSONC file-edge difference.
 
 The same workflow run also completed six **Platform/Python scope** jobs:
 CPython 3.11, 3.12, 3.13, and 3.14 on `ubuntu-latest`, plus CPython 3.12 on
-`windows-latest` and `macos-latest`. Each normally installed 0.3.15 and ran
-`verify.py --skip-evidence`, which still covers the known-bug reproduction,
-exact `--expect-fixed` failure, reference corpus/loader, and both-engine
-causal intervention.
+`windows-latest` and `macos-latest`. Each normally installed 0.3.15, ran
+`verify.py --skip-evidence` (known-bug reproduction, exact `--expect-fixed`
+failure, reference corpus/loader, and both-engine causal intervention), and
+ran the 10 reference parser/loader unit tests.
 
 The eighth job in the same run, **Patched-install rehearsal — file-level
 reference integration**, also succeeded. It recorded the stock state, applied
@@ -107,16 +122,17 @@ stock files, and verified their hashes/reference-module removal.
   > `status=passed; patched resolvers=fast_lane_00a,merged_graph_01; valid
   > JSONC source edges=[['src/feature/comp.ts', 'src/app/util.ts'],
   > ['src/feature/comp.ts', 'src/feature/local.ts']]; malformed graph
-  > warning codes=['tsconfig_parse_failed']`
+  > warning codes=['tsconfig_parse_failed']; invalid-UTF-8 resolver warning
+  > codes=['tsconfig_read_failed', 'tsconfig_read_failed']`
 - Artifact `patched-install-rehearsal-evidence`:
-  - ID `13231684614`
-  - 6,168 bytes
-  - SHA-256 `fe088ef9f04da6b3dabbf81b72141e1aeabe7fa4d0368ed108ba67eadcd08cee`
+  - ID `13248391168`
+  - 6,242 bytes
+  - SHA-256 `d41ee3bce0744883d1d23496a0a944e012bcce1b4f2eeb2b687a43d70a730e9b`
 
 ## 2. Lexical under the same ordinary installation
 
 - Workflow: **Lexical clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781771
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913810
 - Result: **success**
 - It fetched lexical at `164af6a4df7114f35724c472152ca74877b6bd04`, ran the
   ordinary CLI as-is and on a copy with only the five comment lines removed,
@@ -150,9 +166,9 @@ stock files, and verified their hashes/reference-module removal.
   > as-is/control/corrected=711/9883/9883, recovered
   > control/corrected=9182/9182`
 - Artifact `lexical-clean-environment-evidence`:
-  - ID `13231264139`
-  - 338,336 bytes
-  - SHA-256 `0ebce5ec4a3e369358ec144d8668e221f2ce23c82e8bf0474cf9e10d791c7765`
+  - ID `13248786574`
+  - 338,338 bytes
+  - SHA-256 `6fbe87c263845db928ae2fd133d70dc3df04eb0c2356f452a148911d1816740e`
 
 Therefore the lexical graph and direct downstream-selection result no longer
 depends on the sandbox grammar workaround. The corrected run is Fast Lane
@@ -162,7 +178,7 @@ later hosted-stage result.
 ## 3. Independent ng-matero under an ordinary installation
 
 - Workflow: **Ng-matero clean-environment validation**
-- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41639781748
+- Run: https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913798
 - Result: **success**
 - It fetched ng-matero at `d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`,
   verified the original root-config SHA-256, ran the ordinary CLI as-is and
@@ -184,9 +200,9 @@ later hosted-stage result.
   > Optimal/Wider=107/107; answer-bearing Optimal tasks
   > as-is/control/corrected=0/3/3 of 3`
 - Artifact `ng-matero-clean-environment-evidence`:
-  - ID `13232486438`
-  - 16,123 bytes
-  - SHA-256 `070892c6051a6572e5b2fd71fe7c96a66b0b465f62c40e7f98bf21402c4af72d`
+  - ID `13247723291`
+  - 16,128 bytes
+  - SHA-256 `db3a9c48a9264ac97f3183d76a438214f7f972f0406b71f459489b111aa93389`
 
 This removes the earlier local grammar-fallback caveat from the ng-matero
 graph/selection/corrected/answerability claims.
@@ -199,7 +215,7 @@ graph/selection/corrected/answerability claims.
 - Selected-version command: `python reproduction/repro_unit.py --expect-fixed`
 - On UnvibeCode 0.3.15 this raw test fails for the four JSONC fixtures; that
   exact child failure is also visible inside the successful
-  `verify-affected-version.log` in run `41639782109`. It should become green
+  `verify-affected-version.log` in run `41670913945`. It should become green
   only after JSONC tsconfig aliases load correctly.
 
 ## Retrieval note

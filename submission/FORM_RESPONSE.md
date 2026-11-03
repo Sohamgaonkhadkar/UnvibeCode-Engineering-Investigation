@@ -4,7 +4,7 @@
 
 - **Official GitHub issue URL:** ⏳ PENDING — issue prepared in `submission/GITHUB_ISSUE.md`, not yet published (awaiting approval). Paste the real URL here after filing; do not invent one.
 - **Analyzed public repository URL:** https://github.com/meta/lexical (commit `164af6a4df7114f35724c472152ca74877b6bd04`)
-- **Evidence workspace (commit-pinned snapshot):** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/3a516692d27cb1c632680efe62c11d12c5b3ccfb
+- **Evidence workspace (commit-pinned snapshot):** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb
 - **Strengthening PR / current checks:** https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/2
 
 ## Short technical summary (for the form)
