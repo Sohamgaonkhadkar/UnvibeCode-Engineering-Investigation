@@ -126,6 +126,28 @@ Among the 44 affected repository configs, feature counts overlap:
 - trailing commas: 11
 - BOM: 0
 
+### Direct installed-loader behaviour on the same sample
+
+Script: [`../../reproduction/ecosystem_loader_behavior.py`](../../reproduction/ecosystem_loader_behavior.py)
+Machine-readable result: [`ecosystem_loader_behavior.json`](ecosystem_loader_behavior.json)
+
+To remove strict-JSON rejection as a proxy, every eligible blob was fetched
+again by its committed Git blob SHA, checked against its recorded byte count
+and SHA-256, and used as the root config for both installed 0.3.15 resolver
+copies. Each engine was then repeated with the reference loader in memory and
+compared with the aliases produced by applying the shipped mapping rules to
+the reference-parsed config.
+
+| Unit | Affected: stock empty both engines | Affected: reference exact both | Unaffected: stock exact both | Unaffected: reference exact both |
+|---|---:|---:|---:|---:|
+| Repository/root config | **44/44** | **44/44** | **140/140** | **140/140** |
+| Unique content | **35/35** | **35/35** | **104/104** | **104/104** |
+
+The 211 declared `paths` entries in affected repository configs collapse to
+163 entries under the shipped alias-mapping rules (174→126 after content
+deduplication), because exact and wildcard declarations can map to the same
+alias prefix. The behavioral audit preserves that distinction.
+
 ### What this does and does not prove
 
 It proves that, in an auditable time-bound sample of public root configs,
@@ -148,7 +170,8 @@ this repository.
 - The vulnerable loader is present across the whole published 0.3.0–0.3.15
   wheel line in the snapshot, so the correction is relevant to the current
   release and to users pinned to earlier 0.3.x wheels.
-- The exposure sample contains configs whose aliases would be loaded by the
-  reference solution but emptied by strict JSON. It is supporting impact
+- The exposure sample contains configs whose aliases are directly emptied by
+  both installed stock loaders and exactly recovered by the reference
+  solution. It is supporting impact
   evidence; the causal and graph-level proof remains the pinned lexical and
   ng-matero experiments.

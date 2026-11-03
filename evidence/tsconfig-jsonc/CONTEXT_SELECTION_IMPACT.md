@@ -98,6 +98,15 @@ original config plus the reference loader**; an `LexicalErrorBoundary`
 negative control is 1/1 in every bundle. This is an evidence-availability
 measurement, not an LLM-output claim. See `ANSWERABILITY_AUDIT.md`.
 
+An exhaustive companion derives 10,703 eligible source-specific
+imported-symbol tasks from all 4,256 verified lexical relationships. A task
+requires a recognizable declaration/export line in selected chunks from the
+symbol's defining file. At Optimal, 726 are available as-is versus 8,826 in
+both control and corrected bundles (**8,163 recovered**); at Wider, 711
+versus 9,883 (**9,182 recovered**). These are repeated source-specific
+instances across 1,239 importing files, not unique symbols or model answers.
+See `SYMBOL_EVIDENCE_AUDIT.md`.
+
 A later diagnostic control repeated the lexical Fast Lane run with the
 original JSONC config bytes unchanged and only `_load_tsconfig_aliases`
 patched in memory. It restored 5,519 file edges and produced exactly the same
@@ -113,7 +122,10 @@ On pinned `ng-matero/ng-matero@d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`,
 removing only two leading block-comment lines restores 111 verified direct file
 relationships. Of 111 distinct direct pairs, 107 are absent from both Optimal and
 Wider as-is selections and restored in the control; the other four are present in
-both. See `ng-matero/selection_impact_summary.json`.
+both. See `ng-matero/selection_impact_summary.json`. A dedicated
+ordinary-install clean-environment workflow now reproduces those counts and
+the corrected result, and its three predeclared `app.config.ts` final-artifact
+tasks are **0/3 as-is versus 3/3 in both control and corrected bundles**.
 
 ## Provenance
 

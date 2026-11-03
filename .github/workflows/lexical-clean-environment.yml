@@ -202,7 +202,23 @@ jobs:
           )
           assert symbols["status"] == "passed", symbols
           derivation = symbols["task_derivation"]
-          assert derivation["eligible_symbol_tasks"] > 0, derivation
+          assert derivation["verified_relationship_rows"] == 4256, derivation
+          assert derivation["candidate_symbol_tasks"] == 10715, derivation
+          assert derivation["eligible_symbol_tasks"] == 10703, derivation
+          assert derivation["distinct_source_files"] == 1239, derivation
+          assert derivation["distinct_definition_files"] == 182, derivation
+          expected_symbol_radii = {
+              "1": (
+                  {"as_is": 726, "control": 8826, "corrected": 8826},
+                  8163,
+                  8163,
+              ),
+              "2": (
+                  {"as_is": 711, "control": 9883, "corrected": 9883},
+                  9182,
+                  9182,
+              ),
+          }
           symbol_radii = {}
           for radius in ("1", "2"):
               entry = symbols["by_radius"][radius]
@@ -212,7 +228,11 @@ jobs:
               recovered_corrected = entry["comparisons"]["as_is_to_corrected"]["states"].get(
                   "definition_recovered", 0
               )
-              assert recovered_control > 0 and recovered_corrected > 0, entry
+              assert (
+                  entry["definition_available_by_bundle"],
+                  recovered_control,
+                  recovered_corrected,
+              ) == expected_symbol_radii[radius], entry
               symbol_radii[radius] = (
                   entry["definition_available_by_bundle"],
                   recovered_control,

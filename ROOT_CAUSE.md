@@ -44,8 +44,11 @@ exactly one `_load_tsconfig_aliases` AST. Executing that extracted function
 returns the expected alias for strict JSON and `{}` for the semantically
 identical JSONC control. Ordinary-install CI additionally reproduces the
 exact resolver symptom and reference-loader behaviour on CPython 3.11–3.14
-(Ubuntu) and CPython 3.12 on Windows/macOS. See
-`evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md`.
+(Ubuntu) and CPython 3.12 on Windows/macOS. Direct execution on every
+eligible blob in the bounded public-config sample also matches prediction:
+44/44 affected configs are empty under both stock loaders and exact under
+the reference loader, while 140/140 strict controls are exact under both.
+See `evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md`.
 
 ## Causal controls
 
@@ -115,9 +118,15 @@ direct implementations from customer context selections. A final-artifact
 audit adds a concrete task-level check: for six predeclared questions about
 `ReactExtension.tsx`, none has all required answer-bearing lines in the as-is
 Optimal ZIP, while all six do in both the control and reference-corrected
-bundles; a negative control passes throughout. See
-`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md` and
-`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`.
+bundles; a negative control passes throughout. An exhaustive companion
+derives 10,703 eligible source-specific imported-symbol tasks from the 4,256
+verified relationships: at Optimal, declaration/export evidence is present
+for 726 as-is versus 8,826 in both control and corrected bundles (8,163
+recovered). Independent ng-matero shows the same task-level pattern at 0/3
+as-is versus 3/3 control/corrected under an ordinary install. See
+`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`,
+`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`, and
+`evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md`.
 
 ## Boundary and non-claims
 
@@ -164,7 +173,11 @@ channel. The full Fast Lane harness now exercises that builder-level
 integration in memory: valid JSONC produces an exported graph with
 `warnings: []`, a malformed existing config produces exactly one
 `tsconfig_parse_failed` record in the exported graph, and the stock pipeline
-produces no warning for the same malformed input. It was validated against
+produces no warning for the same malformed input. A separate disposable
+patched-install rehearsal applies the same exact reference module and
+builder insertion at file level to both installed engine copies, validates
+them and the full graph with no monkeypatching, passes the raw post-fix
+regression, and restores the stock hashes. It was validated against
 514 curated/generated valid documents with TypeScript 5.9.3 and Microsoft
 `jsonc-parser` 3.3.1 as differential oracles; see `solution/README.md`. The
 raw post-fix regression

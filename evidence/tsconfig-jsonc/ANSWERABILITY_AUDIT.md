@@ -50,7 +50,7 @@ be correct.
 ## Result
 
 Clean GitHub Actions run:
-https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41627056006
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056381
 
 | Bundle | Impact tasks answerable | Negative control |
 |---|---:|---:|
@@ -66,8 +66,8 @@ answer-bearing Optimal tasks as-is/control/corrected=0/6/6 of 6
 
 The workflow uploads the complete machine-readable
 `answerability_audit.json` in artifact `lexical-clean-environment-evidence`
-(ID `13226761265`, SHA-256
-`ca2c29e38093c0bc2a75aab780a89f6947703e820ef407c82628b39654bca69e`).
+(ID `13232150404`, SHA-256
+`5152cd0ad8a6482f8ee6e59b45a07bb41bb0b6f201740d7233d99890fa068a63`).
 
 ## Interpretation
 
@@ -81,3 +81,37 @@ contains more text.
 The claim remains bounded to these predeclared tasks and this representative
 source. The exhaustive impact claim remains the separately measured 2,707
 Optimal and 3,345 Wider direct-dependency recoveries across lexical.
+
+## Independent ng-matero replication
+
+The same audit now also runs in an ordinary-install clean environment on
+`ng-matero/ng-matero@d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`, using
+`src/app/app.config.ts` as the representative source. Its three impact tasks
+ask which four areas the `@core` barrel re-exports, which seven categories
+the `@shared` barrel re-exports, and what `production`/`baseUrl`/`useHash`
+values the imported environment supplies.
+
+Run:
+https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41638056555
+
+| Bundle | Impact tasks answerable | Source-file negative control |
+|---|---:|---:|
+| as-is | **0/3** | 1/1 |
+| comment-stripped control | **3/3** | 1/1 |
+| original config + reference loader in memory | **3/3** | 1/1 |
+
+Task definitions are in
+[`../../reproduction/answerability_tasks_ng_matero.json`](../../reproduction/answerability_tasks_ng_matero.json).
+The full JSON is in artifact `ng-matero-clean-environment-evidence`
+(ID `13232066872`, SHA-256
+`2a6d88503c5672b628068fc440e2ce412432fdd580dfeea76f6c6df62d973e20`).
+
+## Exhaustive lexical symbol-evidence companion
+
+[`SYMBOL_EVIDENCE_AUDIT.md`](SYMBOL_EVIDENCE_AUDIT.md) scales the question
+from these representative tasks to 10,703 eligible source-specific
+imported-symbol instances derived from all 4,256 verified lexical
+relationships. It finds 8,163 Optimal and 9,182 Wider symbol-definition
+instances recovered in both the control and corrected bundles. That is a
+definition/export-evidence metric, distinct from these manually specified
+implementation-line questions.

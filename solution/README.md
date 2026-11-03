@@ -145,6 +145,25 @@ In UnvibeCode 0.3.15 those builder sites are the Fast Lane and merged-graph
 builders that already initialise and export `warnings`; exact current line
 numbers are documented in `../ROOT_CAUSE.md`.
 
+### File-level patched-install rehearsal
+
+`apply_reference_patch.py` turns the sketch into a reversible rehearsal for a
+**disposable** installed environment. It refuses to run without an explicit
+site-packages acknowledgement and a new backup directory; copies this exact
+`tsconfig_jsonc.py` beside the installed engine sources; replaces the loader
+method in both engine copies; inserts the one-line builder warning append;
+records stock/patched SHA-256 values; and can restore the recorded stock
+hashes and remove the installed reference module.
+
+`validate_patched_install.py` then loads the patched package normally—with
+no monkeypatching—and checks valid JSONC, strict JSON, relative/negative
+specifiers, malformed warnings on both resolvers, and (with
+`--full-pipeline`) the actual Fast Lane graph. CI additionally runs
+`reproduction/verify.py --expect-fixed --skip-evidence` on that patched
+installation before restoring stock. This is stronger integration evidence
+than the in-memory harness, but it is still a rehearsal in a disposable
+runner, not a shipped fix or an upstream PR.
+
 ## Validation performed
 
 - 14 curated valid cases covering strict JSON, comments, trailing commas,
@@ -168,6 +187,15 @@ numbers are documented in `../ROOT_CAUSE.md`.
   wiring applied in memory, valid JSONC exports `warnings: []`; the same
   malformed config exports exactly one `tsconfig_parse_failed` warning with
   path/line/column/offset, while the stock pipeline exports no warning.
+- File-level patched-install rehearsal in clean CI: both normally loaded
+  patched engine copies resolve valid JSONC and report the malformed warning;
+  the patched Fast Lane graph restores the configured edge, the raw post-fix
+  regression passes, and restoration returns both engine files to their
+  recorded stock SHA-256 values.
+- Direct public-config behavior: on all 184 eligible blobs in the bounded
+  sample, both stock loaders return `{}` for the 44 affected configs and the
+  exact expected aliases for the 140 strict controls; the reference loader is
+  exact in both groups on both engines.
 - Ordinary-install behaviour matrix in CI: CPython 3.11–3.14 on Ubuntu and
   CPython 3.12 on Windows/macOS all reproduce the stock symptom and pass the
   reference-loader checks.

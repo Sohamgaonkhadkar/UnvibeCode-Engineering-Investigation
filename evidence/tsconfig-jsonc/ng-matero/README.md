@@ -57,9 +57,22 @@ This demonstrates the same parse→alias-table→graph→selection chain in a
 different codebase with ordinary directory wildcard aliases rather than
 lexical's predominantly exact package mappings.
 
+## Final-artifact answerability
+
+For representative source `src/app/app.config.ts`, three predeclared tasks
+require the exact `@core` barrel areas, `@shared` barrel categories, and
+environment values in selected Optimal chunks from their answering files.
+The ordinary-install result is **0/3 as-is, 3/3 in the control, and 3/3 with
+the original config plus the reference loader**; a source-file negative
+control passes in all three. Definitions are in
+`../../../reproduction/answerability_tasks_ng_matero.json`, with the combined
+record in `../ANSWERABILITY_AUDIT.md`.
+
 ## Environment note
 
-These local ng-matero CLI runs used the disclosed grammar fallback required by
-the sandbox. They are generality evidence for the resolver mechanism, not a
-separate ordinary-install claim. The ordinary-install GitHub Actions result is
-recorded in `../CI_VERIFICATION.md`.
+The originally captured local ng-matero CLI runs used the disclosed grammar
+fallback required by the sandbox. That caveat has now been closed for the
+reported graph, selection, corrected-output, TypeScript-batch, and
+answerability results: the dedicated ordinary-install GitHub Actions
+workflow reproduces the same counts without the sandbox fallback. See
+`../CI_VERIFICATION.md`.
