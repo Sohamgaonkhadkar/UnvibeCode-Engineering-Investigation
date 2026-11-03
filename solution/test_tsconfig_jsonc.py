@@ -196,6 +196,12 @@ class ReferenceParserTests(unittest.TestCase):
                 self.assertGreaterEqual(caught.exception.line, 1)
                 self.assertGreaterEqual(caught.exception.column, 1)
 
+    def test_nesting_depth_limit_is_explicit_and_version_independent(self) -> None:
+        accepted = parse_tsconfig_jsonc("[" * 256 + "]" * 256)
+        self.assertIsInstance(accepted, list)
+        with self.assertRaises(TsconfigSyntaxError):
+            parse_tsconfig_jsonc("[" * 257 + "]" * 257)
+
     def test_oversized_integer_overflows_without_unstructured_error(self) -> None:
         parsed = parse_tsconfig_jsonc('{"a": ' + "1" * 5000 + "}")
         self.assertTrue(math.isinf(parsed["a"]))

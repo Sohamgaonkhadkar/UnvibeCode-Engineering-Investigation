@@ -85,19 +85,19 @@
         "input": "committed lexical root tsconfig",
         "bytes_utf8": 22614,
         "iterations_per_sample": 100,
-        "median_ms_per_parse": 3.6599
+        "median_ms_per_parse": 4.7283
       },
       {
         "input": "committed ng-matero root tsconfig",
         "bytes_utf8": 1292,
         "iterations_per_sample": 100,
-        "median_ms_per_parse": 0.2253
+        "median_ms_per_parse": 0.2919
       },
       {
         "input": "synthetic 5,000-entry JSONC tsconfig",
         "bytes_utf8": 301780,
         "iterations_per_sample": 3,
-        "median_ms_per_parse": 55.3193
+        "median_ms_per_parse": 70.2681
       }
     ],
     "note": "Timing is environment-specific; the transform is a single lexical pass before stdlib json parsing."

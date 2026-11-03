@@ -52,14 +52,17 @@ JSON grammar:
    character can end a JSON value/member. Doing this after comment blanking
    handles `..., /* comment */}` without rewriting a leading/elision comma
    such as `[,]` or `{,}` into an empty container.
-3. Delegate all remaining grammar decisions to Python's strict
+3. Enforce an explicit 256-level container-nesting bound. CPython's C JSON
+   scanner accepts far deeper input on 3.12+ than on 3.11; a shallow config
+   format should not have version-dependent resource behaviour.
+4. Delegate all remaining grammar decisions to Python's strict
    `json.loads`, with two narrow hooks: `parse_constant` rejects Python's
    non-JSON `NaN`/`Infinity` extensions, and `parse_int` prevents CPython's
    integer-digit guard from escaping as an unstructured `ValueError` (an
    integer far beyond the finite JavaScript-number range becomes signed
    infinity, as in JavaScript numeric overflow).
-4. Validate the small portion of the parsed shape used for aliases.
-5. Apply the shipped alias-prefix mapping unchanged, including
+5. Validate the small portion of the parsed shape used for aliases.
+6. Apply the shipped alias-prefix mapping unchanged, including
    `replace("/*", "").rstrip("/")`.
 
 Because every replacement is position-preserving, the standard-library
@@ -90,6 +93,7 @@ Rejected with a diagnostic/warning:
 - leading/elision commas such as `[,]`, `{,}`, and nested variants;
 - Python's non-JSON `NaN`, `Infinity`, and `-Infinity` constants;
 - other JSON5-only forms;
+- container nesting beyond the explicit 256-level resource bound;
 - falsy non-list `paths` targets (`""`, `None`, `0`, `False`) rather than
   treating them as an empty target list;
 - root/options/paths/baseUrl/target values with the wrong shape.
@@ -234,8 +238,8 @@ runner, not a shipped fix or an upstream PR.
   CPython 3.12 on Windows/macOS all reproduce the stock symptom and pass the
   reference-loader checks.
 - Local timing in the current committed validation: lexical root config
-  (22,614 UTF-8 bytes), median about 3.66 ms/parse; synthetic 5,000-entry
-  config (301,780 bytes), about 55.32 ms/parse. Timing is
+  (22,614 UTF-8 bytes), median about 4.73 ms/parse; synthetic 5,000-entry
+  config (301,780 bytes), about 70.27 ms/parse. Timing is
   environment-specific; the transform is linear and runs once per resolver
   construction.
 

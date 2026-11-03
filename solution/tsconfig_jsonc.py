@@ -14,7 +14,9 @@ transform:
 * every replacement is one character, so offsets and line/column positions in
   the transformed text still identify the corresponding input position; and
 * the actual JSON grammar is then enforced by Python's standard ``json``
-  parser.
+  parser; and
+* container nesting is capped explicitly at 256 levels so resource-limit
+  behaviour does not depend on the CPython version's C recursion budget.
 
 The parser raises a structured :class:`TsconfigSyntaxError`.  The product-style
 loader catches syntax/shape/read failures for an existing config, returns the
@@ -48,6 +50,11 @@ _JSON_WHITESPACE = frozenset(" \t\r\n")
 # prevents an elision/leading comma such as ``[,]`` or ``{,}`` from being
 # silently rewritten into an empty container.
 _VALUE_END_CHARS = frozenset('"0123456789el}]')
+# CPython's C JSON scanner accepts much deeper nesting on 3.12+ than on
+# 3.11 (where it follows the interpreter recursion budget more closely).
+# A tsconfig is a shallow configuration document; enforce one explicit,
+# version-independent resource bound before delegating to ``json.loads``.
+_MAX_NESTING_DEPTH = 256
 
 
 def _line_column(text: str, offset: int) -> tuple[int, int]:
@@ -188,6 +195,47 @@ class TsconfigLoadResult:
 
     aliases: dict[str, str]
     warning: Optional[TsconfigWarning] = None
+
+
+def _enforce_nesting_depth_limit(
+    transformed: str,
+    *,
+    source: str,
+    original_text: str,
+) -> None:
+    """Reject nesting beyond the explicit resource bound.
+
+    Only container brackets outside string literals count.  Mismatched
+    closers are left for the JSON parser to diagnose; this pre-pass only
+    establishes the maximum opener depth.
+    """
+
+    depth = 0
+    in_string = False
+    escaped = False
+    for offset, ch in enumerate(transformed):
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            continue
+        if ch == '"':
+            in_string = True
+            escaped = False
+        elif ch in "{[":
+            depth += 1
+            if depth > _MAX_NESTING_DEPTH:
+                raise TsconfigSyntaxError(
+                    f"JSON nesting exceeds maximum depth {_MAX_NESTING_DEPTH}",
+                    source=source,
+                    offset=offset,
+                    text=original_text,
+                )
+        elif ch in "}]" and depth:
+            depth -= 1
 
 
 def blank_comments(text: str, *, source: str = "tsconfig.json") -> str:
@@ -375,6 +423,11 @@ def parse_tsconfig_jsonc(text: str, *, source: str = "tsconfig.json") -> Any:
     transformed = transform_jsonc_to_json(text, source=source)
     if not transformed.strip():
         return {}
+    _enforce_nesting_depth_limit(
+        transformed,
+        source=source,
+        original_text=text,
+    )
     try:
         # Python's json module otherwise accepts the non-JSON constants
         # NaN/Infinity/-Infinity by default.  Both TypeScript and
