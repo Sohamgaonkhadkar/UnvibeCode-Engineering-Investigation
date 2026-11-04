@@ -51,7 +51,6 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from solution.tsconfig_jsonc import (  # noqa: E402
-    JsoncSyntaxError,
     TsconfigLoadError,
     aliases_from_config_data,
     load_tsconfig_aliases_result,

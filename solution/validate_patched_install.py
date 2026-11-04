@@ -42,7 +42,6 @@ from causal_intervention import (  # noqa: E402
     RELATIVE_RESOLUTION,
     SOURCE_FILE,
     InterventionError,
-    inspect_pipeline_output,
     load_engines,
     probe,
     require,

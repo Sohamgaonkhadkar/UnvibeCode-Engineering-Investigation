@@ -1,16 +1,27 @@
-# Duplicate check — latest strengthening sweep 2026-11-03 against all 348 issues (open + closed, to #444)
+# Duplicate check — latest sweep 2026-11-04 against all 377 issues (open + closed, to #473)
 
 ## Current result — read this first
 
-The **current** conclusion is the 2026-11-03 sweep of **348 open/closed
-issues through #444**, detailed under “Latest re-check” below:
-`jsonc`, `"JSONC"`, and `"trailing comma"` return 0;
-`_load_tsconfig_aliases` returns only #442; `tsconfig` and `alias tsconfig`
-return #153/#272/#374 plus #442. Issue #442 names
-`_load_tsconfig_aliases`, but reports a different **target-wildcard
-substitution** defect after a config has loaded, not strict-JSON rejection of
-JSONC syntax or an emptied alias table. New #444 concerns Python
-`route_handler` entity-kind loss and is unrelated.
+The **current** conclusion is the 2026-11-04 sweep of **377 open/closed
+issues through #473**, detailed under “Latest re-check” below. It supersedes
+the earlier through-#444 result: **#451 now reports the same strict-JSON
+tsconfig mechanism** — legal comments/trailing commas make
+`_load_tsconfig_aliases` return no path mappings. Filing
+`submission/GITHUB_ISSUE.md` unchanged as a new upstream issue would therefore
+duplicate #451.
+
+This investigation was already public in the personal evidence repository
+before #451 was filed: evidence PR #1 was created on 2026-11-01 and merged on
+2026-11-02, and this strengthening PR #2 was created on 2026-11-02. That
+chronology supports independent discovery; it does **not** change the tracker
+fact that #451 is now the first upstream report of this mechanism. No
+competitor finding, example, wording, code, or measurement from #451 has been
+reused here.
+
+The adjacent new TypeScript-config reports are mechanism-distinct: #452 is
+ordinary `baseUrl` resolution without `paths` in a strict-JSON config, and
+#455 is failure to follow `extends`/effective config in strict-JSON configs.
+#442 remains post-load target-wildcard substitution.
 
 The older sections in this file are retained as a chronological audit trail.
 Their issue totals and “newest issue” statements were correct when those
@@ -30,10 +41,13 @@ historical point). Closest issues read in full:
 | **#374** — `@/` aliases skipped as `hard_path_skipped` although defined in **vite.config.ts** | Linker hard-skips `@/` when the alias lives only in Vite config and the app tsconfig sits in a subdirectory (`frontend/`). | Our alias **is** in the root `tsconfig.json` that the engine already supports; it fails earlier, in `_load_tsconfig_aliases` parsing (strict `json.loads` on JSONC), and is recorded `external_or_unresolved`, not `hard_path_skipped`. Different stage, different function, different trigger, different fix. |
 | **#272 / #153** — TypeScript `@/` path aliases skipped | Older behavior for the hardcoded `@/` prefix. | 0.3.15 already resolves `@/` via a hardcoded `src/` branch and custom aliases via tsconfig *when the file is strict JSON* (proven by our strict-JSON control). Our defect disables the custom-alias table itself. |
 | **#442** — target wildcards drop core Vue implementations | A loaded mapping such as `@vue/* -> packages/*/src` has its target `*` stripped instead of substituting the captured package name. | Different later mechanism: pattern substitution after config parsing. Our config never loads at all when it contains JSONC comments/trailing commas. Our reference solution deliberately preserves shipped pattern-mapping semantics, so it neither claims nor changes #442's separate defect. |
+| **#451** — valid comments discard every configured path mapping | A root JSONC `tsconfig.json` is parsed with strict `json.loads`; the parse error is swallowed and both engines load zero aliases. | **Same mechanism as this investigation.** It is now an upstream duplicate for filing purposes. This repository remains independent corroborating evidence with different pinned repositories, causal controls, scope audits, and a tested reference loader; it should not be filed unchanged as a second report. |
+| **#452** — `baseUrl` imports lose local module targets | A strict-JSON root config with `baseUrl` but no `paths` parses, yet ordinary non-relative imports are not resolved relative to `baseUrl`. | Different mechanism. Our trigger is JSONC lexical syntax preventing the whole config/`paths` table from loading. The reference here deliberately retains the shipped alias-mapping/`baseUrl` use inside `paths` and does not claim ordinary `baseUrl`-only resolution. |
+| **#455** — aliases inherited through `extends` are never loaded | Strict-JSON configs parse, but the loader does not follow `extends` or discover the effective/non-root config that declares `paths`. | Different mechanism. Our supported root config declares the aliases directly and fails earlier at JSONC parsing. The reference here deliberately does not add `extends`, nested-config discovery, or effective-config merging. |
 | **#320** — `_js_import_symbols` collects local aliases from aliased/namespace imports | Symbol-name extraction from import clauses. | Unrelated: our imports extract correctly (they appear in unresolved records); failure is alias-table loading. |
 | **#262 / #84** — `../` imports unresolved (`to_posix_rel` never normalizes `..`) | Path normalization in relative resolution. | We reproduced this too (all web/Node resolvers) and deliberately do **not** file it — same cause as #262. Mentioned here to show the check was mechanism-level, not title-level. |
 | **#372** — PHP `require/include` never extracted | Missing extractor branch in `_extract_php`. | Different language/stage (extraction vs config parsing). |
-| **#378 / #323** — grammar-download / tokenizer failures still ending in “complete”/partial states | Environment failure handling. | Our runs needed a grammar shim in-sandbox (documented in the log); the filed defect is grammar-independent and reproduces at unit level with no parser involved. |
+| **#378 / #323** — grammar-download / tokenizer failures still ending in “complete”/partial states | Environment failure handling. | Our runs needed a grammar shim in-sandbox (documented in the log); the selected defect is grammar-independent and reproduces at unit level with no parser involved. |
 
 ## Final audit re-check — 2026-11-02 (GitHub issue search API, `repo:FinanceFlash/unvibecode is:issue`)
 
@@ -145,7 +159,7 @@ root JSONC config, the broad exception handler leaves the entire alias table
 semantics. Fixing #442 would not make a JSONC config load; fixing this issue
 would not implement #442's requested wildcard substitution.
 
-## Latest re-check — 2026-11-03 through #444
+## Strengthening re-check — 2026-11-03 through #444 (superseded)
 
 The tracker subsequently advanced to **348 issues, newest #444**. The exact
 searches were repeated through the GitHub issue-search API:
@@ -165,5 +179,48 @@ body level: it reports a Python FastAPI `route_handler` kind being overwritten
 during entity merging, with contradictory pre-/post-linker records. It does
 not involve TypeScript, tsconfig parsing, JSONC, or alias-table loading.
 
+## Latest re-check — 2026-11-04 through #473
+
+The tracker subsequently advanced to **377 issues, newest #473**. Fresh
+GitHub issue-search API results (`repo:FinanceFlash/unvibecode is:issue`,
+open + closed) were:
+
+| Search term | Hits | Assessment |
+|---|---:|---|
+| `jsonc` / `"JSONC"` | 2 | #451 and #455 |
+| `"trailing comma"` | 2 | #451 and #455 |
+| `_load_tsconfig_aliases` | 4 | #442, #451, #452, #455 |
+| `tsconfig` / `alias tsconfig` | 7 | #153, #272, #374, #442, #451, #452, #455 |
+| `"compilerOptions.paths"` | 4 | #153, #272, #374, #455 |
+| `comment tsconfig` / `comments tsconfig` | 4 | #442, #451, #452, #455 |
+| `json.loads tsconfig` | 4 | #272, #374, #451, #455 |
+| `"path aliases"` | 8 | Includes the TypeScript-config neighbours above plus unrelated alias senses |
+
+Issues #451, #452, and #455 were read at body level:
+
+- **#451 is the same mechanism.** It states that both engines call
+  `json.loads(safe_read_text(tsconfig))`, swallow the exception, and return an
+  empty mapping for a valid commented/trailing-comma root config.
+- **#452 is distinct.** Its config is strict JSON and parses; the defect is
+  that ordinary imports are not resolved through `baseUrl` when no explicit
+  `paths` table exists.
+- **#455 is distinct.** Its configs are strict JSON and parse; the defect is
+  that inherited/effective `paths` are not loaded because `extends` and
+  non-root config discovery are not followed. It mentions #451 only to
+  distinguish the parse-failure mechanism.
+
+Issue titles #445–#473 were also scanned. Apart from #451/#452/#455, the new
+TypeScript-adjacent titles concern other resolver, graph, workflow, or export
+mechanisms; none changes the mechanism classification above.
+
 ## Conclusion
-No existing issue through #444 reports, at any level of wording, that JSONC content in `tsconfig.json` (comments/trailing commas) silently empties the tsconfig alias table. The mechanism, trigger bytes, observed empty-table state, and remediation are distinct from the neighbours above, including #442's later wildcard-substitution mechanism. This check must be repeated once more immediately before public filing (tracker is moving daily).
+Through #444, no upstream issue reported this JSONC-empty-alias mechanism.
+That historical result is no longer the current filing position: **#451 now
+reports the same mechanism upstream**. This investigation's personal evidence
+repository predates #451, so the work remains independently derived, but
+`submission/GITHUB_ISSUE.md` must not be filed unchanged as a new report. Any
+upstream use should be a maintainer/organizer-directed corroborating comment or
+an explicitly linked supplementary-evidence submission that cites #451 rather
+than presenting the mechanism as unreported. Adjacent #452 (`baseUrl`-only
+resolution) and #455 (`extends`/effective config) remain separate defects and
+are deliberately outside this investigation's single-mechanism scope.

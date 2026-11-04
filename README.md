@@ -21,9 +21,13 @@ supplies a tested maintainer-adaptable reference correction.
 
 > **Status:** the evidence is maintained in personal evidence-repository
 > [PR #2](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/2).
-> The official upstream issue and Google Form have **not** yet been filed, so
-> the work is not yet an officially ranked submission. This repository does
-> not claim a shipped UnvibeCode fix.
+> This investigation has **not** filed its own upstream issue or Google Form,
+> so it is not yet an officially ranked submission. A final duplicate sweep
+> on 2026-11-04 found that upstream
+> [#451](https://github.com/FinanceFlash/unvibecode/issues/451) now reports
+> the same JSONC-empty-alias mechanism; the draft in `submission/` is retained
+> as independent corroborating evidence and must not be filed unchanged as a
+> duplicate report. This repository does not claim a shipped UnvibeCode fix.
 
 ---
 
@@ -39,7 +43,7 @@ supplies a tested maintainer-adaptable reference correction.
 | Independent oracles | TypeScript 5.9.3; Microsoft `jsonc-parser` 3.3.1 for the reference parser |
 | Latest fully indexed functional snapshot | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` — all 10 PR checks passed |
 | Evidence PR | [#2](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/2) |
-| Official issue/form | Drafted in `submission/`; **not filed/submitted yet** |
+| Official issue/form | Not filed/submitted by this investigation; upstream #451 now covers the same mechanism, so the draft is corroborating material rather than a new-issue text |
 
 ### Headline results
 
@@ -93,7 +97,10 @@ The investigation does **not** ask one fix to add nested-tsconfig discovery,
 pattern semantics. Those adjacent behaviours were used only as boundaries or
 negative controls. Keeping the mechanism narrow makes the causal claim
 testable and distinguishes it from nearest-neighbour issues such as post-load
-target-wildcard substitution (#442) and Vite/non-root alias handling (#374).
+target-wildcard substitution (#442), Vite/non-root alias handling (#374),
+ordinary `baseUrl`-only resolution (#452), and inherited/effective config via
+`extends` (#455). Upstream #451 is **not** a neighbour distinction: it reports
+the same JSONC parse-failure mechanism and is treated as a filing duplicate.
 
 ### 1.2 How the work maps to the evaluation dimensions
 
@@ -102,11 +109,13 @@ target-wildcard substitution (#442) and Vite/non-root alias handling (#374).
 | Technical depth / root cause | Stage-by-stage decomposition, both duplicated loaders, reversible A/B/C/D/E causality, strict `paths` and TypeScript-API recounts, parser grammar/resource hardening | [`ROOT_CAUSE.md`](ROOT_CAUSE.md), [`solution/README.md`](solution/README.md) |
 | Reproducibility / evidence | One-command verifier, pinned package/repository/oracle versions, machine-readable evidence, input/output hashes, clean GitHub Actions, exact-success/failure semantics | [`reproduction/verify.py`](reproduction/verify.py), [`evidence/tsconfig-jsonc/CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), [`evidence/tsconfig-jsonc/ARTIFACT_MANIFEST.md`](evidence/tsconfig-jsonc/ARTIFACT_MANIFEST.md) |
 | Developer impact | Actual exported selections, predeclared answer-bearing task audit, exhaustive symbol-evidence audit, second public repository, bounded public-config exposure and direct loader execution | [`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`](evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md), [`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`](evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md), [`evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md`](evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md) |
-| Originality | Mechanism-level duplicate sweep through issue #444; earliest-stage distinction from #153/#272/#374/#442; no competitor finding, example, wording, code, or measurement reused | [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md), [`evidence/BENCHMARK_METHOD_AUDIT.md`](evidence/BENCHMARK_METHOD_AUDIT.md) |
-| Clarity | This front page, a nine-section official-issue draft, document/evidence maps, explicit denominators, and a limitations section with negative results | [`submission/GITHUB_ISSUE.md`](submission/GITHUB_ISSUE.md), [`evidence/EXPERIMENT_LOG.md`](evidence/EXPERIMENT_LOG.md) |
+| Originality | Independent discovery documented in this repository before upstream #451 was filed; final mechanism-level sweep through #473 classifies #451 as the same mechanism and #452/#455/#442 as distinct neighbours; no competitor finding, example, wording, code, or measurement reused | [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md), [`evidence/BENCHMARK_METHOD_AUDIT.md`](evidence/BENCHMARK_METHOD_AUDIT.md) |
+| Clarity | This front page, a nine-section corroborating-evidence draft, document/evidence maps, explicit denominators, and a limitations section with negative results | [`submission/GITHUB_ISSUE.md`](submission/GITHUB_ISSUE.md), [`evidence/EXPERIMENT_LOG.md`](evidence/EXPERIMENT_LOG.md) |
 
 This is an alignment map, not a self-awarded score. The investigation remains
-officially unranked until the upstream issue and form are actually submitted.
+officially unranked until an organizer-accepted upstream/form submission is
+actually made; because #451 already reports the mechanism, that step requires
+explicit maintainer/organizer direction rather than a duplicate issue.
 
 ---
 
@@ -664,7 +673,7 @@ documentation-only commits should be judged from PR #2's current rollup.
 │   ├── BENCHMARK_METHOD_AUDIT.md     # generic methods only; no reused findings
 │   └── tsconfig-jsonc/               # compact machine-readable evidence + reports
 └── submission/
-    ├── GITHUB_ISSUE.md               # official nine-section draft (not filed)
+    ├── GITHUB_ISSUE.md               # nine-section corroborating draft; #451 duplicate — not filed
     └── FORM_RESPONSE.md              # form draft; official URL still pending
 ```
 
@@ -745,14 +754,17 @@ and does not prove:
 |---|---|
 | Evidence PR #2 | Open; contains the hardened reference, concentration audit and indexed CI evidence |
 | Latest fully indexed functional snapshot | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` |
-| Official upstream GitHub issue | Draft complete in `submission/GITHUB_ISSUE.md`; **not filed** |
-| Google Form | Draft complete except personal fields and the real official issue URL; **not submitted** |
+| Official upstream GitHub issue | Not filed by this investigation. Final sweep through #473 found upstream #451 reporting the same mechanism; `submission/GITHUB_ISSUE.md` is retained only as independent corroborating evidence and must not be filed unchanged |
+| Google Form | Draft complete except personal fields and an organizer-accepted official issue URL; **not submitted** |
 | Upstream fix/PR | None claimed; no PR has been opened to `FinanceFlash/unvibecode` |
-| Official ranking | Not ranked until the issue and form are submitted |
+| Official ranking | Not ranked until an organizer-accepted issue/form submission is made |
 
-The next official step is therefore filing—not more evidence inflation. A
-final duplicate sweep should be repeated immediately before filing because
-the upstream tracker changes daily.
+The next official step is therefore **not** to file a duplicate issue. It is
+to obtain maintainer/organizer direction on whether this independently
+derived evidence should be attached as corroboration to #451 or submitted in
+another explicitly linked form. The duplicate sweep should still be repeated
+immediately before any public filing because the upstream tracker changes
+daily.
 
 ### 9.2 Acceptance criteria for an actual shipped fix
 

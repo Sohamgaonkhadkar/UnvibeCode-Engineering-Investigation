@@ -1,3 +1,12 @@
+> **STATUS — DO NOT FILE UNCHANGED (checked 2026-11-04):** upstream
+> [#451](https://github.com/FinanceFlash/unvibecode/issues/451) now reports
+> the same strict-JSON/JSONC empty-alias mechanism. This nine-section text is
+> retained as independently derived corroborating evidence (the personal
+> evidence repository predates #451) and as source material for a
+> maintainer/organizer-directed comment or explicitly linked supplementary
+> submission. Do not paste it as a new upstream issue without first revising
+> the title/body to cite #451 and state the independent chronology.
+
 Title: [Bug] Connected Code Map — comments/trailing commas in a valid JSONC tsconfig silently discard all root path aliases
 
 ## 1. Problem summary
@@ -181,13 +190,18 @@ Suggested fix direction:
 Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases on both resolver copies; the reference corpus should retain 514/514 TypeScript valid-document agreements; malformed existing configs should produce exactly one visible warning in the exported graph rather than a silent empty table; valid and missing/empty configs should produce no warning; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched and ng-matero 241; the direct-dependency selection omissions should disappear relative to the comment-stripped controls; the answerability audits should reach 6/6 and 3/3 without changing their negative controls; and the lexical symbol-evidence audit should recover the same 8,163 Optimal / 9,182 Wider instances as its control. The reversible intervention's B/D states are the expected restored behaviour, while its A/C/E states document the current stock failure.
 
 ## 9. Duplicate check
-Re-searched on 2026-11-03 through the GitHub issue-search API (open + closed; 348 issues through #444):
+Re-searched on 2026-11-04 through the GitHub issue-search API (open + closed; 377 issues through #473):
 
-- `jsonc` / `"JSONC"` → 0; `"trailing comma"` → 0; `"compilerOptions.paths"` → #153, #272, and #374.
-- `tsconfig` / `alias tsconfig` → #153, #272, #374, and new #442; `_load_tsconfig_aliases` → #442 only, read in full.
+- `jsonc` / `"JSONC"` → #451, #455; `"trailing comma"` → #451, #455.
+- `_load_tsconfig_aliases` → #442, #451, #452, #455.
+- `tsconfig` / `alias tsconfig` → #153, #272, #374, #442, #451, #452, #455.
+- `"compilerOptions.paths"` → #153, #272, #374, #455.
 
-Closest issues differ by mechanism:
+Mechanism classification:
 
+- **#451 — same mechanism / filing duplicate.** It reports that both engines parse a valid JSONC root `tsconfig.json` with strict `json.loads`, swallow the error, and load zero path mappings. This evidence was independently derived and was already public in the personal evidence repository (PR #1 created 2026-11-01 and merged 2026-11-02; PR #2 created 2026-11-02) before #451 was filed on 2026-11-03, but #451 is now the first upstream report. This text should therefore be used only as corroborating evidence or after explicit revision to cite #451.
+- **#452 — distinct.** Its strict-JSON config parses; ordinary imports are not resolved through `baseUrl` when there is no explicit `paths` table. This report is limited to JSONC syntax preventing a declared root `paths` table from loading.
+- **#455 — distinct.** Its strict-JSON configs parse; aliases inherited through `extends` or declared in non-root effective configs are not discovered. This report does not claim `extends`, nested-config discovery, or effective-config merging.
 - **#153/#272:** `@/` imports are recorded `hard_path_skipped` by the later linker. Here the Stage-1 resolver's alias table is empty before resolution, records are `external_or_unresolved`, and resolution returns immediately when config comments are removed.
 - **#374:** the alias is only in `vite.config.ts`/a non-root setup. Here it is in the supported repository-root `tsconfig.json`.
 - **#442:** a loaded target pattern such as `packages/*/src` loses its `*` instead of substituting the captured segment. That is a later post-load wildcard-substitution mechanism. Here the whole config fails to load because of JSONC lexical syntax; removing only comments restores the table without changing wildcard semantics. Fixing either defect would not fix the other.
@@ -196,4 +210,4 @@ Closest issues differ by mechanism:
 - **#428:** an exported local binding (`Select = SelectPrimitive.Root`) is `symbol_not_found` although the module and sibling exports resolve. Here the configured module file relationship itself is absent because the alias table was never loaded.
 - **#262/#84:** a separate `../` path-normalization defect, excluded from this report.
 
-No existing issue reports legal JSONC syntax in `tsconfig.json` silently emptying UnvibeCode's root path-alias table.
+Historical note: the previous 2026-11-03 sweep through #444 found no JSONC-empty-alias report. That result was superseded later the same day by #451 and must not be quoted as the current tracker state.

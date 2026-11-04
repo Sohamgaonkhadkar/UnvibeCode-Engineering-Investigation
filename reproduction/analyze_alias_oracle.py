@@ -22,7 +22,7 @@ import argparse
 import hashlib
 import json
 import posixpath
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path, PurePosixPath
 
 
