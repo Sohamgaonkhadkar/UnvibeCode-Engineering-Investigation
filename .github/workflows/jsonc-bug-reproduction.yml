@@ -229,7 +229,11 @@ jobs:
             python-version: "3.14"
           - os: windows-latest
             python-version: "3.12"
-          - os: macos-latest
+          # GitHub's macos-latest arm64 queue repeatedly cancelled this job
+          # before runner acquisition (runner_id 0, no steps) in Nov 2026.
+          # Use the pinned Intel macOS image for the OS/Python scope gate;
+          # arm64 macos-latest coverage remains in the indexed 6c6c6b2 snapshot.
+          - os: macos-15-intel
             python-version: "3.12"
     env:
       PYTHONIOENCODING: utf-8
