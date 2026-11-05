@@ -190,12 +190,14 @@ Suggested fix direction:
 Validation: `python reproduction/verify.py --expect-fixed` (which runs the retained raw `repro_unit.py --expect-fixed`) should pass all JSONC fixtures including string-safety cases on both resolver copies; the reference corpus should retain 514/514 TypeScript valid-document agreements; malformed existing configs should produce exactly one visible warning in the exported graph rather than a silent empty table; valid and missing/empty configs should produce no warning; the minimal JSONC CLI fixture should produce the file edge; lexical should reach 5,519 internal file edges with its config untouched and ng-matero 241; the direct-dependency selection omissions should disappear relative to the comment-stripped controls; the answerability audits should reach 6/6 and 3/3 without changing their negative controls; and the lexical symbol-evidence audit should recover the same 8,163 Optimal / 9,182 Wider instances as its control. The reversible intervention's B/D states are the expected restored behaviour, while its A/C/E states document the current stock failure.
 
 ## 9. Duplicate check
-Re-searched on 2026-11-04 through the GitHub issue-search API (open + closed; 377 issues through #473):
+Re-searched on 2026-11-05 through the GitHub issue-search API (open + closed; 434 issues through #532):
 
-- `jsonc` / `"JSONC"` → #451, #455; `"trailing comma"` → #451, #455.
+- `jsonc` → #451, #455; `"trailing comma"` → #451, #455.
 - `_load_tsconfig_aliases` → #442, #451, #452, #455.
-- `tsconfig` / `alias tsconfig` → #153, #272, #374, #442, #451, #452, #455.
+- `tsconfig` → #153, #272, #374, #442, #451, #452, #455, #501.
 - `"compilerOptions.paths"` → #153, #272, #374, #455.
+
+All 58 issues added since the previous sweep (#474–#532) were also body-scanned for `jsonc`, `trailing comma`, `json.loads`, `tsconfig`, `compilerOptions`, `path alias`, `strict json`, and `comments`; every keyword match was read in context and none reports a config-parse failure that empties an alias table.
 
 Mechanism classification:
 
@@ -208,6 +210,7 @@ Mechanism classification:
 - **#444:** a Python `route_handler` entity kind is overwritten during linker entity merging. It does not involve TypeScript config parsing or alias loading.
 - **#320:** `_js_import_symbols` extracts local binding names incorrectly. Here extraction is identical between as-is and control.
 - **#428:** an exported local binding (`Select = SelectPrimitive.Root`) is `symbol_not_found` although the module and sibling exports resolve. Here the configured module file relationship itself is absent because the alias table was never loaded.
-- **#262/#84:** a separate `../` path-normalization defect, excluded from this report.
+- **#262/#84/#501:** a separate `../` path-normalization defect, excluded from this report. #501 (filed 2026-11-05) is the newest such report; its only `tsconfig` mention cross-references #455's `extends` defect, and it parses no config.
+- **#532:** conditional `require`/`import` calls lose alternative module paths during JS/TS import extraction. Its `json.loads` occurrences are inside its own verification harness reading generated JSON, not config parsing.
 
-Historical note: the previous 2026-11-03 sweep through #444 found no JSONC-empty-alias report. That result was superseded later the same day by #451 and must not be quoted as the current tracker state.
+Historical note: the 2026-11-03 sweep through #444 found no JSONC-empty-alias report; that result was superseded later the same day by #451. The 2026-11-04 sweep through #473 and the 2026-11-05 sweep through #532 both confirm #451 as the single upstream report of this mechanism. Earlier totals must not be quoted as the current tracker state, and the sweep should be repeated immediately before any public filing.

@@ -109,7 +109,7 @@ the same JSONC parse-failure mechanism and is treated as a filing duplicate.
 | Technical depth / root cause | Stage-by-stage decomposition, both duplicated loaders, reversible A/B/C/D/E causality, strict `paths` and TypeScript-API recounts, parser grammar/resource hardening | [`ROOT_CAUSE.md`](ROOT_CAUSE.md), [`solution/README.md`](solution/README.md) |
 | Reproducibility / evidence | One-command verifier, pinned package/repository/oracle versions, machine-readable evidence, input/output hashes, clean GitHub Actions, exact-success/failure semantics | [`reproduction/verify.py`](reproduction/verify.py), [`evidence/tsconfig-jsonc/CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), [`evidence/tsconfig-jsonc/ARTIFACT_MANIFEST.md`](evidence/tsconfig-jsonc/ARTIFACT_MANIFEST.md) |
 | Developer impact | Actual exported selections, predeclared answer-bearing task audit, exhaustive symbol-evidence audit, second public repository, bounded public-config exposure and direct loader execution | [`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`](evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md), [`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`](evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md), [`evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md`](evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md) |
-| Originality | Independent discovery documented in this repository before upstream #451 was filed; final mechanism-level sweep through #473 classifies #451 as the same mechanism and #452/#455/#442 as distinct neighbours; no competitor finding, example, wording, code, or measurement reused | [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md), [`evidence/BENCHMARK_METHOD_AUDIT.md`](evidence/BENCHMARK_METHOD_AUDIT.md) |
+| Originality | Independent discovery documented in this repository before upstream #451 was filed; mechanism-level sweeps through #473 and #532 (434 issues, 2026-11-05) classify #451 as the same mechanism and #452/#455/#442/#501 as distinct neighbours; no competitor finding, example, wording, code, or measurement reused | [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md), [`evidence/BENCHMARK_METHOD_AUDIT.md`](evidence/BENCHMARK_METHOD_AUDIT.md) |
 | Clarity | This front page, a nine-section corroborating-evidence draft, document/evidence maps, explicit denominators, and a limitations section with negative results | [`submission/GITHUB_ISSUE.md`](submission/GITHUB_ISSUE.md), [`evidence/EXPERIMENT_LOG.md`](evidence/EXPERIMENT_LOG.md) |
 
 This is an alignment map, not a self-awarded score. The investigation remains
@@ -622,7 +622,8 @@ restore/hash-check sequence is documented in
 | `jsonc-expected-behavior.yml` | Manual only | Raw expected-behaviour regression for a candidate fixed release |
 
 Latest fully indexed functional runs at
-`6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb`:
+`6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` (the snapshot whose artifact IDs
+and digests are indexed):
 
 - Main verification:
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913945
@@ -631,9 +632,20 @@ Latest fully indexed functional runs at
 - ng-matero:
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913798
 
+Latest runs at the current branch head
+`db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful**, with
+every defined step of the Lexical and ng-matero jobs executed and none skipped:
+
+- Main verification:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627
+- Lexical:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612
+- ng-matero:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626
+
 Artifact IDs, sizes, digests, jobs, and annotations are indexed in
-[`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md). Later
-documentation-only commits should be judged from PR #2's current rollup.
+[`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), which also
+records the macOS runner-acquisition history behind the `macos-15` pin.
 
 ---
 
@@ -674,6 +686,7 @@ documentation-only commits should be judged from PR #2's current rollup.
 │   └── tsconfig-jsonc/               # compact machine-readable evidence + reports
 └── submission/
     ├── GITHUB_ISSUE.md               # nine-section corroborating draft; #451 duplicate — not filed
+    ├── UPSTREAM_CORROBORATION.md     # decision-ready comment draft for #451 — not filed
     └── FORM_RESPONSE.md              # form draft; official URL still pending
 ```
 
@@ -692,6 +705,7 @@ documentation-only commits should be judged from PR #2's current rollup.
 | Review parser grammar boundaries | `reference_solution_validation.json`, `differential_probe.json` |
 | Review release/public scope | `SCOPE_AND_EXPOSURE.md`, `version_scope.json`, `ecosystem_loader_behavior.json` |
 | Check originality | [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md) |
+| Understand the filing/submission position | §9.1, [`DUPLICATE_CHECK.md`](DUPLICATE_CHECK.md) conclusion, [`submission/UPSTREAM_CORROBORATION.md`](submission/UPSTREAM_CORROBORATION.md) |
 | Inspect all experiments, including failures | [`evidence/EXPERIMENT_LOG.md`](evidence/EXPERIMENT_LOG.md) |
 | Verify clean-environment provenance | [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), [`ARTIFACT_MANIFEST.md`](evidence/tsconfig-jsonc/ARTIFACT_MANIFEST.md) |
 
@@ -754,7 +768,9 @@ and does not prove:
 |---|---|
 | Evidence PR #2 | Open; contains the hardened reference, concentration audit and indexed CI evidence |
 | Latest fully indexed functional snapshot | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` |
-| Official upstream GitHub issue | Not filed by this investigation. Final sweep through #473 found upstream #451 reporting the same mechanism; `submission/GITHUB_ISSUE.md` is retained only as independent corroborating evidence and must not be filed unchanged |
+| Current branch head CI | `db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful** (runs [`41888843627`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627), [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612), [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626)); see [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) |
+| Official upstream GitHub issue | Not filed by this investigation. The 2026-11-05 sweep of 434 issues through #532 confirms upstream #451 as the only report of this mechanism; `submission/GITHUB_ISSUE.md` is retained only as independent corroborating evidence and must not be filed unchanged |
+| Corroborating-comment draft | Prepared and **unfiled** in [`submission/UPSTREAM_CORROBORATION.md`](submission/UPSTREAM_CORROBORATION.md), pending maintainer/organizer direction |
 | Google Form | Draft complete except personal fields and an organizer-accepted official issue URL; **not submitted** |
 | Upstream fix/PR | None claimed; no PR has been opened to `FinanceFlash/unvibecode` |
 | Official ranking | Not ranked until an organizer-accepted issue/form submission is made |

@@ -1,14 +1,15 @@
-# Duplicate check — latest sweep 2026-11-04 against all 377 issues (open + closed, to #473)
+# Duplicate check — latest sweep 2026-11-05 against all 434 issues (open + closed, to #532)
 
 ## Current result — read this first
 
-The **current** conclusion is the 2026-11-04 sweep of **377 open/closed
-issues through #473**, detailed under “Latest re-check” below. It supersedes
-the earlier through-#444 result: **#451 now reports the same strict-JSON
-tsconfig mechanism** — legal comments/trailing commas make
-`_load_tsconfig_aliases` return no path mappings. Filing
-`submission/GITHUB_ISSUE.md` unchanged as a new upstream issue would therefore
-duplicate #451.
+The **current** conclusion is the 2026-11-05 sweep of **434 open/closed
+issues through #532**, detailed under “Latest re-check” below. It confirms and
+supersedes the 2026-11-04 through-#473 result: **#451 remains the only
+upstream report of this strict-JSON tsconfig mechanism** — legal
+comments/trailing commas make `_load_tsconfig_aliases` return no path
+mappings. Filing `submission/GITHUB_ISSUE.md` unchanged as a new upstream
+issue would therefore duplicate #451. The 58 issues added since the previous
+sweep (#474–#532) contain no second report of this mechanism.
 
 This investigation was already public in the personal evidence repository
 before #451 was filed: evidence PR #1 was created on 2026-11-01 and merged on
@@ -18,10 +19,13 @@ fact that #451 is now the first upstream report of this mechanism. No
 competitor finding, example, wording, code, or measurement from #451 has been
 reused here.
 
-The adjacent new TypeScript-config reports are mechanism-distinct: #452 is
+The adjacent TypeScript-config reports are mechanism-distinct: #452 is
 ordinary `baseUrl` resolution without `paths` in a strict-JSON config, and
 #455 is failure to follow `extends`/effective config in strict-JSON configs.
-#442 remains post-load target-wildcard substitution.
+#442 remains post-load target-wildcard substitution. New in the 2026-11-05
+range, #501 is unnormalized relative `../` candidate paths in
+`LanguageAwareImportResolver` and mentions `tsconfig` only to cross-reference
+#455; it parses no config and discards no alias table.
 
 The older sections in this file are retained as a chronological audit trail.
 Their issue totals and “newest issue” statements were correct when those
@@ -179,7 +183,7 @@ body level: it reports a Python FastAPI `route_handler` kind being overwritten
 during entity merging, with contradictory pre-/post-linker records. It does
 not involve TypeScript, tsconfig parsing, JSONC, or alias-table loading.
 
-## Latest re-check — 2026-11-04 through #473
+## Re-check — 2026-11-04 through #473 (superseded by the 2026-11-05 sweep)
 
 The tracker subsequently advanced to **377 issues, newest #473**. Fresh
 GitHub issue-search API results (`repo:FinanceFlash/unvibecode is:issue`,
@@ -213,14 +217,75 @@ Issue titles #445–#473 were also scanned. Apart from #451/#452/#455, the new
 TypeScript-adjacent titles concern other resolver, graph, workflow, or export
 mechanisms; none changes the mechanism classification above.
 
+## Latest re-check — 2026-11-05 through #532
+
+The tracker subsequently advanced to **434 issues (242 open, 192 closed),
+newest #532**. Fresh GitHub issue-search API results
+(`repo:FinanceFlash/unvibecode is:issue`, open + closed) were:
+
+| Search term | Hits | Assessment |
+|---|---:|---|
+| `jsonc` | 2 | #451 and #455 — unchanged |
+| `"trailing comma"` | 2 | #451 and #455 — unchanged |
+| `_load_tsconfig_aliases` | 4 | #442, #451, #452, #455 — unchanged |
+| `tsconfig` | 8 | #153, #272, #374, #442, #451, #452, #455, **#501 (new)** |
+| `"compilerOptions.paths"` | 4 | #153, #272, #374, #455 — unchanged |
+| `comment tsconfig` / `comments tsconfig` | 4 | #442, #451, #452, #455 — unchanged |
+| `json.loads tsconfig` | 4 | #272, #374, #451, #455 — unchanged |
+| `"path aliases"` | 8 | #153, #272, #320, #378, #452, #453, #455, #457 |
+
+No search term produced a second report of this mechanism. The two hits for
+`jsonc` and `"trailing comma"` are still exactly #451 and #455.
+
+All **58 issues added since the previous sweep (#474–#532)** were retrieved
+through the REST issues endpoint and scanned at body level for
+`jsonc`, `trailing comma`, `json.loads`, `tsconfig`, `compilerOptions`,
+`path alias`, `strict json`, and `comments`. Twelve issues matched at least one
+term; each match was read in context:
+
+- **#501** is the only new issue whose body mentions `tsconfig`, and only in
+  its own duplicate-check section cross-referencing #455's `extends` defect.
+  Its mechanism is that unnormalized relative `../` specifiers never produce a
+  candidate path in `LanguageAwareImportResolver`. No config is parsed and no
+  alias table is discarded, so it is **distinct**.
+- **#532** matches `json.loads` only inside its own verification harness,
+  which reads a generated `context-store.json`. Its defect is that conditional
+  `require`/`import` calls lose alternative module paths during JS/TS import
+  extraction — **distinct**.
+- **#483, #481, #495, #497, #498, #509, #518, #525** match `json.loads` in
+  unrelated mechanisms (path role hints, documentation claims, Python symbol
+  resolution, Go call-edge conversion, credential screening, `elif` nesting
+  depth, and UTF-8 BOM handling in exported context). None touches tsconfig
+  parsing — **distinct**.
+- **#480** and **#515** match `comments` in unrelated senses (request
+  queueing after a save error, and percent-encoded unreserved characters in an
+  HTML asset resolver) — **distinct**.
+
+The other TypeScript-adjacent titles in the new range (#490 `.js`→`.ts`
+specifier resolution, #519 skipped `.mts`/`.cts` files, #527 Optimal context
+omitting direct imports for a Python file, #531 HTML inline module imports,
+#499 Windows separators in cross-reference links) concern extraction, scanner
+extension coverage, selection ranking, and link formatting. None reports a
+config-parse failure that empties an alias table.
+
+**Conclusion of this sweep: #451 is still the single upstream report of this
+mechanism, and the 2026-11-05 range adds no duplicate and no competing claim
+of priority.**
+
 ## Conclusion
 Through #444, no upstream issue reported this JSONC-empty-alias mechanism.
-That historical result is no longer the current filing position: **#451 now
-reports the same mechanism upstream**. This investigation's personal evidence
-repository predates #451, so the work remains independently derived, but
-`submission/GITHUB_ISSUE.md` must not be filed unchanged as a new report. Any
-upstream use should be a maintainer/organizer-directed corroborating comment or
-an explicitly linked supplementary-evidence submission that cites #451 rather
-than presenting the mechanism as unreported. Adjacent #452 (`baseUrl`-only
-resolution) and #455 (`extends`/effective config) remain separate defects and
-are deliberately outside this investigation's single-mechanism scope.
+That historical result is no longer the current filing position: **#451
+reports the same mechanism upstream**, and the sweeps through #473
+(2026-11-04) and #532 (2026-11-05) confirm it is still the only such report.
+This investigation's personal evidence repository predates #451, so the work
+remains independently derived, but `submission/GITHUB_ISSUE.md` must not be
+filed unchanged as a new report. Any upstream use should be a
+maintainer/organizer-directed corroborating comment or an explicitly linked
+supplementary-evidence submission that cites #451 rather than presenting the
+mechanism as unreported; a decision-ready draft of that corroborating comment
+is kept unfiled in
+[`submission/UPSTREAM_CORROBORATION.md`](submission/UPSTREAM_CORROBORATION.md).
+Adjacent #452 (`baseUrl`-only resolution), #455 (`extends`/effective config),
+#442 (post-load target wildcards), and #501 (unnormalized relative `../`
+candidates) remain distinct defects and are deliberately outside this
+investigation's single-mechanism scope.

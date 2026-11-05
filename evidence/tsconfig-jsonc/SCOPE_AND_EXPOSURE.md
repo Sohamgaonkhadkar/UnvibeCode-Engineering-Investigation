@@ -70,7 +70,10 @@ The PR workflow separately installs `unvibecode==0.3.15` normally and runs
 
 - CPython 3.11, 3.12, 3.13, and 3.14 on `ubuntu-latest`;
 - CPython 3.12 on `windows-latest`; and
-- CPython 3.12 on `macos-latest`.
+- CPython 3.12 on `macos-15` (the workflow pins this label; the indexed
+  `6c6c6b2` run used the then floating `macos-latest` label, and the pin was
+  adopted after hosted-capacity cancellations that executed no steps — see
+  [`CI_VERIFICATION.md`](CI_VERIFICATION.md)).
 
 All six jobs reproduce the exact empty-alias symptom, exact post-fix
 regression failure shape, reference-loader restoration, and both-engine

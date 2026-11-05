@@ -20,6 +20,56 @@ All 10 PR checks passed at that commit. Follow-up PR #2's check rollup
 remains the authoritative status for any later branch head. (The original
 investigation was merged through PR #1.)
 
+### Current branch head — `db66414`, 10/10 checks successful
+
+The detailed artifact IDs and annotations in sections 1–3 below were indexed
+from the `6c6c6b2` runs and are unchanged by later commits, which touched
+documentation, static-analysis hygiene, and the macOS runner label only. The
+current PR head `db66414055bd14e5ea2e060e461c7d7ece05098c` re-ran the same
+workflows successfully:
+
+| Workflow | Run | Result |
+|---|---|---|
+| PR verification — JSONC defect reproduced exactly (0.3.15) | [`41888843627`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627) | success — 8/8 jobs |
+| Lexical clean-environment validation | [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612) | success — all 12 defined steps |
+| Ng-matero clean-environment validation | [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626) | success — all 12 defined steps |
+
+No step in either clean-environment job was skipped: the jobs API reports 15
+(lexical) and 16 (ng-matero) step entries, which are the 12 defined workflow
+steps plus `Set up job`, the `Post` cleanup steps, and `Complete job`, and
+every entry is `completed`/`success`.
+
+The lexical job re-executed the substantive work rather than short-circuiting:
+ordinary install of the pinned package, as-is and comment-stripped control CLI
+runs, strict-`paths` oracle and selection recomputation, in-memory-corrected
+Fast Lane on the unmodified checkout, the answerability audit, the exhaustive
+symbol-definition audit, and the published count assertion. The check rollup
+for `db66414` is 10 successful checks and zero failures.
+
+### macOS scope-job runner acquisition
+
+The platform matrix's macOS entry was cancelled before executing any step on
+three successive heads — with the floating `macos-latest` label (job
+`126192817755` at `029b9ef`, job `126761623582` at `b12105f`) and with an
+explicit Intel label (job `126771193611` at `061c3b7`). Each cancelled job
+reported `runner_id: 0` with zero steps, and the check-run annotations API
+returns GitHub's own diagnosis verbatim:
+
+> `failure: The job was not acquired by Runner of type hosted even after
+> multiple attempts`
+
+> `notice: Due to capacity constraints, jobs targeting macOS arm64 runners may
+> experience longer queue times.`
+
+These were therefore hosted-capacity acquisition failures, not defect, test, or
+platform-behaviour failures, and no macOS evidence claim ever depended on them.
+An API job rerun returned `403 Resource not accessible by integration`.
+Pinning the job to `macos-15` allowed it to acquire a runner after a
+~10-minute queue (started 18:46:42Z for a run dispatched at 18:36:37Z) and
+complete successfully in 41 seconds. Section 1's platform-scope description
+below refers to the indexed `6c6c6b2` run, whose macOS job used the then
+floating label; the current workflow pins `macos-15`.
+
 ## How to read the PR checks
 
 - **Affected-version verification** is green only when the strict control
