@@ -534,7 +534,13 @@ FINAL RESULT: PASS — affected 0.3.15 defect reproduced exactly; regression fai
    resolver copies;
 6. reconciles the committed Lexical, ng-matero, reference, adversarial,
    concentration, version-scope, exposure, loader-behaviour, and
-   answerability-spec evidence.
+   answerability-spec evidence; and
+7. checks the documentation's own provenance claims — relative links and
+   anchors, permalink pins, cited Actions run IDs in both directions, and the
+   duplicate-sweep scope — against
+   [`evidence/ci_status.json`](evidence/ci_status.json) and
+   [`evidence/duplicate_sweep.json`](evidence/duplicate_sweep.json) via
+   [`reproduction/check_docs.py`](reproduction/check_docs.py).
 
 ### 6.2 Reading green/red correctly
 
@@ -542,6 +548,7 @@ FINAL RESULT: PASS — affected 0.3.15 defect reproduced exactly; regression fai
 |---|---|---|
 | `python reproduction/verify.py` | The defect and reference behaviour were reproduced exactly | Pass |
 | `python reproduction/repro_unit.py` | Known-bug fixture expectations match 0.3.15 | Pass |
+| `python reproduction/check_docs.py` | Documented links, permalink pins, cited run IDs, and duplicate-sweep scope agree with the committed records | Pass |
 | `python reproduction/repro_unit.py --expect-fixed` | Correct JSONC behaviour already works | **Fail** on the four JSONC fixtures |
 | PR “Affected-version verification” | Exact defect verification succeeded | Pass when the symptom is exact |
 | PR “Patched-install rehearsal” | Reference file-level integration works in a disposable install | Pass |
@@ -581,6 +588,9 @@ python reproduction/ci_cli_comparison.py \
 
 # Committed-evidence-only concentration audit (no package/network needed)
 python reproduction/relationship_concentration_audit.py
+
+# Documentation/claim consistency (offline; no package or network needed)
+python reproduction/check_docs.py
 ```
 
 ### 6.4 Full Node-oracle differential reproduction
@@ -639,19 +649,33 @@ and digests are indexed):
 - ng-matero:
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913798
 
-Latest runs at the current branch head
-`db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful**, with
-every defined step of the Lexical and ng-matero jobs executed and none skipped:
+Latest indexed runs at `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` and at
+`db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful at each
+head**, with every defined step of the Lexical and ng-matero jobs executed and
+none skipped:
 
 - Main verification:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901
+  and
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627
 - Lexical:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917
+  and
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612
 - ng-matero:
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184
+  and
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626
 
+Because a documentation commit re-triggers these workflows, the newest head's
+own runs always complete after any index that could cite them; PR #2's live
+check rollup is authoritative for heads newer than those listed here.
+
 Artifact IDs, sizes, digests, jobs, and annotations are indexed in
-[`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), which also
+[`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md), whose run
+citations are checked in both directions against
+[`evidence/ci_status.json`](evidence/ci_status.json) by
+[`reproduction/check_docs.py`](reproduction/check_docs.py). That file also
 records the macOS runner-acquisition history behind the `macos-15` pin.
 
 ---
@@ -671,6 +695,7 @@ records the macOS runner-acquisition history behind the `macos-15` pin.
 ├── reproduction/                     # fixtures, reproducers, oracles and audits
 │   ├── minimal_*/                    # strict/JSONC/string-safety fixtures
 │   ├── verify.py                     # unified lightweight entry point
+│   ├── check_docs.py                 # offline documentation/claim consistency
 │   ├── causal_intervention.py        # reversible A-E causal harness
 │   ├── analyze_alias_oracle.py       # strict paths relationship oracle
 │   ├── compare_selections.py         # exported-bundle selection comparison
@@ -690,6 +715,8 @@ records the macOS runner-acquisition history behind the `macos-15` pin.
 ├── evidence/
 │   ├── EXPERIMENT_LOG.md             # positive, negative and hardening results
 │   ├── BENCHMARK_METHOD_AUDIT.md     # generic methods only; no reused findings
+│   ├── duplicate_sweep.json          # machine-readable sweep scope and classifications
+│   ├── ci_status.json                # indexed CI runs, checks and macOS acquisition history
 │   └── tsconfig-jsonc/               # compact machine-readable evidence + reports
 └── submission/
     ├── GITHUB_ISSUE.md               # nine-section corroborating draft; #451 duplicate — not filed
@@ -730,6 +757,8 @@ records the macOS runner-acquisition history behind the `macos-15` pin.
 | `evidence/tsconfig-jsonc/ecosystem_exposure_sample.json` | Bounded public-config sample metadata |
 | `evidence/tsconfig-jsonc/ecosystem_loader_behavior.json` | Direct stock/reference execution on all 184 eligible sampled blobs |
 | `evidence/tsconfig-jsonc/ng-matero/` | Independent repository evidence and TypeScript verification |
+| `evidence/duplicate_sweep.json` | Recorded sweep scope (434 issues through #532), every search term with its hits, the 58-issue body scan, and the same-mechanism/distinct classifications the documents must match |
+| `evidence/ci_status.json` | Indexed runs, check counts, step accounting, macOS acquisition history with GitHub's verbatim annotations, and the commits documentation may pin permalinks to |
 
 ---
 
@@ -775,7 +804,7 @@ and does not prove:
 |---|---|
 | Evidence PR #2 | Open; contains the hardened reference, concentration audit and indexed CI evidence |
 | Latest fully indexed functional snapshot | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` |
-| Current branch head CI | `db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful** (runs [`41888843627`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627), [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612), [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626)); see [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) |
+| Latest indexed CI runs | **10/10 checks successful** at `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` (runs [`42102730901`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901), [`42102730917`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917), [`42102731184`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184)) and at `db66414055bd14e5ea2e060e461c7d7ece05098c`. PR #2's live rollup governs any newer head; see [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) and [`evidence/ci_status.json`](evidence/ci_status.json) |
 | Official upstream GitHub issue | Not filed by this investigation. The 2026-11-05 sweep of 434 issues through #532 confirms upstream #451 as the only report of this mechanism; `submission/GITHUB_ISSUE.md` is retained only as independent corroborating evidence and must not be filed unchanged |
 | Corroborating-comment draft | Prepared and **unfiled** in [`submission/UPSTREAM_CORROBORATION.md`](submission/UPSTREAM_CORROBORATION.md), pending maintainer/organizer direction |
 | Google Form | Draft complete except personal fields and an organizer-accepted official issue URL; **not submitted** |

@@ -20,13 +20,23 @@ All 10 PR checks passed at that commit. Follow-up PR #2's check rollup
 remains the authoritative status for any later branch head. (The original
 investigation was merged through PR #1.)
 
-### Current branch head — `db66414`, 10/10 checks successful
+### Latest indexed runs — `cb7f142` and `db66414`, 10/10 checks each
 
 The detailed artifact IDs and annotations in sections 1–3 below were indexed
 from the `6c6c6b2` runs and are unchanged by later commits, which touched
-documentation, static-analysis hygiene, and the macOS runner label only. The
-current PR head `db66414055bd14e5ea2e060e461c7d7ece05098c` re-ran the same
-workflows successfully:
+documentation, static-analysis hygiene, the macOS runner label, and workflow
+path filters only. Two later heads re-ran the same workflows successfully.
+
+At `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` (documentation/evidence refresh
+plus the path filters that re-verify documented claims):
+
+| Workflow | Run | Result |
+|---|---|---|
+| PR verification — JSONC defect reproduced exactly (0.3.15) | [`42102730901`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901) | success — 8/8 jobs |
+| Lexical clean-environment validation | [`42102730917`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917) | success — all 12 defined steps |
+| Ng-matero clean-environment validation | [`42102731184`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184) | success — all 12 defined steps |
+
+At `db66414055bd14e5ea2e060e461c7d7ece05098c` (the `macos-15` pin):
 
 | Workflow | Run | Result |
 |---|---|---|
@@ -34,17 +44,26 @@ workflows successfully:
 | Lexical clean-environment validation | [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612) | success — all 12 defined steps |
 | Ng-matero clean-environment validation | [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626) | success — all 12 defined steps |
 
-No step in either clean-environment job was skipped: the jobs API reports 15
-(lexical) and 16 (ng-matero) step entries, which are the 12 defined workflow
-steps plus `Set up job`, the `Post` cleanup steps, and `Complete job`, and
-every entry is `completed`/`success`.
+Both heads report a check rollup of 10 successful checks and zero failures.
+
+No step in either clean-environment job was skipped at either head: the jobs API
+reports 15 (lexical) and 16 (ng-matero) step entries, which are the 12 defined
+workflow steps plus `Set up job`, the `Post` cleanup steps, and `Complete job`,
+and every entry is `completed`/`success`.
 
 The lexical job re-executed the substantive work rather than short-circuiting:
 ordinary install of the pinned package, as-is and comment-stripped control CLI
 runs, strict-`paths` oracle and selection recomputation, in-memory-corrected
 Fast Lane on the unmodified checkout, the answerability audit, the exhaustive
-symbol-definition audit, and the published count assertion. The check rollup
-for `db66414` is 10 successful checks and zero failures.
+symbol-definition audit, and the published count assertion.
+
+Self-reference limit, stated plainly: every documentation or evidence commit
+re-triggers these workflows, so the newest head's own runs necessarily complete
+after the index that would cite them. PR #2's live check rollup is therefore
+authoritative for any head newer than those listed here, and
+[`../ci_status.json`](../ci_status.json) is the machine-readable record that
+[`../../reproduction/check_docs.py`](../../reproduction/check_docs.py) checks
+this document against in both directions.
 
 ### macOS scope-job runner acquisition
 
@@ -63,12 +82,18 @@ returns GitHub's own diagnosis verbatim:
 
 These were therefore hosted-capacity acquisition failures, not defect, test, or
 platform-behaviour failures, and no macOS evidence claim ever depended on them.
-An API job rerun returned `403 Resource not accessible by integration`.
+In each of those three runs the other seven jobs — affected-version
+verification, the four Ubuntu scope jobs, the Windows scope job, and the
+patched-install rehearsal — all succeeded, so the runs' overall `failure`
+conclusion is attributable solely to the unacquired macOS job. An API job rerun
+returned `403 Resource not accessible by integration`.
 Pinning the job to `macos-15` allowed it to acquire a runner after a
-~10-minute queue (started 18:46:42Z for a run dispatched at 18:36:37Z) and
-complete successfully in 41 seconds. Section 1's platform-scope description
-below refers to the indexed `6c6c6b2` run, whose macOS job used the then
-floating label; the current workflow pins `macos-15`.
+605-second queue (started 18:46:42Z for a run dispatched at 18:36:37Z) and
+complete successfully in 41 seconds. The next head, `cb7f142`, acquired the
+same pinned label in 4 seconds and passed in 110 seconds, which is consistent
+with transient hosted capacity rather than a label-specific fault. Section 1's
+platform-scope description below refers to the indexed `6c6c6b2` run, whose
+macOS job used the then floating label; the current workflow pins `macos-15`.
 
 ## How to read the PR checks
 

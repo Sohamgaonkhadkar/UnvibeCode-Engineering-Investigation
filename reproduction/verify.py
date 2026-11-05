@@ -11,7 +11,10 @@ Default mode verifies the *affected* UnvibeCode 0.3.15 behaviour exactly:
 5. the reversible A/B/C/D/E causal intervention and targeted boundary checks
    pass on both shipped resolver copies; and
 6. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
-   with the numbers reported in the investigation.
+   with the numbers reported in the investigation; and
+7. the documentation's own provenance claims - duplicate-sweep scope, cited
+   Actions run IDs, permalink pins, and relative links/anchors - agree with the
+   committed machine-readable records (`reproduction/check_docs.py`).
 
 This is intentionally stricter than "a command failed, therefore pass": an
 installation error, traceback, missing output, extra failure, missing failure,
@@ -539,6 +542,12 @@ def main() -> int:
                 check_causal_intervention(output, code, causal_output)
 
         if not args.skip_evidence:
+            code, output = run_child("Documentation and claim consistency", "check_docs.py")
+            require(
+                code == 0 and "DOCUMENTATION_CONSISTENCY_STATUS: passed" in output,
+                "Documentation/claim consistency check failed; documented sweep scope, "
+                "run citations, permalinks, or links disagree with the committed records",
+            )
             check_evidence()
     except VerificationError as exc:
         print(f"\nFINAL RESULT: FAIL — {exc}")

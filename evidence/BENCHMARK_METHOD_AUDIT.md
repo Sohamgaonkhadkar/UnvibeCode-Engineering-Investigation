@@ -18,6 +18,34 @@ investigation's defect, or treat any benchmark result as evidence for ours.
 | #306 | Joined selected `chunk_id`s to chunk contents; used boundary controls; stated which scope/outcome was *not* established | Compared all common lexical selection rows and scopes; classified direct verified dependencies as recovered, present in both, omitted in both, or present only as-is; retained a chunk-level representative case | We did not infer that every missing edge changes context—the exhaustive join showed hundreds did not |
 | `Shashank-VK/unvibecode-stem-fallback-repro` (Cohort 2) | Separate control/bug/monorepo shapes; deterministic reruns; contradiction sought across product outputs; compact captured evidence | Preserved distinct strict/JSONC/no-alias controls; compared resolver state, Stage-1 graph, bundle connections, unresolved records and selections rather than relying on one view | Its false-edge mechanism and examples are unrelated and were not reused |
 
+## 2026-11-05 review — public Cohort 3 repository structures (methods only)
+
+Scope of this later review: the **file trees and README section headings** of
+publicly listed repositories matching `unvibecode` on GitHub (27 repositories,
+of which several are Cohort 3 Track 1 submissions). No issue bodies, findings,
+measurements, or prose from those repositories were read for reuse, and none of
+their defects was adopted. The purpose was narrow: check whether the *shape* of
+a submission artefact suggested a reproducibility affordance this repository
+was missing.
+
+| Observed structural feature | Generic adaptation here | What was deliberately not copied |
+|---|---|---|
+| A single root-level one-command reproducer (`repro.sh`, `verify_issue.py`) in otherwise small repositories | Already satisfied by `reproduction/verify.py`, so **no wrapper was added**; instead the entry point's coverage was widened to include the documentation-provenance checks below, keeping one authoritative command rather than two | No script, fixture, or defect from those repositories; their reproducer targets are unrelated mechanisms |
+| Committed sample output alongside the code that produces it | Already the repository's pattern (`evidence/**` JSON/JSONL plus narrative reports). Extended by adding two machine-readable provenance records, `evidence/duplicate_sweep.json` and `evidence/ci_status.json` | No output, numbers, or examples from any other submission |
+| A repository-level test workflow | Already present as three path-scoped workflows. Their path filters were widened so that documentation and evidence changes re-trigger verification, because those documents carry the numeric claims the jobs assert | No workflow content; the assertions remain this investigation's own |
+| A `.gitignore` in every reviewed repository | Added one, verified programmatically to ignore no tracked file and no committed evidence, so the commands documented in README §6 do not leave a dirty tree | Nothing else |
+| Evidence-only sanitised repositories (run directories and log excerpts) | Not adopted: this repository keeps scripts, fixtures, and evidence together so every claim is re-derivable rather than only readable | Their run-capture layout |
+
+The substantive new artefact from this review is
+[`../reproduction/check_docs.py`](../reproduction/check_docs.py), which is this
+investigation's own idea rather than an observed feature: it makes the two
+documentation claims that actually went stale during the work — the
+duplicate-sweep scope and the CI run index — machine-checkable in both
+directions against the two new records, and it is wired into `verify.py` so CI
+enforces it. It was validated with four negative controls (stale sweep scope,
+unrecorded run ID, broken link and anchor, over-claimed newer scope), each of
+which makes it fail, and a missing-record control that exits 2.
+
 ## Consequences of the audit
 
 The benchmark review changed the investigation in five material ways:
