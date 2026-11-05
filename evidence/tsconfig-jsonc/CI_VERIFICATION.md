@@ -65,6 +65,27 @@ authoritative for any head newer than those listed here, and
 [`../../reproduction/check_docs.py`](../../reproduction/check_docs.py) checks
 this document against in both directions.
 
+### Documentation-consistency gate
+
+The affected-version job enforces `reproduction/check_docs.py` twice: once
+inside `verify.py`'s evidence stage, and once as its own step so that the
+outcome is published as an annotation titled **Documentation and claim
+consistency**. The annotation is deliberately the observable surface for this
+check, because GitHub's log and artifact download hosts are unreachable from
+the restricted investigation sandbox (see the retrieval note at the end of this
+file) while the check-run annotations API is reachable.
+
+The step is a hard gate: `set -o pipefail` on the checker, then assertions that
+the recorded status is `passed`, that `checks_failed` is 0, and that at least 10
+checks passed. There is no `continue-on-error`. A stale documented claim — for
+example a sweep scope that no longer matches
+[`../duplicate_sweep.json`](../duplicate_sweep.json), a cited Actions run that
+is not recorded, or a broken permalink — fails the job. Both directions were
+exercised locally before the step was added: the step exits 0 and prints its
+annotation on the committed tree, and exits 1 with
+`FAIL sweep scope #532 is stated in all three sweep documents; README.md does
+not mention #532` when that one claim is artificially aged.
+
 ### macOS scope-job runner acquisition
 
 The platform matrix's macOS entry was cancelled before executing any step on

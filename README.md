@@ -638,6 +638,14 @@ reconcile, so a documentation-only change re-verifies instead of leaving the PR
 head with missing or stale checks. The filters are strict supersets of the
 earlier code-only filters, so no previously triggering path was dropped.
 
+The affected-version job also gates on
+[`reproduction/check_docs.py`](reproduction/check_docs.py) — inside
+`verify.py`'s evidence stage and again as its own step, which publishes the
+annotation **Documentation and claim consistency** so the result stays readable
+through the API where GitHub's log and artifact hosts are unreachable. It is a
+hard gate with `set -o pipefail` and no `continue-on-error`: a stale documented
+claim fails the job.
+
 Latest fully indexed functional runs at
 `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` (the snapshot whose artifact IDs
 and digests are indexed):

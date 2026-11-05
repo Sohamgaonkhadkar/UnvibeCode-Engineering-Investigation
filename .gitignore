@@ -22,6 +22,13 @@ env/
 /differential-probe.json
 /patch-backup/
 
+# Directories the GitHub Actions workflows create inside the checkout and
+# upload as artifacts; they are CI outputs, never committed evidence.
+/ci-logs/
+/lexical-ci-evidence/
+/ng-ci-evidence/
+/patched-ci-evidence/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db

@@ -70,6 +70,35 @@ jobs:
           set -o pipefail
           python reproduction/verify.py 2>&1 | tee ci-logs/verify-affected-version.log
 
+      # verify.py already enforces this check inside its evidence stage. The
+      # step is repeated on its own so the result is published as an annotation
+      # that stays readable through the API from environments where GitHub's
+      # log and artifact download hosts are unreachable. It is a hard gate:
+      # pipefail plus the assertions below mean a stale documented claim fails
+      # the job, and there is no continue-on-error.
+      - name: Documentation and claim consistency (links, permalinks, run index, sweep scope)
+        run: |
+          set -o pipefail
+          python reproduction/check_docs.py --json ci-logs/documentation-consistency.json \
+            2>&1 | tee ci-logs/documentation-consistency.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path("ci-logs/documentation-consistency.json").read_text())
+          assert result["status"] == "passed", result
+          assert result["checks_failed"] == 0, result
+          assert result["checks_passed"] >= 10, result
+          sweep = result["sweep"]
+          print(
+              "::notice title=Documentation and claim consistency::"
+              f"status={result['status']}, checks passed={result['checks_passed']}, "
+              f"duplicate sweep={sweep['sweep_date']} issues={sweep['total_issues']} "
+              f"newest=#{sweep['newest_issue']} same_mechanism={sweep['same_mechanism']}, "
+              f"indexed CI snapshots={len(result['indexed_snapshots'])}"
+          )
+          PY
+
       - name: Reference parser/loader unit tests
         run: |
           set -o pipefail
