@@ -657,23 +657,23 @@ and digests are indexed):
 - ng-matero:
   https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913798
 
-Latest indexed runs at `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` and at
-`db66414055bd14e5ea2e060e461c7d7ece05098c` — **10/10 checks successful at each
-head**, with every defined step of the Lexical and ng-matero jobs executed and
-none skipped:
+Every head since that indexed snapshot has re-run the same workflows
+successfully — five heads, **10/10 checks each**, with every defined step of the
+Lexical and ng-matero jobs executed and none skipped. The newest indexed head is
+`18295e1c1df280f42bef0c3100e5ba12c694e467`:
 
 - Main verification:
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901
-  and
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139576
 - Lexical:
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917
-  and
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139604
 - ng-matero:
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184
-  and
-  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626
+  https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139753
+
+The full chain (`6c6c6b2` → `db66414` → `cb7f142` → `ca4f1b0` → `18295e1`), each
+head's role, its macOS acquisition time, and the verbatim documentation-gate
+annotation are tabulated in
+[`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) and recorded
+in [`evidence/ci_status.json`](evidence/ci_status.json).
 
 Because a documentation commit re-triggers these workflows, the newest head's
 own runs always complete after any index that could cite them; PR #2's live
@@ -812,7 +812,8 @@ and does not prove:
 |---|---|
 | Evidence PR #2 | Open; contains the hardened reference, concentration audit and indexed CI evidence |
 | Latest fully indexed functional snapshot | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` |
-| Latest indexed CI runs | **10/10 checks successful** at `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` (runs [`42102730901`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901), [`42102730917`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917), [`42102731184`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184)) and at `db66414055bd14e5ea2e060e461c7d7ece05098c`. PR #2's live rollup governs any newer head; see [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) and [`evidence/ci_status.json`](evidence/ci_status.json) |
+| Latest indexed CI runs | **10/10 checks successful** at each of five heads, newest `18295e1c1df280f42bef0c3100e5ba12c694e467` (runs [`42105139576`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139576), [`42105139604`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139604), [`42105139753`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139753)). PR #2's live rollup governs any newer head; the full chain is in [`CI_VERIFICATION.md`](evidence/tsconfig-jsonc/CI_VERIFICATION.md) and [`evidence/ci_status.json`](evidence/ci_status.json) |
+| Documentation-claim gate | `reproduction/check_docs.py` runs inside `verify.py` and as its own CI step, which publishes the API-readable annotation **Documentation and claim consistency**; it is a hard gate with no `continue-on-error` |
 | Official upstream GitHub issue | Not filed by this investigation. The 2026-11-05 sweep of 434 issues through #532 confirms upstream #451 as the only report of this mechanism; `submission/GITHUB_ISSUE.md` is retained only as independent corroborating evidence and must not be filed unchanged |
 | Corroborating-comment draft | Prepared and **unfiled** in [`submission/UPSTREAM_CORROBORATION.md`](submission/UPSTREAM_CORROBORATION.md), pending maintainer/organizer direction |
 | Google Form | Draft complete except personal fields and an organizer-accepted official issue URL; **not submitted** |

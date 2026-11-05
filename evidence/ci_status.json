@@ -62,6 +62,49 @@
         "duration_seconds": 110,
         "note": "The same pinned label acquired a runner in 4 seconds here after a 605-second queue at db66414, which is consistent with transient hosted capacity rather than a label-specific fault."
       }
+    },
+    {
+      "commit": "ca4f1b0e342bbbe0bc987775c7f6b6498ad893ec",
+      "role": "added the machine-readable provenance records and wired reproduction/check_docs.py into verify.py's evidence stage",
+      "checks_total": 10,
+      "checks_successful": 10,
+      "runs": [
+        { "workflow": "PR verification - JSONC defect reproduced exactly (0.3.15)", "run_id": 42104144262, "conclusion": "success", "jobs_total": 8, "jobs_successful": 8 },
+        { "workflow": "Lexical clean-environment validation", "run_id": 42104144266, "conclusion": "success" },
+        { "workflow": "Ng-matero clean-environment validation", "run_id": 42104144238, "conclusion": "success" }
+      ],
+      "macos_scope_label": "macos-15"
+    },
+    {
+      "commit": "18295e1c1df280f42bef0c3100e5ba12c694e467",
+      "role": "published the documentation-consistency gate as an API-readable annotation on the affected-version job",
+      "checks_total": 10,
+      "checks_successful": 10,
+      "runs": [
+        { "workflow": "PR verification - JSONC defect reproduced exactly (0.3.15)", "run_id": 42105139576, "conclusion": "success", "jobs_total": 8, "jobs_successful": 8 },
+        { "workflow": "Lexical clean-environment validation", "run_id": 42105139604, "conclusion": "success", "defined_steps": 12, "reported_step_entries": 15, "skipped_steps": 0 },
+        { "workflow": "Ng-matero clean-environment validation", "run_id": 42105139753, "conclusion": "success", "defined_steps": 12, "reported_step_entries": 16, "skipped_steps": 0 }
+      ],
+      "macos_scope_label": "macos-15",
+      "macos_job": {
+        "job_id": 127517840450,
+        "conclusion": "success",
+        "runner_id": 1000002007,
+        "run_dispatched_at": "2026-11-05T20:37:41Z",
+        "job_started_at": "2026-11-05T20:37:47Z",
+        "job_completed_at": "2026-11-05T20:40:26Z",
+        "queue_seconds": 6,
+        "duration_seconds": 159
+      },
+      "documentation_gate": {
+        "affected_version_job_id": 127517840349,
+        "reported_step_entries": 19,
+        "gate_step_number": 8,
+        "gate_step_name": "Documentation and claim consistency (links, permalinks, run index, sweep scope)",
+        "gate_step_conclusion": "success",
+        "verbatim_annotation": "Documentation and claim consistency: status=passed, checks passed=10, duplicate sweep=2026-11-05 issues=434 newest=#532 same_mechanism=[451], indexed CI snapshots=3",
+        "retrieved_via": "check-run annotations API, because the log and artifact download hosts are unreachable from the restricted investigation sandbox"
+      }
     }
   ],
   "macos_acquisition_history": {

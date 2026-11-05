@@ -20,36 +20,31 @@ All 10 PR checks passed at that commit. Follow-up PR #2's check rollup
 remains the authoritative status for any later branch head. (The original
 investigation was merged through PR #1.)
 
-### Latest indexed runs — `cb7f142` and `db66414`, 10/10 checks each
+### Complete indexed run chain — five heads, 10/10 checks each
 
 The detailed artifact IDs and annotations in sections 1–3 below were indexed
 from the `6c6c6b2` runs and are unchanged by later commits, which touched
-documentation, static-analysis hygiene, the macOS runner label, and workflow
-path filters only. Two later heads re-ran the same workflows successfully.
+documentation, static-analysis hygiene, the macOS runner label, workflow path
+filters, and the documentation-consistency gate only. Every head since then
+re-ran the same workflows successfully:
 
-At `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` (documentation/evidence refresh
-plus the path filters that re-verify documented claims):
+| Investigation commit | Role | Main verification | Lexical | ng-matero | Checks |
+|---|---|---|---|---|---|
+| `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` | Fully indexed functional snapshot; source of the artifact IDs and digests in sections 1–3 | [`41670913945`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913945) | [`41670913810`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913810) | [`41670913798`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41670913798) | 10/10 |
+| `db66414055bd14e5ea2e060e461c7d7ece05098c` | `macos-15` pin; first head at which the macOS scope job acquired a runner | [`41888843627`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627) | [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612) | [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626) | 10/10 |
+| `cb7f142e50d1f2996316ca7c3c8cea4e8c905a35` | Duplicate sweep refreshed through #532; path filters widened so documented claims re-verify | [`42102730901`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901) | [`42102730917`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917) | [`42102731184`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184) | 10/10 |
+| `ca4f1b0e342bbbe0bc987775c7f6b6498ad893ec` | Machine-readable provenance records; `check_docs.py` wired into `verify.py` | [`42104144262`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42104144262) | [`42104144266`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42104144266) | [`42104144238`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42104144238) | 10/10 |
+| `18295e1c1df280f42bef0c3100e5ba12c694e467` | Documentation gate published as an API-readable annotation | [`42105139576`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139576) | [`42105139604`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139604) | [`42105139753`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42105139753) | 10/10 |
 
-| Workflow | Run | Result |
-|---|---|---|
-| PR verification — JSONC defect reproduced exactly (0.3.15) | [`42102730901`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730901) | success — 8/8 jobs |
-| Lexical clean-environment validation | [`42102730917`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102730917) | success — all 12 defined steps |
-| Ng-matero clean-environment validation | [`42102731184`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42102731184) | success — all 12 defined steps |
+Every main-verification run completed 8/8 jobs. No step in any
+clean-environment job was skipped at any head: the jobs API reports 15 (lexical)
+and 16 (ng-matero) step entries, which are the 12 defined workflow steps plus
+`Set up job`, the `Post` cleanup steps, and `Complete job`, and every entry is
+`completed`/`success`. At `18295e1` the affected-version job reports 19 step
+entries and its step 8 is the documentation-consistency gate.
 
-At `db66414055bd14e5ea2e060e461c7d7ece05098c` (the `macos-15` pin):
-
-| Workflow | Run | Result |
-|---|---|---|
-| PR verification — JSONC defect reproduced exactly (0.3.15) | [`41888843627`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843627) | success — 8/8 jobs |
-| Lexical clean-environment validation | [`41888843612`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843612) | success — all 12 defined steps |
-| Ng-matero clean-environment validation | [`41888843626`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41888843626) | success — all 12 defined steps |
-
-Both heads report a check rollup of 10 successful checks and zero failures.
-
-No step in either clean-environment job was skipped at either head: the jobs API
-reports 15 (lexical) and 16 (ng-matero) step entries, which are the 12 defined
-workflow steps plus `Set up job`, the `Post` cleanup steps, and `Complete job`,
-and every entry is `completed`/`success`.
+macOS scope-job acquisition at the three heads that recorded it: 605 s queue /
+41 s run at `db66414`, 4 s / 110 s at `cb7f142`, and 6 s / 159 s at `18295e1`.
 
 The lexical job re-executed the substantive work rather than short-circuiting:
 ordinary install of the pinned package, as-is and comment-stripped control CLI
@@ -86,12 +81,28 @@ annotation on the committed tree, and exits 1 with
 `FAIL sweep scope #532 is stated in all three sweep documents; README.md does
 not mention #532` when that one claim is artificially aged.
 
+The annotation published by the run at `18295e1` (affected-version job
+`127517840349`, step 8, conclusion `success`), retrieved verbatim through the
+check-run annotations API rather than from a log download, reads:
+
+> `Documentation and claim consistency: status=passed, checks passed=10,
+> duplicate sweep=2026-11-05 issues=434 newest=#532 same_mechanism=[451],
+> indexed CI snapshots=3`
+
+The same API retrieval path supplies every other annotation quoted in this
+file, so the gate's outcome is verifiable from a restricted environment.
+
 ### macOS scope-job runner acquisition
 
 The platform matrix's macOS entry was cancelled before executing any step on
 three successive heads — with the floating `macos-latest` label (job
-`126192817755` at `029b9ef`, job `126761623582` at `b12105f`) and with an
-explicit Intel label (job `126771193611` at `061c3b7`). Each cancelled job
+`126192817755` in run
+[`41715070598`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41715070598)
+at `029b9ef`, job `126761623582` in run
+[`41883465788`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41883465788)
+at `b12105f`) and with an explicit Intel label (job `126771193611` in run
+[`41886199794`](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/41886199794)
+at `061c3b7`). Each cancelled job
 reported `runner_id: 0` with zero steps, and the check-run annotations API
 returns GitHub's own diagnosis verbatim:
 
