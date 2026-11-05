@@ -14,9 +14,14 @@ on:
       - "reproduction/symbol_evidence_audit.py"
       - "reproduction/jsonc_tolerant.py"
       - "solution/tsconfig_jsonc.py"
-      - "evidence/tsconfig-jsonc/lexical_tsconfig_control.json"
-      - "evidence/tsconfig-jsonc/lost_relationships.jsonl"
-      - "evidence/tsconfig-jsonc/selection_case_react_extension.json"
+      - "evidence/**"
+      # The documentation states the lexical counts this job re-derives, so a
+      # documentation-only change must re-verify rather than leave the PR head
+      # without checks.
+      - "README.md"
+      - "ROOT_CAUSE.md"
+      - "DUPLICATE_CHECK.md"
+      - "submission/**"
   workflow_dispatch:
 
 permissions:

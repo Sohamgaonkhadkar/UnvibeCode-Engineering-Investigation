@@ -621,6 +621,13 @@ restore/hash-check sequence is documented in
 | `ng-matero-clean-environment.yml` | One ordinary-install ng-matero job | Independent stock/control/corrected replication and answerability |
 | `jsonc-expected-behavior.yml` | Manual only | Raw expected-behaviour regression for a candidate fixed release |
 
+All three PR workflows are path-scoped, and their filters deliberately include
+`README.md`, `ROOT_CAUSE.md`, `DUPLICATE_CHECK.md`, `evidence/**`, and
+`submission/**`: these documents state the numeric claims the jobs assert and
+reconcile, so a documentation-only change re-verifies instead of leaving the PR
+head with missing or stale checks. The filters are strict supersets of the
+earlier code-only filters, so no previously triggering path was dropped.
+
 Latest fully indexed functional runs at
 `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` (the snapshot whose artifact IDs
 and digests are indexed):

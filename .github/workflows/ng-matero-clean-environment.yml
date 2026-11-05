@@ -14,9 +14,14 @@ on:
       - "reproduction/corrected_fastlane_validation.py"
       - "reproduction/tsc_verify_relationships.mjs"
       - "solution/tsconfig_jsonc.py"
-      - "evidence/tsconfig-jsonc/ng-matero/tsconfig_as_is.json"
-      - "evidence/tsconfig-jsonc/ng-matero/tsconfig_control.json"
-      - "evidence/tsconfig-jsonc/ng-matero/lost_relationships.jsonl"
+      - "evidence/**"
+      # The documentation states the ng-matero counts this job re-derives, so a
+      # documentation-only change must re-verify rather than leave the PR head
+      # without checks.
+      - "README.md"
+      - "ROOT_CAUSE.md"
+      - "DUPLICATE_CHECK.md"
+      - "submission/**"
   workflow_dispatch:
 
 permissions:

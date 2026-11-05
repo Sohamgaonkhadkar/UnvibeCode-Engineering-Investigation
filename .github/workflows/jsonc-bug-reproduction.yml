@@ -7,12 +7,14 @@ on:
       - ".github/workflows/jsonc-*.yml"
       - "reproduction/**"
       - "solution/**"
-      - "evidence/tsconfig-jsonc/reference_solution_validation.json"
-      - "evidence/tsconfig-jsonc/differential_probe.json"
-      - "evidence/tsconfig-jsonc/relationship_concentration_audit.json"
-      - "evidence/tsconfig-jsonc/version_scope.json"
-      - "evidence/tsconfig-jsonc/ecosystem_exposure_sample.json"
-      - "evidence/tsconfig-jsonc/ecosystem_loader_behavior.json"
+      - "evidence/**"
+      # The documentation states the numeric claims this workflow asserts and
+      # reconciles, so a documentation-only change must re-verify instead of
+      # leaving the PR head with missing or stale checks.
+      - "README.md"
+      - "ROOT_CAUSE.md"
+      - "DUPLICATE_CHECK.md"
+      - "submission/**"
   workflow_dispatch:
 
 permissions:
