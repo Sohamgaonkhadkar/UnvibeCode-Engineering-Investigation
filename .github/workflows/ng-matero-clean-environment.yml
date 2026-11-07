@@ -1,0 +1,255 @@
+name: Ng-matero clean-environment validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/ng-matero-clean-environment.yml"
+      - "reproduction/analyze_alias_oracle.py"
+      - "reproduction/answerability_audit.py"
+      - "reproduction/answerability_tasks_ng_matero.json"
+      - "reproduction/capture_run.py"
+      - "reproduction/causal_intervention.py"
+      - "reproduction/compare_selections.py"
+      - "reproduction/corrected_fastlane_validation.py"
+      - "reproduction/tsc_verify_relationships.mjs"
+      - "solution/tsconfig_jsonc.py"
+      - "evidence/**"
+      # The documentation states the ng-matero counts this job re-derives, so a
+      # documentation-only change must re-verify rather than leave the PR head
+      # without checks.
+      - "README.md"
+      - "ROOT_CAUSE.md"
+      - "DUPLICATE_CHECK.md"
+      - "submission/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ng-matero:
+    name: Standard install — ng-matero original vs comment-stripped control
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      NG_COMMIT: d351bf5957d8c6dc9eca79d0c9b260c5b8d07822
+      NG_TSCONFIG_SHA256: d911557829a1cb7a18b8f89801b92dcaa4ff7d9a038b844207d372a0158a6a1c
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install the pinned public package and TypeScript oracle normally
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r reproduction/requirements-ci.txt
+          python -m pip show unvibecode
+          mkdir -p "$RUNNER_TEMP/ts-oracle"
+          npm install --prefix "$RUNNER_TEMP/ts-oracle" --no-save typescript@5.9.3
+          NODE_PATH="$RUNNER_TEMP/ts-oracle/node_modules" node -e "console.log(require('typescript').version)"
+
+      - name: Fetch ng-matero at the pinned commit and prepare the control
+        run: |
+          mkdir -p "$RUNNER_TEMP/ng-matero"
+          git -C "$RUNNER_TEMP/ng-matero" init
+          git -C "$RUNNER_TEMP/ng-matero" remote add origin https://github.com/ng-matero/ng-matero.git
+          git -C "$RUNNER_TEMP/ng-matero" fetch --depth 1 origin "$NG_COMMIT"
+          git -C "$RUNNER_TEMP/ng-matero" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/ng-matero" rev-parse HEAD)" = "$NG_COMMIT"
+          test "$(sha256sum "$RUNNER_TEMP/ng-matero/tsconfig.json" | cut -d' ' -f1)" = "$NG_TSCONFIG_SHA256"
+          cp -a "$RUNNER_TEMP/ng-matero" "$RUNNER_TEMP/ng-matero-ctrl"
+          cp evidence/tsconfig-jsonc/ng-matero/tsconfig_control.json \
+            "$RUNNER_TEMP/ng-matero-ctrl/tsconfig.json"
+          diff -u "$RUNNER_TEMP/ng-matero/tsconfig.json" \
+            "$RUNNER_TEMP/ng-matero-ctrl/tsconfig.json" || true
+
+      - name: Run ordinary-install CLI on ng-matero as-is and control
+        run: |
+          python reproduction/capture_run.py \
+            --repository "$RUNNER_TEMP/ng-matero" \
+            --output-dir "$RUNNER_TEMP/capture-ng" \
+            --timeout 900
+          python reproduction/capture_run.py \
+            --repository "$RUNNER_TEMP/ng-matero-ctrl" \
+            --output-dir "$RUNNER_TEMP/capture-ng-ctrl" \
+            --timeout 900
+          grep '\[STAGE 1 COMPLETE\]' \
+            "$RUNNER_TEMP/capture-ng/connected_code_map.log"
+          grep '\[STAGE 1 COMPLETE\]' \
+            "$RUNNER_TEMP/capture-ng-ctrl/connected_code_map.log"
+
+      - name: Recompute paths oracle, TypeScript verification, and selection impact
+        run: |
+          mkdir -p ng-ci-evidence
+          python reproduction/analyze_alias_oracle.py \
+            --graph-as-is "$RUNNER_TEMP/capture-ng/resolved_graph.json" \
+            --graph-control "$RUNNER_TEMP/capture-ng-ctrl/resolved_graph.json" \
+            --source-root "$RUNNER_TEMP/ng-matero" \
+            --tsconfig "$RUNNER_TEMP/ng-matero/tsconfig.json" \
+            --legacy-prefixes "@core,@shared,@theme,@env" \
+            --lost-output ng-ci-evidence/lost_relationships.jsonl \
+            --summary-output ng-ci-evidence/alias_oracle_summary.json
+          NODE_PATH="$RUNNER_TEMP/ts-oracle/node_modules" \
+          node reproduction/tsc_verify_relationships.mjs \
+            --root "$RUNNER_TEMP/ng-matero" \
+            --input ng-ci-evidence/lost_relationships.jsonl \
+            --output ng-ci-evidence/typescript_api_verification.json
+          python reproduction/compare_selections.py \
+            --bundle-as-is "$RUNNER_TEMP/capture-ng/repository-context.zip" \
+            --bundle-control "$RUNNER_TEMP/capture-ng-ctrl/repository-context.zip" \
+            --lost-relationships ng-ci-evidence/lost_relationships.jsonl \
+            --summary-output ng-ci-evidence/selection_impact_summary.json \
+            --omissions-output ng-ci-evidence/direct_selection_omissions.jsonl
+          cp "$RUNNER_TEMP/capture-ng/connected_code_map.log" \
+            ng-ci-evidence/ng-matero-as-is-connected-code.log
+          cp "$RUNNER_TEMP/capture-ng-ctrl/connected_code_map.log" \
+            ng-ci-evidence/ng-matero-control-connected-code.log
+
+      # Keep the original ng-matero tsconfig bytes and patch only the loader
+      # and graph-warning wiring in the installed Fast Lane module in memory.
+      - name: In-memory-corrected Fast Lane on unmodified ng-matero
+        run: |
+          python reproduction/corrected_fastlane_validation.py \
+            --repository "$RUNNER_TEMP/ng-matero" \
+            --output-root "$RUNNER_TEMP/corrected-ng-output" \
+            --lost-relationships ng-ci-evidence/lost_relationships.jsonl \
+            --expected-config-sha256 "$NG_TSCONFIG_SHA256" \
+            --expected-files 300 \
+            --expected-edges 241 \
+            --selection-source src/app/app.config.ts \
+            --representative-source src/app/app.config.ts \
+            --output ng-ci-evidence/corrected-fastlane-validation.json
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-ng-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/compare_selections.py \
+            --bundle-as-is "$RUNNER_TEMP/capture-ng/repository-context.zip" \
+            --bundle-control "$corrected_bundle" \
+            --lost-relationships ng-ci-evidence/lost_relationships.jsonl \
+            --summary-output ng-ci-evidence/selection_impact_corrected_vs_stock.json \
+            --omissions-output ng-ci-evidence/direct_selection_omissions_corrected_vs_stock.jsonl
+
+      - name: Answer-bearing lines in actual exported Optimal bundles
+        run: |
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-ng-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          set +e
+          python reproduction/answerability_audit.py \
+            --tasks reproduction/answerability_tasks_ng_matero.json \
+            --bundle "as_is=$RUNNER_TEMP/capture-ng/repository-context.zip" \
+            --bundle "control=$RUNNER_TEMP/capture-ng-ctrl/repository-context.zip" \
+            --bundle "corrected=$corrected_bundle" \
+            --output ng-ci-evidence/answerability_audit.json
+          audit_code=$?
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("ng-ci-evidence/answerability_audit.json")
+          if path.is_file():
+              data = json.loads(path.read_text())
+              details = []
+              for bundle in data.get("bundles", []):
+                  for task in bundle.get("tasks", []):
+                      present = sum(row["present"] for row in task["evidence"])
+                      details.append(
+                          f"{bundle['label']}:{task['id']}="
+                          f"{present}/{len(task['evidence'])}"
+                          f"(selected={str(task['answer_file_selected']).lower()},"
+                          f"answerable={str(task['answerable']).lower()})"
+                      )
+              print(
+                  "::notice title=Ng-matero answerability detail::"
+                  + "; ".join(details)
+                  + f"; status={data.get('status')}; error={data.get('error')}"
+              )
+          PY
+          exit "$audit_code"
+
+      - name: Assert and publish key ng-matero counts as an annotation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          oracle = json.loads(Path("ng-ci-evidence/alias_oracle_summary.json").read_text())
+          graph_a = oracle["inputs"]["graph_as_is"]["summary"]
+          graph_b = oracle["inputs"]["graph_control"]["summary"]
+          strong = oracle["strong_oracle"]
+          scan = oracle["scan_and_extraction"]
+          assert graph_a["edges"] == 130 and graph_b["edges"] == 241, (graph_a, graph_b)
+          assert strong["classification"] == {"verified_paths_target": 111}, strong
+          assert scan["nodes_as_is"] == scan["nodes_control"] == 300, scan
+          assert scan["extracted_import_records"] == 1192, scan
+          assert scan["extracted_import_records_identical"] is True, scan
+
+          tsc = json.loads(Path("ng-ci-evidence/typescript_api_verification.json").read_text())
+          assert tsc["typescript_version"] == "5.9.3", tsc
+          assert tsc["rows_checked"] == tsc["matched_rows"] == 111, tsc
+          assert tsc["mismatched_rows"] == 0, tsc
+
+          def recovered(path):
+              data = json.loads(Path(path).read_text())
+              values = data["direct_dependency_recovered"]["instances_by_scope"]
+              optimal = next(v for k, v in values.items() if k.startswith("Optimal"))
+              wider = next(v for k, v in values.items() if k.startswith("Wider"))
+              return optimal, wider
+
+          optimal, wider = recovered("ng-ci-evidence/selection_impact_summary.json")
+          corrected_optimal, corrected_wider = recovered(
+              "ng-ci-evidence/selection_impact_corrected_vs_stock.json"
+          )
+          assert (optimal, wider) == (107, 107), (optimal, wider)
+          assert (corrected_optimal, corrected_wider) == (107, 107), (
+              corrected_optimal,
+              corrected_wider,
+          )
+
+          corrected = json.loads(
+              Path("ng-ci-evidence/corrected-fastlane-validation.json").read_text()
+          )
+          assert corrected["status"] == "passed", corrected
+          assert corrected["graph_summary"]["edges"] == 241, corrected
+          assert corrected["verified_relationships_present"] == 111, corrected
+          assert corrected["graph_warnings"] == [], corrected
+
+          answerability = json.loads(Path("ng-ci-evidence/answerability_audit.json").read_text())
+          answers = answerability["summary"]
+          assert answerability["status"] == "passed", answerability
+          assert answers["as_is"] == {
+              "impact_answerable": 0,
+              "impact_total": 3,
+              "negative_control_answerable": 1,
+              "negative_control_total": 1,
+          }, answers
+          assert answers["control"]["impact_answerable"] == 3, answers
+          assert answers["corrected"]["impact_answerable"] == 3, answers
+          print(
+              "::notice title=Ng-matero clean-environment validation::"
+              f"as-is edges={graph_a['edges']}, control edges={graph_b['edges']}, "
+              f"TypeScript-verified lost relationships={tsc['matched_rows']}, "
+              f"Optimal/Wider direct dependencies recovered={optimal}/{wider}; "
+              f"in-memory corrected original edges={corrected['graph_summary']['edges']}, "
+              f"corrected-vs-stock Optimal/Wider={corrected_optimal}/{corrected_wider}; "
+              "answer-bearing Optimal tasks as-is/control/corrected="
+              f"{answers['as_is']['impact_answerable']}/"
+              f"{answers['control']['impact_answerable']}/"
+              f"{answers['corrected']['impact_answerable']} of 3"
+          )
+          PY
+
+      - name: Upload ng-matero clean-environment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ng-matero-clean-environment-evidence
+          path: ng-ci-evidence/
+          if-no-files-found: warn

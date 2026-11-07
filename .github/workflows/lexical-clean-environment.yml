@@ -5,6 +5,23 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/lexical-clean-environment.yml"
+      - "reproduction/analyze_alias_oracle.py"
+      - "reproduction/capture_run.py"
+      - "reproduction/causal_intervention.py"
+      - "reproduction/compare_selections.py"
+      - "reproduction/answerability_audit.py"
+      - "reproduction/answerability_tasks.json"
+      - "reproduction/symbol_evidence_audit.py"
+      - "reproduction/jsonc_tolerant.py"
+      - "solution/tsconfig_jsonc.py"
+      - "evidence/**"
+      # The documentation states the lexical counts this job re-derives, so a
+      # documentation-only change must re-verify rather than leave the PR head
+      # without checks.
+      - "README.md"
+      - "ROOT_CAUSE.md"
+      - "DUPLICATE_CHECK.md"
+      - "submission/**"
   workflow_dispatch:
 
 permissions:
@@ -80,6 +97,63 @@ jobs:
           cp "$RUNNER_TEMP/capture_lexical_ctrl/connected_code_map.log" \
             lexical-ci-evidence/lexical-control-connected-code.log
 
+      # Diagnostic causal control: keep lexical's original tsconfig bytes and
+      # patch only _load_tsconfig_aliases in the Fast Lane module in memory.
+      # The script asserts the config and ReactExtension source hashes are
+      # unchanged after the run and restores the stock method before exit.
+      - name: In-memory-corrected Fast Lane on unmodified lexical
+        run: |
+          python reproduction/causal_intervention.py \
+            --lexical-root "$RUNNER_TEMP/lexical" \
+            --lexical-output-root "$RUNNER_TEMP/corrected-lexical-output" \
+            --lost-relationships lexical-ci-evidence/lost_relationships.jsonl \
+            --selection-case evidence/tsconfig-jsonc/selection_case_react_extension.json \
+            --output lexical-ci-evidence/causal-intervention-lexical.json
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-lexical-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/compare_selections.py \
+            --bundle-as-is "$RUNNER_TEMP/capture_lexical/repository-context.zip" \
+            --bundle-control "$corrected_bundle" \
+            --lost-relationships lexical-ci-evidence/lost_relationships.jsonl \
+            --summary-output lexical-ci-evidence/selection_impact_corrected_vs_stock.json \
+            --omissions-output lexical-ci-evidence/direct_selection_omissions_corrected_vs_stock.jsonl
+
+      # Deterministic final-artifact check: exact answer-bearing lines must
+      # be present in selected Optimal chunks from the answering files.  It
+      # makes no LLM-output claim.
+      - name: Answer-bearing lines in actual exported Optimal bundles
+        run: |
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-lexical-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/answerability_audit.py \
+            --tasks reproduction/answerability_tasks.json \
+            --bundle "as_is=$RUNNER_TEMP/capture_lexical/repository-context.zip" \
+            --bundle "control=$RUNNER_TEMP/capture_lexical_ctrl/repository-context.zip" \
+            --bundle "corrected=$corrected_bundle" \
+            --output lexical-ci-evidence/answerability_audit.json
+
+      # Scale final-artifact evidence beyond the six representative tasks:
+      # for every eligible imported symbol on a verified lost relationship,
+      # require a recognizable declaration/export line in the selected chunks
+      # for the importing source.
+      - name: Exhaustive symbol-definition evidence in exported bundles
+        run: |
+          corrected_bundle="$(find "$RUNNER_TEMP/corrected-lexical-output" \
+            -name shipready_complete_repository_context.zip -print -quit)"
+          test -n "$corrected_bundle"
+          python reproduction/symbol_evidence_audit.py \
+            --graph-control "$RUNNER_TEMP/capture_lexical_ctrl/resolved_graph.json" \
+            --lost-relationships lexical-ci-evidence/lost_relationships.jsonl \
+            --bundle "as_is=$RUNNER_TEMP/capture_lexical/repository-context.zip" \
+            --bundle "control=$RUNNER_TEMP/capture_lexical_ctrl/repository-context.zip" \
+            --bundle "corrected=$corrected_bundle" \
+            --radius 1 \
+            --radius 2 \
+            --output lexical-ci-evidence/symbol_evidence_audit.json \
+            --details-output lexical-ci-evidence/symbol_evidence_details.jsonl
+
       - name: Assert and publish key lexical counts as an annotation
         run: |
           python - <<'PY'
@@ -96,11 +170,102 @@ jobs:
           assert graph_a["edges"] == 1263 and graph_b["edges"] == 5519, (graph_a, graph_b)
           assert strong["classification"] == {"verified_paths_target": 4256}, strong
           assert optimal == 2707, recovered
+
+          causal = json.loads(Path("lexical-ci-evidence/causal-intervention-lexical.json").read_text())
+          corrected = causal["lexical_corrected_fastlane"]
+          corrected_selections = json.loads(
+              Path("lexical-ci-evidence/selection_impact_corrected_vs_stock.json").read_text()
+          )
+          corrected_recovered = corrected_selections["direct_dependency_recovered"]["instances_by_scope"]
+          corrected_optimal = next(
+              value for key, value in corrected_recovered.items() if key.startswith("Optimal")
+          )
+          corrected_wider = next(
+              value for key, value in corrected_recovered.items() if key.startswith("Wider")
+          )
+          assert corrected["graph_summary"]["edges"] == 5519, corrected["graph_summary"]
+          assert corrected["verified_relationships_present"] == 4256, corrected
+          assert corrected["matches_comment_stripped_control_selection_exactly"] is True
+          assert corrected_optimal == 2707 and corrected_wider == 3345, corrected_recovered
+
+          answerability = json.loads(
+              Path("lexical-ci-evidence/answerability_audit.json").read_text()
+          )
+          answers = answerability["summary"]
+          assert answerability["status"] == "passed", answerability
+          assert answers["as_is"] == {
+              "impact_answerable": 0,
+              "impact_total": 6,
+              "negative_control_answerable": 1,
+              "negative_control_total": 1,
+          }, answers
+          assert answers["control"]["impact_answerable"] == 6, answers
+          assert answers["corrected"]["impact_answerable"] == 6, answers
+
+          symbols = json.loads(
+              Path("lexical-ci-evidence/symbol_evidence_audit.json").read_text()
+          )
+          assert symbols["status"] == "passed", symbols
+          derivation = symbols["task_derivation"]
+          assert derivation["verified_relationship_rows"] == 4256, derivation
+          assert derivation["candidate_symbol_tasks"] == 10715, derivation
+          assert derivation["eligible_symbol_tasks"] == 10703, derivation
+          assert derivation["distinct_source_files"] == 1239, derivation
+          assert derivation["distinct_definition_files"] == 182, derivation
+          expected_symbol_radii = {
+              "1": (
+                  {"as_is": 726, "control": 8826, "corrected": 8826},
+                  8163,
+                  8163,
+              ),
+              "2": (
+                  {"as_is": 711, "control": 9883, "corrected": 9883},
+                  9182,
+                  9182,
+              ),
+          }
+          symbol_radii = {}
+          for radius in ("1", "2"):
+              entry = symbols["by_radius"][radius]
+              recovered_control = entry["comparisons"]["as_is_to_control"]["states"].get(
+                  "definition_recovered", 0
+              )
+              recovered_corrected = entry["comparisons"]["as_is_to_corrected"]["states"].get(
+                  "definition_recovered", 0
+              )
+              assert (
+                  entry["definition_available_by_bundle"],
+                  recovered_control,
+                  recovered_corrected,
+              ) == expected_symbol_radii[radius], entry
+              symbol_radii[radius] = (
+                  entry["definition_available_by_bundle"],
+                  recovered_control,
+                  recovered_corrected,
+              )
           print(
               "::notice title=Lexical clean-environment validation::"
               f"as-is edges={graph_a['edges']}, control edges={graph_b['edges']}, "
               f"verified lost file relationships={strong['gained_file_edges_total']}, "
-              f"Optimal direct dependencies recovered={optimal}"
+              f"Optimal direct dependencies recovered={optimal}; "
+              f"in-memory corrected original edges={corrected['graph_summary']['edges']}, "
+              f"corrected-vs-stock Optimal/Wider={corrected_optimal}/{corrected_wider}; "
+              f"answer-bearing Optimal tasks as-is/control/corrected="
+              f"{answers['as_is']['impact_answerable']}/"
+              f"{answers['control']['impact_answerable']}/"
+              f"{answers['corrected']['impact_answerable']} of 6; "
+              f"eligible symbol-definition tasks={derivation['eligible_symbol_tasks']} "
+              f"(candidate={derivation['candidate_symbol_tasks']}, "
+              f"sources={derivation['distinct_source_files']}, "
+              f"definition_files={derivation['distinct_definition_files']}); "
+              f"Optimal definitions as-is/control/corrected="
+              f"{symbol_radii['1'][0]['as_is']}/{symbol_radii['1'][0]['control']}/"
+              f"{symbol_radii['1'][0]['corrected']}, recovered control/corrected="
+              f"{symbol_radii['1'][1]}/{symbol_radii['1'][2]}; "
+              f"Wider definitions as-is/control/corrected="
+              f"{symbol_radii['2'][0]['as_is']}/{symbol_radii['2'][0]['control']}/"
+              f"{symbol_radii['2'][0]['corrected']}, recovered control/corrected="
+              f"{symbol_radii['2'][1]}/{symbol_radii['2'][2]}"
           )
           PY
 

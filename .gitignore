@@ -1,0 +1,35 @@
+# Python bytecode and packaging residue
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local virtual environments (the reference solution itself is dependency-free)
+.venv/
+venv/
+env/
+
+# Ad-hoc outputs written to the repository root by the commands documented in
+# README §6. Committed evidence lives under evidence/ and reproduction/ and is
+# deliberately NOT ignored; every path below is root-anchored so it can never
+# match a committed artifact.
+/causal-intervention.json
+/causal-intervention-full.json
+/cli-comparison-output/
+/reference-solution-validation.json
+/differential-probe.json
+/patch-backup/
+
+# Directories the GitHub Actions workflows create inside the checkout and
+# upload as artifacts; they are CI outputs, never committed evidence.
+/ci-logs/
+/lexical-ci-evidence/
+/ng-ci-evidence/
+/patched-ci-evidence/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp

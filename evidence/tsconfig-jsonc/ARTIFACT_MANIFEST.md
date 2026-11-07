@@ -4,8 +4,8 @@ This manifest identifies the exact software, public source trees, and large
 intermediate artifacts used to derive the compact evidence committed in this
 repository. Full resolved graphs and context ZIPs are not committed because of
 their size; their hashes below identify the local inputs from which the
-committed JSON/JSONL summaries were generated. The separate GitHub Actions run
-recomputed the same lexical counts under an ordinary installation.
+committed JSON/JSONL summaries were generated. Separate GitHub Actions runs
+recomputed the same lexical and ng-matero counts under ordinary installations.
 
 ## Software
 
@@ -16,7 +16,11 @@ recomputed the same lexical counts under an ordinary installation.
 | Python, local evidence runs | 3.11.2 |
 | Python, GitHub Actions | 3.12 (setup-python) |
 | TypeScript oracle | 5.9.3 |
-| Investigation commit used for the recorded CI runs | `9a1a3325930c740990be64c2e57bd92ecb8fa0eb` |
+| Microsoft `jsonc-parser` differential oracle | 3.3.1 |
+| Node used for local differential validation | 22.22.3 |
+| Python comparison libraries (validation only) | `json-with-comments` 1.3.0; `json5` 0.17.3 |
+| Investigation commit used for the originally recorded lexical CI runs | `4acf2c5751fa01b4652d5f8c0676dc4b0c723878` |
+| Investigation commit used for latest indexed strengthening CI runs | `6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb` |
 
 Both engine files containing `_load_tsconfig_aliases` were checked against the
  hashes in the installed wheel's `RECORD`:
@@ -64,6 +68,16 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 | `selection_case_react_extension.json` | Chunk/file-level representative case |
 | `alias_oracle_summary.json` / `selection_impact_summary.json` | Aggregate lexical inputs, hashes and classifications |
 | `typescript_api_verification.json` | TypeScript-resolver batch cross-check: 4,256/4,256 lexical rows matched |
+| `causal_intervention.json` | Resolver-level A/B/C/D/E record for both shipped engine copies, invariant source hashes, existing-fixture checks, and targeted malformed/string boundaries; D uses the reference loader and records its structured warning for malformed configs |
+| `ANSWERABILITY_AUDIT.md` + both task JSON files | Six lexical and three ng-matero predeclared final-artifact questions, each with a negative control; clean-CI results are 0/6→6/6 and 0/3→3/3 in actual Optimal ZIPs, with full JSON in the respective CI artifacts |
+| `SYMBOL_EVIDENCE_AUDIT.md` | Method and exact clean-CI counts for 10,703 eligible source-specific lexical symbol-definition tasks; full summary/details are in the lexical CI artifact |
+| `reference_solution_validation.json` | 514 valid curated/generated documents, 13 diagnosed invalid cases, TypeScript/`jsonc-parser` differential results, Python-library comparisons, explicit numeric-spelling boundary, and local timing |
+| `differential_probe.json` | 121 enumerated grammar boundaries + 2,156 unique seeded mutations against candidate/TypeScript/`jsonc-parser`; zero candidate-only acceptances/rejections or all-accept value mismatches |
+| `relationship_concentration_audit.json` + `RELATIONSHIP_CONCENTRATION_AUDIT.md` | Distinct-pair, degree, hub-concentration, area-spread, and direct-selection coverage accounting for both verified recovered-edge subgraphs |
+| `version_scope.json` | Digest-verified scan of all 106 PyPI wheels / 212 engine copies for 0.3.0–0.3.15, one loader AST, extracted-loader strict/JSONC behaviour |
+| `ecosystem_exposure_sample.json` | 210 first-returned public root configs from the exact 3-page GitHub code-search sample, with repo/blob/content identifiers and TypeScript verification; config bodies are not copied |
+| `ecosystem_loader_behavior.json` | Direct execution of both installed stock loaders and the reference loader on all 184 eligible hash-verified sample blobs: 44 affected stock-empty/corrected-exact and 140 controls exact |
+| `SCOPE_AND_EXPOSURE.md` | Human-readable method, denominators, and non-prevalence limits for the two scope artifacts |
 | `ng-matero/lost_relationships.jsonl` | 111 verified relationships in the independent repository |
 | `ng-matero/typescript_api_verification.json` | TypeScript-resolver batch cross-check: 111/111 rows matched |
 | `ng-matero/direct_selection_omissions.jsonl` | 214 scope instances (107 Optimal + 107 Wider) |
@@ -72,8 +86,10 @@ Both engine files containing `_load_tsconfig_aliases` were checked against the
 
 See `CI_VERIFICATION.md` for run links and outcomes. Artifact digests:
 
-- `jsonc-verification-logs`: `f4ded68fdde701ed274ff614c90bdb2a645e041803a2a36f74f0e4a0df6375b0`
-- `lexical-clean-environment-evidence`: `1f8cb21c630f17a9dc223286f529a174f35ae39fc135cf0c8be2b8ceb47ece09`
+- `jsonc-verification-logs`: `2c75f812efcde07d2585e5f2e8f245451eec3a9a2ab8d537dd82b2dab06bda11`
+- `patched-install-rehearsal-evidence`: `d41ee3bce0744883d1d23496a0a944e012bcce1b4f2eeb2b687a43d70a730e9b`
+- `lexical-clean-environment-evidence`: `6fbe87c263845db928ae2fd133d70dc3df04eb0c2356f452a148911d1816740e`
+- `ng-matero-clean-environment-evidence`: `db3a9c48a9264ac97f3183d76a438214f7f972f0406b71f459489b111aa93389`
 
 ## Regeneration outline
 
@@ -97,4 +113,51 @@ python reproduction/compare_selections.py \
   --lost-relationships "$WORK/lost_relationships.jsonl" \
   --summary-output "$WORK/selection_impact_summary.json" \
   --omissions-output "$WORK/direct_selection_omissions.jsonl"
+```
+
+Reference-solution and scope evidence:
+
+```bash
+# $ORACLE_PACKAGE_JSON points into an environment containing
+# typescript@5.9.3 and jsonc-parser@3.3.1. The Python comparison packages are
+# optional and are reported as skipped when absent.
+TSCONFIG_ORACLE_PACKAGE_JSON="$ORACLE_PACKAGE_JSON" \
+python solution/validate_reference_solution.py \
+  --oracle-package-json "$ORACLE_PACKAGE_JSON" \
+  --output evidence/tsconfig-jsonc/reference_solution_validation.json
+
+python solution/differential_probe.py \
+  --oracle-package-json "$ORACLE_PACKAGE_JSON" \
+  --output evidence/tsconfig-jsonc/differential_probe.json
+
+# Committed-evidence-only audit; no installed package or network required.
+python reproduction/relationship_concentration_audit.py \
+  --output evidence/tsconfig-jsonc/relationship_concentration_audit.json
+
+python reproduction/version_scope.py --all-wheels --through 0.3.15 \
+  --output evidence/tsconfig-jsonc/version_scope.json
+
+# Requires authenticated gh; GitHub search ordering is time-dependent, while
+# the committed blob/content identifiers make the recorded sample auditable.
+TSCONFIG_ORACLE_PACKAGE_JSON="$ORACLE_PACKAGE_JSON" \
+python reproduction/ecosystem_exposure.py --pages 3 \
+  --oracle-package-json "$ORACLE_PACKAGE_JSON" \
+  --output evidence/tsconfig-jsonc/ecosystem_exposure_sample.json
+
+# Re-fetch only the committed eligible blob IDs and execute both installed
+# stock loaders plus the reference loader on each hash-verified config.
+python reproduction/ecosystem_loader_behavior.py \
+  --output evidence/tsconfig-jsonc/ecosystem_loader_behavior.json
+```
+
+Disposable patched-install rehearsal (use a throwaway venv only):
+
+```bash
+python solution/apply_reference_patch.py \
+  --backup-dir "$WORK/unvibecode-stock-backup" \
+  --i-understand-this-modifies-site-packages
+python solution/validate_patched_install.py --full-pipeline
+python solution/apply_reference_patch.py \
+  --restore "$WORK/unvibecode-stock-backup" \
+  --i-understand-this-modifies-site-packages
 ```

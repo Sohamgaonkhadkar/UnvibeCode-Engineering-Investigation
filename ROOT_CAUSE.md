@@ -3,8 +3,8 @@
 ## One-sentence mechanism
 
 `LanguageAwareImportResolver._load_tsconfig_aliases` reads the repository-root
-`tsconfig.json` with strict `json.loads` and catches every exception with a bare
-`pass`; because TypeScript config files are JSONC, one legal comment or trailing
+`tsconfig.json` with strict `json.loads` and suppresses failure with
+`except Exception: pass`; because TypeScript config files are JSONC, one legal comment or trailing
 comma aborts the parse, leaves `tsconfig_aliases = {}`, and makes otherwise
 supported path-alias imports unresolvable without any warning.
 
@@ -38,6 +38,18 @@ The same implementation is duplicated at
 `01_shipreadyv2_merged_graph_pipeline_5chunks.py:1870-1887`. Both installed
 files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
 
+This is not only a latest-release accident. A digest-verified scan of every
+PyPI wheel published for 0.3.0–0.3.15 (106 wheels, 212 engine copies) found
+exactly one `_load_tsconfig_aliases` AST. Executing that extracted function
+returns the expected alias for strict JSON and `{}` for the semantically
+identical JSONC control. Ordinary-install CI additionally reproduces the
+exact resolver symptom and reference-loader behaviour on CPython 3.11–3.14
+(Ubuntu) and CPython 3.12 on Windows/macOS. Direct execution on every
+eligible blob in the bounded public-config sample also matches prediction:
+44/44 affected configs are empty under both stock loaders and exact under
+the reference loader, while 140/140 strict controls are exact under both.
+See `evidence/tsconfig-jsonc/SCOPE_AND_EXPOSURE.md`.
+
 ## Causal controls
 
 - Two-file strict-JSON and JSONC fixtures differ only in config lexical syntax.
@@ -52,6 +64,15 @@ files were verified against the hashes in the 0.3.15 wheel's `RECORD`.
   comments raises them from 130 to 241.
 - Replacing only the parse step in memory—while retaining the shipped resolver
   and its downstream alias use—restores the expected result on every fixture.
+- The sequence is explicitly reversible on both engine copies: original JSONC
+  fails, comments-only removal restores it, restoring the exact config fails
+  again, the in-memory reference loader restores it, and restoring the stock
+  method fails again. Source hashes do not change; missing/unconfigured and
+  external specifiers remain unresolved throughout.
+- In clean CI, that same A–E sequence restores the minimal Fast Lane graph and
+  context bundle in B/D. On unmodified lexical, the in-memory loader alone
+  restores 5,519 edges and the control's `ReactExtension.tsx` Optimal
+  selection exactly.
 - The full lexical result was reproduced in a normal GitHub Actions install, so
   it does not depend on this investigation sandbox's temporary grammar shim.
 
@@ -93,8 +114,19 @@ lexical **Optimal** selections as-is and restored in the control; 3,345 in
 links/fallbacks and 1,062 are absent in both due to selection limits. The
 conservative conclusion is therefore not “4,256 missing edges means 4,256 missing
 context files,” but that the parse failure demonstrably removes thousands of
-direct implementations from customer context selections. See
-`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`.
+direct implementations from customer context selections. A final-artifact
+audit adds a concrete task-level check: for six predeclared questions about
+`ReactExtension.tsx`, none has all required answer-bearing lines in the as-is
+Optimal ZIP, while all six do in both the control and reference-corrected
+bundles; a negative control passes throughout. An exhaustive companion
+derives 10,703 eligible source-specific imported-symbol tasks from the 4,256
+verified relationships: at Optimal, declaration/export evidence is present
+for 726 as-is versus 8,826 in both control and corrected bundles (8,163
+recovered). Independent ng-matero shows the same task-level pattern at 0/3
+as-is versus 3/3 control/corrected under an ordinary install. See
+`evidence/tsconfig-jsonc/CONTEXT_SELECTION_IMPACT.md`,
+`evidence/tsconfig-jsonc/ANSWERABILITY_AUDIT.md`, and
+`evidence/tsconfig-jsonc/SYMBOL_EVIDENCE_AUDIT.md`.
 
 ## Boundary and non-claims
 
@@ -109,15 +141,52 @@ direct implementations from customer context selections. See
 - No claim is made about hosted business-workflow/risk findings. All established
   consequences are in the local graph and exported context bundle.
 
-## Correction status
+## Reference-solution status
 
-`reproduction/correction_poc.py` is a proof of concept, not a submitted
-production patch. It uses a two-pass, string-aware JSONC-to-JSON conversion:
-comments are removed only outside string literals, then trailing commas are
-removed only outside string literals. That ordering also handles the legal shape
-`..., /* comment */}`. The harness asserts that comment-like contents and commas
-inside fixture string literals survive byte-for-byte.
+`solution/tsconfig_jsonc.py` is a dependency-free reference implementation
+for maintainer adaptation, not a shipped patch. It performs two
+position-preserving, string-aware lexical passes—blank comments outside
+strings, then blank only a comma that follows a complete value/member and
+precedes `}`/`]`—and delegates the remaining grammar to strict `json.loads`
+(with Python's non-JSON constants explicitly rejected). That ordering handles
+`..., /* comment */}`, rejects leading/elision commas rather than turning
+them into empty containers, preserves comment-like string contents
+byte-for-byte, and preserves useful error line/column/offset values. The
+integration also reads this config with a strict UTF-8 reader rather than the
+engines' lossy `errors="ignore"` source reader, so invalid bytes become a
+visible read failure instead of silently disappearing.
 
-A production fix should use a maintained TypeScript-compatible JSONC parser,
-fail visibly if an existing config still cannot be parsed, and keep the
-post-fix regression (`repro_unit.py --expect-fixed`) green.
+The product-style loader distinguishes three states that the current code
+conflates:
+
+- missing or empty/comment-only config: `{}`, no warning;
+- valid JSONC: extracted aliases, no warning;
+- existing unreadable/malformed/invalid-shape config: `{}`, plus one
+  structured warning.
+
+For 0.3.15 integration, both graph builders already have a structured
+`warnings: List[Dict[str, Any]]` that is exported in the graph:
+
+- Fast Lane (`00a...`): initialise line 2186, construct resolver line 2195,
+  export line 2350;
+- merged graph (`01...`): initialise line 2143, construct resolver line 2152,
+  export line 2307.
+
+The reference loader's `tsconfig_warning.as_dict()` can therefore be appended
+once immediately after resolver construction without inventing a new output
+channel. The full Fast Lane harness now exercises that builder-level
+integration in memory: valid JSONC produces an exported graph with
+`warnings: []`, a malformed existing config produces exactly one
+`tsconfig_parse_failed` record in the exported graph, and the stock pipeline
+produces no warning for the same malformed input. A separate disposable
+patched-install rehearsal applies the same exact reference module and
+builder insertion at file level to both installed engine copies, validates
+them (including invalid UTF-8) and the full graph with no monkeypatching,
+passes the raw post-fix regression, and restores the stock hashes. It was
+validated against 514 curated/generated valid documents and a separate
+2,277-case adversarial boundary/mutation probe with TypeScript 5.9.3 and
+Microsoft `jsonc-parser` 3.3.1 as differential oracles; see
+`solution/README.md`. The
+raw post-fix regression
+(`repro_unit.py --expect-fixed`) remains the acceptance test for an actual
+shipped fix.

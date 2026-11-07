@@ -49,6 +49,13 @@ Restricting attention to package implementation sources (`packages/*/src`, exclu
 tests/examples/playground), 446 distinct package-source→package-source direct pairs
 are absent as-is and recovered in at least one of Optimal/Wider.
 
+A separate concentration audit makes the denominator and its main caveat
+explicit: only 38 of the 4,256 Lexical instances are duplicate source→target
+pair instances beyond the first, but the 4,218 pairs are concentrated in 101
+direct targets (top 10 = 73.779%). It also reconciles the 2,707/3,345
+selection rows above as distinct pairs and checks that none lies outside the
+verified recovered subgraph. See `RELATIONSHIP_CONCENTRATION_AUDIT.md`.
+
 ## Representative developer consequence
 
 Source: `packages/lexical-react/src/ReactExtension.tsx`.
@@ -75,12 +82,46 @@ This is not an abstract graph difference. `ReactExtension.tsx` puts
 `LexicalComposerContextWithEditor` tuple passed through the React integration.
 For a task such as changing the extension's default editable surface, placeholder
 behaviour, provider checks, or composer-context/theme handling, the as-is
-Optimal export withholds the implementations that define those behaviours. An
-engineer or model working from that export must guess APIs and invariants that
-the control export supplies directly.
+Optimal export withholds the implementations that define those behaviours.
+
+The important measurement is restoration of these verified relevant
+dependencies, not the raw increase from 7,325 to 37,769 estimated tokens;
+larger context is not automatically better context. This comparison establishes
+what code is present in the exported selections. It does not test or claim a
+particular improvement in downstream LLM answer quality.
 
 Machine-readable case record: `selection_case_react_extension.json`.
 Compiler-API resolutions: `typescript_api_lexical_case.json`.
+
+A separate final-artifact audit turns that representative case into six
+predeclared maintenance questions (placeholder accessibility/rendering,
+composer-context tuple/theme fallback, provider-peer identity, `invariant`
+failure behaviour, `defineExtension` identity behaviour, and
+`shallowMergeConfig` object-identity/copy behaviour). It requires exact
+answer-bearing fragments in selected Optimal chunks from the answering files,
+so imports in `ReactExtension.tsx` cannot pass the tasks. In clean CI the
+result is **0/6 as-is, 6/6 in the comment-stripped control, and 6/6 with the
+original config plus the reference loader**; an `LexicalErrorBoundary`
+negative control is 1/1 in every bundle. This is an evidence-availability
+measurement, not an LLM-output claim. See `ANSWERABILITY_AUDIT.md`.
+
+An exhaustive companion derives 10,703 eligible source-specific
+imported-symbol tasks from all 4,256 verified lexical relationships. A task
+requires a recognizable declaration/export line in selected chunks from the
+symbol's defining file. At Optimal, 726 are available as-is versus 8,826 in
+both control and corrected bundles (**8,163 recovered**); at Wider, 711
+versus 9,883 (**9,182 recovered**). These are repeated source-specific
+instances across 1,239 importing files, not unique symbols or model answers.
+See `SYMBOL_EVIDENCE_AUDIT.md`.
+
+A later diagnostic control repeated the lexical Fast Lane run with the
+original JSONC config bytes unchanged and only `_load_tsconfig_aliases`
+patched in memory. It restored 5,519 file edges and produced exactly the same
+`ReactExtension.tsx` Optimal included files/chunk IDs/estimated tokens as the
+comment-stripped control; a full corrected-vs-stock bundle comparison again
+found 2,707 Optimal and 3,345 Wider direct-dependency recoveries. This is
+Fast Lane graph/context evidence, not a claim about later hosted stages. The
+workflow record is indexed in `CI_VERIFICATION.md`.
 
 ## Independent confirmation on ng-matero
 
@@ -88,7 +129,10 @@ On pinned `ng-matero/ng-matero@d351bf5957d8c6dc9eca79d0c9b260c5b8d07822`,
 removing only two leading block-comment lines restores 111 verified direct file
 relationships. Of 111 distinct direct pairs, 107 are absent from both Optimal and
 Wider as-is selections and restored in the control; the other four are present in
-both. See `ng-matero/selection_impact_summary.json`.
+both. See `ng-matero/selection_impact_summary.json`. A dedicated
+ordinary-install clean-environment workflow now reproduces those counts and
+the corrected result, and its three predeclared `app.config.ts` final-artifact
+tasks are **0/3 as-is versus 3/3 in both control and corrected bundles**.
 
 ## Provenance
 

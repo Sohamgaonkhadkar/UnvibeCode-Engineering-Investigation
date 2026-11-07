@@ -1,0 +1,2959 @@
+{
+  "schema": "unvibecode-tsconfig-jsonc-version-scope/v1",
+  "status": "completed",
+  "generated_on": "2026-11-03",
+  "source": "https://pypi.org/pypi/unvibecode/json",
+  "through_version": "0.3.15",
+  "wheel_selection": "all published wheels",
+  "versions_scanned": [
+    "0.3.0",
+    "0.3.1",
+    "0.3.2",
+    "0.3.3",
+    "0.3.4",
+    "0.3.5",
+    "0.3.6",
+    "0.3.7",
+    "0.3.8",
+    "0.3.9",
+    "0.3.10",
+    "0.3.11",
+    "0.3.12",
+    "0.3.13",
+    "0.3.14",
+    "0.3.15"
+  ],
+  "version_summaries": {
+    "0.3.0": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.1": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.2": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.3": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.4": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.5": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.6": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.7": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.8": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.9": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.10": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.11": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.12": {
+      "wheels_scanned": 1,
+      "engine_copies_scanned": 2,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.13": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.14": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    },
+    "0.3.15": {
+      "wheels_scanned": 16,
+      "engine_copies_scanned": 32,
+      "unique_loader_ast_sha256": [
+        "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495"
+      ],
+      "affected": true
+    }
+  },
+  "wheels": [
+    {
+      "version": "0.3.0",
+      "filename": "unvibecode-0.3.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/32/c7/905c78e52362d5df4324977133521bd1ced09c2c32989d2175903269e74a/unvibecode-0.3.0-py3-none-any.whl",
+      "size": 322521,
+      "sha256": "ca2d455bbb7ace580ed4edfb2d2a63673bb08195b10990afcbb850321bf194ec",
+      "upload_time_iso_8601": "2026-07-30T08:54:38.764593Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "3e9649bd2e37ac995280c46f56788fe3e663ea6f04aaf3faf894a0437e924242",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "697f7dda0a65a582939bae75b16d601342fd547adeda1a209778f60903a494a2",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.1",
+      "filename": "unvibecode-0.3.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/d4/6f/44972396a86a3dd63d600aa7014eac5609ee6008a0aa79a7f7e64e119679/unvibecode-0.3.1-py3-none-any.whl",
+      "size": 321111,
+      "sha256": "a63cf785e051df90545846c25f7660dfc4b47edf07e196a058ccb0e31b35edf5",
+      "upload_time_iso_8601": "2026-07-30T14:31:36.581650Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "3e9649bd2e37ac995280c46f56788fe3e663ea6f04aaf3faf894a0437e924242",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.2",
+      "filename": "unvibecode-0.3.2-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/71/7b/daf2925141c5db7f51c77d01a15717e6410bd116b7111a69eae410e0ff85/unvibecode-0.3.2-py3-none-any.whl",
+      "size": 321308,
+      "sha256": "fe64fdce8166d9f5f0a6a9ce7c7969eaefb989e846635d96cb179495423be409",
+      "upload_time_iso_8601": "2026-07-31T03:44:09.214726Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "3e9649bd2e37ac995280c46f56788fe3e663ea6f04aaf3faf894a0437e924242",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.3",
+      "filename": "unvibecode-0.3.3-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/09/06/872ec335f8d2f8c726f17efdfd06b4afb7192a98793bc6c4262aaa2ff383/unvibecode-0.3.3-py3-none-any.whl",
+      "size": 321322,
+      "sha256": "95b6ac9e673aa481a4f863ead30d4acfb3c7ab63389ab3b7841d67bdb58438b1",
+      "upload_time_iso_8601": "2026-07-31T04:20:21.196397Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "3e9649bd2e37ac995280c46f56788fe3e663ea6f04aaf3faf894a0437e924242",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.4",
+      "filename": "unvibecode-0.3.4-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/f3/3a/dd3f853172436f02a92a3b5a5cef9bfb87560cb98dea471f625704924cb9/unvibecode-0.3.4-py3-none-any.whl",
+      "size": 323321,
+      "sha256": "726d19029bd28c0aa5ee477cde6ad87a2acad34eba7fb14cf272302c5687fd79",
+      "upload_time_iso_8601": "2026-09-16T12:46:06.626107Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "1eac10db5403bb470929da4b52eaafb88dbce6b5919492016754e227680e7c3e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.5",
+      "filename": "unvibecode-0.3.5-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/c0/43/c7fb4c3c9f1ee99facfaf57b738d3191738cbcf4f403b41c51bf9ed1666b/unvibecode-0.3.5-py3-none-any.whl",
+      "size": 325984,
+      "sha256": "9618420553c47a6bc52bb832da2f19d32764fd215def4519230d914ba781173d",
+      "upload_time_iso_8601": "2026-09-17T12:46:03.562582Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "1eac10db5403bb470929da4b52eaafb88dbce6b5919492016754e227680e7c3e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.6",
+      "filename": "unvibecode-0.3.6-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/cf/c6/f066bbacf84d5db8cb4023281ef9125bf874ceb95e2aaa4b77e4c582b17b/unvibecode-0.3.6-py3-none-any.whl",
+      "size": 331402,
+      "sha256": "bcf7368a5cd9d3bc4b3459afc3f44e3637beb2eff293a6d4337865d872059d41",
+      "upload_time_iso_8601": "2026-09-22T08:16:11.691951Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "77319c4a0a30d8bade25aca835ca8d19c87391c993f3d08e4acdbefa214d5ab6",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "04a078aed16925d1573a7883dd20c5dcf64d6fe8d36805929d3a1a763aedbba0",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.7",
+      "filename": "unvibecode-0.3.7-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/84/62/881bf25b7e132c4b26536c9759022eaf119f80740d886d3898dea6692850/unvibecode-0.3.7-py3-none-any.whl",
+      "size": 335226,
+      "sha256": "f3af26a9f2e5e5655dd1dfc3b743f1eebf3b4e3e15ad3ee1bb073b6ccd1a6ad5",
+      "upload_time_iso_8601": "2026-09-22T14:18:52.993510Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "6bc34c680c84df5d90ce2dcb0358a2525d81f2eabac9978b6fe1d50ee77f3917",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.8",
+      "filename": "unvibecode-0.3.8-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/ad/eb/528d3f06cee176503a57994337ca1dca0829673df5eff3cb711fc080a988/unvibecode-0.3.8-py3-none-any.whl",
+      "size": 336631,
+      "sha256": "dce7f9375dd021d78c6075f02a45ceaeb8a6fcb8e09aea76bb4c089c613d0213",
+      "upload_time_iso_8601": "2026-10-09T10:50:48.644253Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/68/74/d9b6ad61907a56de2bb576621d24ff3aba80531bd889fa7bc30e4b4eb933/unvibecode-0.3.9-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 328897,
+      "sha256": "0eac3028a4345606ca4efa8e9a064c8c9e7ddaf3af9ee8021b1621c306ed4864",
+      "upload_time_iso_8601": "2026-10-10T13:45:32.619985Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/d9/b5/26d373019c0f6b35ad2d396bd73086af0463d307885cbb1cb5d9f9e7538e/unvibecode-0.3.9-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 328238,
+      "sha256": "0531850c33617179afea02ae1c6b67dcfcaa2ae096117f72af104978b26b12ec",
+      "upload_time_iso_8601": "2026-10-10T13:45:34.402551Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/a9/13/79c049a46a80414692579c2b5a26cfe9069cdaeb60acef78a5e30f671cb8/unvibecode-0.3.9-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 468695,
+      "sha256": "f5875ec630b8f235e8a97c808e43f3c1729dcb11a6266212d8252db46d1aa4b6",
+      "upload_time_iso_8601": "2026-10-10T13:45:35.918702Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/d2/6b/d1e93b0e912ebef979a4161623cb9da09617cbbd65157a9744db01188637/unvibecode-0.3.9-cp311-cp311-win_amd64.whl",
+      "size": 326259,
+      "sha256": "00bbb68bef71fe1cba51855301d18b7068fa6921e2d160a4b495591be70a4e26",
+      "upload_time_iso_8601": "2026-10-10T13:45:37.893628Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/dc/60/493c128d9135e579cd76763ea0fff7f2a91fd7f94056b5f0dda007939ff9/unvibecode-0.3.9-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 329423,
+      "sha256": "37e063ed1c6005631ead6812ae4cd5c6a1c6faa0d7f751d051fe444026bdc53d",
+      "upload_time_iso_8601": "2026-10-10T13:45:40.551310Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/8e/15/65c8971dd1520e2bf6185d02f553514fbf2640e9636ab3928dc35db9d954/unvibecode-0.3.9-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 328633,
+      "sha256": "4affc00362370cda90591e73ba52c94cb5ade7ee44c1123b4860a83789adbd32",
+      "upload_time_iso_8601": "2026-10-10T13:45:42.159563Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/18/0c/39df32dc9f75ee3e378d887d4d6bd9eb220bdd586fe66504ca3ffb1f606e/unvibecode-0.3.9-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 479362,
+      "sha256": "26f99b2bf85c25882278bc57eff3786b403a9e2ec455cfbd2fd84f2806f81c20",
+      "upload_time_iso_8601": "2026-10-10T13:45:44.026681Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/fe/42/53f7de84dd2d70f06ae1a2f4daf6bd61f46e8f6cd7abaec7901036ee65c6/unvibecode-0.3.9-cp312-cp312-win_amd64.whl",
+      "size": 326616,
+      "sha256": "915dd6b2dd2629abd9fdad2fb1d10ff5d68a94683d0e293156abc61ad18b343c",
+      "upload_time_iso_8601": "2026-10-10T13:45:46.061593Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/3f/50/2f3fd6374f2df11aa713c08d0066a0d480dcd7a1d26d725f0400764a2a6f/unvibecode-0.3.9-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 328950,
+      "sha256": "7caf869e536f901de30be2ab021f889019adf8aee1054ee48ccb3125304f4e5c",
+      "upload_time_iso_8601": "2026-10-10T13:45:47.708432Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/b6/24/f40da77498c81fd4723d0f54444e81513499762b5099748e24ea87172cc4/unvibecode-0.3.9-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 328004,
+      "sha256": "48c810fdd08d14e295ef27e370b2583b88d689472d01031a85184af8c321754c",
+      "upload_time_iso_8601": "2026-10-10T13:45:49.529867Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/65/0b/bd3aa4e5c68e5d9c7a7cdd51317d73c9cff9a5696e055b75ae56186fedf8/unvibecode-0.3.9-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 471366,
+      "sha256": "de74e86ff677f85ca2bd1347468ef94f00c119f05393f198feb510b42faff08f",
+      "upload_time_iso_8601": "2026-10-10T13:45:53.274119Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/31/c7/c2cc75f495e9b74b8f8a75e64f3388d827e9e74032028aab59378266db21/unvibecode-0.3.9-cp313-cp313-win_amd64.whl",
+      "size": 325979,
+      "sha256": "ee10cc12f8bcd0bd83e0dc512f0949315fe6e0d49123ccc03bc063f97a1fe3b9",
+      "upload_time_iso_8601": "2026-10-10T13:45:56.760629Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/f8/91/c706b4a2192a63ca3fd20cb1f5cd44ca459228fb9880ee5130ede073f05a/unvibecode-0.3.9-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 328916,
+      "sha256": "b01cb23469acde3aa7b03cf8d7b44f8f0cc7f004d2e6b3a46b0aa8f6a3a54a02",
+      "upload_time_iso_8601": "2026-10-10T13:46:05.108325Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/7d/7e/5ea7104b4357dc8f22872021c43b79ddf1cbc47eddc63db1241da086ab1a/unvibecode-0.3.9-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 328048,
+      "sha256": "d11662432d668330336902d4d2c6cf60b0d6385e9da9eace032fac25b60b8570",
+      "upload_time_iso_8601": "2026-10-10T13:46:15.977223Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/94/ce/57696f005924e3841c29b3fdf621317638d67112598078c0b25cbc69ba71/unvibecode-0.3.9-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 472004,
+      "sha256": "697aa102b43e106999b8488b0afe74b6edda4c1d670530fd5ea064726dbe1098",
+      "upload_time_iso_8601": "2026-10-10T13:46:19.312369Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.9",
+      "filename": "unvibecode-0.3.9-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/a8/d0/1b471bdfe02d01d54c4d649312ffceccbc5b47ef9d26ea44e92ab994f702/unvibecode-0.3.9-cp314-cp314-win_amd64.whl",
+      "size": 327125,
+      "sha256": "c282c3539afff7c07e4d2701023c64def5581ca6ab03cc70b5342deed153baef",
+      "upload_time_iso_8601": "2026-10-10T13:46:22.226800Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/e8/1b/3a8c217b24932d6d0188ac23a3c2c80116fa6bcc5d82d684ddaa18aa1b13/unvibecode-0.3.10-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 365487,
+      "sha256": "9bf1bcff678bbb62c03f99e6301470d25b6ef31a8a130a80dd3248fce6a4c703",
+      "upload_time_iso_8601": "2026-10-11T09:03:46.493964Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/d6/f4/92b61d223750adbc050af4ba94279f69f49269e28ec23a284cb85cf4d070/unvibecode-0.3.10-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 362276,
+      "sha256": "624b2be1e31afc9ee6935acf37f49edd4fe6af4b57263573fda3698fa1d85dd8",
+      "upload_time_iso_8601": "2026-10-11T09:03:48.133827Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/86/dd/a04339e939458a9d4760952a5bb88d6811e7524c0c565d4ec14cc9804c82/unvibecode-0.3.10-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 749446,
+      "sha256": "baf7150eebf5247c5e71bf8433739b430a5987b6cf74273cf9ffbc585b92dcb1",
+      "upload_time_iso_8601": "2026-10-11T09:03:49.688874Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/bb/99/3e1d8ba50a3ba2450c45a105e7950d07bc314a7713d359dafbad60b709e3/unvibecode-0.3.10-cp311-cp311-win_amd64.whl",
+      "size": 357608,
+      "sha256": "86296b6d3bb8180ff611c665881a03c39ed3908d163027d9bb676377ea99edc1",
+      "upload_time_iso_8601": "2026-10-11T09:03:51.181443Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/fe/a7/cbf1e6116a96e815749e4114d9947e070ae95afcf9565ed2f597ee428c23/unvibecode-0.3.10-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 367341,
+      "sha256": "1c193420fc4ca819b7e0322b2294e9dbfac9263d598f30291df76b83ad4600ec",
+      "upload_time_iso_8601": "2026-10-11T09:03:52.787950Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/f2/2e/70aeda015d52d93627f51f4f6c62e05bdb0efc9de38d09baa844c0096075/unvibecode-0.3.10-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 363183,
+      "sha256": "987a1a8355e2ab9d057bb9e00f44d7bbde283b3bf4d836d8ee31c4e5ec858034",
+      "upload_time_iso_8601": "2026-10-11T09:03:54.233232Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/ef/bc/e44435d9b5bbc064ee37afddac99259a9e4c9d1c9d7879da372e38a8b616/unvibecode-0.3.10-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 770059,
+      "sha256": "9d2542da959a6f99582e7385c4166710606e7fd8174fcbc2c8e9e449a239868d",
+      "upload_time_iso_8601": "2026-10-11T09:03:55.818950Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/37/e7/413e9aceb2a2b15002d09499a10b8c2d2204c8f24dda62a8fd540b790b51/unvibecode-0.3.10-cp312-cp312-win_amd64.whl",
+      "size": 358620,
+      "sha256": "9b5fd99e1083f90e6e5d08a57e21641b2865be3c67af52b3b170d4ce6f8b98c6",
+      "upload_time_iso_8601": "2026-10-11T09:03:57.116085Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/6f/48/8c5ef9310410d7b5bf1158d228c9c854154cdbe0eafbe43552babd287168/unvibecode-0.3.10-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 366462,
+      "sha256": "0ea015ebdaf8f78c2323785182debd46a46dee72ec31d8360f19ac2e1679232a",
+      "upload_time_iso_8601": "2026-10-11T09:03:58.347073Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/2e/b1/1c93d97c064dcb5f7d88b0bfdc1c86e64e26760c6fb811653474ab56f36e/unvibecode-0.3.10-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 362001,
+      "sha256": "d600de62cc5f751659ae31b25805f978f84c397e96e83ef3c079463813ff6544",
+      "upload_time_iso_8601": "2026-10-11T09:03:59.575650Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/ab/f3/2aae0d6ddae2082b4a7242b528065969c6700851f9c65c327883360a85e3/unvibecode-0.3.10-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 761046,
+      "sha256": "1965b9c2fbf87da2cd83cba84b120c89e3849d1a2d950f180c90d3d349fe9d37",
+      "upload_time_iso_8601": "2026-10-11T09:04:01.065107Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/61/f2/849af4db504e30f73e9e07312e0a788d953f186a880d4fefed62b70643c1/unvibecode-0.3.10-cp313-cp313-win_amd64.whl",
+      "size": 357685,
+      "sha256": "59fb8fde81495308c874faaa31eacd2e7023303a6c3798cdf884f66f6949f12d",
+      "upload_time_iso_8601": "2026-10-11T09:04:02.284744Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/d8/65/4a13cb6c2f8c6bec9ddb43e9f9042d0cd437627e55ff420aeaaf7113a631/unvibecode-0.3.10-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 367043,
+      "sha256": "c2f136d76b456b74ad24232a8818438f9a6768335e24129f6c73db8e0b919a78",
+      "upload_time_iso_8601": "2026-10-11T09:04:03.739556Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/2c/f4/7929e398b53a402b4997ef222b21be8653069d2e90492dcf28252cde5f72/unvibecode-0.3.10-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 362321,
+      "sha256": "1b363c8d7d6cf6ff677a99249faf6352a19af73b747f8e83776fc9f8f2405784",
+      "upload_time_iso_8601": "2026-10-11T09:04:05.002611Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/40/af/4c47fecfd91a322f82a66d9b20057157b958174910aa998eddccaed743a4/unvibecode-0.3.10-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 758059,
+      "sha256": "bced57311f2662b80c0aa4cf40f174c6caa4e4d3b9e8b8e9ab9cd72effa09410",
+      "upload_time_iso_8601": "2026-10-11T09:04:06.380641Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.10",
+      "filename": "unvibecode-0.3.10-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/ca/fa/8ab3154975be47ca021c1d2103f98fb9426b0e926c394a2f3667672779e5/unvibecode-0.3.10-cp314-cp314-win_amd64.whl",
+      "size": 359830,
+      "sha256": "3baea7c699ad968610260d0c00bd6cf8823a389bd028700eb187ea7adc8e1c01",
+      "upload_time_iso_8601": "2026-10-11T09:04:08.000627Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/9d/d1/81d30f503e7c72d4cb81f2819f9a41cf2dd91e8913236618b3e621890a8c/unvibecode-0.3.11-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 451975,
+      "sha256": "d7e1edbf65f1b326c1f2dcccf5dbbe37f5ff552f9b6ff001c9e3e424a790b6f4",
+      "upload_time_iso_8601": "2026-10-11T13:03:35.497232Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/14/b9/012fbbd329cb113d6317297543cca580e867891dbda5d1c8acf744b2146d/unvibecode-0.3.11-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 443697,
+      "sha256": "7dec39e50d072ff9e3a7caa5e300b89d99a34257b2fa829cbffd182dd9994aae",
+      "upload_time_iso_8601": "2026-10-11T13:03:40.934520Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/f7/5a/73434201e32864f08f8e2af4c549d27cea8ff4419b00cf62fbbe4e68e252/unvibecode-0.3.11-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1309182,
+      "sha256": "3e11f7279a30ac73a3b153e959e3134f1196c7d6257f15b2433762780e4eb853",
+      "upload_time_iso_8601": "2026-10-11T13:03:56.433256Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/14/80/cd1d742fe39b0833ea0e435511c3ecded7dc59ddcc4b330168e64486b7f7/unvibecode-0.3.11-cp311-cp311-win_amd64.whl",
+      "size": 434838,
+      "sha256": "acbf727ccd4ef2f06d8c87c347512e1f0b11d5ada1d173d2ff7b20156a4249ca",
+      "upload_time_iso_8601": "2026-10-11T13:04:01.601642Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/95/dd/57977390d9ac0f703121797fc7a8483168e58dce78c366dcbaf8cda203bd/unvibecode-0.3.11-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 456078,
+      "sha256": "75720141c4aa4981270d0cf79029ae6157aa904efc40f38d695a0db9958e0437",
+      "upload_time_iso_8601": "2026-10-11T13:04:09.183996Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/33/40/28b0f0a56c9f566feb6ee348bbf76dd82805e962a2b338c0a85d6ad41116/unvibecode-0.3.11-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 445329,
+      "sha256": "abb77c922eb1cdf8889a47ce0538241a2b37112ca5ee434db05116821b7cd8d4",
+      "upload_time_iso_8601": "2026-10-11T13:04:15.285649Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/9e/91/a1d22171a93917f86a2ea66585046b051523eb5b1f11fe5f000b325604ee/unvibecode-0.3.11-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1351455,
+      "sha256": "d0a0ffe18f06e320f88711732d758f23a9211d3500aa36fe797e2f183e2b7435",
+      "upload_time_iso_8601": "2026-10-11T13:04:20.044430Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/8c/c9/f0eda623b05bdc08e64442057b35f0691a7265f1671b9c5070c986d8ac7c/unvibecode-0.3.11-cp312-cp312-win_amd64.whl",
+      "size": 435883,
+      "sha256": "9472ae90161ffc65171edba252879feaacb79e59adfda6e49f7617cb4c4bd2b1",
+      "upload_time_iso_8601": "2026-10-11T13:04:23.029696Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/5c/93/1ba9cd2674f987484d96e629240ab1efed5910459deb480f69ccdec2d6c7/unvibecode-0.3.11-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 454331,
+      "sha256": "3e89c9b108da8f41ebc48639b93c65ce25a45d323a0dad18d844ec44503a00b7",
+      "upload_time_iso_8601": "2026-10-11T13:04:28.551310Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/bf/68/84aa2d32859e03cf9bad64cbd1b8324ba5cdc9a5b9e5d5078dc3f14d49f9/unvibecode-0.3.11-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 443175,
+      "sha256": "f6ac69fd743210eaa2c37612822b880679436fa18dbd31d084a176b63bbf0f78",
+      "upload_time_iso_8601": "2026-10-11T13:04:30.809532Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/4b/2b/435456718d4a95dbf1ae85ba7fac3bcc2d4e680fbaf4d1aec55903069b58/unvibecode-0.3.11-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1332514,
+      "sha256": "d17b81dc5acc2d7cfd511a285fda36646aa82f83ad1821332a6741f3ef91c304",
+      "upload_time_iso_8601": "2026-10-11T13:04:34.053355Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/c9/cd/32513284bb72c424018b4a5da17ff27671a65c0b7f976e760aa6a39a6e34/unvibecode-0.3.11-cp313-cp313-win_amd64.whl",
+      "size": 433883,
+      "sha256": "af591b731e1cac5dc9ed824c895459449fd3b294fdf874652e3be31b65ba2e74",
+      "upload_time_iso_8601": "2026-10-11T13:04:36.032195Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/90/9c/3295ce53e58c9a78330c0795fb8082a0e41cb05dcbc04345cf0c3edec07b/unvibecode-0.3.11-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 455193,
+      "sha256": "f1860bf101d1c953d97981435c2885d119cd911dfe4e8bfd48ae214399f4a09c",
+      "upload_time_iso_8601": "2026-10-11T13:04:37.790432Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/a6/44/1d9196505d478927f95cbfc701c05d44c6acca699abf8db2a9dbb9b928ec/unvibecode-0.3.11-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 443568,
+      "sha256": "6a63d6bf49dc25818ec409abad23c446ef2373cb9877a6eac81ad2e7d47de354",
+      "upload_time_iso_8601": "2026-10-11T13:04:39.709096Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/d6/b0/ee5cd82953cbb8ce92489ddfd5dfe6b047333d904a782b24ad13a54e4892/unvibecode-0.3.11-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1326972,
+      "sha256": "c7f0f0f0a7c59145e904e1752ed3eb1bf260d3e2ff4f7da3b16f075ed4e23c15",
+      "upload_time_iso_8601": "2026-10-11T13:04:42.884120Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.11",
+      "filename": "unvibecode-0.3.11-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/f8/8c/e423e19eed3731e178373e4dffb7939a4fa15b3177e084af32c450a80df6/unvibecode-0.3.11-cp314-cp314-win_amd64.whl",
+      "size": 437423,
+      "sha256": "8f9bac4f8e5e4779789709736a04a8ff461c294871ebc097a0da6438fe6799d4",
+      "upload_time_iso_8601": "2026-10-11T13:04:44.868625Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.12",
+      "filename": "unvibecode-0.3.12-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/16/4c/c3cd31edd1bff0a1968d02b2b294538a4c64c5d01bc09936cc3931ec1cea/unvibecode-0.3.12-cp313-cp313-win_amd64.whl",
+      "size": 442269,
+      "sha256": "1a3716b0f077cc972eb114529ebb5c01f1dc71262fc9b45548c57cfc25d94683",
+      "upload_time_iso_8601": "2026-10-13T12:20:29.870148Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/fb/93/0840d49fc698d1b82bf85b5fc02b1d15604c364215f071d081e015bb5ecd/unvibecode-0.3.13-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 469752,
+      "sha256": "b5a34af4c7b56cda450916e1e9fdd11385d58e04748e7b5cc9a9695b924e0dc0",
+      "upload_time_iso_8601": "2026-10-14T19:55:26.265373Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/54/f7/4431c14023de873d609ceadcfcefa04aadf75c1928d50cc81a6c6d0e5d57/unvibecode-0.3.13-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 461469,
+      "sha256": "e01090c631c85f47f3dea23cc81c6f68109bf742a9cc4106b7f7fc15c395f165",
+      "upload_time_iso_8601": "2026-10-14T19:55:29.153757Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/c8/79/817ae5373b347af4f60833a2c264109d0662df34667908c09e3696f1a2b9/unvibecode-0.3.13-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1326957,
+      "sha256": "a08abd3aa2f7b51396d877d5c63714c3dd25619b5a8ecee31a61f2058b8b7a83",
+      "upload_time_iso_8601": "2026-10-14T19:55:34.575137Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/4f/f9/9934f71e689166aa86c4d08a68ebe831493f0d77555beb328333ebcb054c/unvibecode-0.3.13-cp311-cp311-win_amd64.whl",
+      "size": 452617,
+      "sha256": "91243645f0cf0f11e7e8aee22def4324c618a2bc8a8de2cb5b0a7d0574c211c9",
+      "upload_time_iso_8601": "2026-10-14T19:55:36.948773Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/f3/33/02e778a66370e9569778bee1364c97345b75e93b72ee6cdfcbfabb4c9022/unvibecode-0.3.13-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 473847,
+      "sha256": "0321554cc3a02ba9e1271e4a6f28fa0a47a121e3384447a4688dfe8bdcd9255b",
+      "upload_time_iso_8601": "2026-10-14T19:55:39.264384Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/5c/6b/3f5c8a14f21581e4b24a6bacfb07f2f6ffbf741d322de974169d2bd836d5/unvibecode-0.3.13-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 463100,
+      "sha256": "fb30655d6b3f56069ece948d25e7d3e02584ed4c413dd1393d4993f8a430efab",
+      "upload_time_iso_8601": "2026-10-14T19:55:41.624254Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/db/02/a254a2deb391aea155ea96b76d6cee8a5fdc5bf560b300a1c6702077121f/unvibecode-0.3.13-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1369226,
+      "sha256": "3cbdd51fd52f5f6a699818ac2a0e4a4f0a921a454746803b10a306ec9d488c1d",
+      "upload_time_iso_8601": "2026-10-14T19:55:45.770923Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/c1/59/dec15e14b145110c6572ca91d811b97020d69404bd2cff880b928f6a65da/unvibecode-0.3.13-cp312-cp312-win_amd64.whl",
+      "size": 453661,
+      "sha256": "6431ad3212517b34afab8203dc49bc00d3fd19510573532a83499626f4e4eea0",
+      "upload_time_iso_8601": "2026-10-14T19:55:47.792343Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/52/a6/48e99761ace3cc4e22a8a5df7373f3f97b322664c3d1d0818cad9fe1b840/unvibecode-0.3.13-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 472104,
+      "sha256": "ceefbd9ba802dec5d51d45f6eeb868c70572bc68e51ed060ae97861b8176f76a",
+      "upload_time_iso_8601": "2026-10-14T19:55:49.550312Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/78/c1/796127c5153691af531e593c661aa48d3a39581a9b54ecceedac086ebce9/unvibecode-0.3.13-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 460950,
+      "sha256": "4702d837f5222c6814203bca4cc277a42a44e10e88e55a3f506e951e5a9211c2",
+      "upload_time_iso_8601": "2026-10-14T19:55:51.520920Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/16/dd/0914243deb948b4309f7e480195b93d89dee700579edfcbfb93e92fbd238/unvibecode-0.3.13-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1350292,
+      "sha256": "b604da948beb53a3a686a9c418ecbebae6c2fb9e0b27102386fed3f7f3ab9723",
+      "upload_time_iso_8601": "2026-10-14T19:55:54.219632Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/99/cf/f3515eb19061610cc6b01c9239aca4b6ca985010e8820e1ff9a41f3ee922/unvibecode-0.3.13-cp313-cp313-win_amd64.whl",
+      "size": 451660,
+      "sha256": "c0b94b0332fc858ac2233e1985d9dc7da660a687564fc8ccec144f3256d94c6c",
+      "upload_time_iso_8601": "2026-10-14T19:55:56.171956Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/64/85/88d796aa54fd2ecb6764f1ef5418975dae6a6213a3513b11cb11e3ad8f59/unvibecode-0.3.13-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 472975,
+      "sha256": "9a48d4f67d73f2e7c843036c7159f6250e34bde5a861a29af196adf9d6959692",
+      "upload_time_iso_8601": "2026-10-14T19:55:57.834878Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/c3/84/9f4c383f74c3bd69490a6b0660fe3c6bc679e477dd7f9aa6fbdabb102432/unvibecode-0.3.13-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 461341,
+      "sha256": "f3020e2065ae8837f5d5535c7cd888012854f97bb8d3e306ca5bdd45e0b652b2",
+      "upload_time_iso_8601": "2026-10-14T19:55:59.560113Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/b0/e2/ff92d003475203dfd0798eba880a213ff1b52650bc9446a9e32dd7b0a0c2/unvibecode-0.3.13-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1344754,
+      "sha256": "9b6099f4b104fa0564e1cfd02d105f08603a47c2472d9cc66ca50b6eb070b78e",
+      "upload_time_iso_8601": "2026-10-14T19:56:01.881414Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.13",
+      "filename": "unvibecode-0.3.13-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/1f/8a/307796bb952e82cdb5e8fa3994c6652a017e03ae3550a1e1d862f3984307/unvibecode-0.3.13-cp314-cp314-win_amd64.whl",
+      "size": 455192,
+      "sha256": "a53feaa20fa42a722718ec51ddc0f75ed39efc5db104f6d4246f94c31f5bcf1a",
+      "upload_time_iso_8601": "2026-10-14T19:56:03.802835Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "2e2f9a77c88b480bb968dd42c7c75725e351d1d884f943d3b66f0225b7aa407e",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "520ffb0db20210519545b2f4aa5ffa60a1c3ad9fc210afaf1fb88bee22e8a74c",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/1e/0b/a16d6bec518a6940e7aa68932ebdbbdbd8b109af22209dc2256017736390/unvibecode-0.3.14-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 518699,
+      "sha256": "03dc3acb5f2f31d46fbefb405ec875cb2a11f16b78946fb5a5f73adab4276bf1",
+      "upload_time_iso_8601": "2026-10-17T16:54:39.767411Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/b0/b4/04a3f62e226427d1c88defb4f1651800f46c374fae2dc91ec385d3be683a/unvibecode-0.3.14-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 510039,
+      "sha256": "2e4cd0376bb98563db71fbba9596f3f0d52c0e2fd514cfbe2520d031cef77cb0",
+      "upload_time_iso_8601": "2026-10-17T16:54:43.618022Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/7a/07/e882d533a1db6b82fe7dfbecdee9672ace35c9352b28d52d4dad0ddf4584/unvibecode-0.3.14-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1524602,
+      "sha256": "5ee9a1470bf4a041b563798f5aade4ac987e7a74ff6667734d0792c853b265df",
+      "upload_time_iso_8601": "2026-10-17T16:54:50.949780Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/c4/b1/a3f1d982f8c638af547c262a472bd7db9fc279279403ca8e6c6ba462593d/unvibecode-0.3.14-cp311-cp311-win_amd64.whl",
+      "size": 498561,
+      "sha256": "2d93f9ac7cbe6c245a4431417bb5fa3dfed3118c12a399aac97534156edda82b",
+      "upload_time_iso_8601": "2026-10-17T16:54:54.372544Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/b3/62/d2c066554e7ab2e47e517589895cae4cd0e85ed400ea847e56e21dba9779/unvibecode-0.3.14-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 523555,
+      "sha256": "079dce0130d1f89f640b204f272f569c5d502208337cf246db193ef7a9c7fe7f",
+      "upload_time_iso_8601": "2026-10-17T16:54:56.994894Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/c4/cb/47e423794a9f7ee8c42ac2e099abe77fa5d8359239148d92b84520e9c953/unvibecode-0.3.14-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 512020,
+      "sha256": "b7ef58db24d0cfbe04441d2a069be9a84ae8f62eed3ebfd717813599e9df94e8",
+      "upload_time_iso_8601": "2026-10-17T16:54:59.334796Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/7c/b0/624541bf3083573c3ba321484c8f00c77f8fa05272cb098ae325579c793d/unvibecode-0.3.14-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1578107,
+      "sha256": "28408fc088679304a74b41b9b2c846b5a9a25a32f25309461283a3f73237d1cc",
+      "upload_time_iso_8601": "2026-10-17T16:55:02.807611Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/8d/c7/eb4f186b1d27428d74939eaf1a5035a8ff6067da61aa9cdb71ee4f9a5a1f/unvibecode-0.3.14-cp312-cp312-win_amd64.whl",
+      "size": 500047,
+      "sha256": "0d65629628944e4fccd463b08089366f503841c578558d1ce9b796e042e9db1c",
+      "upload_time_iso_8601": "2026-10-17T16:55:04.422369Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/56/b8/fe766607359f167d01250e888804a891242a1abf05d9b53bd5b6e5d0b4c0/unvibecode-0.3.14-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 521277,
+      "sha256": "6218088af33f56df2fab04fa9f41931314f33011801e4ad494ad21341bd96de0",
+      "upload_time_iso_8601": "2026-10-17T16:55:05.991115Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/30/a6/b935a6145b6e29730f575106dcd3baece5b63e4d73f66ba679fdc58e274e/unvibecode-0.3.14-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 509293,
+      "sha256": "79775c324af4496a9b2a3a9c644425aaef7be53d015b076aa17523cfdbe69d41",
+      "upload_time_iso_8601": "2026-10-17T16:55:07.763533Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/f1/a7/978190e26c60639c3e71ead91f7fe07d5322a4deaa17281018560c719c28/unvibecode-0.3.14-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1552298,
+      "sha256": "171c6151ddc7b7d7456bf1a6704fb415a98cc61e61514ab520ac7fb0bf1903a2",
+      "upload_time_iso_8601": "2026-10-17T16:55:09.755540Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/a4/8e/e45e4395287b7037dc7c30732bba7994ac6debf48e8c69c6ac57918babb8/unvibecode-0.3.14-cp313-cp313-win_amd64.whl",
+      "size": 497425,
+      "sha256": "e9a8c9d0dfaba185e26a24ca597b3de3bc46a928281547ec4088ed14ab4fd0ea",
+      "upload_time_iso_8601": "2026-10-17T16:55:11.391153Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/45/9e/c64da321969803bfe39d08650a1c718052a033e09542772e33369e8f9063/unvibecode-0.3.14-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 522201,
+      "sha256": "d2e2dad0e4efe478a3126484337211d2a200d4ad75b861a2d0450b7dde1bdab2",
+      "upload_time_iso_8601": "2026-10-17T16:55:12.858727Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/91/e2/0994cdff745154ce21547b9febe9e1620b65e2b4a4c46dd781dd2b425c77/unvibecode-0.3.14-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 509806,
+      "sha256": "92cd9776df21fb70fa0850f56a2609d001b50ad2b285e70df7a9cf4e311261e2",
+      "upload_time_iso_8601": "2026-10-17T16:55:14.064778Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/9b/8c/1ffa7b5f9c2d36f3a0adfd3c33a18d169e4ed7eb62ad819986518ff656fe/unvibecode-0.3.14-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1547241,
+      "sha256": "bfb793c4ae14ba5fcd355234b0bb856a2a18cc2dead4096fecf15bec81d6ab66",
+      "upload_time_iso_8601": "2026-10-17T16:55:15.782446Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.14",
+      "filename": "unvibecode-0.3.14-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/f0/90/172af4e9c6399a67afce92a5f3b3cb9e7d336abe6b0641d370b12f53310e/unvibecode-0.3.14-cp314-cp314-win_amd64.whl",
+      "size": 501530,
+      "sha256": "a5d1dd356f77e4f33cece12f5ad08230ccac0c3aca9889572d2f5ba34d0b6ada",
+      "upload_time_iso_8601": "2026-10-17T16:55:17.217393Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "89eb0829916d95686c20b621bd11da1e888a998f6ae0c9d89f7d9a8e0819cb9a",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "14de39785013b4b9a9870b76a3caf2b59bd97913a964b72d20a2cd244604c84d",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp311-cp311-macosx_10_9_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/0a/bb/395ef8fafdd131b6791fde1edb056ee092f805891eede6eaacc04d1b907f/unvibecode-0.3.15-cp311-cp311-macosx_10_9_x86_64.whl",
+      "size": 536416,
+      "sha256": "2f648ef1e04a56259b56aa85bae9ff736139559f41931df8360b49a830286147",
+      "upload_time_iso_8601": "2026-10-23T09:19:41.785855Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp311-cp311-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/b2/ef/674465a2dfe42246ef7ffe1a133e91b8ebb97819f30d2ffe1eabf1f46079/unvibecode-0.3.15-cp311-cp311-macosx_11_0_arm64.whl",
+      "size": 527749,
+      "sha256": "79cf448ced00f88fae37c7a48ac1652596570192ece995dffd9b2cc07f8e1a6b",
+      "upload_time_iso_8601": "2026-10-23T09:19:43.815469Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/86/86/17e4e34411995fadcfd14589184aeabaa2a6953e8252d031528bc7dc4de6/unvibecode-0.3.15-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1542320,
+      "sha256": "c7f22d70da1566f9f4c93c7587bfbb338722fd6e8d9c119485e0f691d07ba966",
+      "upload_time_iso_8601": "2026-10-23T09:19:46.785551Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/b9/64/5f2dd648f2947a99920110d23e61a1d6b88dfbc93d8ee89150531ee795fc/unvibecode-0.3.15-cp311-cp311-win_amd64.whl",
+      "size": 516276,
+      "sha256": "9928849b32832c6b96bf6bac1274831399ac71b9447172409d76dee04b0b0215",
+      "upload_time_iso_8601": "2026-10-23T09:19:48.647960Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp312-cp312-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/bf/df/7b9ab47ca4a514f208c33d2ef05bd79a665ee3bad1c1deff44ba0c63b693/unvibecode-0.3.15-cp312-cp312-macosx_10_13_x86_64.whl",
+      "size": 541273,
+      "sha256": "e4bb2c352de3a7018e62f2f8bd96947a692f0c237cdd847e8c031c15234f82f5",
+      "upload_time_iso_8601": "2026-10-23T09:19:50.515538Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp312-cp312-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/55/49/5192052ac29863b9790b5087235748273cb7206b5c071ac4a2c36abab99f/unvibecode-0.3.15-cp312-cp312-macosx_11_0_arm64.whl",
+      "size": 529738,
+      "sha256": "8494a4207936fedf6e36e0b983cfd3b40d7c200931f34a682a6837b9a0f040aa",
+      "upload_time_iso_8601": "2026-10-23T09:19:52.136626Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/e1/7d/662e73b52ad16864427a5fa48e4cb8d2d215eca1d7804e022a54c7619d21/unvibecode-0.3.15-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1595824,
+      "sha256": "340368d348c093a8cdd948f5b5060e675af9e51805884668f64b669a592b5321",
+      "upload_time_iso_8601": "2026-10-23T09:19:54.794240Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/76/37/d59f95e99a6d233c810fa2d1e91675d4fdfb875f4d33e83a7502feaa20c4/unvibecode-0.3.15-cp312-cp312-win_amd64.whl",
+      "size": 517762,
+      "sha256": "eab44180df9c967ba68ad952533377899d264763f4080c33b90ac30fc78f6963",
+      "upload_time_iso_8601": "2026-10-23T09:19:56.496680Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp313-cp313-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/1c/14/b5315e25476bea8db2c966bf629b7946a016d6e8f9c01f2c730af1daa582/unvibecode-0.3.15-cp313-cp313-macosx_10_13_x86_64.whl",
+      "size": 538998,
+      "sha256": "5e076b373f540f9d1d3ddc32fdbd1bd9b5a49b40eca69ecdbc8617df95107dcc",
+      "upload_time_iso_8601": "2026-10-23T09:19:58.760227Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp313-cp313-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/c7/2d/84a52848fb2da005ae7aa6fba4e7043936ff4b1d4ee96bdfeb5095c25ab0/unvibecode-0.3.15-cp313-cp313-macosx_11_0_arm64.whl",
+      "size": 527009,
+      "sha256": "d76b5d1852ce19a4749f53ce8f70b48703acdb0f9fa0defa0ebf2a1e54d4edf4",
+      "upload_time_iso_8601": "2026-10-23T09:20:00.440077Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/94/56/492458a479e25b287b86d93d0dabf9c0475089bf02c1ba3bd196ceac922e/unvibecode-0.3.15-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1570015,
+      "sha256": "401272c85ced1bc88b0c5bf241428c59a035a181d5fc603d2600871b53ac3851",
+      "upload_time_iso_8601": "2026-10-23T09:20:03.299341Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp313-cp313-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/a1/48/af2662b9302be54439bbd6fd3edea53864b3624b54786f3de11b38f441bb/unvibecode-0.3.15-cp313-cp313-win_amd64.whl",
+      "size": 515138,
+      "sha256": "7ca9ee0da43a5fe0d2a19f065332783eba79148fc42d5cbcdbfe9f5634db9683",
+      "upload_time_iso_8601": "2026-10-23T09:20:05.037093Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp314-cp314-macosx_10_13_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/d0/db/694786e516250ed046d1842fa53b332da4bc8d75e6735c33723d1a6d026f/unvibecode-0.3.15-cp314-cp314-macosx_10_13_x86_64.whl",
+      "size": 539914,
+      "sha256": "958d2db62139ec214eec0d936f89faaa7657a758b6eb0382265de01dd6732900",
+      "upload_time_iso_8601": "2026-10-23T09:20:06.635831Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://files.pythonhosted.org/packages/cb/87/23063d61c42ce288a675acfb3c9114b17fc46ebd2cf3a5fadeeaf255828d/unvibecode-0.3.15-cp314-cp314-macosx_11_0_arm64.whl",
+      "size": 527522,
+      "sha256": "bc44752ed48b36d3446cd1ece6ceed3adee20cefab61099b48fc58e8ea78d9b5",
+      "upload_time_iso_8601": "2026-10-23T09:20:08.444983Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/ec/87/b81df73b87e91fa00c0f261ac2e175382d218c3856e89c42a168423ab61e/unvibecode-0.3.15-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 1564956,
+      "sha256": "e3d467d9ce5ea1cd4bacfbad67ff5464ee36678f5964e5e727cd70f4b6fd6b8a",
+      "upload_time_iso_8601": "2026-10-23T09:20:10.898092Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    },
+    {
+      "version": "0.3.15",
+      "filename": "unvibecode-0.3.15-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/da/36/7aa43ba89091494427b7a25163aaeb3b68b6791d6c926ae58cd9eea401a4/unvibecode-0.3.15-cp314-cp314-win_amd64.whl",
+      "size": 518951,
+      "sha256": "0fe60e2a5461c5e75c94696412dffff28c5033031e139bebf71911cd5cab52e1",
+      "upload_time_iso_8601": "2026-10-23T09:20:12.821062Z",
+      "engine_copies": [
+        {
+          "path": "shipreadyv2/engine_sources/00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+          "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        },
+        {
+          "path": "shipreadyv2/engine_sources/01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+          "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+          "loader_ast_sha256": "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495",
+          "uses_strict_json_loads": true,
+          "has_broad_exception_pass": true,
+          "extracted_loader_affected": true
+        }
+      ]
+    }
+  ],
+  "unique_loader_behaviours": {
+    "2a4467d270e82bb82b311f8804114736746394be3f0535175d9c3cfe39319495": {
+      "strict_json": {
+        "aliases": {
+          "@app": "src/app"
+        },
+        "error": null
+      },
+      "jsonc": {
+        "aliases": {},
+        "error": null
+      },
+      "affected": true,
+      "function_source_sha256": "62ab0825ceb9284d9b99566417740ef9fe1d6745eba7dbe40ec53606311fa0ff"
+    }
+  },
+  "summary": {
+    "releases_scanned": 16,
+    "wheels_scanned": 106,
+    "engine_copies_scanned": 212,
+    "unique_loader_ast_fingerprints": 1,
+    "affected_releases": [
+      "0.3.0",
+      "0.3.1",
+      "0.3.2",
+      "0.3.3",
+      "0.3.4",
+      "0.3.5",
+      "0.3.6",
+      "0.3.7",
+      "0.3.8",
+      "0.3.9",
+      "0.3.10",
+      "0.3.11",
+      "0.3.12",
+      "0.3.13",
+      "0.3.14",
+      "0.3.15"
+    ],
+    "all_scanned_releases_affected": true
+  },
+  "limitations": [
+    "Scope is the wheels published on PyPI at scan time; sdists and non-PyPI builds are not counted as separate artifacts.",
+    "Behaviour is executed once per unique extracted loader AST; byte-identical AST fingerprints are not re-executed for every platform wheel."
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "repository": "ng-matero/ng-matero",
+  "commit": "d351bf5957d8c6dc9eca79d0c9b260c5b8d07822",
+  "source_file": "src/app/app.config.ts",
+  "scope_name": "Optimal",
+  "scope_radius": 1,
+  "method_note": "Each task requires every listed fragment to occur in selected Optimal chunks from the named answering file. Imports and provider registrations in app.config.ts cannot make an impact task pass. This measures evidence availability, not LLM output quality.",
+  "tasks": [
+    {
+      "id": "ng_core_barrel_areas",
+      "category": "impact",
+      "question": "Through which four sub-areas does the @core barrel expose the providers and services imported by app.config.ts?",
+      "expected_answer": "The @core barrel re-exports authentication, bootstrap, interceptors, and settings.",
+      "answer_file": "src/app/core/index.ts",
+      "evidence_fragments": [
+        "export * from './authentication';",
+        "export * from './bootstrap';",
+        "export * from './interceptors';",
+        "export * from './settings';"
+      ]
+    },
+    {
+      "id": "ng_shared_barrel_categories",
+      "category": "impact",
+      "question": "Which seven categories does the @shared barrel re-export for app-level providers such as the Formly factory and paginator internationalization service?",
+      "expected_answer": "Components, directives, pipes, services, utils, interfaces, and the Formly configuration.",
+      "answer_file": "src/app/shared/index.ts",
+      "evidence_fragments": [
+        "export * from './components';",
+        "export * from './directives';",
+        "export * from './pipes';",
+        "export * from './services';",
+        "export * from './utils';",
+        "export * from './interfaces';",
+        "export * from './formly-config';"
+      ]
+    },
+    {
+      "id": "ng_environment_values",
+      "category": "impact",
+      "question": "What production, baseUrl, and useHash values does the imported environment supply to app.config.ts?",
+      "expected_answer": "production is false, baseUrl is the empty string, and useHash is false.",
+      "answer_file": "src/environments/environment.ts",
+      "evidence_fragments": [
+        "production: false,",
+        "baseUrl: '',",
+        "useHash: false,"
+      ]
+    },
+    {
+      "id": "ng_source_file_negative_control",
+      "category": "negative_control",
+      "question": "Which two services' load methods are registered as app initializers in the source file itself?",
+      "expected_answer": "TranslateLangService.load and StartupService.load are both registered with provideAppInitializer.",
+      "answer_file": "src/app/app.config.ts",
+      "evidence_fragments": [
+        "provideAppInitializer(() => inject(TranslateLangService).load()),",
+        "provideAppInitializer(() => inject(StartupService).load()),"
+      ]
+    }
+  ]
+}

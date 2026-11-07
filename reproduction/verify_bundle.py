@@ -78,7 +78,7 @@ for c in chunks:
         fail("V3", f"{rel} {c['chunk_id']}: line numbers not contiguous")
     src = srclines(rel)
     if src is None: fail("V3", f"chunk file missing on disk: {rel}"); continue
-    for n, text in zip(nums, lines):
+    for n, text in zip(nums, lines, strict=True):
         if n < 1 or n > len(src):
             fail("V3", f"{rel}:{n} beyond EOF ({len(src)} lines) in {c['chunk_id']}"); continue
         if src[n - 1] != text:
@@ -113,7 +113,7 @@ if over: fail("V5", f"{len(over)} selections exceed their own maximum_tokens; e.
 nonmono = 0
 for s in sels:
     scopes = [s["scopes"][k] for k in sorted(s["scopes"], key=lambda x: int(x))]
-    for a, b in zip(scopes, scopes[1:]):
+    for a, b in zip(scopes, scopes[1:], strict=False):
         if not set(a["chunk_ids"]) <= set(b["chunk_ids"]): nonmono += 1
 notes.append(f"non-monotonic scope inclusions (measured; cf. upstream #318): {nonmono}")
 

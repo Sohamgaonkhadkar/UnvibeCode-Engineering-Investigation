@@ -7,9 +7,14 @@ Default mode verifies the *affected* UnvibeCode 0.3.15 behaviour exactly:
 2. strict-JSON control and all JSONC variants reproduce the known defect;
 3. the post-fix regression (`repro_unit.py --expect-fixed`) fails, but only
    for the four JSONC fixtures and only with the exact empty-alias symptom;
-4. the correction proof of concept restores resolution; and
-5. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
-   with the numbers reported in the investigation.
+4. the reference-solution corpus passes and its loader restores resolution;
+5. the reversible A/B/C/D/E causal intervention and targeted boundary checks
+   pass on both shipped resolver copies; and
+6. committed lexical/ng-matero evidence summaries and JSONL artifacts agree
+   with the numbers reported in the investigation; and
+7. the documentation's own provenance claims - duplicate-sweep scope, cited
+   Actions run IDs, permalink pins, and relative links/anchors - agree with the
+   committed machine-readable records (`reproduction/check_docs.py`).
 
 This is intentionally stricter than "a command failed, therefore pass": an
 installation error, traceback, missing output, extra failure, missing failure,
@@ -41,6 +46,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
 
@@ -89,10 +95,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def run_child(label: str, script: str, *args: str) -> tuple[int, str]:
-    command = [sys.executable, str(HERE / script), *args]
+def run_child(
+    label: str,
+    script: str,
+    *args: str,
+    script_root: Path | None = None,
+) -> tuple[int, str]:
+    base = HERE if script_root is None else script_root
+    script_path = base / script
+    command = [sys.executable, str(script_path), *args]
     print(f"\n=== {label} ===")
-    print("$", " ".join([Path(sys.executable).name, f"reproduction/{script}", *args]))
+    print(
+        "$",
+        " ".join(
+            [Path(sys.executable).name, str(script_path.relative_to(ROOT)), *args]
+        ),
+    )
     env = os.environ.copy()
     env.setdefault("PYTHONIOENCODING", "utf-8")
     env.setdefault("PYTHONUTF8", "1")
@@ -181,13 +199,56 @@ def check_expected_fixed(output: str, returncode: int) -> None:
 
 
 def check_correction(output: str, returncode: int) -> None:
-    require(returncode == 0, f"Correction PoC exited {returncode}, expected 0")
+    require(returncode == 0, f"Reference-loader integration check exited {returncode}, expected 0")
     for fixture in CORRECTION_FIXTURES:
         line = fixture_line(output, fixture)
         require(line.startswith("PASS") and "resolution=('src/app/util.ts'" in line,
-                f"Correction PoC did not restore {fixture}")
-    require("RESULT: PASS" in output and "tolerant parse restores resolution" in output,
-            "Correction PoC final marker missing")
+                f"Reference loader did not restore {fixture}")
+    require("RESULT: PASS" in output and "reference loader restores resolution" in output,
+            "Correction harness final marker missing")
+
+
+def check_reference_solution(output: str, returncode: int, result_path: Path) -> None:
+    require(returncode == 0, f"Reference-solution validation exited {returncode}, expected 0")
+    require("REFERENCE_SOLUTION_STATUS: passed" in output,
+            "Reference-solution validation did not report a passed status")
+    require(
+        "CANDIDATE_CORPUS: curated=14 generated=500 invalid_rejected=13" in output,
+        "Reference-solution corpus counts changed",
+    )
+    data = load_json(result_path)
+    require(data.get("status") == "passed", "Reference-solution JSON status is not passed")
+    corpus = data.get("candidate_corpus", {})
+    require(corpus.get("curated_valid_cases") == 14, "Reference curated-case count changed")
+    require(corpus.get("generated_valid_cases") == 500, "Reference generated-case count changed")
+    require(corpus.get("invalid_cases_rejected") == 13, "Reference invalid-case count changed")
+    require(
+        corpus.get("out_of_scope_typescript_numeric_cases_rejected") == 4,
+        "Reference numeric-boundary count changed",
+    )
+
+
+def check_causal_intervention(output: str, returncode: int, result_path: Path) -> None:
+    require(returncode == 0, f"Causal intervention exited {returncode}, expected 0")
+    require("CAUSAL_INTERVENTION_STATUS: passed" in output,
+            "Causal intervention did not report a passed status")
+    expected_sequence = "A=failed,B=restored,C=failed,D=restored,E=failed"
+    for engine in ("fast_lane_00a", "merged_graph_01"):
+        require(f"UNIT_SEQUENCE {engine}: {expected_sequence}" in output,
+                f"Causal sequence mismatch for {engine}")
+    require("EXISTING_FIXTURE_CHECKS: 14 passed" in output,
+            "Causal intervention fixture-boundary count mismatch")
+    require("MALFORMED_BOUNDARY_CHECKS: 6 passed" in output,
+            "Causal intervention malformed-boundary count mismatch")
+
+    data = load_json(result_path)
+    require(data.get("status") == "passed", "Causal intervention JSON status is not passed")
+    require(len(data.get("unit_reversible_sequence", [])) == 2,
+            "Causal intervention JSON does not contain both engine sequences")
+    require(all(sequence.get("passed") for sequence in data["unit_reversible_sequence"]),
+            "A causal intervention engine sequence is not marked passed")
+    require(data.get("parser_boundary_checks", {}).get("passed") is True,
+            "Causal intervention parser boundaries are not marked passed")
 
 
 def load_json(path: Path):
@@ -267,6 +328,144 @@ def check_evidence() -> None:
             "ng-matero Optimal/Wider omission counts changed")
     print("  PASS  ng-matero: 111 relationships; 107 recovered direct dependencies")
 
+    reference = load_json(EVIDENCE / "reference_solution_validation.json")
+    require(reference.get("status") == "passed", "Reference-solution evidence is not passed")
+    require(reference["candidate_corpus"]["curated_valid_cases"] == 14
+            and reference["candidate_corpus"]["generated_valid_cases"] == 500
+            and reference["candidate_corpus"]["invalid_cases_rejected"] == 13
+            and reference["candidate_corpus"]["out_of_scope_typescript_numeric_cases_rejected"] == 4,
+            "Reference-solution corpus evidence changed")
+    require(reference["node_oracles"]["typescript_version"] == "5.9.3"
+            and reference["node_oracles"]["typescript_valid_agreements"] == 514
+            and reference["node_oracles"]["typescript_invalid_diagnostics"] == 13
+            and reference["node_oracles"]["jsonc_parser_valid_agreements"] == 510
+            and reference["node_oracles"]["jsonc_parser_invalid_diagnostics"] == 13,
+            "Reference-solution oracle evidence changed")
+    print("  PASS  Reference solution: 514 valid differential cases; 13 invalid rejected")
+
+    differential = load_json(EVIDENCE / "differential_probe.json")
+    require(differential.get("status") == "passed", "Differential-probe evidence is not passed")
+    require(differential["case_counts"]["enumerated_boundary"] == 121
+            and differential["case_counts"]["unique_seeded_mutations"] == 2156
+            and differential["case_counts"]["total_cases"] == 2277
+            and differential["case_counts"]["unique_texts_total"] == 2271,
+            "Differential-probe case counts changed")
+    require(differential["classification_counts"]["total"]["all_accept"] == 865
+            and differential["classification_counts"]["total"]["all_reject"] == 1316
+            and all(not rows for rows in differential["critical_cases"].values()),
+            "Differential-probe critical classifications changed")
+    print("  PASS  Adversarial differential probe: 2,277 cases; zero critical divergences")
+
+    concentration = load_json(EVIDENCE / "relationship_concentration_audit.json")
+    require(concentration.get("status") == "passed",
+            "Relationship-concentration evidence is not passed")
+    concentration_by_label = {row["label"]: row for row in concentration["datasets"]}
+    lexical_concentration = concentration_by_label["Lexical"]
+    require(lexical_concentration["recovered_subgraph"]["import_instances"] == 4256
+            and lexical_concentration["recovered_subgraph"]["distinct_source_target_pairs"] == 4218
+            and lexical_concentration["recovered_subgraph"]["distinct_source_files"] == 1290
+            and lexical_concentration["recovered_subgraph"]["distinct_target_files"] == 101
+            and lexical_concentration["target_concentration_on_distinct_pairs"]["top_10_share"] == 0.73779
+            and lexical_concentration["direct_selection_recovery_overlay"]["any_scope"]["distinct_recovered_pairs"] == 3364,
+            "Lexical relationship-concentration evidence changed")
+    ng_concentration = concentration_by_label["ng-matero"]
+    require(ng_concentration["recovered_subgraph"]["import_instances"] == 111
+            and ng_concentration["recovered_subgraph"]["distinct_source_target_pairs"] == 111
+            and ng_concentration["recovered_subgraph"]["distinct_source_files"] == 92
+            and ng_concentration["recovered_subgraph"]["distinct_target_files"] == 6
+            and ng_concentration["direct_selection_recovery_overlay"]["any_scope"]["distinct_recovered_pairs"] == 107,
+            "ng-matero relationship-concentration evidence changed")
+    print("  PASS  Recovered-edge concentration: Lexical 4,218 distinct pairs / 101 targets; ng-matero 111 / 6")
+
+    scope = load_json(EVIDENCE / "version_scope.json")
+    require(scope.get("status") == "completed" and scope.get("through_version") == "0.3.15",
+            "Version-scope evidence status/range changed")
+    require(scope["summary"]["releases_scanned"] == 16
+            and scope["summary"]["wheels_scanned"] == 106
+            and scope["summary"]["engine_copies_scanned"] == 212
+            and scope["summary"]["unique_loader_ast_fingerprints"] == 1
+            and scope["summary"]["all_scanned_releases_affected"] is True,
+            "Version-scope aggregate evidence changed")
+    require(scope["versions_scanned"] == [f"0.3.{minor}" for minor in range(16)],
+            "Version-scope release list changed")
+    print("  PASS  Version scope: 106 wheels / 212 engine copies, one vulnerable loader AST")
+
+    exposure = load_json(EVIDENCE / "ecosystem_exposure_sample.json")
+    require(exposure.get("status") == "completed" and exposure.get("pages_requested") == 3
+            and exposure.get("unique_root_configs_retrieved") == 210,
+            "Ecosystem exposure sample status/size changed")
+    repo_summary = exposure["summaries"]["all_unique_repositories"]
+    content_summary = exposure["summaries"]["unique_config_contents"]
+    require(repo_summary["eligible_with_nonempty_resolved_paths"] == 184
+            and repo_summary["affected_typescript_verified"] == 44
+            and repo_summary["paths_entries_in_affected"] == 211,
+            "Repository-level ecosystem exposure evidence changed")
+    require(content_summary["eligible_with_nonempty_resolved_paths"] == 139
+            and content_summary["affected_typescript_verified"] == 35
+            and content_summary["paths_entries_in_affected"] == 174,
+            "Unique-content ecosystem exposure evidence changed")
+    require(exposure["oracle"]["typescript_version"] == "5.9.3"
+            and exposure["oracle"]["eligible_cases_checked"] == 184,
+            "Ecosystem exposure TypeScript oracle evidence changed")
+    print("  PASS  Exposure sample: 44/184 repositories; 35/139 unique contents affected")
+
+    loader_behavior = load_json(EVIDENCE / "ecosystem_loader_behavior.json")
+    require(loader_behavior.get("status") == "completed"
+            and loader_behavior.get("environment", {}).get("unvibecode") == "0.3.15",
+            "Public-config loader-behavior status/version changed")
+    behavior_repo = loader_behavior["summaries"]["all_unique_repositories"]
+    behavior_unique = loader_behavior["summaries"]["unique_config_contents"]
+    require(behavior_repo["eligible_records"] == behavior_repo["passed_records"] == 184
+            and behavior_repo["affected_records"] == 44
+            and behavior_repo["affected_stock_empty_both_engines"] == 44
+            and behavior_repo["affected_corrected_exact_both_engines"] == 44
+            and behavior_repo["affected_expected_aliases"] == 163
+            and behavior_repo["unaffected_records"] == 140
+            and behavior_repo["unaffected_stock_exact_both_engines"] == 140
+            and behavior_repo["unaffected_corrected_exact_both_engines"] == 140,
+            "Repository-level public-config loader behavior changed")
+    require(behavior_unique["eligible_records"] == behavior_unique["passed_records"] == 139
+            and behavior_unique["affected_records"] == 35
+            and behavior_unique["affected_stock_empty_both_engines"] == 35
+            and behavior_unique["affected_corrected_exact_both_engines"] == 35
+            and behavior_unique["affected_expected_aliases"] == 126
+            and behavior_unique["unaffected_records"] == 104
+            and behavior_unique["unaffected_stock_exact_both_engines"] == 104
+            and behavior_unique["unaffected_corrected_exact_both_engines"] == 104,
+            "Unique-content public-config loader behavior changed")
+    require(len(loader_behavior.get("records", [])) == 184
+            and all(row.get("passed") for row in loader_behavior["records"]),
+            "A public-config loader-behavior record is not passed")
+    print("  PASS  Public-config loaders: 44 affected stock-empty/corrected-exact; 140 controls exact")
+
+    answerability_tasks = load_json(HERE / "answerability_tasks.json")
+    require(answerability_tasks.get("repository") == "meta/lexical"
+            and answerability_tasks.get("commit") == "164af6a4df7114f35724c472152ca74877b6bd04"
+            and answerability_tasks.get("source_file") == "packages/lexical-react/src/ReactExtension.tsx"
+            and answerability_tasks.get("scope_radius") == 1,
+            "Answerability task source/scope changed")
+    task_categories = Counter(
+        task.get("category") for task in answerability_tasks.get("tasks", [])
+    )
+    require(task_categories == {"impact": 6, "negative_control": 1},
+            "Answerability task category counts changed")
+    require(all(task.get("evidence_fragments") for task in answerability_tasks["tasks"]),
+            "An answerability task has no evidence fragments")
+    print("  PASS  Answerability audit spec: 6 impact tasks; 1 negative control")
+
+    ng_tasks = load_json(HERE / "answerability_tasks_ng_matero.json")
+    require(ng_tasks.get("repository") == "ng-matero/ng-matero"
+            and ng_tasks.get("commit") == "d351bf5957d8c6dc9eca79d0c9b260c5b8d07822"
+            and ng_tasks.get("source_file") == "src/app/app.config.ts"
+            and ng_tasks.get("scope_radius") == 1,
+            "ng-matero answerability task source/scope changed")
+    ng_categories = Counter(task.get("category") for task in ng_tasks.get("tasks", []))
+    require(ng_categories == {"impact": 3, "negative_control": 1},
+            "ng-matero answerability task category counts changed")
+    require(all(task.get("evidence_fragments") for task in ng_tasks["tasks"]),
+            "An ng-matero answerability task has no evidence fragments")
+    print("  PASS  Ng-matero answerability spec: 3 impact tasks; 1 negative control")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -315,21 +514,52 @@ def main() -> int:
             )
             check_expected_regression_failure(output, code)
 
-        code, output = run_child("Correction proof of concept", "correction_poc.py")
+        with tempfile.TemporaryDirectory(prefix="unvibecode-verify-solution-") as temporary:
+            reference_output = Path(temporary) / "reference-solution-validation.json"
+            code, output = run_child(
+                "Reference-solution parser corpus",
+                "validate_reference_solution.py",
+                "--output",
+                str(reference_output),
+                script_root=ROOT / "solution",
+            )
+            check_reference_solution(output, code, reference_output)
+
+        code, output = run_child("Reference-loader integration check", "correction_poc.py")
         check_correction(output, code)
 
+        if not args.expect_fixed:
+            # This diagnostic intentionally asserts the affected 0.3.15
+            # A/C/E failure states, so it is not part of post-fix mode.
+            with tempfile.TemporaryDirectory(prefix="unvibecode-verify-causal-") as temporary:
+                causal_output = Path(temporary) / "causal-intervention.json"
+                code, output = run_child(
+                    "Reversible causal intervention and targeted boundaries",
+                    "causal_intervention.py",
+                    "--output",
+                    str(causal_output),
+                )
+                check_causal_intervention(output, code, causal_output)
+
         if not args.skip_evidence:
+            code, output = run_child("Documentation and claim consistency", "check_docs.py")
+            require(
+                code == 0 and "DOCUMENTATION_CONSISTENCY_STATUS: passed" in output,
+                "Documentation/claim consistency check failed; documented sweep scope, "
+                "run citations, permalinks, or links disagree with the committed records",
+            )
             check_evidence()
     except VerificationError as exc:
         print(f"\nFINAL RESULT: FAIL — {exc}")
         return exc.code
 
     if args.expect_fixed:
-        print("\nFINAL RESULT: PASS — correct JSONC handling and correction PoC verified")
+        print("\nFINAL RESULT: PASS — correct JSONC handling and reference loader verified")
     else:
         print("\nFINAL RESULT: PASS — affected 0.3.15 defect reproduced exactly; "
               "regression failure is the expected JSONC empty-alias symptom; "
-              "correction PoC and committed evidence verified")
+              "reference solution, reversible causal intervention, targeted boundaries, "
+              "and committed evidence verified")
     return 0
 
 

@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "method": {
+    "primary_basis": "distinct source→target pairs in the verified recovered subgraph",
+    "secondary_basis": "individual verified import instances",
+    "area_definition": "packages/<package> for Lexical; src/app/<area> or src/environments for ng-matero; otherwise the first path component",
+    "concentration_metric": "sum of squared distinct-pair target shares; its reciprocal is reported as an effective target count",
+    "selection_overlay": "committed direct-selection omission pairs by exported Connected Code radius, checked as a subset of the verified recovered subgraph"
+  },
+  "datasets": [
+    {
+      "label": "Lexical",
+      "status": "passed",
+      "failures": [],
+      "inputs": {
+        "relationships": {
+          "path": "evidence/tsconfig-jsonc/lost_relationships.jsonl",
+          "sha256": "f4f5f2483330e478b84033f4b34d031757ef1f11c510bdbd794d97daae5c4137",
+          "rows": 4256
+        },
+        "direct_selection_omissions": {
+          "path": "evidence/tsconfig-jsonc/direct_selection_omissions.jsonl",
+          "sha256": "9827105ae2fc8f1f0882f5fb9817e5204955724b80b1cc3d4a33cdc2966a969f",
+          "rows": 6052
+        }
+      },
+      "recovered_subgraph": {
+        "import_instances": 4256,
+        "distinct_source_target_pairs": 4218,
+        "duplicate_pair_instances_beyond_first": 38,
+        "distinct_pair_retention_of_instances": 0.991071,
+        "distinct_source_files": 1290,
+        "distinct_target_files": 101,
+        "distinct_tsconfig_patterns": 99
+      },
+      "degree_on_distinct_pairs": {
+        "source_out_degree": {
+          "nodes": 1290,
+          "min": 1,
+          "p50_median": 3.0,
+          "p90_nearest_rank": 6,
+          "p95_nearest_rank": 8,
+          "p99_nearest_rank": 11,
+          "max": 17,
+          "mean": 3.269767
+        },
+        "target_in_degree": {
+          "nodes": 101,
+          "min": 1,
+          "p50_median": 6,
+          "p90_nearest_rank": 93,
+          "p95_nearest_rank": 146,
+          "p99_nearest_rank": 560,
+          "max": 1195,
+          "mean": 41.762376
+        }
+      },
+      "degree_on_import_instances": {
+        "source_out_degree": {
+          "nodes": 1290,
+          "min": 1,
+          "p50_median": 3.0,
+          "p90_nearest_rank": 6,
+          "p95_nearest_rank": 8,
+          "p99_nearest_rank": 11,
+          "max": 17,
+          "mean": 3.299225
+        },
+        "target_in_degree": {
+          "nodes": 101,
+          "min": 1,
+          "p50_median": 6,
+          "p90_nearest_rank": 93,
+          "p95_nearest_rank": 146,
+          "p99_nearest_rank": 564,
+          "max": 1218,
+          "mean": 42.138614
+        }
+      },
+      "target_concentration_on_distinct_pairs": {
+        "top_1_share": 0.28331,
+        "top_5_share": 0.58606,
+        "top_10_share": 0.73779,
+        "sum_of_squared_target_shares": 0.116124,
+        "effective_target_count_reciprocal_squared_shares": 8.611455,
+        "top_targets": [
+          {
+            "target_file": "packages/lexical/src/index.ts",
+            "distinct_source_files": 1195,
+            "import_instances": 1218,
+            "distinct_pair_share": 0.28331
+          },
+          {
+            "target_file": "packages/lexical-extension/src/index.ts",
+            "distinct_source_files": 560,
+            "import_instances": 564,
+            "distinct_pair_share": 0.132764
+          },
+          {
+            "target_file": "packages/lexical-rich-text/src/index.ts",
+            "distinct_source_files": 370,
+            "import_instances": 371,
+            "distinct_pair_share": 0.087719
+          },
+          {
+            "target_file": "packages/lexical-list/src/index.ts",
+            "distinct_source_files": 190,
+            "import_instances": 194,
+            "distinct_pair_share": 0.045045
+          },
+          {
+            "target_file": "packages/lexical/src/__tests__/utils/index.tsx",
+            "distinct_source_files": 157,
+            "import_instances": 157,
+            "distinct_pair_share": 0.037221
+          },
+          {
+            "target_file": "packages/lexical-link/src/index.ts",
+            "distinct_source_files": 146,
+            "import_instances": 146,
+            "distinct_pair_share": 0.034614
+          },
+          {
+            "target_file": "packages/lexical-table/src/index.ts",
+            "distinct_source_files": 138,
+            "import_instances": 139,
+            "distinct_pair_share": 0.032717
+          },
+          {
+            "target_file": "packages/lexical-react/src/LexicalComposerContext.ts",
+            "distinct_source_files": 136,
+            "import_instances": 137,
+            "distinct_pair_share": 0.032243
+          },
+          {
+            "target_file": "packages/lexical-html/src/index.ts",
+            "distinct_source_files": 124,
+            "import_instances": 124,
+            "distinct_pair_share": 0.029398
+          },
+          {
+            "target_file": "packages/lexical-utils/src/index.ts",
+            "distinct_source_files": 96,
+            "import_instances": 96,
+            "distinct_pair_share": 0.02276
+          }
+        ]
+      },
+      "area_spread_on_distinct_pairs": {
+        "distinct_source_areas": 41,
+        "distinct_target_areas": 35,
+        "distinct_source_target_area_pairs": 401,
+        "cross_area_pairs": 3620,
+        "cross_area_share": 0.858227,
+        "top_area_pairs": [
+          {
+            "source_area": "packages/lexical-y",
+            "target_area": "packages/lexical",
+            "distinct_source_target_pairs": 284
+          },
+          {
+            "source_area": "packages/lexical-react",
+            "target_area": "packages/lexical-react",
+            "distinct_source_target_pairs": 193
+          },
+          {
+            "source_area": "packages/lexical-playground",
+            "target_area": "packages/lexical",
+            "distinct_source_target_pairs": 181
+          },
+          {
+            "source_area": "packages/lexical",
+            "target_area": "packages/lexical",
+            "distinct_source_target_pairs": 156
+          },
+          {
+            "source_area": "packages/lexical-playground",
+            "target_area": "packages/lexical-react",
+            "distinct_source_target_pairs": 126
+          },
+          {
+            "source_area": "examples",
+            "target_area": "packages/lexical-react",
+            "distinct_source_target_pairs": 108
+          },
+          {
+            "source_area": "packages/lexical-react",
+            "target_area": "packages/lexical",
+            "distinct_source_target_pairs": 102
+          },
+          {
+            "source_area": "packages/lexical-y",
+            "target_area": "packages/lexical-extension",
+            "distinct_source_target_pairs": 94
+          },
+          {
+            "source_area": "packages/lexical",
+            "target_area": "packages/lexical-extension",
+            "distinct_source_target_pairs": 86
+          },
+          {
+            "source_area": "packages/lexical-y",
+            "target_area": "packages/lexical-list",
+            "distinct_source_target_pairs": 86
+          }
+        ]
+      },
+      "direct_selection_recovery_overlay": {
+        "by_radius": {
+          "1": {
+            "selection_omission_rows": 2707,
+            "distinct_recovered_pairs": 2707,
+            "distinct_source_files": 1133,
+            "distinct_target_files": 60,
+            "verified_pair_coverage": 0.641773,
+            "pairs_outside_verified_subgraph": 0
+          },
+          "2": {
+            "selection_omission_rows": 3345,
+            "distinct_recovered_pairs": 3345,
+            "distinct_source_files": 1233,
+            "distinct_target_files": 62,
+            "verified_pair_coverage": 0.79303,
+            "pairs_outside_verified_subgraph": 0
+          }
+        },
+        "any_scope": {
+          "distinct_recovered_pairs": 3364,
+          "distinct_source_files": 1235,
+          "distinct_target_files": 62,
+          "verified_pair_coverage": 0.797534,
+          "pairs_outside_verified_subgraph": 0
+        }
+      },
+      "top_tsconfig_patterns_by_import_instance": [
+        {
+          "pattern": "lexical",
+          "import_instances": 1217
+        },
+        {
+          "pattern": "@lexical/extension",
+          "import_instances": 564
+        },
+        {
+          "pattern": "@lexical/rich-text",
+          "import_instances": 371
+        },
+        {
+          "pattern": "@lexical/list",
+          "import_instances": 194
+        },
+        {
+          "pattern": "lexical/src/__tests__/utils",
+          "import_instances": 157
+        },
+        {
+          "pattern": "@lexical/link",
+          "import_instances": 146
+        },
+        {
+          "pattern": "@lexical/table",
+          "import_instances": 139
+        },
+        {
+          "pattern": "@lexical/react/LexicalComposerContext",
+          "import_instances": 137
+        },
+        {
+          "pattern": "@lexical/html",
+          "import_instances": 124
+        },
+        {
+          "pattern": "@lexical/utils",
+          "import_instances": 96
+        }
+      ]
+    },
+    {
+      "label": "ng-matero",
+      "status": "passed",
+      "failures": [],
+      "inputs": {
+        "relationships": {
+          "path": "evidence/tsconfig-jsonc/ng-matero/lost_relationships.jsonl",
+          "sha256": "bc52e75b2b3cf23179010b7bfe4b6c74421d6d3c62e7d931a1fe9c21812ff947",
+          "rows": 111
+        },
+        "direct_selection_omissions": {
+          "path": "evidence/tsconfig-jsonc/ng-matero/direct_selection_omissions.jsonl",
+          "sha256": "f9216042f6b4a35d944004f1436b4783593b8c78a745d12ac5e834450c82d050",
+          "rows": 214
+        }
+      },
+      "recovered_subgraph": {
+        "import_instances": 111,
+        "distinct_source_target_pairs": 111,
+        "duplicate_pair_instances_beyond_first": 0,
+        "distinct_pair_retention_of_instances": 1.0,
+        "distinct_source_files": 92,
+        "distinct_target_files": 6,
+        "distinct_tsconfig_patterns": 5
+      },
+      "degree_on_distinct_pairs": {
+        "source_out_degree": {
+          "nodes": 92,
+          "min": 1,
+          "p50_median": 1.0,
+          "p90_nearest_rank": 2,
+          "p95_nearest_rank": 3,
+          "p99_nearest_rank": 3,
+          "max": 3,
+          "mean": 1.206522
+        },
+        "target_in_degree": {
+          "nodes": 6,
+          "min": 2,
+          "p50_median": 8.5,
+          "p90_nearest_rank": 67,
+          "p95_nearest_rank": 67,
+          "p99_nearest_rank": 67,
+          "max": 67,
+          "mean": 18.5
+        }
+      },
+      "degree_on_import_instances": {
+        "source_out_degree": {
+          "nodes": 92,
+          "min": 1,
+          "p50_median": 1.0,
+          "p90_nearest_rank": 2,
+          "p95_nearest_rank": 3,
+          "p99_nearest_rank": 3,
+          "max": 3,
+          "mean": 1.206522
+        },
+        "target_in_degree": {
+          "nodes": 6,
+          "min": 2,
+          "p50_median": 8.5,
+          "p90_nearest_rank": 67,
+          "p95_nearest_rank": 67,
+          "p99_nearest_rank": 67,
+          "max": 67,
+          "mean": 18.5
+        }
+      },
+      "target_concentration_on_distinct_pairs": {
+        "top_1_share": 0.603604,
+        "top_5_share": 0.981982,
+        "top_10_share": 1.0,
+        "sum_of_squared_target_shares": 0.421638,
+        "effective_target_count_reciprocal_squared_shares": 2.371704,
+        "top_targets": [
+          {
+            "target_file": "src/app/shared/index.ts",
+            "distinct_source_files": 67,
+            "import_instances": 67,
+            "distinct_pair_share": 0.603604
+          },
+          {
+            "target_file": "src/app/core/index.ts",
+            "distinct_source_files": 23,
+            "import_instances": 23,
+            "distinct_pair_share": 0.207207
+          },
+          {
+            "target_file": "src/app/core/authentication/index.ts",
+            "distinct_source_files": 12,
+            "import_instances": 12,
+            "distinct_pair_share": 0.108108
+          },
+          {
+            "target_file": "src/environments/environment.ts",
+            "distinct_source_files": 5,
+            "import_instances": 5,
+            "distinct_pair_share": 0.045045
+          },
+          {
+            "target_file": "src/app/theme/admin-layout/admin-layout.ts",
+            "distinct_source_files": 2,
+            "import_instances": 2,
+            "distinct_pair_share": 0.018018
+          },
+          {
+            "target_file": "src/app/theme/auth-layout/auth-layout.ts",
+            "distinct_source_files": 2,
+            "import_instances": 2,
+            "distinct_pair_share": 0.018018
+          }
+        ]
+      },
+      "area_spread_on_distinct_pairs": {
+        "distinct_source_areas": 8,
+        "distinct_target_areas": 4,
+        "distinct_source_target_area_pairs": 18,
+        "cross_area_pairs": 101,
+        "cross_area_share": 0.90991,
+        "top_area_pairs": [
+          {
+            "source_area": "src/app/routes",
+            "target_area": "src/app/shared",
+            "distinct_source_target_pairs": 54
+          },
+          {
+            "source_area": "src/app/core",
+            "target_area": "src/app/core",
+            "distinct_source_target_pairs": 10
+          },
+          {
+            "source_area": "src/app/theme",
+            "target_area": "src/app/core",
+            "distinct_source_target_pairs": 9
+          },
+          {
+            "source_area": "schematics",
+            "target_area": "src/app/core",
+            "distinct_source_target_pairs": 8
+          },
+          {
+            "source_area": "src/app/core",
+            "target_area": "src/app/shared",
+            "distinct_source_target_pairs": 8
+          },
+          {
+            "source_area": "schematics",
+            "target_area": "src/app/shared",
+            "distinct_source_target_pairs": 3
+          },
+          {
+            "source_area": "schematics",
+            "target_area": "src/environments",
+            "distinct_source_target_pairs": 3
+          },
+          {
+            "source_area": "src/app/routes",
+            "target_area": "src/app/core",
+            "distinct_source_target_pairs": 3
+          },
+          {
+            "source_area": "schematics",
+            "target_area": "src/app/theme",
+            "distinct_source_target_pairs": 2
+          },
+          {
+            "source_area": "src/app/app.routes.ts",
+            "target_area": "src/app/theme",
+            "distinct_source_target_pairs": 2
+          }
+        ]
+      },
+      "direct_selection_recovery_overlay": {
+        "by_radius": {
+          "1": {
+            "selection_omission_rows": 107,
+            "distinct_recovered_pairs": 107,
+            "distinct_source_files": 92,
+            "distinct_target_files": 4,
+            "verified_pair_coverage": 0.963964,
+            "pairs_outside_verified_subgraph": 0
+          },
+          "2": {
+            "selection_omission_rows": 107,
+            "distinct_recovered_pairs": 107,
+            "distinct_source_files": 92,
+            "distinct_target_files": 4,
+            "verified_pair_coverage": 0.963964,
+            "pairs_outside_verified_subgraph": 0
+          }
+        },
+        "any_scope": {
+          "distinct_recovered_pairs": 107,
+          "distinct_source_files": 92,
+          "distinct_target_files": 4,
+          "verified_pair_coverage": 0.963964,
+          "pairs_outside_verified_subgraph": 0
+        }
+      },
+      "top_tsconfig_patterns_by_import_instance": [
+        {
+          "pattern": "@shared",
+          "import_instances": 67
+        },
+        {
+          "pattern": "@core",
+          "import_instances": 23
+        },
+        {
+          "pattern": "@core/*",
+          "import_instances": 12
+        },
+        {
+          "pattern": "@env/*",
+          "import_instances": 5
+        },
+        {
+          "pattern": "@theme/*",
+          "import_instances": 4
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "This is not a whole-repository graph reconstruction; already-resolved edges are not inputs.",
+    "Distinct pairs remove duplicate-pair inflation but do not make hub/barrel targets independent questions or independent user impact.",
+    "Area spread is descriptive repository accounting, not a prevalence or user-impact estimate.",
+    "Selection coverage is limited to the exported bundle selections and radii already committed as evidence."
+  ],
+  "conclusion": "The recovered-edge counts are highly hub-concentrated, but distinct-pair accounting separates that concentration from duplicate-pair inflation and shows how widely the affected sources and repository areas are spread."
+}

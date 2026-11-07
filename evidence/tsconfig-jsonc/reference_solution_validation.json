@@ -1,0 +1,106 @@
+{
+  "schema": "unvibecode-tsconfig-jsonc-reference-validation/v1",
+  "status": "passed",
+  "generated_on": "2026-11-03",
+  "candidate": {
+    "module": "solution/tsconfig_jsonc.py",
+    "method": "position-preserving string-aware JSONC transform + stdlib json",
+    "python": "3.11.2"
+  },
+  "candidate_corpus": {
+    "seed": 20261103,
+    "curated_valid_cases": 14,
+    "generated_valid_cases": 500,
+    "invalid_cases_rejected": 13,
+    "out_of_scope_typescript_numeric_cases_rejected": 4,
+    "passed": true
+  },
+  "node_oracles": {
+    "typescript_version": "5.9.3",
+    "jsonc_parser_version": "3.3.1",
+    "typescript_valid_agreements": 514,
+    "typescript_invalid_diagnostics": 13,
+    "jsonc_parser_valid_agreements": 510,
+    "jsonc_parser_invalid_diagnostics": 13,
+    "jsonc_parser_expected_disagreements": [
+      "unicode_line_separator_comment",
+      "unicode_paragraph_separator_comment",
+      "empty",
+      "comment_only"
+    ],
+    "jsonc_parser_disagreement_note": "TypeScript accepts empty/comment-only configs and U+2028/U+2029 line terminators; jsonc-parser 3.3.1 reports errors for those curated cases. The candidate follows TypeScript for tsconfig input.",
+    "candidate_stricter_than_typescript_numeric_spellings": [
+      "typescript_leading_decimal",
+      "typescript_hex_number",
+      "typescript_binary_number",
+      "typescript_numeric_separator"
+    ],
+    "numeric_spelling_note": "TypeScript also accepts JavaScript numeric spellings such as .5, 0x10, 0b101, and 1_000. The candidate and jsonc-parser reject them; this is an explicit JSONC-subset boundary, not a claim of equivalence to TypeScript's full expression-based config grammar.",
+    "passed": true
+  },
+  "python_library_comparison": {
+    "json_with_comments": {
+      "status": "checked",
+      "version": "1.3.0",
+      "valid_agreements": 509,
+      "valid_cases": 514,
+      "valid_failure_cases": [
+        "bom",
+        "unicode_line_separator_comment",
+        "unicode_paragraph_separator_comment",
+        "empty",
+        "comment_only"
+      ],
+      "invalid_cases_accepted": [
+        "leading_object_comma",
+        "leading_array_comma",
+        "python_nan_constant",
+        "python_infinity_constant",
+        "python_negative_infinity_constant"
+      ]
+    },
+    "python_json5": {
+      "status": "checked",
+      "version": "0.17.3",
+      "valid_agreements": 512,
+      "valid_cases": 514,
+      "valid_failure_cases": [
+        "empty",
+        "comment_only"
+      ],
+      "invalid_cases_accepted": [
+        "json5_unquoted_key",
+        "json5_single_quote",
+        "python_nan_constant",
+        "python_infinity_constant",
+        "python_negative_infinity_constant"
+      ]
+    }
+  },
+  "performance": {
+    "python": "3.11.2",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "entries": [
+      {
+        "input": "committed lexical root tsconfig",
+        "bytes_utf8": 22614,
+        "iterations_per_sample": 100,
+        "median_ms_per_parse": 4.7283
+      },
+      {
+        "input": "committed ng-matero root tsconfig",
+        "bytes_utf8": 1292,
+        "iterations_per_sample": 100,
+        "median_ms_per_parse": 0.2919
+      },
+      {
+        "input": "synthetic 5,000-entry JSONC tsconfig",
+        "bytes_utf8": 301780,
+        "iterations_per_sample": 3,
+        "median_ms_per_parse": 70.2681
+      }
+    ],
+    "note": "Timing is environment-specific; the transform is a single lexical pass before stdlib json parsing."
+  },
+  "conclusion": "The candidate accepts the JSONC subset relevant to this defect (comments/trailing commas, plus TypeScript empty-config and line-terminator behaviour), rejects malformed and diagnosed JSON5-only syntax, and preserves string contents and source positions. It does not claim equivalence to TypeScript's JavaScript numeric-literal spellings."
+}

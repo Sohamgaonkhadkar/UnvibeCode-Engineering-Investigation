@@ -1,0 +1,2562 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "environment": {
+    "python": "3.11.2",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "typescript_version": "5.9.3",
+    "jsonc_parser_version": "3.3.1"
+  },
+  "method": {
+    "oracle": "solution/typescript_oracle.mjs",
+    "typescript_acceptance": "parseConfigFileTextToJson returns no diagnostic; a partial config value beside a diagnostic is not acceptance",
+    "jsonc_parser_acceptance": "parse(..., allowTrailingComma=true) returns an empty errors array after stripping one leading BOM in the oracle helper",
+    "candidate_acceptance": "solution.tsconfig_jsonc.parse_tsconfig_jsonc returns without raising",
+    "mutation_seed": 424242,
+    "mutation_attempt_budget": 3000,
+    "mutation_operations": [
+      "insert one token",
+      "delete one character/token unit",
+      "replace one character/token unit",
+      "insert at a second sampled position"
+    ],
+    "critical_failure_rules": [
+      "candidate accepts while both oracles reject",
+      "candidate rejects while both oracles accept",
+      "all three accept but candidate value differs from TypeScript"
+    ],
+    "oracle_disagreement_policy": "Cases where TypeScript and jsonc-parser disagree are counted as explicit grammar boundaries, not as candidate failures or as agreement."
+  },
+  "case_counts": {
+    "enumerated_boundary": 121,
+    "unique_seeded_mutations": 2156,
+    "total_cases": 2277,
+    "unique_texts_total": 2271,
+    "case_universe_sha256": "0c7c6a091d6c2fa79f42b902ecfa02e4ceb983030907f9275e81576dccf84162"
+  },
+  "classification_counts": {
+    "total": {
+      "all_accept": 865,
+      "all_reject": 1316,
+      "candidate_and_jsonc_parser_accept_typescript_rejects": 4,
+      "candidate_and_typescript_accept_jsonc_parser_rejects": 22,
+      "typescript_only_accepts": 70
+    },
+    "by_source": {
+      "enumerated_boundary": {
+        "all_accept": 43,
+        "all_reject": 46,
+        "candidate_and_jsonc_parser_accept_typescript_rejects": 4,
+        "candidate_and_typescript_accept_jsonc_parser_rejects": 6,
+        "typescript_only_accepts": 22
+      },
+      "seeded_mutation": {
+        "all_accept": 822,
+        "all_reject": 1270,
+        "candidate_and_typescript_accept_jsonc_parser_rejects": 16,
+        "typescript_only_accepts": 48
+      }
+    }
+  },
+  "critical_cases": {
+    "all_accept_value_mismatch": [],
+    "candidate_only_accepts": [],
+    "candidate_only_rejects": []
+  },
+  "enumerated_boundary_cases": [
+    {
+      "name": "boundary-object_separator-00",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-object_separator-01",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{,}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 1,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-02",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-object_separator-03",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1,}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-object_separator-04",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1,,}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "PropertyNameExpected",
+          "offset": 7,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-05",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1 \"b\":2}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "',' expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "CommaExpected",
+          "offset": 7,
+          "length": 3
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-06",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1,,\"b\":2}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "PropertyNameExpected",
+          "offset": 7,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-07",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{,\"a\":1}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 1,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-08",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\"::1}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Expression expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 5,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-09",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Expression expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 5,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-10",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{\"a\":1, /*c*/}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-object_separator-11",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{/*c*/,}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-object_separator-12",
+      "source": "enumerated_boundary",
+      "group": "object_separator",
+      "text": "{ //c\n,}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:2:1: Expecting property name enclosed in double quotes",
+      "typescript_valid": false,
+      "typescript_error": "Property assignment expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-00",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[]}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-array_separator-01",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[,]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-02",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1]}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-array_separator-03",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1,]}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-array_separator-04",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1,,]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:9: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-05",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1,,2]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:9: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-06",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[,1]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-07",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[/*c*/,]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:12: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 11,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-08",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[//c\n,]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:2:1: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-09",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1 2]}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:9: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "',' expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "CommaExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-array_separator-10",
+      "source": "enumerated_boundary",
+      "group": "array_separator",
+      "text": "{\"a\":[1, /*c*/]}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-00",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-01",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":-0}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-02",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":01}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Octal literals are not allowed. Use the syntax '0o1'.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "CommaExpected",
+          "offset": 6,
+          "length": 1
+        },
+        {
+          "code": "PropertyNameExpected",
+          "offset": 6,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-03",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":-01}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Octal literals are not allowed. Use the syntax '-0o1'.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "CommaExpected",
+          "offset": 7,
+          "length": 1
+        },
+        {
+          "code": "PropertyNameExpected",
+          "offset": 7,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-04",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-05",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1.0}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-06",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1.}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "UnexpectedEndOfNumber",
+          "offset": 5,
+          "length": 2
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-07",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1.e2}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "UnexpectedEndOfNumber",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 2
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-08",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1.0e2}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-09",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1e2}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-10",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1e+2}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-11",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1e-2}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-12",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1E2}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-13",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":.5}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-14",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":-.5}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 2
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-15",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":+1}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-16",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":-}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Expression expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-17",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1_0}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 2
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-18",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1__0}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Multiple consecutive numeric separators are not permitted.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 3
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-19",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1_}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Numeric separators are not allowed here.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-20",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":_1}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-21",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0x10}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 3
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-22",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0Xf}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 2
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-23",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0b101}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 4
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-24",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0o17}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 3
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-25",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0b102}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "',' expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 4
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-26",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0x}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Hexadecimal digit expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-27",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0b}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Binary digit expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-28",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":0o}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Octal digit expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-29",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":1n}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-30",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":NaN}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: invalid JSON constant 'NaN'",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-31",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":Infinity}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: invalid JSON constant 'Infinity'",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 8
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 13,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-32",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":-Infinity}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: invalid JSON constant '-Infinity'",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 6,
+          "length": 8
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 14,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-33",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":true}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-34",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":false}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-35",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":null}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-36",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":True}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 4
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 9,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-37",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":False}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 5
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-38",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":Null}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 4
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 9,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-39",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":undefined}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Property value can only be string literal, numeric literal, 'true', 'false', 'null', object literal or array literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 9
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 14,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-40",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":void}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "Expression expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 4
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 9,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-41",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":[]}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-42",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":{}}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-43",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"x\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-44",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"\\x41\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:7: Invalid \\escape",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidEscapeCharacter",
+          "offset": 5,
+          "length": 6
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-45",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"\\u0041\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-46",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"\\ud800\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-47",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"\\u12\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid \\uXXXX escape",
+      "typescript_valid": false,
+      "typescript_error": "Hexadecimal digit expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidUnicode",
+          "offset": 5,
+          "length": 6
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-48",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\nb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid control character at",
+      "typescript_valid": false,
+      "typescript_error": "Unterminated string literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "UnexpectedEndOfString",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 8,
+          "length": 1
+        },
+        {
+          "code": "UnexpectedEndOfString",
+          "offset": 9,
+          "length": 2
+        },
+        {
+          "code": "CommaExpected",
+          "offset": 9,
+          "length": 2
+        },
+        {
+          "code": "ColonExpected",
+          "offset": 11,
+          "length": 0
+        },
+        {
+          "code": "CloseBraceExpected",
+          "offset": 11,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-49",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\rb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid control character at",
+      "typescript_valid": false,
+      "typescript_error": "Unterminated string literal.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "UnexpectedEndOfString",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 8,
+          "length": 1
+        },
+        {
+          "code": "UnexpectedEndOfString",
+          "offset": 9,
+          "length": 2
+        },
+        {
+          "code": "CommaExpected",
+          "offset": 9,
+          "length": 2
+        },
+        {
+          "code": "ColonExpected",
+          "offset": 11,
+          "length": 0
+        },
+        {
+          "code": "CloseBraceExpected",
+          "offset": 11,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-scalar-50",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a b\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-51",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a b\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-scalar-52",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\bb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid control character at",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidCharacter",
+          "offset": 5,
+          "length": 5
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-53",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\fb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid control character at",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidCharacter",
+          "offset": 5,
+          "length": 5
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-54",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\u000bb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid control character at",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidCharacter",
+          "offset": 5,
+          "length": 5
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-scalar-55",
+      "source": "enumerated_boundary",
+      "group": "scalar",
+      "text": "{\"a\":\"a\\\nb\"}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Invalid \\escape",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidEscapeCharacter",
+          "offset": 5,
+          "length": 6
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-00",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{ \"a\" : 1 }",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-trivia-01",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\t\"a\"\t:\t1\t}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-trivia-02",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\n\"a\"\n:\n1\n}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-trivia-03",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\r\"a\"\r:\r1\r}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-trivia-04",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{ \"a\" : 1 }",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-05",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\u000b\"a\"\u000b:\u000b1\u000b}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-06",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\f\"a\"\f:\f1\f}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-07",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{﻿\"a\"﻿:﻿1﻿}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-08",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{​\"a\"​:​1​}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-09",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{　\"a\"　:　1　}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-10",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{\"a\":1}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting property name enclosed in double quotes",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 1,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 1
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 3
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 10,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-trivia-11",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{/*x*/\"a\"/*x*/:/*x*/1/*x*/}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-trivia-12",
+      "source": "enumerated_boundary",
+      "group": "trivia",
+      "text": "{//x\n\"a\"//x\n://x\n1//x\n}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-00",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\"/*c*/:1}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-01",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":/*c*/1}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-02",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":1/*c*/}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-03",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "/*c*/{\"a\":1}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-04",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":1}/*c*/",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-05",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":1}//c",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-06",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":1}   //c",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 8,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-comment_position-07",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":tr/*c*/ue}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:6: Expecting value",
+      "typescript_valid": false,
+      "typescript_error": "',' expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 5,
+          "length": 2
+        },
+        {
+          "code": "InvalidSymbol",
+          "offset": 12,
+          "length": 2
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 14,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-comment_position-08",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":1/*c*/2}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:12: Expecting ',' delimiter",
+      "typescript_valid": false,
+      "typescript_error": "',' expected.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "CommaExpected",
+          "offset": 11,
+          "length": 1
+        },
+        {
+          "code": "PropertyNameExpected",
+          "offset": 11,
+          "length": 1
+        },
+        {
+          "code": "ValueExpected",
+          "offset": 12,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-comment_position-09",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":\"/*not*/\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-10",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":\"//not\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-comment_position-11",
+      "source": "enumerated_boundary",
+      "group": "comment_position",
+      "text": "{\"a\":\"\\\"/*still*/\"}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    },
+    {
+      "name": "boundary-root-00",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-root-01",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": " ",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 1,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-root-02",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "//x",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 3,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-root-03",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "/*x*/",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 5,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-root-04",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "﻿",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "ValueExpected",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_typescript_accept_jsonc_parser_rejects"
+    },
+    {
+      "name": "boundary-root-05",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "﻿﻿{}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:2: Expecting value",
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 0,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "typescript_only_accepts"
+    },
+    {
+      "name": "boundary-root-06",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "{}x",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:3: Extra data",
+      "typescript_valid": false,
+      "typescript_error": "Unexpected token.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 2,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-root-07",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "{} {}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:4: Extra data",
+      "typescript_valid": false,
+      "typescript_error": "Unexpected token.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "EndOfFileExpected",
+          "offset": 3,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-root-08",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "[]",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": false,
+      "typescript_error": "The root value of a 'tsconfig.json' file must be an object.",
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_jsonc_parser_accept_typescript_rejects"
+    },
+    {
+      "name": "boundary-root-09",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "1",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": false,
+      "typescript_error": "The root value of a 'tsconfig.json' file must be an object.",
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_jsonc_parser_accept_typescript_rejects"
+    },
+    {
+      "name": "boundary-root-10",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "\"x\"",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": false,
+      "typescript_error": "The root value of a 'tsconfig.json' file must be an object.",
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_jsonc_parser_accept_typescript_rejects"
+    },
+    {
+      "name": "boundary-root-11",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "null",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": false,
+      "typescript_error": "The root value of a 'tsconfig.json' file must be an object.",
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": null,
+      "classification": "candidate_and_jsonc_parser_accept_typescript_rejects"
+    },
+    {
+      "name": "boundary-root-12",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "{}}",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:3: Extra data",
+      "typescript_valid": false,
+      "typescript_error": "Unexpected token.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "EndOfFileExpected",
+          "offset": 2,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-root-13",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "{\"a\":1},",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Extra data",
+      "typescript_valid": false,
+      "typescript_error": "Unexpected token.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "EndOfFileExpected",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-root-14",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "{\"a\":1};",
+      "candidate_valid": false,
+      "candidate_error": "TsconfigSyntaxError: tsconfig.json:1:8: Extra data",
+      "typescript_valid": false,
+      "typescript_error": "Unexpected token.",
+      "jsonc_parser_valid": false,
+      "jsonc_parser_errors": [
+        {
+          "code": "InvalidSymbol",
+          "offset": 7,
+          "length": 1
+        }
+      ],
+      "all_accept_value_equal": null,
+      "classification": "all_reject"
+    },
+    {
+      "name": "boundary-root-15",
+      "source": "enumerated_boundary",
+      "group": "root",
+      "text": "﻿/*x*/{}",
+      "candidate_valid": true,
+      "candidate_error": null,
+      "typescript_valid": true,
+      "typescript_error": null,
+      "jsonc_parser_valid": true,
+      "jsonc_parser_errors": [],
+      "all_accept_value_equal": true,
+      "classification": "all_accept"
+    }
+  ],
+  "seeded_mutation_oracle_disagreement_names": {
+    "candidate_and_typescript_accept_jsonc_parser_rejects": [
+      "mutation-0028",
+      "mutation-0116",
+      "mutation-0120",
+      "mutation-0274",
+      "mutation-0280",
+      "mutation-0350",
+      "mutation-0586",
+      "mutation-1273",
+      "mutation-1289",
+      "mutation-1420",
+      "mutation-1968",
+      "mutation-2139",
+      "mutation-2221",
+      "mutation-2536",
+      "mutation-2540",
+      "mutation-2551"
+    ],
+    "typescript_only_accepts": [
+      "mutation-0141",
+      "mutation-0202",
+      "mutation-0403",
+      "mutation-0419",
+      "mutation-0671",
+      "mutation-0694",
+      "mutation-0703",
+      "mutation-0715",
+      "mutation-0857",
+      "mutation-0869",
+      "mutation-0877",
+      "mutation-0919",
+      "mutation-0985",
+      "mutation-0996",
+      "mutation-1075",
+      "mutation-1094",
+      "mutation-1103",
+      "mutation-1199",
+      "mutation-1217",
+      "mutation-1231",
+      "mutation-1295",
+      "mutation-1338",
+      "mutation-1418",
+      "mutation-1433",
+      "mutation-1609",
+      "mutation-1641",
+      "mutation-1669",
+      "mutation-1746",
+      "mutation-1754",
+      "mutation-1842",
+      "mutation-1868",
+      "mutation-2057",
+      "mutation-2122",
+      "mutation-2238",
+      "mutation-2428",
+      "mutation-2437",
+      "mutation-2462",
+      "mutation-2503",
+      "mutation-2511",
+      "mutation-2525",
+      "mutation-2591",
+      "mutation-2682",
+      "mutation-2786",
+      "mutation-2818",
+      "mutation-2893",
+      "mutation-2937",
+      "mutation-2986",
+      "mutation-2998"
+    ]
+  },
+  "conclusion": "Passed only if there are no candidate-only acceptances, no candidate-only rejections of inputs both oracles accept, and no value mismatches where all three accept. Other classifications are retained as named TypeScript/jsonc-parser grammar boundaries."
+}
