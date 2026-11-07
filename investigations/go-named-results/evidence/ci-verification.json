@@ -1,0 +1,41 @@
+{
+  "evidence_commit": "1bb14af9985ee373e316b660b98116ab79556a77",
+  "retrieved_date": "2026-11-07",
+  "repository": "Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation",
+  "pull_request": "https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/3",
+  "method": "GitHub workflow-run, jobs/steps, and artifacts APIs; no artifact contents inferred from artifact metadata",
+  "dedicated_workflow": {
+    "run_id": 42366969295,
+    "url": "https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42366969295",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 128386956078,
+        "name": "Named-result controls (ubuntu-latest)",
+        "conclusion": "success",
+        "verified_steps": ["compiler/runtime controls", "both engines and five fixture pipeline states", "five candidate screens", "pinned LevelDB graph/export audit and three upstream tests", "ordinary CLI bundle equality"]
+      },
+      {
+        "id": 128386956325,
+        "name": "Named-result controls (windows-latest)",
+        "conclusion": "success",
+        "verified_steps": ["compiler/runtime controls", "both engines and five fixture pipeline states", "five candidate screens"],
+        "intentionally_skipped_steps": ["real LevelDB pipeline", "ordinary CLI comparison"],
+        "note": "The real-repository and CLI steps are Linux-only in CI; both were also verified locally on Windows."
+      }
+    ],
+    "artifacts": [
+      {"id": 13572301875, "name": "go-named-results-Linux", "size_bytes": 1236949, "digest": "sha256:f6cce7ceb4972f05b259d28217d596413e9f2d0198e1327850173689dbbb084e"},
+      {"id": 13571659936, "name": "go-named-results-Windows", "size_bytes": 3744, "digest": "sha256:aaeecf39fd744291e7d4f551428ac334c01df4c082aee35632f923ecf3b8dec4"}
+    ],
+    "artifact_boundary": "This first run uploaded JSON/logs and Linux real-repository ZIPs. The minimal ZIP upload glob omitted the extra minimal/ directory; a follow-up corrects that upload path. This did not skip fixture execution or its assertions."
+  },
+  "preservation_workflows": [
+    {"run_id": 42366969154, "name": "JSONC verification", "conclusion": "success", "jobs": 8},
+    {"run_id": 42366969235, "name": "Lexical clean environment", "conclusion": "success", "jobs": 1},
+    {"run_id": 42366969165, "name": "Ng-matero clean environment", "conclusion": "success", "jobs": 1}
+  ],
+  "checks_total": 12,
+  "checks_successful": 12,
+  "self_reference_boundary": "These results describe this immutable evidence commit. Later documentation/upload-path commits have their own live PR checks; do not imply their runs are already recorded here."
+}

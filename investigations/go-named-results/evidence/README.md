@@ -12,9 +12,10 @@ published archive SHA-256 before extraction. No installed engine file was edited
 | [cli-verification.json](cli-verification.json) | Ordinary CLI ZIP exactly equals stock pipeline chunks, connections and selections; entire ZIP contains `options.go`, but both focused scopes omit it |
 | [go-compiler.json](go-compiler.json) | Nine parser fixture forms compile; original and equivalent local-result fixture pass identical runtime tests |
 | [candidate-screen.json](candidate-screen.json) | Five preliminary screens and their dispositions |
-| [issue-audit.json](issue-audit.json) | All 482 issue metadata/body hashes; mechanism-term matches; 25 nearest/important report checks and comment hashes |
+| [issue-audit.json](issue-audit.json) | All 483 issue metadata/body hashes; mechanism-term matches; 25 nearest/important report checks and comment hashes |
+| [ci-verification.json](ci-verification.json) | Immutable evidence commit's 12 successful checks, dedicated Linux/Windows steps, artifact metadata and explicit upload-scope boundary |
 | [verification.log](verification.log) | Sanitized successful full-pipeline verifier stdout; paths abbreviated, numbers unchanged |
-| [goleveldb-go-tests.log](goleveldb-go-tests.log) | Existing upstream Go test output on the unmodified pinned source |
+| [goleveldb-go-tests.log](goleveldb-go-tests.log) | Selected RUN/PASS summary lines from the existing upstream tests on unmodified pinned source; verbose operation traces omitted |
 
 LevelDB: `https://github.com/syndtr/goleveldb`, commit
 `126854af5e6d8295ef8e8bee3040dd8380ae72e8`, **95 scanned source files**.
@@ -38,3 +39,16 @@ CI verifies the affected-release symptom and correction, not a shipped product
 fix. The dedicated workflow publishes an API-readable notice and uploads full
 logs/results for its own head. See the personal PR checks for the live result;
 historical JSONC CI is not evidence for this new finding.
+
+The first evidence commit is `1bb14af9985ee373e316b660b98116ab79556a77`;
+all 12 checks passed, including the dedicated Go jobs on Ubuntu and Windows.
+The Linux job also executed the real-repository and CLI comparisons. Its
+Windows CI companion deliberately skips those two steps; both ran locally on
+Windows. Follow [PR #3 checks](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/3/checks)
+for later heads. A follow-up fixes the minimal-ZIP upload glob, with no change
+to behavioral assertions.
+
+The preserved legacy verifier was run locally as well. Its initial hash check
+detected Git's Windows CRLF checkout conversion in four JSONC/config artifacts.
+Restoring their exact committed blob bytes made the complete verifier pass;
+their tracked content and evidence hashes were not changed by this PR.

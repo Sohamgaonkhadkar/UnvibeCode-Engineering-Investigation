@@ -74,5 +74,8 @@ verdict, model answer, or full business-review completion is claimed.
 
 Green reproduction checks mean the pinned stock defect was observed and the
 reference correction passed controls. They do not mean UnvibeCode ships a fix.
-The new personal-repository PR must remain unmerged for owner review. The official
+[Personal review PR #3](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/3)
+must remain unmerged for owner review. Its initial evidence commit passed all
+12 checks; [CI provenance](evidence/ci-verification.json) distinguishes that
+snapshot from later live checks. The official
 issue and Google Form remain unsubmitted.

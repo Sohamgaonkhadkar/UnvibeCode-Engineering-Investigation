@@ -65,7 +65,11 @@ def main():
         'issues':len(issues), 'pull_requests_excluded':len(all_rows)-len(issues),
         'newest_issue':max(x['number'] for x in issues), 'terms':TERMS,
         'close_reports':sorted(REVIEW), 'items':summaries}
-    args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+    # One issue per line keeps the complete audit compact and reviewable.
+    items = result.pop('items')
+    header = json.dumps(result, indent=2).rstrip()[:-1]
+    payload = header + ',\n  "items": [\n' + ',\n'.join('    '+json.dumps(x) for x in items) + '\n  ]\n}\n'
+    args.output.write_text(payload,encoding='utf-8')
     print('audit complete',len(issues),'newest',result['newest_issue'])
 
 

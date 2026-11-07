@@ -2,8 +2,8 @@
 
 Snapshot: 7 November 2026. [issue-audit.json](evidence/issue-audit.json) records
 the retrieval timestamp, endpoint, body digests, match terms, states, and URLs.
-Six paginated REST responses contained 592 issue/PR entries: **482 issues**,
-open and closed, through **#593**, with 110 PRs excluded. Every issue title/body
+Six paginated REST responses contained 593 issue/PR entries: **483 issues**,
+open and closed, through **#594**, with 110 PRs excluded. Every issue title/body
 was screened for the mechanism terms. Twenty-five close/important reports were
 reviewed more closely; comments were checked for those reports. Only #234 had
 comments (seven), which discuss adding Go support and package-versus-file edges.
@@ -67,6 +67,12 @@ That experimental standard informed our validation approach; their discovery,
 code, language, repositories, and measurements are not our submission evidence.
 
 ## Assessment and refresh procedure
+
+Final refresh completed at 11:15:47 UTC (4:45:47 PM IST). The one newly filed
+report, [#594](https://github.com/FinanceFlash/unvibecode/issues/594), concerns
+structured redaction context and has no Go parsing/binding mechanism. Its body
+was checked only for duplicate classification; no related experiment was run.
+No earlier issue body changed between the initial and final snapshots.
 
 No same-mechanism report was identified in this snapshot. This is a bounded
 search conclusion, not a guarantee against unpublished work or future issues.

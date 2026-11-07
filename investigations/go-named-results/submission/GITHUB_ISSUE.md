@@ -20,8 +20,8 @@ that initializes session options, comparer/filter wrappers, and cached settings.
 - Compiler/runtime oracle: Go 1.27.3.
 - Public repository: [syndtr/goleveldb](https://github.com/syndtr/goleveldb/tree/126854af5e6d8295ef8e8bee3040dd8380ae72e8),
   commit `126854af5e6d8295ef8e8bee3040dd8380ae72e8`; 95 source files scanned.
-- Evidence repository: [UnvibeCode-Engineering-Investigation, new investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/codex/track1-original-investigation/investigations/go-named-results).
-  Use the immutable evidence commit linked by its review PR when reproducing.
+- Evidence repository: [UnvibeCode-Engineering-Investigation, new investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/1bb14af9985ee373e316b660b98116ab79556a77/investigations/go-named-results).
+  Evidence commit: `1bb14af9985ee373e316b660b98116ab79556a77`; [review PR #3](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/3).
 
 ## 3. Steps to reproduce
 
@@ -99,10 +99,10 @@ Four restored calls are `session.go:89,93,94,95` (`setOptions`, `refLoop`,
 
 ## 6. Evidence
 
-- [Behavioral verification and engine hashes](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/track1-original-investigation/investigations/go-named-results/evidence/verification.json)
-- [CLI versus pipeline payload comparison](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/track1-original-investigation/investigations/go-named-results/evidence/cli-verification.json)
-- [Compiler/runtime controls](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/track1-original-investigation/investigations/go-named-results/evidence/go-compiler.json)
-- [Root-cause detail and reversible reference correction](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/track1-original-investigation/investigations/go-named-results/ROOT_CAUSE.md)
+- [Behavioral verification and engine hashes](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/1bb14af9985ee373e316b660b98116ab79556a77/investigations/go-named-results/evidence/verification.json)
+- [CLI versus pipeline payload comparison](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/1bb14af9985ee373e316b660b98116ab79556a77/investigations/go-named-results/evidence/cli-verification.json)
+- [Compiler/runtime controls](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/1bb14af9985ee373e316b660b98116ab79556a77/investigations/go-named-results/evidence/go-compiler.json)
+- [Root-cause detail and reversible reference correction](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/1bb14af9985ee373e316b660b98116ab79556a77/investigations/go-named-results/ROOT_CAUSE.md)
 
 The normal CLI bundle exactly matches the stock local pipeline's 1,141 chunk
 records, 2,035 connection records, and 95 selections. Those 2,035 exported
@@ -152,8 +152,8 @@ supporting reference code, not a shipped upstream fix.
 
 ## 9. Duplicate check
 
-On 7 November 2026, screened titles/bodies of **482 open/closed issues through
-#593**, excluding PRs, plus comments on 25 close/important reports. No report of
+On 7 November 2026, screened titles/bodies of **483 open/closed issues through
+#594**, excluding PRs, plus comments on 25 close/important reports. No report of
 missing **named result parameter bindings** was identified.
 
 - [#446](https://github.com/FinanceFlash/unvibecode/issues/446): package globals;

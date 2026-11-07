@@ -74,5 +74,5 @@ jobs:
             ci-logs/*.json
             ci-logs/*.log
             ci-logs/full-work/real/*/run/shipready_complete_repository_context.zip
-            ci-logs/minimal-work/*/run/shipready_complete_repository_context.zip
+            ci-logs/minimal-work/minimal/*/run/shipready_complete_repository_context.zip
           if-no-files-found: error
