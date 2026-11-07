@@ -1,0 +1,294 @@
+{
+  "repository": "https://github.com/go-gorm/gorm",
+  "commit": "ead4e04ba7c6a49654649131e587133b1d9f3eca",
+  "engines": [
+    {
+      "file": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+      "graph_edges": [
+        3948,
+        3961,
+        3948
+      ],
+      "gained_calls": 13,
+      "production_calls": 12,
+      "test_calls": 1,
+      "lost_calls": 0
+    },
+    {
+      "file": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+      "graph_edges": [
+        3948,
+        3961,
+        3948
+      ],
+      "gained_calls": 13,
+      "production_calls": 12,
+      "test_calls": 1,
+      "lost_calls": 0
+    }
+  ],
+  "target_implementation_audit": {
+    "eligible_source_specific_targets": 6,
+    "restored_targets": 4,
+    "already_present_controls": 2,
+    "scopes": [
+      "Optimal",
+      "Wider"
+    ],
+    "tasks": [
+      {
+        "source": "chainable_api.go",
+        "target": "gorm.go",
+        "symbol": "AddError",
+        "owner": "DB",
+        "question": "Does the called error handler translate, accumulate, and propagate errors to the result?",
+        "definition_lines": [
+          405,
+          423
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "finisher_api.go",
+        "target": "chainable_api.go",
+        "symbol": "Clauses",
+        "owner": "DB",
+        "question": "How does Save apply an OnConflict clause versus a statement modifier or ordinary condition?",
+        "definition_lines": [
+          38,
+          56
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "finisher_api.go",
+        "target": "chainable_api.go",
+        "symbol": "Model",
+        "owner": "DB",
+        "question": "How does FirstOrCreate choose the model for its update path?",
+        "definition_lines": [
+          18,
+          22
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "finisher_api.go",
+        "target": "gorm.go",
+        "symbol": "AddError",
+        "owner": "DB",
+        "question": "Does the called error handler translate, accumulate, and propagate errors to the result?",
+        "definition_lines": [
+          405,
+          423
+        ],
+        "availability": {
+          "1": [
+            true,
+            true,
+            true
+          ],
+          "2": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      {
+        "source": "finisher_api.go",
+        "target": "gorm.go",
+        "symbol": "Session",
+        "owner": "DB",
+        "question": "How does the called Session method copy or initialize statement context?",
+        "definition_lines": [
+          261,
+          360
+        ],
+        "availability": {
+          "1": [
+            true,
+            true,
+            true
+          ],
+          "2": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      {
+        "source": "finisher_api.go",
+        "target": "gorm.go",
+        "symbol": "Set",
+        "owner": "DB",
+        "question": "Where does Save store the gorm:update_track_time marker?",
+        "definition_lines": [
+          376,
+          380
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      }
+    ],
+    "measurement": "all nonblank source lines of each complete callee definition must match selected target code"
+  },
+  "source_files": 162,
+  "cli": {
+    "equals_stock_pipeline": true,
+    "record_counts": {
+      "chunks.jsonl": 1218,
+      "connections.jsonl": 3534,
+      "selections.jsonl": 162
+    },
+    "bundle_sha256": "7c06dfe8919e212402387c57cabf659235058262a6882fb55e8b7c9564c49695"
+  },
+  "gained_calls": [
+    {
+      "source": "chainable_api.go",
+      "target": "gorm.go",
+      "line": 126,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "chainable_api.go",
+      "target": "gorm.go",
+      "line": 170,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "chainable_api.go",
+      "line": 97,
+      "symbol": "Clauses",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "chainable_api.go",
+      "line": 406,
+      "symbol": "Model",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 70,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 70,
+      "symbol": "Session",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 72,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 99,
+      "symbol": "Set",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 117,
+      "symbol": "Session",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 120,
+      "symbol": "Session",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 548,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "finisher_api.go",
+      "target": "gorm.go",
+      "line": 556,
+      "symbol": "AddError",
+      "owner": "DB"
+    },
+    {
+      "source": "tests/tests_test.go",
+      "target": "finisher_api.go",
+      "line": 103,
+      "symbol": "Exec",
+      "owner": "DB"
+    }
+  ],
+  "distinct_production_file_pairs": 3,
+  "tracked_source_unchanged": true,
+  "source_hashes": {
+    "gorm.go": "7844d497c63e925f9fc0eefe30c58001c3be700b78c2dab24386f3de244a37f6",
+    "chainable_api.go": "d2f359af3f35952794e53ce2cadb7701753e97a0659c058414ad6b4e19618305",
+    "finisher_api.go": "ffaaa51ff3f4f065f2f9dd83228e001ad88bc6fd774e1d83ed32d274900c65dc",
+    "tests/tests_test.go": "8f58661148cd06a5f94a619200fb466bfe344a00c2f660b23dba7818bb672c55"
+  },
+  "status": "passed"
+}

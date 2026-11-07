@@ -1,0 +1,86 @@
+[
+  {
+    "source": "chainable_api.go",
+    "target": "gorm.go",
+    "line": 126,
+    "symbol": "AddError",
+    "owner": "DB"
+  },
+  {
+    "source": "chainable_api.go",
+    "target": "gorm.go",
+    "line": 170,
+    "symbol": "AddError",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "chainable_api.go",
+    "line": 97,
+    "symbol": "Clauses",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "chainable_api.go",
+    "line": 406,
+    "symbol": "Model",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 70,
+    "symbol": "AddError",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 70,
+    "symbol": "Session",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 72,
+    "symbol": "AddError",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 99,
+    "symbol": "Set",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 117,
+    "symbol": "Session",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 120,
+    "symbol": "Session",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 548,
+    "symbol": "AddError",
+    "owner": "DB"
+  },
+  {
+    "source": "finisher_api.go",
+    "target": "gorm.go",
+    "line": 556,
+    "symbol": "AddError",
+    "owner": "DB"
+  }
+]

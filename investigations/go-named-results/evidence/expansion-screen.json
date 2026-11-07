@@ -1,0 +1,38 @@
+{
+  "method": "Complete usage-record comparison on tracked non-test Go files, installed stock versus corrected collector. Discovery screen only; usage counts are not resolved edges or developer impact.",
+  "repositories": [
+    {
+      "repository": "gin-gonic/gin",
+      "commit": "0f09c3a9b4626d9fe9979cf4d0521d6ae32ab646",
+      "tracked_go_files_including_tests": 99,
+      "changed_non_test_method_usage_records": 3
+    },
+    {
+      "repository": "redis/go-redis",
+      "commit": "5cba5e182946cf18a757718938bc43910e589466",
+      "tracked_go_files_including_tests": 536,
+      "changed_non_test_method_usage_records": 3
+    },
+    {
+      "repository": "gorilla/websocket",
+      "commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f",
+      "tracked_go_files_including_tests": 33,
+      "changed_non_test_method_usage_records": 0
+    },
+    {
+      "repository": "etcd-io/bbolt",
+      "commit": "da9d57a74ae81821605f402975b22d28d95a2b7e",
+      "tracked_go_files_including_tests": 122,
+      "changed_non_test_method_usage_records": 26
+    },
+    {
+      "repository": "go-gorm/gorm",
+      "commit": "ead4e04ba7c6a49654649131e587133b1d9f3eca",
+      "tracked_go_files_including_tests": 162,
+      "changed_non_test_method_usage_records": 28
+    }
+  ],
+  "selected": "go-gorm/gorm",
+  "natural_wrong_target_found": false,
+  "limits": "Bounded convenience sample, not prevalence. Other four repositories did not undergo full export/impact validation."
+}

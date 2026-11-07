@@ -1,0 +1,68 @@
+{
+  "calls_verified": 6,
+  "go": "go1.27.3",
+  "package": "github.com/syndtr/goleveldb/leveldb",
+  "results": [
+    {
+      "source": "leveldb/db_write.go",
+      "target": "leveldb/db_state.go",
+      "line": 78,
+      "symbol": "decref",
+      "owner": "memDB",
+      "definition_line": 37,
+      "definition_end_line": 49,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.memDB"
+    },
+    {
+      "source": "leveldb/db_write.go",
+      "target": "leveldb/db_state.go",
+      "line": 105,
+      "symbol": "decref",
+      "owner": "memDB",
+      "definition_line": 37,
+      "definition_end_line": 49,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.memDB"
+    },
+    {
+      "source": "leveldb/session.go",
+      "target": "leveldb/options.go",
+      "line": 89,
+      "symbol": "setOptions",
+      "owner": "session",
+      "definition_line": 25,
+      "definition_end_line": 44,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.session"
+    },
+    {
+      "source": "leveldb/session.go",
+      "target": "leveldb/session_util.go",
+      "line": 93,
+      "symbol": "refLoop",
+      "owner": "session",
+      "definition_line": 70,
+      "definition_end_line": 249,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.session"
+    },
+    {
+      "source": "leveldb/session.go",
+      "target": "leveldb/session_util.go",
+      "line": 94,
+      "symbol": "setVersion",
+      "owner": "session",
+      "definition_line": 267,
+      "definition_end_line": 295,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.session"
+    },
+    {
+      "source": "leveldb/session.go",
+      "target": "leveldb/session_util.go",
+      "line": 95,
+      "symbol": "log",
+      "owner": "session",
+      "definition_line": 33,
+      "definition_end_line": 33,
+      "compiler_receiver": "*github.com/syndtr/goleveldb/leveldb.session"
+    }
+  ],
+  "status": "passed"
+}
