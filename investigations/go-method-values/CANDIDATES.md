@@ -27,6 +27,11 @@ The full issue snapshot contains 485 non-PR issues, all open/closed states throu
 hash, query terms and nearest-report comment results. No issue is filed by this
 work. Originality is an evidence-backed search conclusion, not a guarantee about
 unpublished research or future filings.
+New #597's complete body was subsequently read through the GitHub connector:
+it concerns malformed output-marker decoding, a different scanner cause.
+This brings the distinct body count to 486. A full unauthenticated REST refresh
+hit its rate limit; the 485-body snapshot is retained and the incremental
+check is recorded separately in `evidence/issue-597-follow-up.json`.
 
 Major strong competing reports remain #360 (receiver targets), #364 (generic
 calls), #395 (producer/consumer transition links), #409 (published ceilings),

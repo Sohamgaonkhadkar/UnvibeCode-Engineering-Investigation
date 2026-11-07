@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "ordinary_cli_equals_stock_pipeline": true,
+  "mode": "local only; business review deliberately skipped with large-repo-token-limit 1",
+  "counts": {
+    "chunks.jsonl": 11284,
+    "connections.jsonl": 24191,
+    "selections.jsonl": 536
+  },
+  "bundle_sha256": "7d106ed56ba998d75bde952fdc3104fbe33e75a88b6f90d45140ca9434e893cf"
+}

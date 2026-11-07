@@ -327,6 +327,29 @@ graph/selection/corrected/answerability claims.
 
 ## Retrieval note
 
+### Separate Go corroboration snapshot
+
+At `abd5689744593ae315299cdb378c4b567edd88ff`, the new
+[method-value workflow, 42372544897](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42372544897)
+and [provisional risk-source workflow, 42372545015](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42372545015)
+each passed Linux and Windows. These four checks are a scoped snapshot, not an
+all-PR-checks-green claim: the legacy documentation gate caught missing new CI
+provenance records at that commit. The following documentation commit records
+the missing provenance and passes the complete legacy verifier locally. Live PR
+checks remain authoritative for its newest head. The method-value Linux job
+independently verified all 13 production selector identities and compiled the
+existing go-redis test package without executing tests against a server.
+
+Commit `e852d05178593f46e9d1bddce54e2e7c799d2e65` passed all 12 PR checks:
+[Go, 42369867686](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42369867686),
+[JSONC, 42369867693](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42369867693),
+[Lexical, 42369867688](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42369867688),
+[ng-matero, 42369867702](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42369867702).
+Go's Linux job verified all 6 LevelDB and 12 GORM production identities and
+passed the existing GORM root-package tests. The named-result cause is now
+excluded by #596; these results corroborate it rather than establishing a new
+eligible submission. This addition does not change historical JSONC metrics.
+
 GitHub's artifact/log download hosts are not reachable from the restricted
 investigation sandbox, so the artifact ZIPs could not be copied into this
 repository from that environment. The run links, artifact IDs/digests, step

@@ -57,6 +57,7 @@ line of their complete definitions at Optimal and Wider.
 each scope. `process` remains incomplete at Optimal and complete at Wider;
 `processTxPipeline` remains incomplete throughout. These bounds are retained.
 Independent Go type-checker cases identify the 13 production source positions.
+Clean Linux CI verified all 13/13; fixture checks passed on Linux and Windows.
 
 ## 7. Impact and scope
 
@@ -84,3 +85,6 @@ No method-value/callback-reference mechanism match found. #360 concerns receiver
 selection; #415 factory expressions; #542 collection/range types; #596 named
 result bindings. This case has an explicit ordinary parameter and correctly
 known type. Earlier JSONC and named-result drafts are excluded as duplicates.
+New #597 was separately body-reviewed and excluded (scanner marker decoding),
+for 486 distinct bodies total. A full REST refresh was rate limited; the complete
+485-body snapshot and incremental connector check are recorded separately.

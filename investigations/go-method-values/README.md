@@ -3,6 +3,9 @@
 Selected Track 1 candidate, UnvibeCode 0.3.15. No matching mechanism was found in
 485 open/closed upstream issue bodies through #596, with nearest Go report
 comments checked. No upstream issue or Google Form has been submitted.
+New [#597 was also read and excluded](evidence/issue-597-follow-up.json), bringing
+the total to 486 distinct issue bodies reviewed. A full REST refresh was rate
+limited; the complete snapshot and incremental check are distinguished.
 
 `callback := s.Save; callback()` executes `Store.Save`, but the parser records
 no `Save` usage even when `s *Store` is an explicit input parameter. A wrapper
@@ -64,7 +67,21 @@ Windows executables need `.exe`. Public go-redis requires Go 1.26+; CI pins
 1.27.3. Grammar manifest access is required on first parse. A setup failure fails
 verification. The compiler oracle uses Go's own type checker and dependency
 exports; its legacy `calls_verified` field counts checked selector identities,
-not runtime invocations. Its result must be checked before claiming success.
+not runtime invocations. All **13/13** production identities passed in clean
+Linux CI; the existing go-redis root test package compiled without executing
+server-dependent tests. The fixture checks passed on both Linux and Windows.
+
+[Verification run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42372544897)
+at `abd5689744593ae315299cdb378c4b567edd88ff` passed both jobs.
+[CI provenance and artifact digests](evidence/ci-snapshot.json) identify the exact
+15.2 MB Linux artifact containing stock/corrected/restored ZIPs and compiler JSON.
+The same commit's unrelated legacy documentation gate required a provenance
+follow-up; live PR checks govern the current head.
+
+The ordinary CLI's local-only export also exactly matches the stock pipeline:
+11,284 chunks, 24,191 exported relationship records and 536 selections. See
+[CLI comparison](evidence/cli-verification.json). Hosted business review was
+deliberately skipped for that comparison; it is not a completed hosted review.
 
 ## Evidence and correction
 
@@ -90,3 +107,5 @@ The earlier [named-result investigation](../go-named-results/ELIGIBILITY.md) is
 archived because #596 duplicates its cause. [Risk-summary research](../risk-evidence-summary/README.md)
 is provisional because of an unresolved earlier-report lead. Neither is bundled
 into this submission's defect claim.
+
+The earlier JSONC work also remains excluded by upstream #451.

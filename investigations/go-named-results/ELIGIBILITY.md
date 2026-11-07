@@ -1,5 +1,7 @@
 # Eligibility collision: preserve, do not file
 
+The earlier JSONC exclusion by upstream #451 remains a separate preserved record.
+
 On 7 November 2026 at 11:45:38 UTC, another investigator opened upstream
 [#596](https://github.com/FinanceFlash/unvibecode/issues/596), reporting missing
 Go named-result environment bindings and the shadowed-package wrong-target
