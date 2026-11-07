@@ -1,0 +1,45 @@
+name: Risk evidence source separation
+
+on:
+  push:
+    paths:
+      - 'investigations/risk-evidence-summary/**'
+      - '.github/workflows/risk-evidence-summary.yml'
+  pull_request:
+    paths:
+      - 'investigations/risk-evidence-summary/**'
+      - '.github/workflows/risk-evidence-summary.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install published product
+        run: python -m pip install -r investigations/risk-evidence-summary/reproduction/requirements.txt
+      - name: Pin unchanged public source
+        run: |
+          git clone https://github.com/syndtr/goleveldb.git ci-logs/goleveldb
+          git -C ci-logs/goleveldb checkout 126854af5e6d8295ef8e8bee3040dd8380ae72e8
+      - name: Exercise file-based selector and reversible correction
+        run: python investigations/risk-evidence-summary/reproduction/verify.py --repo ci-logs/goleveldb --work ci-logs/risk --output ci-logs/risk-verification.json
+      - name: Preserve all selector inputs and outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: risk-evidence-${{ runner.os }}
+          path: |
+            ci-logs/risk-verification.json
+            ci-logs/risk/
+          if-no-files-found: error

@@ -1,0 +1,14 @@
+go: downloading github.com/onsi/gomega v1.19.0
+go: downloading github.com/onsi/ginkgo v1.16.5
+go: downloading github.com/golang/snappy v0.0.4
+go: downloading golang.org/x/net v0.0.0-20220607020251-c690dde0001d
+go: downloading gopkg.in/yaml.v2 v2.4.0
+go: downloading golang.org/x/text v0.3.7
+=== RUN   TestDB_Empty
+--- PASS: TestDB_Empty (0.50s)
+=== RUN   TestDB_ReadWrite
+--- PASS: TestDB_ReadWrite (0.69s)
+=== RUN   TestDB_GetSnapshot
+--- PASS: TestDB_GetSnapshot (0.96s)
+PASS
+ok  	github.com/syndtr/goleveldb/leveldb	18.571s

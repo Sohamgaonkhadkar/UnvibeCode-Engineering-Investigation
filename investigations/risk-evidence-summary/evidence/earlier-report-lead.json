@@ -1,0 +1,7 @@
+{
+  "source_issue": "https://github.com/FinanceFlash/unvibecode/issues/437",
+  "attachment": "https://github.com/user-attachments/files/34303161/41-43-evidence.zip",
+  "archive_sha256": "e12bd676fa0f12873b7a44a3d35d87e310efa43cb4d24e832c951cb78792d0e8",
+  "readme_sha256": "3bdfa43ed96759144a012fb89de2a96caf0d2116323dafa41866fc676bb49a35",
+  "finding": "Earlier report 34 concerns model-summary proof text; archive contains source-only control but not report 34 draft. Originality unresolved."
+}

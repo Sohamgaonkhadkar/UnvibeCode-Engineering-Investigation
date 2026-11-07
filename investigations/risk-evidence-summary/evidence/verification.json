@@ -1,0 +1,530 @@
+{
+  "unvibecode": "0.3.15",
+  "selector_sha256": "a5d638d7309fdd7cb00612f97e00ea724cb0be619e8f1e8be190cbc269778c69",
+  "compiler_sha256": "b98412a824acd0872b05ea3b83d7b663f441db201c080b821dbd54917ef77387",
+  "public_commit": "126854af5e6d8295ef8e8bee3040dd8380ae72e8",
+  "public_file_sha256": "b615a74d468372ae87bf48f8d42e95185c7c12bc1465b4a955360ad605936205",
+  "fixture_sqlite_rows": 1,
+  "boundary": "Controlled normalized nominations; actual installed selector main; no hosted model/report run.",
+  "cases": {
+    "minimal": {
+      "stock-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "stock-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "stock-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "corrected-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "corrected-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "corrected-negative": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "restored-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "restored-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      },
+      "restored-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "c6c86ca2608a49054b9101615bd387ec47246919feb643743ca3bc4119acf814",
+        "prepared_sha256": "386fa2fd5350bfd1ee9562d9e587588baba54c40950b7206357a87131120a41c"
+      }
+    },
+    "leveldb": {
+      "stock-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "stock-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "stock-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "corrected-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "corrected-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "corrected-negative": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "restored-blank": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "restored-benign": {
+        "decision": "INVESTIGATION_GAP",
+        "qualification": "INVESTIGATION_GAP",
+        "score": 13,
+        "selected_count": 0,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": false,
+          "semantic_status": "OBSERVED",
+          "reason": "EXTERNAL_DEPENDENCY was asserted canonically, but its cited source does not establish the required operation.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "INVESTIGATION_HYPOTHESIS",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      },
+      "restored-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "27bf4541ab62fade87cf5f354f68eca378294de19cea2ab83588259cc9c677fd",
+        "prepared_sha256": "5921d1ba1ac998bacbb73ec4ff514ed5d53a197728b8fd557d22ab123416f5c4"
+      }
+    },
+    "positive": {
+      "stock-blank": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "stock-benign": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "stock-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "corrected-blank": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "corrected-benign": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "corrected-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "restored-blank": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "restored-benign": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      },
+      "restored-negative": {
+        "decision": "SELECTED",
+        "qualification": "ELIGIBLE_STRONG",
+        "score": 17,
+        "selected_count": 1,
+        "proof": {
+          "obligation_id": "EXTERNAL_DEPENDENCY_CALL",
+          "evidence_role": "EXTERNAL_DEPENDENCY",
+          "passed": true,
+          "semantic_status": "OBSERVED",
+          "reason": "Validated evidence establishes external dependency.",
+          "evidence_refs": [
+            "e"
+          ]
+        },
+        "reporting_ceiling": "EVIDENCE_BACKED_RISK",
+        "source_sha256": "02e589002a7b29f4ae1887cd591e703e76989926ccf360e5dfe37bb9dc81eaa9",
+        "prepared_sha256": "6507d0876a44dc79eaf144e4593f21cd187bc49775d0be2f4e9b217a55053b1f"
+      }
+    }
+  }
+}

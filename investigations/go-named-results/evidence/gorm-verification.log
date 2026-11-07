@@ -1,0 +1,109 @@
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,948 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,948 symbol edges, 319 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\00a\stock\run\shipreadyv2_resolved_graph.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,948
+Go symbol edges promoted: 3,948; unresolved Go usages: 319
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-gorm
+Run folder:    <workspace>\research\gorm-verified\00a\stock\run
+Profile JSON:  <workspace>\research\gorm-verified\00a\stock\run\fast_lane_repository_profile.json
+Resolved JSON: <workspace>\research\gorm-verified\00a\stock\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <workspace>\research\gorm-verified\00a\stock\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 162 files, 1,218 code sections, prepared in 0.550s
+Context JSON:  <workspace>\research\gorm-verified\00a\stock\run\fast_lane_context_store.json
+Complete ZIP:  <workspace>\research\gorm-verified\00a\stock\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.097, 'connections': 0.038, 'download_selections': 0.313, 'browser_store': 0.028, 'zip_bundle': 0.069}
+Timing:        {'graph_build_seconds': 1.228, 'linker_seconds': 0.165, 'context_download_preparation_seconds': 0.55, 'html_render_seconds': 0.716, 'fast_lane_total_seconds': 2.66}
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,961 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,961 symbol edges, 322 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\00a\corrected\run\shipreadyv2_resolved_graph.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,961
+Go symbol edges promoted: 3,961; unresolved Go usages: 322
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-gorm
+Run folder:    <workspace>\research\gorm-verified\00a\corrected\run
+Profile JSON:  <workspace>\research\gorm-verified\00a\corrected\run\fast_lane_repository_profile.json
+Resolved JSON: <workspace>\research\gorm-verified\00a\corrected\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <workspace>\research\gorm-verified\00a\corrected\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 162 files, 1,218 code sections, prepared in 0.593s
+Context JSON:  <workspace>\research\gorm-verified\00a\corrected\run\fast_lane_context_store.json
+Complete ZIP:  <workspace>\research\gorm-verified\00a\corrected\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.103, 'connections': 0.042, 'download_selections': 0.341, 'browser_store': 0.025, 'zip_bundle': 0.076}
+Timing:        {'graph_build_seconds': 1.705, 'linker_seconds': 0.129, 'context_download_preparation_seconds': 0.593, 'html_render_seconds': 0.153, 'fast_lane_total_seconds': 2.585}
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,948 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,948 symbol edges, 319 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\00a\restored\run\shipreadyv2_resolved_graph.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,948
+Go symbol edges promoted: 3,948; unresolved Go usages: 319
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-gorm
+Run folder:    <workspace>\research\gorm-verified\00a\restored\run
+Profile JSON:  <workspace>\research\gorm-verified\00a\restored\run\fast_lane_repository_profile.json
+Resolved JSON: <workspace>\research\gorm-verified\00a\restored\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <workspace>\research\gorm-verified\00a\restored\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 162 files, 1,218 code sections, prepared in 0.493s
+Context JSON:  <workspace>\research\gorm-verified\00a\restored\run\fast_lane_context_store.json
+Complete ZIP:  <workspace>\research\gorm-verified\00a\restored\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.086, 'connections': 0.037, 'download_selections': 0.267, 'browser_store': 0.025, 'zip_bundle': 0.072}
+Timing:        {'graph_build_seconds': 1.478, 'linker_seconds': 0.19, 'context_download_preparation_seconds': 0.493, 'html_render_seconds': 0.15, 'fast_lane_total_seconds': 2.312}
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,948 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,948 symbol edges, 319 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\01_\stock\resolved.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,948
+Go symbol edges promoted: 3,948; unresolved Go usages: 319
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,961 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,961 symbol edges, 322 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\01_\corrected\resolved.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,961
+Go symbol edges promoted: 3,961; unresolved Go usages: 322
+Scanning workspace: <workspace>\real-gorm
+Parsing source files: 162
+[STAGE 1 COMPLETE] 162 files, 3,948 internal file edges, 266 package-level edges, 544 unresolved/external imports, 3,948 symbol edges, 319 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <workspace>\research\gorm-verified\01_\restored\resolved.json
+Files indexed: 162
+Imports: 0 resolved, 266 package-level, 0 partial, 544 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 133 ambiguous names in index
+Symbol edges added: 3,948
+Go symbol edges promoted: 3,948; unresolved Go usages: 319
+::notice::GORM: both graphs 3948 -> 3961 -> 3948; 12 production calls, 1 test call; 4/6 complete implementation targets restored, 2 controls retained

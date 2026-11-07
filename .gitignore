@@ -33,3 +33,11 @@ env/
 .DS_Store
 Thumbs.db
 *.swp
+
+# Disposable inputs/results for the separate Go named-result investigation.
+/.local-go-investigation/
+/minimal-result.json
+/full-result.json
+/compiler-result.json
+/candidate-screen.json
+/refreshed-issue-audit.json

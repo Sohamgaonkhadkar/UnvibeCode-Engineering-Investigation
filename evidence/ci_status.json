@@ -128,6 +128,7 @@
   },
   "pinned_documentation_commits": [
     { "commit": "6c6c6b2cd8d046db6e005ea19f5d188ec5e71cfb", "used_for": "blob/tree permalinks whose artifact IDs and digests are indexed" },
-    { "commit": "db66414055bd14e5ea2e060e461c7d7ece05098c", "used_for": "tree permalink in submission/UPSTREAM_CORROBORATION.md" }
+    { "commit": "db66414055bd14e5ea2e060e461c7d7ece05098c", "used_for": "tree permalink in submission/UPSTREAM_CORROBORATION.md" },
+    { "commit": "1bb14af9985ee373e316b660b98116ab79556a77", "used_for": "immutable evidence links for the separate Go named-result investigation; no JSONC metrics or historical run claims changed" }
   ]
 }

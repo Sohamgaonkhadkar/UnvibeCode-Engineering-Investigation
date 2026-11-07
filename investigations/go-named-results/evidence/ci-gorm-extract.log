@@ -1,0 +1,25 @@
+Source: GitHub Actions run 42369867686, Linux job 128395573325
+Commit: e852d05178593f46e9d1bddce54e2e7c799d2e65
+This is a filtered excerpt, not the complete job log.
+2026-11-07T11:51:28.9785561Z --- PASS: TestDB_Empty (0.05s)
+2026-11-07T11:51:29.0210752Z --- PASS: TestDB_ReadWrite (0.04s)
+2026-11-07T11:51:29.0844988Z --- PASS: TestDB_GetSnapshot (0.06s)
+2026-11-07T11:51:29.0845798Z PASS
+2026-11-07T11:51:29.0864299Z ok  	github.com/syndtr/goleveldb/leveldb	0.163s
+2026-11-07T11:51:32.3097534Z Go compiler verified 6/6 exact call-site/receiver/definition targets
+2026-11-07T11:51:57.0233308Z ##[notice]GORM: both graphs 3948 -> 3961 -> 3948; 12 production calls, 1 test call; 4/6 complete implementation targets restored, 2 controls retained
+2026-11-07T11:51:59.8234650Z Go compiler verified 12/12 exact call-site/receiver/definition targets
+2026-11-07T11:52:34.4089902Z --- PASS: TestWhereCloneCorruption (0.00s)
+2026-11-07T11:52:34.4090842Z     --- PASS: TestWhereCloneCorruption/w=1 (0.00s)
+2026-11-07T11:52:34.4091958Z     --- PASS: TestWhereCloneCorruption/w=2 (0.00s)
+2026-11-07T11:52:34.4092707Z     --- PASS: TestWhereCloneCorruption/w=3 (0.00s)
+2026-11-07T11:52:34.4093502Z     --- PASS: TestWhereCloneCorruption/w=4 (0.00s)
+2026-11-07T11:52:34.4094148Z     --- PASS: TestWhereCloneCorruption/w=5 (0.00s)
+2026-11-07T11:52:34.4095035Z     --- PASS: TestWhereCloneCorruption/w=6 (0.00s)
+2026-11-07T11:52:34.4095940Z     --- PASS: TestWhereCloneCorruption/w=7 (0.00s)
+2026-11-07T11:52:34.4096688Z     --- PASS: TestWhereCloneCorruption/w=8 (0.00s)
+2026-11-07T11:52:34.4098233Z --- PASS: TestNilCondition (0.00s)
+2026-11-07T11:52:34.4099691Z --- PASS: TestNameMatcher (0.00s)
+2026-11-07T11:52:34.4106783Z --- PASS: TestWithResultIncludesError (0.00s)
+2026-11-07T11:52:34.4107498Z PASS
+2026-11-07T11:52:34.4107954Z ok  	gorm.io/gorm	0.006s
