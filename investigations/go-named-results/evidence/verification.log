@@ -1,0 +1,193 @@
+Scanning workspace: <temporary>\minimal\fixture
+Parsing source files: 4
+[STAGE 1 COMPLETE] 4 files, 4 internal file edges, 1 package-level edges, 1 unresolved/external imports, 4 symbol edges, 0 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\minimal\A\run\shipreadyv2_resolved_graph.json
+Files indexed: 4
+Imports: 0 resolved, 1 package-level, 0 partial, 1 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 1 ambiguous names in index
+Symbol edges added: 4
+Go symbol edges promoted: 4; unresolved Go usages: 0
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <temporary>\minimal\fixture
+Run folder:    <temporary>\minimal\A\run
+Profile JSON:  <temporary>\minimal\A\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\minimal\A\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\minimal\A\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 4 files, 4 code sections, prepared in 0.004s
+Context JSON:  <temporary>\minimal\A\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\minimal\A\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.001, 'connections': 0.0, 'download_selections': 0.0, 'browser_store': 0.001, 'zip_bundle': 0.001}
+Timing:        {'graph_build_seconds': 0.029, 'linker_seconds': 0.001, 'context_download_preparation_seconds': 0.004, 'html_render_seconds': 0.584, 'fast_lane_total_seconds': 0.62}
+Scanning workspace: <temporary>\minimal\fixture
+Parsing source files: 4
+[STAGE 1 COMPLETE] 4 files, 4 internal file edges, 1 package-level edges, 1 unresolved/external imports, 4 symbol edges, 0 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\minimal\B\run\shipreadyv2_resolved_graph.json
+Files indexed: 4
+Imports: 0 resolved, 1 package-level, 0 partial, 1 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 1 ambiguous names in index
+Symbol edges added: 4
+Go symbol edges promoted: 4; unresolved Go usages: 0
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <temporary>\minimal\fixture
+Run folder:    <temporary>\minimal\B\run
+Profile JSON:  <temporary>\minimal\B\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\minimal\B\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\minimal\B\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 4 files, 4 code sections, prepared in 0.008s
+Context JSON:  <temporary>\minimal\B\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\minimal\B\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.001, 'connections': 0.0, 'download_selections': 0.0, 'browser_store': 0.004, 'zip_bundle': 0.001}
+Timing:        {'graph_build_seconds': 0.003, 'linker_seconds': 0.001, 'context_download_preparation_seconds': 0.008, 'html_render_seconds': 0.058, 'fast_lane_total_seconds': 0.071}
+Scanning workspace: <temporary>\minimal\fixture
+Parsing source files: 4
+[STAGE 1 COMPLETE] 4 files, 4 internal file edges, 1 package-level edges, 1 unresolved/external imports, 4 symbol edges, 0 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\minimal\C\run\shipreadyv2_resolved_graph.json
+Files indexed: 4
+Imports: 0 resolved, 1 package-level, 0 partial, 1 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 1 ambiguous names in index
+Symbol edges added: 4
+Go symbol edges promoted: 4; unresolved Go usages: 0
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <temporary>\minimal\fixture
+Run folder:    <temporary>\minimal\C\run
+Profile JSON:  <temporary>\minimal\C\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\minimal\C\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\minimal\C\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 4 files, 4 code sections, prepared in 0.005s
+Context JSON:  <temporary>\minimal\C\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\minimal\C\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.002, 'connections': 0.0, 'download_selections': 0.0, 'browser_store': 0.001, 'zip_bundle': 0.001}
+Timing:        {'graph_build_seconds': 0.011, 'linker_seconds': 0.002, 'context_download_preparation_seconds': 0.005, 'html_render_seconds': 0.056, 'fast_lane_total_seconds': 0.074}
+Scanning workspace: <temporary>\minimal\fixture
+Parsing source files: 4
+[STAGE 1 COMPLETE] 4 files, 4 internal file edges, 1 package-level edges, 1 unresolved/external imports, 4 symbol edges, 0 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\minimal\D\run\shipreadyv2_resolved_graph.json
+Files indexed: 4
+Imports: 0 resolved, 1 package-level, 0 partial, 1 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 1 ambiguous names in index
+Symbol edges added: 4
+Go symbol edges promoted: 4; unresolved Go usages: 0
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <temporary>\minimal\fixture
+Run folder:    <temporary>\minimal\D\run
+Profile JSON:  <temporary>\minimal\D\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\minimal\D\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\minimal\D\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 4 files, 4 code sections, prepared in 0.004s
+Context JSON:  <temporary>\minimal\D\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\minimal\D\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.001, 'connections': 0.0, 'download_selections': 0.0, 'browser_store': 0.001, 'zip_bundle': 0.001}
+Timing:        {'graph_build_seconds': 0.003, 'linker_seconds': 0.001, 'context_download_preparation_seconds': 0.004, 'html_render_seconds': 0.056, 'fast_lane_total_seconds': 0.065}
+Scanning workspace: <temporary>\minimal\fixture
+Parsing source files: 4
+[STAGE 1 COMPLETE] 4 files, 4 internal file edges, 1 package-level edges, 1 unresolved/external imports, 4 symbol edges, 0 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\minimal\E\run\shipreadyv2_resolved_graph.json
+Files indexed: 4
+Imports: 0 resolved, 1 package-level, 0 partial, 1 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 1 ambiguous names in index
+Symbol edges added: 4
+Go symbol edges promoted: 4; unresolved Go usages: 0
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <temporary>\minimal\fixture
+Run folder:    <temporary>\minimal\E\run
+Profile JSON:  <temporary>\minimal\E\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\minimal\E\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\minimal\E\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 4 files, 4 code sections, prepared in 0.005s
+Context JSON:  <temporary>\minimal\E\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\minimal\E\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.001, 'connections': 0.0, 'download_selections': 0.0, 'browser_store': 0.002, 'zip_bundle': 0.001}
+Timing:        {'graph_build_seconds': 0.006, 'linker_seconds': 0.002, 'context_download_preparation_seconds': 0.005, 'html_render_seconds': 0.056, 'fast_lane_total_seconds': 0.07}
+Scanning workspace: <workspace>\real-goleveldb
+Parsing source files: 95
+[STAGE 1 COMPLETE] 95 files, 1,858 internal file edges, 169 package-level edges, 297 unresolved/external imports, 1,858 symbol edges, 765 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\real\stock\run\shipreadyv2_resolved_graph.json
+Files indexed: 95
+Imports: 0 resolved, 169 package-level, 0 partial, 297 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 162 ambiguous names in index
+Symbol edges added: 1,858
+Go symbol edges promoted: 1,858; unresolved Go usages: 765
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-goleveldb
+Run folder:    <temporary>\real\stock\run
+Profile JSON:  <temporary>\real\stock\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\real\stock\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\real\stock\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 95 files, 1,141 code sections, prepared in 0.206s
+Context JSON:  <temporary>\real\stock\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\real\stock\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.047, 'connections': 0.022, 'download_selections': 0.078, 'browser_store': 0.015, 'zip_bundle': 0.04}
+Timing:        {'graph_build_seconds': 0.587, 'linker_seconds': 0.077, 'context_download_preparation_seconds': 0.206, 'html_render_seconds': 0.099, 'fast_lane_total_seconds': 0.97}
+Scanning workspace: <workspace>\real-goleveldb
+Parsing source files: 95
+[STAGE 1 COMPLETE] 95 files, 1,864 internal file edges, 169 package-level edges, 297 unresolved/external imports, 1,864 symbol edges, 768 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\real\corrected\run\shipreadyv2_resolved_graph.json
+Files indexed: 95
+Imports: 0 resolved, 169 package-level, 0 partial, 297 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 162 ambiguous names in index
+Symbol edges added: 1,864
+Go symbol edges promoted: 1,864; unresolved Go usages: 768
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-goleveldb
+Run folder:    <temporary>\real\corrected\run
+Profile JSON:  <temporary>\real\corrected\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\real\corrected\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\real\corrected\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 95 files, 1,141 code sections, prepared in 0.265s
+Context JSON:  <temporary>\real\corrected\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\real\corrected\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.064, 'connections': 0.025, 'download_selections': 0.098, 'browser_store': 0.024, 'zip_bundle': 0.051}
+Timing:        {'graph_build_seconds': 0.708, 'linker_seconds': 0.092, 'context_download_preparation_seconds': 0.265, 'html_render_seconds': 0.118, 'fast_lane_total_seconds': 1.184}
+Scanning workspace: <workspace>\real-goleveldb
+Parsing source files: 95
+[STAGE 1 COMPLETE] 95 files, 1,858 internal file edges, 169 package-level edges, 297 unresolved/external imports, 1,858 symbol edges, 765 unresolved Go usages
+
+[SHIPREADYV2 LINKER RESOLUTION COMPLETE]
+Output: <temporary>\real\restored\run\shipreadyv2_resolved_graph.json
+Files indexed: 95
+Imports: 0 resolved, 169 package-level, 0 partial, 297 unresolved, 0 hard-path skipped, 0 uncertain
+Python enrichment: 0 files, 0 safe constants, 0 dynamic imports marked
+Symbols: 0/0 resolved; 162 ambiguous names in index
+Symbol edges added: 1,858
+Go symbol edges promoted: 1,858; unresolved Go usages: 765
+
+[SHIPREADYV2 FAST LANE COMPLETE]
+Target folder: <workspace>\real-goleveldb
+Run folder:    <temporary>\real\restored\run
+Profile JSON:  <temporary>\real\restored\run\fast_lane_repository_profile.json
+Resolved JSON: <temporary>\real\restored\run\shipreadyv2_resolved_graph.json
+Symbol graph:  <temporary>\real\restored\run\fast_lane_symbol_resolution_graph.html
+Click downloads: 95 files, 1,141 code sections, prepared in 0.253s
+Context JSON:  <temporary>\real\restored\run\fast_lane_context_store.json
+Complete ZIP:  <temporary>\real\restored\run\shipready_complete_repository_context.zip
+Context timing: {'code_sections': 0.063, 'connections': 0.024, 'download_selections': 0.093, 'browser_store': 0.019, 'zip_bundle': 0.049}
+Timing:        {'graph_build_seconds': 0.803, 'linker_seconds': 0.083, 'context_download_preparation_seconds': 0.253, 'html_render_seconds': 0.116, 'fast_lane_total_seconds': 1.256}
+::notice::Named results: both engines, 54 extraction checks, A/B/C/D/E exports passed; LevelDB 1858 -> 1864 -> 1858; options implementation absent -> present -> absent

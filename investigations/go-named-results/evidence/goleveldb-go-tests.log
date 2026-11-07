@@ -1,0 +1,794 @@
+go: downloading github.com/onsi/gomega v1.19.0
+go: downloading github.com/onsi/ginkgo v1.16.5
+go: downloading github.com/golang/snappy v0.0.4
+go: downloading golang.org/x/net v0.0.0-20220607020251-c690dde0001d
+go: downloading gopkg.in/yaml.v2 v2.4.0
+go: downloading golang.org/x/text v0.3.7
+=== RUN   TestDB_Empty
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263200
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·4.4583ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·12.3815ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263201
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·10.0046ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·14.1056ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263202
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·3.2867ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·687.4µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·15.1716ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·554.5µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263203
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·5.2429ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·1.553ms
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·7.618ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·1.1476ms
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000003
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000003
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000003 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @2
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000002.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000003
+    db_test.go:49: db.go:651: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·10.1156ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000004.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000005 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+--- PASS: TestDB_Empty (0.50s)
+=== RUN   TestDB_ReadWrite
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263204
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·5.054ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·572µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000002.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@2 N·3 S·140B "bar,v2":"foo,v1"
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·140B[140B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·72.9239ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000003.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000002.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000004 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·506.6µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263205
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·7.4286ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·1.1027ms
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000002.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@2 N·3 S·201B "bar,v2":"foo,v1"
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·201B[201B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·43.0578ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000003.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000002.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000004 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263206
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·3.0794ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000002.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@2 N·3 S·206B "bar,v2":"foo,v1"
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·206B[206B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000004
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·40.6017ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000003.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000002.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000004 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263207
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·3.082ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·1.0019ms
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·8.6026ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000003
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000003
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000003 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @2
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000002.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000004.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@4 N·3 S·206B "bar,v2":"foo,v1"
+    db_test.go:49: storage.go:20: Create: file created, fd=000005.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·206B[206B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000006
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000006
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000003
+    db_test.go:49: db.go:651: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·12.5976ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000004.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000005.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000004.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000006 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·715.3µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+--- PASS: TestDB_ReadWrite (0.69s)
+=== RUN   TestDB_GetSnapshot
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263208
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·2.7576ms
+    db_test.go:365: starting memdb compaction
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: db_state.go:143: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: db_util.go:38: Log: memdb@flush N·4 S·446B
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000003.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@3 N·4 S·161B "bbb..bbb,v4":"foo,v1"
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·161B[161B] Sc·[0.25]
+    db_test.go:49: db_util.go:38: Log: memdb@flush committed F·1 T·3.4867ms
+    db_test.go:49: db_state.go:201: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:38: Log: journal@remove removed @1
+    db_test.go:380: memdb compaction done
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·161B[161B] Sc·[0.25]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @2
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000002.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·161B[161B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·11.939ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000004.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000005 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·559.7µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-10263209
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·4.6061ms
+    db_test.go:365: starting memdb compaction
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: db_state.go:143: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: db_util.go:38: Log: memdb@flush N·4 S·446B
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000003.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@3 N·4 S·222B "bbb..bbb,v4":"foo,v1"
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·222B[222B] Sc·[0.25]
+    db_test.go:49: db_util.go:38: Log: memdb@flush committed F·1 T·3.458ms
+    db_test.go:49: db_state.go:201: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:38: Log: journal@remove removed @1
+    db_test.go:380: memdb compaction done
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·222B[222B] Sc·[0.25]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @2
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000002.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·222B[222B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·25.4072ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000004.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000005 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·543.5µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-102632010
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·9.3419ms
+    db_test.go:365: starting memdb compaction
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: db_state.go:143: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: db_util.go:38: Log: memdb@flush N·4 S·446B
+    db_test.go:49: storage.go:20: Create: file created, fd=000003.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000003.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@3 N·4 S·419B "bbb..bbb,v4":"foo,v1"
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: db_util.go:38: Log: memdb@flush committed F·1 T·4.1953ms
+    db_test.go:49: db_state.go:201: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:38: Log: journal@remove removed @1
+    db_test.go:380: memdb compaction done
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·519.1µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @2
+    db_test.go:49: storage.go:15: Open: file opened, fd=000002.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000002.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000005
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·22.3196ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000003.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000004.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000003.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000005 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+    db_test.go:49: db_test.go:83: NewStorage: using FS storage
+        db_test.go:83: NewStorage: storage path: C:\Users\Soham\AppData\Local\Temp\goleveldb-test-102632011
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:134: List: list, type=0xf count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000000
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000000
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=0
+    db_test.go:49: storage.go:20: Create: file created, fd=000001.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·3.7576ms
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000001.log writer=true
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000000 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·592.5µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000000
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000000
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000000 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @1
+    db_test.go:49: storage.go:15: Open: file opened, fd=000001.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000001.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000002.log
+    db_test.go:49: version.go:399: Log: version@stat F·[] S·0B[] Sc·[]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000003
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000000
+    db_test.go:49: db.go:651: Remove: file removed, fd=000001.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=2
+    db_test.go:49: db_util.go:38: Log: db@janitor F·2 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·15.6044ms
+    db_test.go:365: starting memdb compaction
+    db_test.go:49: storage.go:20: Create: file created, fd=000004.log
+    db_test.go:49: db_state.go:143: Close: file closed, fd=000002.log writer=true
+    db_test.go:49: db_util.go:38: Log: memdb@flush N·4 S·446B
+    db_test.go:49: storage.go:20: Create: file created, fd=000005.ldb
+    db_test.go:49: table.go:559: Close: file closed, fd=000005.ldb writer=true
+    db_test.go:49: session_compaction.go:51: Log: memdb@flush created L0@5 N·4 S·419B "bbb..bbb,v4":"foo,v1"
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: db_util.go:38: Log: memdb@flush committed F·1 T·4.1118ms
+    db_test.go:49: db_state.go:201: Remove: file removed, fd=000002.log
+    db_test.go:49: db_util.go:38: Log: journal@remove removed @2
+    db_test.go:380: memdb compaction done
+    db_test.go:49: storage.go:15: Open: file opened, fd=000005.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000004.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000005.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000003 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·543.5µs
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:98: opening DB
+    db_test.go:49: session.go:75: Lock: storage locked
+    db_test.go:49: session.go:95: Log: log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+    db_test.go:49: session.go:140: GetMeta: get meta, fd=MANIFEST-000003
+    db_test.go:49: storage.go:15: Open: file opened, fd=MANIFEST-000003
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: session.go:208: Close: file closed, fd=MANIFEST-000003 writer=false
+    db_test.go:49: db.go:95: Log: db@open opening
+    db_test.go:49: db.go:492: List: list, type=0x2 count=1
+    db_test.go:49: db_util.go:38: Log: journal@recovery F·1
+    db_test.go:49: db_util.go:38: Log: journal@recovery recovering @4
+    db_test.go:49: storage.go:15: Open: file opened, fd=000004.log
+    db_test.go:49: db.go:620: Close: file closed, fd=000004.log writer=false
+    db_test.go:49: storage.go:20: Create: file created, fd=000006.log
+    db_test.go:49: version.go:399: Log: version@stat F·[1] S·419B[419B] Sc·[0.25]
+    db_test.go:49: storage.go:20: Create: file created, fd=MANIFEST-000007
+    db_test.go:49: session_util.go:464: SetMeta: set meta, fd=MANIFEST-000007
+    db_test.go:49: session_util.go:432: Remove: file removed, fd=MANIFEST-000003
+    db_test.go:49: db.go:651: Remove: file removed, fd=000004.log
+    db_test.go:49: db_util.go:52: List: list, type=0xf count=3
+    db_test.go:49: db_util.go:38: Log: db@janitor F·3 G·0
+    db_test.go:49: db.go:162: Log: db@open done T·14.4719ms
+    db_test.go:49: storage.go:15: Open: file opened, fd=000005.ldb
+    db_test.go:110: closing DB
+    db_test.go:49: db_util.go:37: Log: db@close closing
+    db_test.go:49: db.go:1208: Close: file closed, fd=000006.log writer=true
+    db_test.go:49: reader.go:1005: Close: file closed, fd=000005.ldb writer=false
+    db_test.go:49: session.go:106: Close: file closed, fd=MANIFEST-000007 writer=true
+    db_test.go:49: db_util.go:38: Log: db@close done T·0s
+    db_test.go:49: session.go:119: Unlock: storage lock released
+    db_test.go:49: db_test.go:138: Close: storage closed
+    db_test.go:49: db_test.go:138: Close: storage has been removed
+--- PASS: TestDB_GetSnapshot (0.96s)
+PASS
+ok  	github.com/syndtr/goleveldb/leveldb	18.571s

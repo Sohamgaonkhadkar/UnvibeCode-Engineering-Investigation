@@ -1,0 +1,50 @@
+[
+  {
+    "candidate": "Go named results",
+    "observation": "selector versus typed method_call",
+    "decision": "selected after separate real-product validation"
+  },
+  {
+    "candidate": "Python except* import uncertainty",
+    "observation": {
+      "classic": {
+        "2": [
+          "try_import_fallback"
+        ]
+      },
+      "starred": {
+        "2": []
+      }
+    },
+    "decision": "deferred: metadata-only impact established; adjacent #522 needs further comparison"
+  },
+  {
+    "candidate": "CSS nested media assets",
+    "observation": {
+      "flat_imports": [
+        {
+          "raw": "logo.svg",
+          "module": "logo.svg",
+          "symbols": [],
+          "import_style": "css_url",
+          "line": 1
+        }
+      ],
+      "nested_imports": []
+    },
+    "decision": "rejected for submission: asset graph scope already overlaps #386; extraction difference alone insufficient"
+  },
+  {
+    "candidate": "Context serialization of HTML-like source",
+    "observation": "external store round-trips closing-script text and Unicode",
+    "decision": "hypothesis falsified"
+  },
+  {
+    "candidate": "Risk proof summary/source separation",
+    "observation": {
+      "summary_match": true,
+      "source_match": false
+    },
+    "decision": "deferred: controlled helper result; no natural candidate or final risk artifact established"
+  }
+]

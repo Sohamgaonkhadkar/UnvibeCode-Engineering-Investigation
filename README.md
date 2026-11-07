@@ -1,5 +1,12 @@
 # UnvibeCode Engineering Investigation
 
+> **New Track 1 investigation:** [Go named result receiver bindings](investigations/go-named-results/README.md).
+> It contains a distinct parsing defect, compiling controls, reversible local
+> pipeline experiments, public LevelDB context evidence, and an unfiled issue
+> draft. The JSONC research below is preserved as earlier corroborating work;
+> upstream #451 prevents filing it as a new issue. PR #2 is merged. The new
+> investigation PR is for owner review and must remain unmerged until approved.
+
 ## Legal JSONC in `tsconfig.json` silently empties the TypeScript path-alias table
 
 **Cohort 3 · Track 1 · UnvibeCode 0.3.15**

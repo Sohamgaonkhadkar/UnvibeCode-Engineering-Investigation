@@ -1,0 +1,78 @@
+name: Go named-result investigation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "investigations/go-named-results/**"
+      - ".github/workflows/go-named-results.yml"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Named-result controls (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.3"
+          cache: false
+      - name: Install pinned product and parser dependencies
+        run: python -m pip install -r investigations/go-named-results/reproduction/requirements.txt
+      - name: Compile independent controls and run their runtime assertions
+        run: |
+          mkdir -p ci-logs
+          python investigations/go-named-results/reproduction/compile_controls.py --output ci-logs/go-compiler.json
+      - name: Both collectors and five reversible full-pipeline fixture states
+        run: |
+          set -o pipefail
+          python investigations/go-named-results/reproduction/verify.py --output ci-logs/minimal.json --work ci-logs/minimal-work | tee ci-logs/minimal.log
+      - name: Re-run the five candidate screens
+        run: python investigations/go-named-results/reproduction/screen_candidates.py --output ci-logs/candidate-screen.json
+      - name: Pin real public source and verify graph and exported implementation
+        if: runner.os == 'Linux'
+        run: |
+          set -o pipefail
+          git clone https://github.com/syndtr/goleveldb.git ci-logs/goleveldb
+          git -C ci-logs/goleveldb checkout 126854af5e6d8295ef8e8bee3040dd8380ae72e8
+          python investigations/go-named-results/reproduction/verify.py --real-repo ci-logs/goleveldb --output ci-logs/full.json --work ci-logs/full-work | tee ci-logs/full.log
+          cd ci-logs/goleveldb
+          go test -mod=readonly -v ./leveldb -run 'TestDB_(Empty|ReadWrite|GetSnapshot)$' -count=1 | tee ../goleveldb-tests.log
+      - name: Verify ordinary CLI artifact against the local pipeline
+        if: runner.os == 'Linux'
+        run: |
+          set -o pipefail
+          mkdir -p ci-logs/cli
+          cd ci-logs/cli
+          python -m unvibecode review --repository ../goleveldb --large-repo-token-limit 1 --no-open-browser | tee ../cli.log
+          cd ../..
+          bundle=$(find ci-logs/cli -name '*repository-context.zip' -print -quit)
+          test -n "$bundle"
+          python investigations/go-named-results/reproduction/check_cli.py --bundle "$bundle" --pipeline-bundle ci-logs/full-work/real/stock/run/shipready_complete_repository_context.zip --output ci-logs/cli-verification.json
+      - name: Preserve review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-named-results-${{ runner.os }}
+          path: |
+            ci-logs/*.json
+            ci-logs/*.log
+            ci-logs/full-work/real/*/run/shipready_complete_repository_context.zip
+            ci-logs/minimal-work/*/run/shipready_complete_repository_context.zip
+          if-no-files-found: error
