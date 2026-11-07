@@ -1,5 +1,10 @@
 # Candidate screening and scope decision
 
+> Historical decision. Upstream #596 now covers the selected Go cause; see
+> [ELIGIBILITY.md](ELIGIBILITY.md). The risk-summary candidate has since reached
+> full selector-file experiments, but an earlier-report lead prevents an
+> originality claim; see [provisional research](../risk-evidence-summary/README.md).
+
 Five plausible directions were screened using the installed product. Commands:
 
 ```sh

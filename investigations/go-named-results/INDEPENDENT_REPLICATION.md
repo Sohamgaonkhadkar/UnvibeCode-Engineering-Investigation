@@ -78,7 +78,13 @@ The LevelDB oracle verified 6/6 production targets locally. The local GORM
 compiler/test attempt was blocked by DNS resolution for `proxy.golang.org`;
 no test pass is claimed from that attempt. The dedicated CI workflow additionally
 runs the GORM compiler oracle and existing root-package tests in a clean Linux
-environment; its result must be checked before claiming those steps passed.
+environment. At commit `e852d05178593f46e9d1bddce54e2e7c799d2e65`,
+[run 42369867686](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/42369867686)
+passed: the independent compiler verified all 12 GORM production targets, and
+the existing GORM root-package tests passed. Both Linux and Windows verification
+jobs succeeded. The local DNS limitation above still accurately describes the
+local attempt. Upstream #596 now covers the same named-result cause; this
+replication is corroborating evidence, not an eligible separate issue.
 
 ## Bounded discovery search
 

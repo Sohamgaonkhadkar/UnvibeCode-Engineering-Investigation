@@ -1,6 +1,10 @@
 # Go named results disappear from the receiver environment
 
-Intended new Cohort 3 Track 1 investigation. The earlier JSONC work remains at
+> **Not eligible for a new issue:** upstream [#596](https://github.com/FinanceFlash/unvibecode/issues/596)
+> reports this exact mechanism. Preserve this investigation as corroborating
+> evidence; do not submit the retained drafts. See [eligibility chronology](ELIGIBILITY.md).
+
+Independent Cohort 3 Track 1 research. The earlier JSONC work remains at
 the repository root and is corroborating research because upstream #451 reports
 that mechanism. This investigation changes no upstream files and files no issue.
 

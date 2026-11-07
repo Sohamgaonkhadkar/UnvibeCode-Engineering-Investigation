@@ -1,9 +1,16 @@
 # UnvibeCode Engineering Investigation
 
-> **New Track 1 investigation:** [Go named result receiver bindings](investigations/go-named-results/README.md).
-> It contains a distinct parsing defect, compiling controls, reversible local
-> pipeline experiments, public LevelDB context evidence, and an unfiled issue
-> draft. The JSONC research below is preserved as earlier corroborating work;
+> **Current review candidate:** [typed Go method-value callbacks](investigations/go-method-values/README.md).
+> Both shipped graph copies and actual go-redis focused exports reproduce lost
+> callback implementation context. The [issue](investigations/go-method-values/submission/GITHUB_ISSUE.md)
+> and [form](investigations/go-method-values/submission/FORM_RESPONSE.md) are drafts only.
+
+> **Eligibility update, 7 November 2026:** [Go named result receiver bindings](investigations/go-named-results/README.md)
+> is preserved as independent corroboration. Upstream [#596](https://github.com/FinanceFlash/unvibecode/issues/596)
+> now reports the same cause; **do not file its issue/form drafts unchanged**.
+> Our earlier public evidence and subsequent GORM/compiler replication do not
+> establish eligibility for another issue. See [collision record](investigations/go-named-results/ELIGIBILITY.md).
+> The JSONC research below is preserved as earlier corroborating work;
 > upstream #451 prevents filing it as a new issue. PR #2 is merged. The new
 > investigation PR is for owner review and must remain unmerged until approved.
 

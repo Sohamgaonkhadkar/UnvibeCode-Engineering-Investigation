@@ -1,5 +1,8 @@
 # Google Form draft — unsubmitted
 
+> **ARCHIVED — DO NOT SUBMIT.** Upstream #596 covers this cause.
+> See ../ELIGIBILITY.md. Earlier originality checks are historical snapshots.
+
 Official form checked 7 November 2026:
 [Challenge entry](https://docs.google.com/forms/d/1an-hce3EQ8bUVArnZJnD1VwxQIxgmNzLKYQ8h814CVE/viewform).
 Deadline: **15 November 2026, 11:59 PM IST**.

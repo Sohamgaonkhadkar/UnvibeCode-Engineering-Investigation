@@ -1,0 +1,62 @@
+name: Go method-value evidence
+
+on:
+  push:
+    paths:
+      - 'investigations/go-method-values/**'
+      - '.github/workflows/go-method-values.yml'
+  pull_request:
+    paths:
+      - 'investigations/go-method-values/**'
+      - '.github/workflows/go-method-values.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Install pinned published parser dependencies
+        run: python -m pip install -r investigations/go-named-results/reproduction/requirements.txt
+      - name: Verify both parser copies and compiling controls
+        run: python investigations/go-method-values/reproduction/verify.py --work ci-logs/method-values-minimal --output ci-logs/method-values-minimal.json
+      - name: Pin unchanged public go-redis source
+        if: runner.os == 'Linux'
+        run: |
+          git clone https://github.com/redis/go-redis.git ci-logs/redis
+          git -C ci-logs/redis checkout 5cba5e182946cf18a757718938bc43910e589466
+      - name: Verify both public graphs and actual focused exports
+        if: runner.os == 'Linux'
+        run: |
+          set -o pipefail
+          python investigations/go-method-values/reproduction/verify.py --repo ci-logs/redis --work ci-logs/method-values --output ci-logs/method-values.json | tee ci-logs/method-values.log
+          go build -o ci-logs/compiler-oracle investigations/go-named-results/reproduction/compiler_oracle.go
+          ci-logs/compiler-oracle -repo ci-logs/redis -package . -cases ci-logs/method-values-compiler-cases.json -output ci-logs/compiler-method-values.json
+          cd ci-logs/redis
+          go test -mod=readonly -c -o ../redis-tests .
+      - name: Preserve generated evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-method-values-${{ runner.os }}
+          path: |
+            ci-logs/*.json
+            ci-logs/*.log
+            ci-logs/method-values-minimal/minimal/*-go-test.log
+            ci-logs/method-values-minimal/minimal/*/run/shipready_complete_repository_context.zip
+            ci-logs/method-values/public/00a/*/run/shipready_complete_repository_context.zip
+          if-no-files-found: error

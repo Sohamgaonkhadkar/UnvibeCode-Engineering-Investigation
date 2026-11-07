@@ -1,3 +1,7 @@
+> **ARCHIVED DRAFT — DO NOT FILE.** Upstream #596 now covers the same cause.
+> See ../ELIGIBILITY.md. The audit below records an earlier snapshot and is not
+> a current originality claim.
+
 Title: [Bug] Go receiver collector — named result variables become package qualifiers, losing or misrouting method calls
 
 ## 1. Problem summary

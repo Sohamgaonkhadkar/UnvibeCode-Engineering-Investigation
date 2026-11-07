@@ -1,5 +1,8 @@
 # Duplicate audit and competitive research
 
+> Superseded eligibility conclusion: upstream #596 now reports the same cause.
+> The audit below is historical. See [ELIGIBILITY.md](ELIGIBILITY.md).
+
 Snapshot: 7 November 2026. [issue-audit.json](evidence/issue-audit.json) records
 the retrieval timestamp, endpoint, body digests, match terms, states, and URLs.
 Six paginated REST responses contained 593 issue/PR entries: **483 issues**,
