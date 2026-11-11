@@ -25,7 +25,7 @@ git -C .local-go-investigation/redis checkout 5cba5e182946cf18a757718938bc43910e
 python investigations/go-method-values/reproduction/verify.py --repo .local-go-investigation/redis --work ci-logs/redis --output ci-logs/redis.json
 ```
 
-The script uses installed engine code, compiling Go fixtures, passing/negative controls, a transient correction and restoration. Inspect `ci-logs/redis.json` and the emitted actual context ZIPs. The [Go compiler oracle](../reproduction/compiler_oracle.go) independently checks method owners and definition locations.
+The script uses installed engine code, compiling Go fixtures, passing/negative controls, a transient correction and restoration. Inspect `ci-logs/redis.json` and the emitted actual context ZIPs. The [Go compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/reproduction/compiler_oracle.go) independently checks method owners and definition locations.
 
 ## 4. Expected behavior
 
@@ -39,14 +39,14 @@ Both graph copies on unchanged go-redis yield **23,448 → 23,527 → 23,448** r
 
 ## 6. Evidence
 
-The [technical investigation](../README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
+The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
 
 - Go type checker: **13/13** exact production source-position/receiver/definition identities verified in clean Linux CI.
 - Seven source-specific production callee identities checked line-by-line in actual Optimal and Wider selections.
 - **Five of seven** complete implementations newly recovered in both scopes; the other two remain bounded exceptions.
 - Stock ordinary CLI and local-pipeline exports agree: **11,284 chunks, 24,191 exported relationship records, 536 selections**.
 
-Detailed records: [verification JSON](../evidence/verification.json), [compiler oracle](../reproduction/compiler_oracle.go), [CI provenance](../evidence/ci-snapshot.json).
+Detailed records: [verification JSON](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/verification.json), [compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/reproduction/compiler_oracle.go), [CI provenance](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/ci-snapshot.json).
 
 ## 7. Impact and scope
 
