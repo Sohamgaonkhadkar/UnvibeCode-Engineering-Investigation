@@ -3,11 +3,13 @@ name: Go method-value evidence
 on:
   push:
     paths:
-      - 'investigations/go-method-values/**'\n      - 'README.md'
+      - 'investigations/go-method-values/**'
+      - 'README.md'
       - '.github/workflows/go-method-values.yml'
   pull_request:
     paths:
-      - 'investigations/go-method-values/**'\n      - 'README.md'
+      - 'investigations/go-method-values/**'
+      - 'README.md'
       - '.github/workflows/go-method-values.yml'
   workflow_dispatch:
 
