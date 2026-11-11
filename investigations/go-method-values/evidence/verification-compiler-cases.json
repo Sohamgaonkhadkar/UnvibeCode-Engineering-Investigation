@@ -1,0 +1,93 @@
+[
+  {
+    "source": "autopipeline_cluster_fd.go",
+    "target": "osscluster.go",
+    "line": 119,
+    "symbol": "processPipelineRetries",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "osscluster.go",
+    "line": 135,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "osscluster.go",
+    "line": 151,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "osscluster.go",
+    "line": 167,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "ring.go",
+    "line": 182,
+    "symbol": "ForEachShard",
+    "owner": "Ring"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "ring.go",
+    "line": 196,
+    "symbol": "ForEachShard",
+    "owner": "Ring"
+  },
+  {
+    "source": "himport_cluster.go",
+    "target": "ring.go",
+    "line": 210,
+    "symbol": "ForEachShard",
+    "owner": "Ring"
+  },
+  {
+    "source": "multidb.go",
+    "target": "multidb_core.go",
+    "line": 750,
+    "symbol": "process",
+    "owner": "multidbCore"
+  },
+  {
+    "source": "multidb.go",
+    "target": "multidb_pipeline.go",
+    "line": 751,
+    "symbol": "processPipeline",
+    "owner": "multidbCore"
+  },
+  {
+    "source": "multidb.go",
+    "target": "multidb_pipeline.go",
+    "line": 752,
+    "symbol": "processTxPipeline",
+    "owner": "multidbCore"
+  },
+  {
+    "source": "osscluster_router.go",
+    "target": "osscluster.go",
+    "line": 178,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "osscluster_router.go",
+    "target": "osscluster.go",
+    "line": 181,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  },
+  {
+    "source": "osscluster_router.go",
+    "target": "osscluster.go",
+    "line": 184,
+    "symbol": "ForEachMaster",
+    "owner": "ClusterClient"
+  }
+]

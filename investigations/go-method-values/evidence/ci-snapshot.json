@@ -1,0 +1,65 @@
+{
+  "commit": "abd5689744593ae315299cdb378c4b567edd88ff",
+  "workflow_run": 42372544897,
+  "jobs": [
+    {
+      "id": 128403463217,
+      "os": "Windows",
+      "conclusion": "success"
+    },
+    {
+      "id": 128403463368,
+      "os": "Linux",
+      "conclusion": "success"
+    }
+  ],
+  "compiler_production_references_verified": 13,
+  "existing_redis_test_package": "compiled with go test -c; not executed against a Redis server",
+  "artifacts": [
+    {
+      "id": 13574721826,
+      "name": "go-method-values-Linux",
+      "size_in_bytes": 15222148,
+      "url": "https://api.github.com/repos/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/artifacts/13574721826",
+      "archive_download_url": "https://api.github.com/repos/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/artifacts/13574721826/zip",
+      "expired": false,
+      "created_at": "2026-11-07T12:32:11Z",
+      "expires_at": "2027-02-05T12:27:12Z",
+      "updated_at": "2026-11-07T12:32:11Z",
+      "digest": "sha256:62fbe2558fcfcd1613878aa086f1e90e04b023d6bd8fe759b50d401584d9c6aa",
+      "workflow_run": {
+        "id": 42372544897,
+        "repository_id": 1442202531,
+        "head_repository_id": 1442202531,
+        "head_branch": "codex/track1-original-investigation",
+        "head_sha": "abd5689744593ae315299cdb378c4b567edd88ff"
+      }
+    },
+    {
+      "id": 13574441463,
+      "name": "go-method-values-Windows",
+      "size_in_bytes": 16468,
+      "url": "https://api.github.com/repos/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/artifacts/13574441463",
+      "archive_download_url": "https://api.github.com/repos/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/artifacts/13574441463/zip",
+      "expired": false,
+      "created_at": "2026-11-07T12:28:26Z",
+      "expires_at": "2027-02-05T12:27:12Z",
+      "updated_at": "2026-11-07T12:28:26Z",
+      "digest": "sha256:e265383a48bfe5d0215240921f10b93f0fca79201208b46124ab9930ca732423",
+      "workflow_run": {
+        "id": 42372544897,
+        "repository_id": 1442202531,
+        "head_repository_id": 1442202531,
+        "head_branch": "codex/track1-original-investigation",
+        "head_sha": "abd5689744593ae315299cdb378c4b567edd88ff"
+      }
+    }
+  ],
+  "log_excerpt": [
+    "2026-11-07T12:27:52.3210740Z PASS: both parser copies, five compiling fixture states, typed method references and field/package controls",
+    "2026-11-07T12:27:54.4542595Z go test -mod=readonly -c -o ../redis-tests .",
+    "2026-11-07T12:31:07.8041520Z PASS: both parser copies, five compiling fixture states, typed method references and field/package controls; both public graphs and complete target audit",
+    "2026-11-07T12:31:29.9978983Z Go compiler verified 13/13 exact call-site/receiver/definition targets"
+  ],
+  "legacy_documentation_gate": "failed on this snapshot due to missing new provenance records; repaired in subsequent documentation commit; this is not an all-checks-green claim"
+}

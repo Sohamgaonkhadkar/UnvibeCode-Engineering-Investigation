@@ -1,7 +1,0 @@
-facebook/lexical @ 164af6a4df7114f35724c472152ca74877b6bd04 — UnvibeCode 0.3.15, Python 3.11.2, Linux x86_64
-
-AS-IS (tsconfig.json contains 5 full-line // comments = valid JSONC):
-[STAGE 1 COMPLETE] 2,044 files, 1,263 internal file edges, 0 package-level edges, 8,298 unresolved/external imports, 0 symbol edges, 0 unresolved Go usages
-
-CONTROL (identical tree; only the 5 comment lines removed from tsconfig.json):
-[STAGE 1 COMPLETE] 2,044 files, 5,519 internal file edges, 0 package-level edges, 4,042 unresolved/external imports, 0 symbol edges, 0 unresolved Go usages

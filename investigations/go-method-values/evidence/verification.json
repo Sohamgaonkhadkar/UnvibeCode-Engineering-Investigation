@@ -1,0 +1,749 @@
+{
+  "product": "unvibecode==0.3.15",
+  "engines": [
+    {
+      "file": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+      "extraction": [
+        {
+          "phase": "stock",
+          "case": "parameter_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "local_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "callback_argument",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "stock",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "parameter_value",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "local_value",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "callback_argument",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "restored",
+          "case": "parameter_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "local_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "callback_argument",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "restored",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+      "extraction": [
+        {
+          "phase": "stock",
+          "case": "parameter_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "local_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "callback_argument",
+          "Save_usages": []
+        },
+        {
+          "phase": "stock",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "stock",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "parameter_value",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "local_value",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "callback_argument",
+          "Save_usages": [
+            {
+              "kind": "method_reference",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "corrected",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "restored",
+          "case": "parameter_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "local_value",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "callback_argument",
+          "Save_usages": []
+        },
+        {
+          "phase": "restored",
+          "case": "direct_control",
+          "Save_usages": [
+            {
+              "kind": "method_call",
+              "receiver": "s",
+              "receiver_type": {
+                "kind": "named",
+                "name": "Store",
+                "qualifier": null
+              },
+              "symbol": "Save",
+              "line": 2
+            }
+          ]
+        },
+        {
+          "phase": "restored",
+          "case": "package_control",
+          "Save_usages": [
+            {
+              "kind": "selector",
+              "qualifier": "remote",
+              "symbol": "Save",
+              "context": "value",
+              "line": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "minimal": [
+    {
+      "phase": "stock",
+      "runtime": "passed",
+      "method_relationships": [],
+      "selected_files": [
+        "remote/remote.go",
+        "source.go",
+        "source_test.go"
+      ],
+      "package_value_preserved": true,
+      "unrelated_field_method_not_linked": true
+    },
+    {
+      "phase": "repeat",
+      "runtime": "passed",
+      "method_relationships": [],
+      "selected_files": [
+        "remote/remote.go",
+        "source.go",
+        "source_test.go"
+      ],
+      "package_value_preserved": true,
+      "unrelated_field_method_not_linked": true
+    },
+    {
+      "phase": "source-control",
+      "runtime": "passed",
+      "method_relationships": [
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 6,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "selected_files": [
+        "remote/remote.go",
+        "source.go",
+        "source_test.go",
+        "store.go"
+      ],
+      "package_value_preserved": true,
+      "unrelated_field_method_not_linked": true
+    },
+    {
+      "phase": "corrected",
+      "runtime": "passed",
+      "method_relationships": [
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 6,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "selected_files": [
+        "remote/remote.go",
+        "source.go",
+        "source_test.go",
+        "store.go"
+      ],
+      "package_value_preserved": true,
+      "unrelated_field_method_not_linked": true
+    },
+    {
+      "phase": "restored",
+      "runtime": "passed",
+      "method_relationships": [],
+      "selected_files": [
+        "remote/remote.go",
+        "source.go",
+        "source_test.go"
+      ],
+      "package_value_preserved": true,
+      "unrelated_field_method_not_linked": true
+    }
+  ],
+  "public": {
+    "repository": "https://github.com/redis/go-redis",
+    "commit": "5cba5e182946cf18a757718938bc43910e589466",
+    "engines": [
+      {
+        "file": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+        "sha256": "bc3f6916ad25cde82e7aa9bd17e0cbbf82d4165155b987c4fefc874b2ca069ca",
+        "relationships": [
+          23448,
+          23527,
+          23448
+        ],
+        "production_references_restored": 13,
+        "test_references_restored": 66,
+        "lost": 0
+      },
+      {
+        "file": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+        "sha256": "fb7abfa7c60cf7fe9f3d565c8f8e9140811cfe48f5ec5cf10fd2e1095aebbba1",
+        "relationships": [
+          23448,
+          23527,
+          23448
+        ],
+        "production_references_restored": 13,
+        "test_references_restored": 66,
+        "lost": 0
+      }
+    ],
+    "complete_target_audit": [
+      {
+        "source": "autopipeline_cluster_fd.go",
+        "target": "osscluster.go",
+        "symbol": "processPipelineRetries",
+        "owner": "ClusterClient",
+        "definition_lines": [
+          2962,
+          3040
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "osscluster.go",
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient",
+        "definition_lines": [
+          2341,
+          2375
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "ring.go",
+        "symbol": "ForEachShard",
+        "owner": "Ring",
+        "definition_lines": [
+          815,
+          848
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_core.go",
+        "symbol": "process",
+        "owner": "multidbCore",
+        "definition_lines": [
+          1021,
+          1241
+        ],
+        "availability": {
+          "1": [
+            false,
+            false,
+            false
+          ],
+          "2": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_pipeline.go",
+        "symbol": "processPipeline",
+        "owner": "multidbCore",
+        "definition_lines": [
+          265,
+          267
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_pipeline.go",
+        "symbol": "processTxPipeline",
+        "owner": "multidbCore",
+        "definition_lines": [
+          546,
+          681
+        ],
+        "availability": {
+          "1": [
+            false,
+            false,
+            false
+          ],
+          "2": [
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "source": "osscluster_router.go",
+        "target": "osscluster.go",
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient",
+        "definition_lines": [
+          2341,
+          2375
+        ],
+        "availability": {
+          "1": [
+            false,
+            true,
+            false
+          ],
+          "2": [
+            false,
+            true,
+            false
+          ]
+        }
+      }
+    ],
+    "source_files": 536,
+    "tracked_source_unchanged": true,
+    "source_hashes": {
+      "autopipeline_cluster_fd.go": "bcfe035ad2f08aba5b3cba6cf0c0aec44a677c243a45f4c175e26444e608e6c5",
+      "himport_cluster.go": "d7acc1d1a986368f6bc6cb6b4990256afb5ec4a6d3786cb926741a40ee58251e",
+      "multidb.go": "e88ea6159dfcca4f3dcd90aef488001c7ebee76cccbd2850b3cee1f12d55de5f",
+      "multidb_core.go": "23090375c07925e4f350c8f3fc9a902e6b96eaf90ae77c22215e32af1325e8c4",
+      "multidb_pipeline.go": "bc0bcb916a3b8ffe2dd74862797a5a9252dd6cfc00f134e144292ae692072e85",
+      "osscluster.go": "f5045cd6ed2aff0e7157e82eb57dc7d8562617cfc60305bd45f068ae7b73599b",
+      "osscluster_router.go": "5751cf7cc591ddb4d3c4e6d4c46ea5a5ce5e810151af61cb3b073b3aff035ea8",
+      "ring.go": "a5d60eb53c00ecfe01ca4e865b2938d8a34dd40b821a0dc4b252d167dd7264ee"
+    },
+    "production_references": [
+      {
+        "source": "autopipeline_cluster_fd.go",
+        "target": "osscluster.go",
+        "line": 119,
+        "symbol": "processPipelineRetries",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "osscluster.go",
+        "line": 135,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "osscluster.go",
+        "line": 151,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "osscluster.go",
+        "line": 167,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "ring.go",
+        "line": 182,
+        "symbol": "ForEachShard",
+        "owner": "Ring"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "ring.go",
+        "line": 196,
+        "symbol": "ForEachShard",
+        "owner": "Ring"
+      },
+      {
+        "source": "himport_cluster.go",
+        "target": "ring.go",
+        "line": 210,
+        "symbol": "ForEachShard",
+        "owner": "Ring"
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_core.go",
+        "line": 750,
+        "symbol": "process",
+        "owner": "multidbCore"
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_pipeline.go",
+        "line": 751,
+        "symbol": "processPipeline",
+        "owner": "multidbCore"
+      },
+      {
+        "source": "multidb.go",
+        "target": "multidb_pipeline.go",
+        "line": 752,
+        "symbol": "processTxPipeline",
+        "owner": "multidbCore"
+      },
+      {
+        "source": "osscluster_router.go",
+        "target": "osscluster.go",
+        "line": 178,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "osscluster_router.go",
+        "target": "osscluster.go",
+        "line": 181,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      },
+      {
+        "source": "osscluster_router.go",
+        "target": "osscluster.go",
+        "line": 184,
+        "symbol": "ForEachMaster",
+        "owner": "ClusterClient"
+      }
+    ]
+  },
+  "status": "passed"
+}
