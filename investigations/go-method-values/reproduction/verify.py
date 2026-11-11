@@ -9,10 +9,7 @@ import sys
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-OLD = ROOT.parent / 'go-named-results/reproduction'
-sys.path.insert(0, str(OLD))
-from verify import load_engine, pipeline, key, selections, sha
-from replicate_gorm import coverage
+from helpers import load_engine, pipeline, key, selections, sha, coverage
 sys.path.insert(0, str(ROOT / 'solution'))
 from method_values import corrected
 

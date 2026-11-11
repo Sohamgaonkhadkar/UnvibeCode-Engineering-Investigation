@@ -1,7 +1,0 @@
-{
-  // project configuration
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "@app/*": ["src/app/*"] }
-  }
-}

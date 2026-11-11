@@ -1,90 +1,69 @@
-Title: [Bug] Go callback references — typed method values lose implementation relationships and focused context
+# [Bug] Go method values — typed callback references lose method-definition links and focused context
 
 ## 1. Problem summary
 
-`callback := s.Save; callback()` loses the relationship to `Store.Save` despite
-an explicit `s *Store` parameter. Wrapping the same invocation in
-`func() { s.Save() }` restores it. Package-function values already work.
-Public go-redis consequently exports callback setup without complete referenced
-pipeline/fan-out implementations in focused context.
+A Go method value such as `callback := s.Save` does not produce a relationship to `Store.Save` in UnvibeCode 0.3.15 even when `s *Store` is explicitly declared. The corresponding direct call `s.Save()` is resolved. On a real go-redis checkout, this drops callback implementations from per-file focused context.
+
+This is a missing **method reference**, not evidence that merely forming a method value executes the method.
 
 ## 2. Test environment
 
-UnvibeCode **0.3.15**, Windows, Python **3.14.5**, Go **1.27.3**.
-Both shipped collectors and graph builders are tested. Public source:
-[redis/go-redis@5cba5e182946cf18a757718938bc43910e589466](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466).
-No upstream source is modified.
+- **Affected product:** published `unvibecode==0.3.15`, Fast Lane and Normal Lane graph implementations
+- **Local validation:** Python 3.12+/Go (Linux and Windows CI); original investigation on Windows, Python 3.14.5, Go 1.27.3
+- **Public repository:** [redis/go-redis](https://github.com/redis/go-redis), pinned at [`5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466)
+- **Engine scope:** 0.3.15 local analysis. The current 0.4.0 hosted engine has not been independently verified for this defect.
 
 ## 3. Steps to reproduce
 
-Use the [review evidence repository](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/3),
-`investigations/go-method-values/README.md`. Install its pinned dependencies, then:
+Clone the [reproducible investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/codex/track1-original-investigation) and check out its `codex/track1-original-investigation` branch.
 
 ```sh
+python -m pip install -r investigations/go-method-values/reproduction/requirements.txt
 python investigations/go-method-values/reproduction/verify.py --work ci-logs/minimal --output ci-logs/minimal.json
+git clone https://github.com/redis/go-redis.git .local-go-investigation/redis
+git -C .local-go-investigation/redis checkout 5cba5e182946cf18a757718938bc43910e589466
+python investigations/go-method-values/reproduction/verify.py --repo .local-go-investigation/redis --work ci-logs/redis --output ci-logs/redis.json
 ```
 
-For public replication, clone the pinned go-redis commit and add
-`--repo /path/to/go-redis`. The verifier runs actual installed pipeline functions
-and reads the produced ZIPs. Go must be on PATH; grammar setup failures fail.
+The script uses installed engine code, compiling Go fixtures, passing/negative controls, a transient correction and restoration. Inspect `ci-logs/redis.json` and the emitted actual context ZIPs. The [Go compiler oracle](../reproduction/compiler_oracle.go) independently checks method owners and definition locations.
 
 ## 4. Expected behavior
 
-A known receiver's method value should retain its method-definition relationship,
-as a symbol reference. Forming a callback is not a direct method invocation;
-the [Go specification](https://go.dev/ref/spec#Method_values) distinguishes them.
+A known receiver's bound method value should preserve a statically justified link to its method definition as a **reference**. Go's [method-value specification](https://go.dev/ref/spec#Method_values) distinguishes formation of a bound method value from calling that value.
 
 ## 5. Actual behavior
 
-The minimal original and repeat have no `Save` usage or `store.go` focused context.
-The equivalent fixture wrapper and reference correction restore both; restoration
-reproduces the omission. All five source states compile and pass callback tests.
-Package values remain linked; a function-valued field is not linked to another
-type's same-named method.
+For `callback := s.Save; callback()`, the stock extractor emits no `Save` usage, and a focused selection can omit `store.go`. Rewriting the local fixture to `callback := func() { s.Save() }` restores the dependency. The reference correction restores the original source's dependency; reverting the correction reproduces the omission. All five fixture states compile and pass.
 
-Both real graph copies yield **23,448 → 23,527 → 23,448** relationships, with
-zero removed originals. Additions are **13 production references** across six
-file pairs and **66 test references**, not 79 proven invocations.
+Both graph copies on unchanged go-redis yield **23,448 → 23,527 → 23,448** relationships. The 79 additions comprise **13 production method references** (six file pairs) and **66 test references**. No stock relationships are removed.
 
 ## 6. Evidence
 
-`evidence/verification.json` records both engines, source hashes, compiling
-controls, graph identities, and actual exported selections. All seven distinct
-source-specific production callee identities are audited against every nonblank
-line of their complete definitions at Optimal and Wider.
+The [technical investigation](../README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
 
-**Five of seven** complete implementations are absent → complete → absent in
-each scope. `process` remains incomplete at Optimal and complete at Wider;
-`processTxPipeline` remains incomplete throughout. These bounds are retained.
-Independent Go type-checker cases identify the 13 production source positions.
-Clean Linux CI verified all 13/13; fixture checks passed on Linux and Windows.
+- Go type checker: **13/13** exact production source-position/receiver/definition identities verified in clean Linux CI.
+- Seven source-specific production callee identities checked line-by-line in actual Optimal and Wider selections.
+- **Five of seven** complete implementations newly recovered in both scopes; the other two remain bounded exceptions.
+- Stock ordinary CLI and local-pipeline exports agree: **11,284 chunks, 24,191 exported relationship records, 536 selections**.
+
+Detailed records: [verification JSON](../evidence/verification.json), [compiler oracle](../reproduction/compiler_oracle.go), [CI provenance](../evidence/ci-snapshot.json).
 
 ## 7. Impact and scope
 
-MultiDB initialization loses `processPipeline` in `multidb_pipeline.go`; ring
-fan-out loses `ForEachShard` in `ring.go`. Developers inspecting focused context
-miss the installed callback implementations. Source remains in the complete ZIP.
-No changed hosted risk verdict, general indirect-call analysis, or ecosystem
-prevalence is claimed. The two scopes are correlated observations.
+Focused context for MultiDB callback initialization can omit `multidbCore.processPipeline`; ring fan-out context can omit `Ring.ForEachShard`. The source is still present in the **complete** repository ZIP; the observed defect is specifically an omission of method implementation evidence from selected focused context.
+
+No hosted final-report change, arbitrary indirect-call resolution, ecosystem prevalence, or Go runtime bug is claimed.
 
 ## 8. Suspected cause / suggested fix
 
-`_collect_go_usages` handles non-call selectors only via `package_selector`,
-which exits for known local qualifiers. The receiver's correct type is discarded.
-Affected branches: Fast Lane `00a:1292`; Normal graph `01:1250`.
+`TreeSitterAstAdapter._collect_go_usages` handles non-call `selector_expression` nodes with `package_selector`. For a known local qualifier, that helper returns without emitting a typed usage, although input parameters correctly populate the receiver environment.
 
-The tested in-memory correction emits typed references, resolves them through
-the existing owner-aware resolver, and exports `imports_symbol/go_method_value`.
-Unresolved fields stay unpromoted. It restores both original methods afterward.
-No installed file is edited.
+A tested reference correction emits `method_reference` for typed local selector values, passes it through `ShipReadyV2DeepGraphBuilder._resolve_go_usages`, and exports `imports_symbol` / `go_method_value` relationships. Unresolved fields remain unpromoted. Both installed methods are restored after each experiment, with source hashes unchanged.
 
 ## 9. Duplicate check
 
-485 open/closed issue bodies through **#596** plus nearest Go comments checked.
-No method-value/callback-reference mechanism match found. #360 concerns receiver
-selection; #415 factory expressions; #542 collection/range types; #596 named
-result bindings. This case has an explicit ordinary parameter and correctly
-known type. Earlier JSONC and named-result drafts are excluded as duplicates.
-New #597 was separately body-reviewed and excluded (scanner marker decoding),
-for 486 distinct bodies total. A full REST refresh was rate limited; the complete
-485-body snapshot and incremental connector check are recorded separately.
+A complete historical snapshot of 485 open/closed issues through #596 was reviewed, followed by #597. On **11 November 2026**, a fresh open-and-closed issue sweep reached **#680** and searched 568 visible issue bodies for method-value, typed-receiver, and callback mechanisms. No issue matching this particular non-call, typed method-value selector failure was found.
+
+Closest distinct reports: [#360](https://github.com/FinanceFlash/unvibecode/issues/360) (wrong receiver's target for a resolved call); [#415](https://github.com/FinanceFlash/unvibecode/issues/415) (factory-expression receiver); [#573](https://github.com/FinanceFlash/unvibecode/issues/573) (interface dispatch); [#596](https://github.com/FinanceFlash/unvibecode/issues/596) (named-result binding); [#625](https://github.com/FinanceFlash/unvibecode/issues/625) (unresolved Go diagnostics not exported); [#662](https://github.com/FinanceFlash/unvibecode/issues/662) (0.4.0 uploader omits `go.mod`).
+
+The earlier JSONC investigation matched [#451](https://github.com/FinanceFlash/unvibecode/issues/451) and is **not** the subject of this report. Duplicate checking is time-bound; repeat it immediately before publication.
