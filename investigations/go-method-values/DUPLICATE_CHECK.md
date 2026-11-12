@@ -37,3 +37,7 @@ An all-pages REST refresh on 12 November reviewed **603 open/closed issue record
 ## Evidence-update refresh
 
 Immediately before updating #716, [a new eight-page inventory](evidence/issue-update-duplicate-check.json) reviewed **607 other issue records through #720** (604 nonempty bodies, 3 empty). The already-published #716 and pull requests are excluded. No matching typed method-value extraction mechanism was identified. The historical nearest-comment checks retain their original timestamps; this refresh checks current titles and bodies.
+
+## 13 November refresh before the issue edit
+
+The [resumed update inventory](evidence/issue-update-duplicate-check-2026-11-13.json) checks **612 other issues through #725** (609 nonempty bodies, 3 empty), excluding #716 and pull requests. It preserves the preceding full inventory and records new/changed body digests rather than duplicating unchanged records. No matching typed method-value extraction mechanism was identified. New reports #721–#725 concern JS namespace imports, a workflow report, output/build-directory ingestion and CLI polling.

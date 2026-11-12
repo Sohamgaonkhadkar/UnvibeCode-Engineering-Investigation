@@ -37,7 +37,7 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Independent type check | **13/13** go-redis and **2/2** MySQL production source/receiver/definition identities verified by Go |
 | Current-client check | Three full-public-repository **0.4.0 client** captures on 12 November; original, receiver-preserving wrapper and no-method control |
 | Independent repository | Complete pinned go-sql-driver/mysql checkout: two missing cross-file references and two recovered method bodies in both 0.3.15 graph implementations |
-| Originality refresh | **607 other** open/closed issue records through **#720** before the evidence update (#716 excluded); historical nearest-report comments checked separately |
+| Originality refresh | **612 other** open/closed issue records through **#725** before the evidence update (#716 excluded); historical nearest-report comments checked separately |
 
 [PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference correction experiment belong to 0.3.15. The current-client comparison independently measures the same symptom on the complete pinned public go-redis checkout.
 

@@ -1,0 +1,54 @@
+{
+  "checked_at_utc": "2026-11-12T19:28:03.377Z",
+  "source": "All eight GitHub REST pages, open and closed; #716 and PRs excluded",
+  "reviewed_other_issue_records": 612,
+  "nonempty_bodies": 609,
+  "empty_bodies": 3,
+  "newest_issue": 725,
+  "snapshot_sha256": "2d4bab663f4da8ac4efaf43d4658a5d989dbddaafbf3a61cb75968731653a965",
+  "prior_inventory": "issue-update-duplicate-check.json",
+  "prior_inventory_sha256": "78bd281f061710e0775fc98d5cd4a084eb3237a2dff8fc1e7c76796272355b44",
+  "new_records": [
+    {
+      "number": 725,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/725",
+      "title": "[Bug] archive.py \u2014 source_files() fails to exclude Rust and Maven 'target/' build directories, ingesting compiler caches and causing review aborts",
+      "updated_at": "2026-11-12T18:40:58Z",
+      "body_sha256": "50a632f839d9068f2e09afc7d57da73c89b2826a4c6ef32934e7120d2629a9d8"
+    },
+    {
+      "number": 724,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/724",
+      "title": "[Bug] CLI polling \u2014 continuous pagination bypasses the elapsed-time guard",
+      "updated_at": "2026-11-12T18:06:58Z",
+      "body_sha256": "9252b597b1407bf230d015be42ad75b145b18727902da46e1e250c688a3e51f7"
+    },
+    {
+      "number": 723,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/723",
+      "title": "[Bug] archive.source_files() fails to exclude custom --output directories, re-ingesting previous analysis outputs (2.67 MB / 835K+ phantom tokens) as source code",
+      "updated_at": "2026-11-12T18:00:01Z",
+      "body_sha256": "9717c558b536b00b1cf0b5968e003dfafc1980322a71eaf9f38eea51e09567a7"
+    },
+    {
+      "number": 722,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/722",
+      "title": "univibecode_workflow",
+      "updated_at": "2026-11-12T17:39:00Z",
+      "body_sha256": "83dfa3c68a22d722372203d7cdeb8705c913836560caaca593ef7772aba067da"
+    },
+    {
+      "number": 721,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/721",
+      "title": "[Challenge 2026][Cohort 3][Track 1][Bug]  ES6 namespace imports fail to resolve, dropping frontend-to-API dependency edges",
+      "updated_at": "2026-11-12T17:36:48Z",
+      "body_sha256": "540b32e2296e6e0530431d8c223c5dab299b793fafaaeff73a7028d329ce5520"
+    }
+  ],
+  "changed_records": [],
+  "removed_records": [],
+  "unchanged_record_count": 607,
+  "screening_regex": "method.?value|method_reference|package_selector|typed.{0,40}callback|ForEachShard|processTxPipeline",
+  "matching_other_issues": [],
+  "conclusion": "No matching method-value extraction mechanism identified. New #721 concerns JS namespace imports; #722 workflow report; #723 output-directory ingestion; #724 CLI polling; #725 build-output ingestion. Historical comment checks are not relabeled as fresh."
+}
