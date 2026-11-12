@@ -1,0 +1,354 @@
+{
+  "runtime": "passed",
+  "cases": [
+    {
+      "engine": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "phase": "stock",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    },
+    {
+      "engine": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "phase": "corrected",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 3,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 4,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "other.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 5,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Other",
+          "receiver_type": "Other"
+        },
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    },
+    {
+      "engine": "00a_shipreadyv2_fast_lane_v11_api_context_bundle.py",
+      "phase": "restored",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    },
+    {
+      "engine": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "phase": "stock",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    },
+    {
+      "engine": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "phase": "corrected",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 3,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 4,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "other.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "go_method_value",
+          "line": 5,
+          "confidence": "high",
+          "resolution_strategy": "go_method_reference",
+          "owner": "Other",
+          "receiver_type": "Other"
+        },
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    },
+    {
+      "engine": "01_shipreadyv2_merged_graph_pipeline_5chunks.py",
+      "phase": "restored",
+      "edges": [
+        {
+          "source": "source.go",
+          "target": "remote/remote.go",
+          "type": "imports_symbol",
+          "symbol": "Save",
+          "raw": "example.com/boundary/remote",
+          "import_style": "go_selector_usage",
+          "line": 8,
+          "confidence": "high",
+          "resolution_strategy": "go_package_symbol_usage"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 9,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        },
+        {
+          "source": "source.go",
+          "target": "store.go",
+          "type": "method_call",
+          "symbol": "Save",
+          "raw": null,
+          "import_style": "method_call",
+          "line": 10,
+          "confidence": "high",
+          "resolution_strategy": "go_method_resolution",
+          "owner": "Store",
+          "receiver_type": "Store"
+        }
+      ],
+      "field_not_promoted": true,
+      "interface_concrete_target_not_invented": true
+    }
+  ],
+  "boundary": "Interface method declarations may be referenced; no concrete implementation is inferred."
+}

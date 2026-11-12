@@ -1,0 +1,28 @@
+{
+  "calls_verified": 2,
+  "go": "go1.27.3",
+  "package": "github.com/go-sql-driver/mysql",
+  "results": [
+    {
+      "source": "packets.go",
+      "target": "connection.go",
+      "line": 33,
+      "symbol": "readWithTimeout",
+      "owner": "mysqlConn",
+      "definition_line": 67,
+      "definition_end_line": 75,
+      "compiler_receiver": "*github.com/go-sql-driver/mysql.mysqlConn"
+    },
+    {
+      "source": "packets.go",
+      "target": "connection.go",
+      "line": 133,
+      "symbol": "writeWithTimeout",
+      "owner": "mysqlConn",
+      "definition_line": 77,
+      "definition_end_line": 85,
+      "compiler_receiver": "*github.com/go-sql-driver/mysql.mysqlConn"
+    }
+  ],
+  "status": "passed"
+}

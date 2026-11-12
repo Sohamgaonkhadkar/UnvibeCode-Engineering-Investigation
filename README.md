@@ -6,7 +6,7 @@ A reproducible Track 1 engineering investigation, with a reference correction an
 
 **[Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716) · [Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Evidence guide](#evidence-guide)**
 
-> **Finding:** typed Go method values can lose their method-definition links and implementation context. Controlled experiments recover 13 production references and five complete method bodies on a pinned go-redis checkout. A matched 0.4.0 client comparison independently reproduces the minimal symptom.
+> **Finding:** typed Go method values can lose their method-definition links and implementation context. Unmodified **0.4.0 client** runs on pinned go-redis show **eight targeted method links and four complete method bodies missing from original focused context**. Receiver-preserving wrappers expose all eight links and all four bodies; no-method controls expose none. A source-level reference correction and independent MySQL-driver replication establish the mechanism and its boundaries.
 
 ## The defect
 
@@ -34,11 +34,12 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Root cause and reference correction | Installed UnvibeCode **0.3.15**, both shipped graph implementations |
 | Harmless compiling controls | Stock, repeat, wrapper control, corrected, restored; package-value and function-field controls |
 | Public-repository replication | Unchanged [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466) |
-| Independent type check | **13/13** production source/receiver/definition identities verified by Go |
-| Current-client check | Two genuine **0.4.0 client** code-map exports captured on 12 November; same observable omission and matched wrapper control |
+| Independent type check | **13/13** go-redis and **2/2** MySQL production source/receiver/definition identities verified by Go |
+| Current-client check | Three full-public-repository **0.4.0 client** captures on 12 November; original, receiver-preserving wrapper and no-method control |
+| Independent repository | Complete pinned go-sql-driver/mysql checkout: two missing cross-file references and two recovered method bodies in both 0.3.15 graph implementations |
 | Originality refresh | **603** open/closed issue records through **#715**: 600 nonempty bodies and 3 empty bodies; historical nearest-report comments checked separately |
 
-[PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference public-project measurements belong to 0.3.15; the current-client check independently verifies the small fixture's observable behavior.
+[PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference correction experiment belong to 0.3.15. The current-client comparison independently measures the same symptom on the complete pinned public go-redis checkout.
 
 ## Measured results
 
@@ -86,18 +87,51 @@ A controlled experiment leaves source, corrected graph, chunking and selection r
 
 The reference correction repairs extraction. The capacity experiment separately measures whether resolved implementations fit into focused context.
 
-## Current 0.4.0 client: actual downloaded evidence
+## Current 0.4.0: public-repository comparison
 
-[Two small captured ZIPs and their offline checker](investigations/go-method-values/evidence/latest-client-verification.json) reproduce the observable issue without new service requests:
+The official unmodified client analyzed three disposable copies of the same pinned go-redis tree. **A** is original source. **B** changes eight method-value expressions in three files to direct-call closures that freeze each pointer receiver at formation. **C** replaces those expressions with no-op callbacks: it is a deliberately different negative control, not a behavior-equivalent implementation.
 
-| Input | `Store.Save` relationship | `store.go` in Optimal and Wider |
-|---|---:|---|
-| `callback := s.Save` | 0 | Absent |
-| `callback := func() { s.Save() }` | 1 | Included |
+The [offline artifact audit](investigations/go-method-values/evidence/current-public-verification.json) checks every recovered source line, the exact eight edits, identical target implementations, and identical upload paths across all three downloads.
 
-The uploaded source texts differ in exactly that expression. The other three Go files match. This does not establish general wrapper equivalence when a receiver can be reassigned.
+| Measure | A: original | B: bound wrapper | C: no-method control |
+|---|---:|---:|---:|
+| Selected method relationships | 0 | **8** | 0 |
+| Complete target bodies, Optimal and Wider | 0/4 | **4/4** | 0/4 |
+| All exported relationships | 12,189 | 12,204 | 12,189 |
+| Chunks / file selections | 11,263 / 532 | 11,263 / 532 | 11,263 / 532 |
 
-Both downloaded runs mark code understanding **COMPLETED** and the overall review **PARTIAL**. Business analysis stopped at Step 04 with no evidence-valid business path fragments. That lane is not used to establish this code-graph defect, and no completed business-risk review is claimed. [#682](https://github.com/FinanceFlash/unvibecode/issues/682) separately announces a business-risk API hold through 16 November; its causal role in these particular failures is not established.
+B adds eight `method_call` records and seven coarse `file_import` records, with no normalized relationships lost. C's normalized relationships equal A's. B is an observational control, not a hosted engine correction; its calls occur inside callbacks, not at callback formation.
+
+All states upload the same 619 paths and omit `go.mod`. The eight target methods are in the same package as their callers, so the matched comparison isolates this symptom from [#662](https://github.com/FinanceFlash/unvibecode/issues/662). It does not repair or measure the missing module dependencies.
+
+Code understanding completed for all three runs. Overall status is **PARTIAL** because business analysis was **SKIPPED_LARGE_REPOSITORY**. One initial A attempt returned a connection error without artifacts; one subsequent attempt completed. No changed business-risk verdict is claimed. [Actual ZIPs and sanitized capture metadata](investigations/go-method-values/evidence/current-public-0.4.0) and [replay script](investigations/go-method-values/reproduction/check_current_public.py) preserve the results. The earlier [minimal 0.4.0 comparison](investigations/go-method-values/evidence/latest-client-verification.json) remains a separate control.
+
+## Measured developer impact
+
+Each row identifies implementation evidence needed to answer a real maintenance question. Fractions count exact matching nonblank method-body lines in both Optimal and Wider.
+
+| Developer question | Required method | A | B | C |
+|---|---|---:|---:|---:|
+| How many executions can the full-duplex reroute retry bound allow? | `ClusterClient.processPipelineRetries` | 0/72 | **72/72** | 0/72 |
+| Does HIMPORT master fan-out run concurrently, wait, and propagate an error? | `ClusterClient.ForEachMaster` | 0/31 | **31/31** | 0/31 |
+| Does ring HIMPORT fan-out skip down shards? | `Ring.ForEachShard` | 0/32 | **32/32** | 0/32 |
+| Which retry setting does the MultiDB pipeline hook forward? | `multidbCore.processPipeline` | 0/3 | **3/3** | 0/3 |
+
+For the last question, the recovered implementation is:
+
+```go
+func (c *multidbCore) processPipeline(ctx context.Context, cmds []Cmder) error {
+    return c.processPipelineRetries(ctx, cmds, c.opts.CommandRetries)
+}
+```
+
+This establishes delegation of `CommandRetries`; it does not by itself establish the entire retry algorithm. [Question-to-source evidence](investigations/go-method-values/evidence/developer-impact.json) also checks the historical stock → corrected → restored exports. **These measurements establish missing answer-relevant source, not incorrect AI answers.** No model-answer accuracy experiment is claimed.
+
+## Independent public-repository replication
+
+On [go-sql-driver/mysql at `4cdf75e9037ffccf63a981d10f5c2e669edbfc49`](https://github.com/go-sql-driver/mysql/tree/4cdf75e9037ffccf63a981d10f5c2e669edbfc49), `packets.go` passes `mc.readWithTimeout` and stores `mc.writeWithTimeout`; both definitions are in `connection.go`.
+
+Both installed 0.3.15 engines produce **656 → 658 → 656** relationships under stock → corrected → restored, losing none. Both target bodies become complete in Optimal and Wider. Go independently confirms **2/2** exact method owners and definition spans; four mock-backed packet tests pass without a MySQL server. This is an independent installed-engine replication, not a current hosted MySQL review. See [replication measurements](investigations/go-method-values/evidence/mysql-replication.json), [compiler results](investigations/go-method-values/evidence/mysql-compiler.json) and [Go tests](investigations/go-method-values/evidence/public-go-tests.json).
 
 ## Reproduce
 
@@ -118,8 +152,11 @@ python investigations/go-method-values/reproduction/verify.py --repo .local-go-i
 go build -o ci-logs/compiler-oracle investigations/go-method-values/reproduction/compiler_oracle.go
 ci-logs/compiler-oracle -repo .local-go-investigation/redis -package . -cases ci-logs/redis-compiler-cases.json -output ci-logs/compiler-results.json
 
-# Replay the captured current-client evidence; no network or service required
-python investigations/go-method-values/reproduction/check_current_client.py --output ci-logs/current-client.json
+# Replay current full-public-repository artifacts; no network or service required
+python investigations/go-method-values/reproduction/check_current_public.py --output ci-logs/current-public.json
+
+# Receiver, interface, field and callback-formation boundaries
+python investigations/go-method-values/reproduction/check_boundaries.py --work ci-logs/boundaries --output ci-logs/boundaries.json
 
 # Explain line coverage and the separate capacity limit
 python investigations/go-method-values/reproduction/explain_context.py --repo .local-go-investigation/redis --artifacts ci-logs/redis/public/00a --verification ci-logs/redis.json --budget-control-work ci-logs/budget-control --output ci-logs/context-audit.json
@@ -137,13 +174,14 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Reproducibility | [Compiling fixtures and public-project verifier](investigations/go-method-values/reproduction/verify.py), [recorded measurements](investigations/go-method-values/evidence/verification.json) |
 | Developer impact | [Full technical report](investigations/go-method-values/README.md), [exact focused-context coverage and capacity control](investigations/go-method-values/evidence/context-selection-audit.json) |
 | Independent validation | [Go compiler identities](investigations/go-method-values/evidence/verification-compiler-cases.json), [ordinary CLI cross-check](investigations/go-method-values/evidence/cli-verification.json) |
-| Current-client behavior | [Captured 0.4.0 comparison](investigations/go-method-values/evidence/latest-client-verification.json), [offline replay](investigations/go-method-values/reproduction/check_current_client.py) |
+| Current-client behavior | [Public A/B/C comparison](investigations/go-method-values/evidence/current-public-verification.json), [offline replay](investigations/go-method-values/reproduction/check_current_public.py) |
+| Experiment coverage | [Evidence audit and live-review reproduction](investigations/go-method-values/FINAL_EVIDENCE_AUDIT.md) |
 | Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
 | Issue report | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716), [report copy](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
 | Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43256116749) at `788af8ca6f21cbe8279ae600ab8347a4bdce99d3`; downloadable logs and generated artifacts |
 
 ## Scope and limitations
 
-The proposed correction is a tested reference implementation; it is not a shipped UnvibeCode fix. The public-project recovery counts apply to the inspectable 0.3.15 engine. The 0.4.0 evidence covers a matched minimal fixture, with an undisclosed hosted backend revision and partial business analysis.
+The proposed correction is a tested reference implementation; it is not a shipped UnvibeCode fix. The public-project recovery counts apply to the inspectable 0.3.15 engine. The 0.4.0 evidence covers matched full-public-repository inputs, with an undisclosed hosted backend revision and business analysis skipped for size.
 
 This investigation establishes a static method-reference omission and its focused-context impact. It does not establish general indirect-call resolution, ecosystem prevalence, or a changed business-risk verdict. The two selection scopes share inputs. Originality is assessed against the dated issue inventory, rather than guaranteed against later reports.
