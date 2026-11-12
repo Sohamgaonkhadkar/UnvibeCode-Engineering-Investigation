@@ -140,12 +140,10 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Current-client behavior | [Captured 0.4.0 comparison](investigations/go-method-values/evidence/latest-client-verification.json), [offline replay](investigations/go-method-values/reproduction/check_current_client.py) |
 | Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
 | Issue report | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716), [report copy](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
-| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43203777303) at `fcfe9ca49869d0015aa4af29e4d2d6dd79305a29`; downloadable logs and generated artifacts |
+| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43256116749) at `788af8ca6f21cbe8279ae600ab8347a4bdce99d3`; downloadable logs and generated artifacts |
 
 ## Scope and limitations
 
 The proposed correction is a tested reference implementation; it is not a shipped UnvibeCode fix. The public-project recovery counts apply to the inspectable 0.3.15 engine. The 0.4.0 evidence covers a matched minimal fixture, with an undisclosed hosted backend revision and partial business analysis.
 
 This investigation establishes a static method-reference omission and its focused-context impact. It does not establish general indirect-call resolution, ecosystem prevalence, or a changed business-risk verdict. The two selection scopes share inputs. Originality is assessed against the dated issue inventory, rather than guaranteed against later reports.
-
-Earlier JSONC and named-result investigations are preserved in Git history and excluded because upstream #451 and #596 cover their causes.

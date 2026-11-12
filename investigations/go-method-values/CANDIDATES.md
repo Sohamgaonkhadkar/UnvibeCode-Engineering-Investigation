@@ -1,6 +1,6 @@
-# Candidate decisions and preserved history
+# Candidate screening
 
-The [original screens and decisions](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/b641dbf3c46b0fa84ca9b469e81d1ca31450c5ba/investigations/go-method-values/CANDIDATES.md) remain in Git history. They record earlier measurements and exclusion decisions.
+Candidates were screened for duplicate mechanisms, reproducibility and demonstrated developer impact. The selected finding is the typed Go method-value reference omission.
 
 | Candidate | Observation and decision |
 |---|---|

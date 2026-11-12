@@ -16,7 +16,7 @@ Nearest-report comments were read through the GitHub connector and preserved in 
 | [#662](https://github.com/FinanceFlash/unvibecode/issues/662) | The current upload omits go.mod. Our matched hosted comparison uses the same uploaded files and a same-package method; only the callback expression differs. |
 | [#318](https://github.com/FinanceFlash/unvibecode/issues/318) | Context scope and capacity behavior; relevant to the remaining two selected bodies, not the reference-extraction cause. |
 
-No report of the same typed method-value mechanism was identified in the reviewed records. This is a time-bound search conclusion; repeat the check before official publication.
+No report of the same typed method-value mechanism was identified in the reviewed records. This is a time-bound search conclusion; the pre-publication refresh below records the final check before issue #716 was filed.
 
 ## Reproduce the audit
 
