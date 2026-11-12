@@ -29,3 +29,7 @@ python investigations/go-method-values/reproduction/audit_issues.py --snapshot /
 A changed comment count fails the supplied-snapshot check. Omit the comments argument to fetch current nearest comments directly. Body matching helps locate reports; the distinction table also compares triggers, source stages and correction mechanisms.
 
 The prior JSONC and named-result findings are excluded because #451 and #596 cover their causes. Their additional evidence does not create a new eligible issue.
+
+## Pre-publication refresh
+
+An all-pages REST refresh on 12 November reviewed **603 open/closed issue records through #715**: 600 nonempty bodies and 3 empty bodies. [The publication inventory](evidence/publication-duplicate-check.json) records body digests, retrieval time, screening terms and review boundaries. No matching typed method-value extraction mechanism was identified. New #710 addresses promoted method calls through embedding; this case uses a directly declared method. New #709 addresses primary-file section expansion; it does not report the missing cross-file method reference. Nearest historical comments retain their separately documented check time.

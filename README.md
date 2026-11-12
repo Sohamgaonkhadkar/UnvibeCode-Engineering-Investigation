@@ -36,7 +36,7 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Public-repository replication | Unchanged [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466) |
 | Independent type check | **13/13** production source/receiver/definition identities verified by Go |
 | Current-client check | Two genuine **0.4.0 client** code-map exports captured on 12 November; same observable omission and matched wrapper control |
-| Originality refresh | **570** open/closed issue records through **#682**: 567 nonempty bodies and 3 empty bodies; nearest-report comments checked |
+| Originality refresh | **603** open/closed issue records through **#715**: 600 nonempty bodies and 3 empty bodies; historical nearest-report comments checked separately |
 
 [PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference public-project measurements belong to 0.3.15; the current-client check independently verifies the small fixture's observable behavior.
 

@@ -44,7 +44,7 @@ Both graph copies on unchanged go-redis yield **23,448 → 23,527 → 23,448** r
 
 ## 6. Evidence
 
-The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
+The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/cbdc618e320959de138e9bba43920459c3f168e5/investigations/go-method-values/README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
 
 - Go type checker: **13/13** exact production source-position/receiver/definition identities verified in clean Linux CI.
 - Seven source-specific production callee identities checked line-by-line in actual Optimal and Wider selections.
@@ -71,6 +71,15 @@ A budget-only control explains the two remaining bodies: the default MultiDB sel
 
 `TreeSitterAstAdapter._collect_go_usages` handles non-call `selector_expression` nodes with `package_selector`. For a known local qualifier, that helper returns without emitting a typed usage, although input parameters correctly populate the receiver environment.
 
+Inspected 0.3.15 source locations (source digests are recorded in the verification JSON):
+
+| Stage | Fast Lane `00a` | Normal graph `01` |
+|---|---|---|
+| `_collect_go_usages` | line 981 | line 939 |
+| `package_selector` | line 1127 | line 1085 |
+| Non-call selector branch | line 1292 | line 1250 |
+| `_resolve_go_usages` | line 2448 | line 2405 |
+
 A tested reference correction emits `method_reference` for typed local selector values, passes it through `ShipReadyV2DeepGraphBuilder._resolve_go_usages`, and exports `imports_symbol` / `go_method_value` relationships. Unresolved fields remain unpromoted. Both installed methods are restored after each experiment, with source hashes unchanged.
 
 ## 9. Duplicate check
@@ -79,4 +88,6 @@ A complete historical snapshot of 485 open/closed issues through #596 was review
 
 Closest distinct reports: [#360](https://github.com/FinanceFlash/unvibecode/issues/360) (wrong receiver's target for a resolved call); [#415](https://github.com/FinanceFlash/unvibecode/issues/415) (factory-expression receiver); [#573](https://github.com/FinanceFlash/unvibecode/issues/573) (interface dispatch); [#596](https://github.com/FinanceFlash/unvibecode/issues/596) (named-result binding); [#625](https://github.com/FinanceFlash/unvibecode/issues/625) (unresolved Go diagnostics not exported); [#662](https://github.com/FinanceFlash/unvibecode/issues/662) (0.4.0 uploader omits `go.mod`).
 
-The earlier JSONC investigation matched [#451](https://github.com/FinanceFlash/unvibecode/issues/451) and is **not** the subject of this report. Duplicate checking is time-bound; repeat it immediately before publication.
+Immediately before publication on 12 November, an all-pages REST refresh reviewed **603 issue records through #715** (600 nonempty bodies, 3 empty). No matching extraction mechanism was identified. [#710](https://github.com/FinanceFlash/unvibecode/issues/710) concerns promoted calls through embedded structs; this reproducer uses a method declared directly on its concrete receiver, with no embedding. [#709](https://github.com/FinanceFlash/unvibecode/issues/709) concerns primary-file context expansion, not the missing typed method reference. The publication inventory is retained in this investigation’s `evidence/publication-duplicate-check.json`.
+
+The earlier JSONC investigation matched [#451](https://github.com/FinanceFlash/unvibecode/issues/451) and is **not** the subject of this report. Duplicate checking is time-bound; the inventory above records the pre-publication check.
