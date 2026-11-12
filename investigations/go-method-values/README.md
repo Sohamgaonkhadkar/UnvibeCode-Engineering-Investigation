@@ -52,23 +52,23 @@ The 13 production selector positions are checked against Go's actual resolved me
 
 The selected output is checked line-by-line against all nonblank lines of each target method, for seven distinct production caller→callee pairs.
 
-| Method | Stock | Corrected | Restored |
-|---|---|---|---|
-| `ClusterClient.processPipelineRetries` from `autopipeline_cluster_fd.go` | Absent | Complete | Absent |
-| `ClusterClient.ForEachMaster` from `himport_cluster.go` | Absent | Complete | Absent |
-| `Ring.ForEachShard` from `himport_cluster.go` | Absent | Complete | Absent |
-| `multidbCore.processPipeline` from `multidb.go` | Absent | Complete | Absent |
-| `ClusterClient.ForEachMaster` from `osscluster_router.go` | Absent | Complete | Absent |
-| `multidbCore.process` from `multidb.go` | Incomplete at Optimal; complete at Wider | Unchanged | Unchanged |
-| `multidbCore.processTxPipeline` from `multidb.go` | Incomplete | Incomplete | Incomplete |
+| Caller → required method | Stock | Corrected | Restored |
+|---|---:|---:|---:|
+| `autopipeline_cluster_fd.go` → `ClusterClient.processPipelineRetries` | 0/72 | **72/72** | 0/72 |
+| `himport_cluster.go` → `ClusterClient.ForEachMaster` | 0/31 | **31/31** | 0/31 |
+| `himport_cluster.go` → `Ring.ForEachShard` | 0/32 | **32/32** | 0/32 |
+| `multidb.go` → `multidbCore.processPipeline` | 0/3 | **3/3** | 0/3 |
+| `osscluster_router.go` → `ClusterClient.ForEachMaster` | 0/31 | **31/31** | 0/31 |
+
+Each fraction counts matching required nonblank method-body lines. These five rows hold at both Optimal and Wider. For `multidb.go` → `multidbCore.process`, all three states have 0/215 at Optimal and 215/215 at Wider. For `multidb.go` → `multidbCore.processTxPipeline`, all three have 0/135 at both scopes.
 
 Thus **5/7** full source definitions become newly available in both audited selection scopes. The two exceptions are documented; the complete repository ZIP still contains the original code.
 
-## Why the two unchanged rows are expected limits
+## Selection-capacity limits
 
 The exact line audit finds 0/215 matching nonblank lines for `process` at Optimal and 215/215 at Wider in all three states. `processTxPipeline` has 0/135 in both scopes throughout. The corrected ZIP contains their resolved reference edges, but selection estimates are already 44,997/45,000 and 74,999/75,000 tokens.
 
-A separate diagnostic changes only a scope’s maximum to 200,000 tokens. Both bodies then become complete. Source, corrected graph, chunking and ranking remain unchanged. This isolates a capacity limit; the main **5/7** recovery result still uses original budgets. These are omitted product-context lines, not missing investigation files. See [the exact audit](evidence/context-selection-audit.json) and [reproducer](reproduction/explain_context.py).
+A separate diagnostic changes only a scope’s maximum to 200,000 tokens. Both bodies then become complete. Source, corrected graph, chunking and ranking remain unchanged. This isolates a capacity limit; the main **5/7** recovery result still uses original budgets. See [the exact audit](evidence/context-selection-audit.json) and [reproducer](reproduction/explain_context.py).
 
 ## Current client capture
 
@@ -118,6 +118,6 @@ Requires Python 3.12+, a compatible Go toolchain (CI: Go 1.27.3), and first-use 
 - Experiments preserve the tracked public source and restore the in-memory patched methods in a `finally` block.
 - Full 0.4.0 business review did not complete. Separately, [upstream #662](https://github.com/FinanceFlash/unvibecode/issues/662) reports that the new uploader omits `go.mod`; that separate defect must not be confused with the method-value cause.
 
-## Submission readiness
+## Report and originality
 
-The engineering package is prepared for owner review. The official issue and form remain unsubmitted. [Current originality review](DUPLICATE_CHECK.md) and [form fields](submission/FORM_RESPONSE.md) record the final review and owner-only steps.
+The [nine-section issue report](submission/GITHUB_ISSUE.md) provides an immutable reproduction checkout and expected-versus-actual results. The [dated originality review](DUPLICATE_CHECK.md) distinguishes the extraction mechanism from the closest existing reports.

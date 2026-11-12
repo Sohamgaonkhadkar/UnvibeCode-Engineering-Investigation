@@ -1,4 +1,6 @@
-# Official form preparation — not submitted
+# Contributor worksheet: official form preparation
+
+This administrative worksheet is separate from the evaluator-facing technical report.
 
 Checked against the [official form](https://docs.google.com/forms/d/e/1FAIpQLScsQCDsPQvUg9QEQxRJvk7Utq4o5xmuwcaPTz622XKkJZ70Dg/viewform) on **12 November 2026**.
 Deadline: **15 November 2026, 23:59 IST**.

@@ -4,9 +4,9 @@ A reproducible Track 1 engineering investigation, with a reference correction an
 
 [![Go evidence](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml/badge.svg?branch=main)](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml)
 
-**[Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Completion status](#completion-status)**
+**[Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Evidence guide](#evidence-guide)**
 
-> **Status checked 12 November 2026:** [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4) is merged into `main` as `b775f240b284132e8e7cb8964bb65363e2bb266a`. The engineering evidence and submission drafts are prepared. The official challenge submission is still pending approval: no upstream issue or Google Form has been submitted by this investigation. A validated reference correction is included; no shipped UnvibeCode fix is claimed.
+> **Finding:** typed Go method values can lose their method-definition links and implementation context. Controlled experiments recover 13 production references and five complete method bodies on a pinned go-redis checkout. A matched 0.4.0 client comparison independently reproduces the minimal symptom.
 
 ## The defect
 
@@ -73,9 +73,7 @@ Thus **5 of 7** distinct source-specific method definitions are newly recovered 
 
 ## Why two bodies remain missing
 
-“Absent” in the earlier table meant no matching method-body lines in the focused selection. “Unchanged” meant the complete-body result did not improve after repairing the graph. Neither label described missing investigation files.
-
-The new [line-coverage and budget audit](investigations/go-method-values/evidence/context-selection-audit.json) makes these limits explicit:
+The [line-coverage and budget audit](investigations/go-method-values/evidence/context-selection-audit.json) makes these limits explicit:
 
 | Target from `multidb.go` | Optimal: stock → corrected → restored | Wider: stock → corrected → restored |
 |---|---|---|
@@ -86,7 +84,7 @@ The corrected export **does contain the resolved reference edges** for these met
 
 A controlled experiment leaves source, corrected graph, chunking and selection ranking unchanged and increases only one scope's maximum to 200,000 tokens. Both bodies then become complete in both scopes. This diagnoses a separate selection-capacity limit. **The main 5/7 result still uses the original budgets.** Raising the diagnostic budget is not presented as a production fix.
 
-The investigation is complete for its stated claim: it establishes the reference-extraction defect, verifies a narrow correction, and measures both recovered context and remaining limits.
+The reference correction repairs extraction. The capacity experiment separately measures whether resolved implementations fit into focused context.
 
 ## Current 0.4.0 client: actual downloaded evidence
 
@@ -131,23 +129,23 @@ On Windows, give the compiler executable an `.exe` suffix. First-use parser setu
 
 The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler results and actual exported ZIPs. A green affected-version verification means the defect and controls reproduced as expected; it does not mean stock UnvibeCode was fixed.
 
-## Completion status
+## Evidence guide
 
-| Requirement | Status / record |
+| Evaluation area | Evidence |
 |---|---|
-| One original, bounded defect | [Fresh mechanism-level audit](investigations/go-method-values/DUPLICATE_CHECK.md) |
-| Candidate screening and preserved prior work | [Candidate decisions and historical evidence links](investigations/go-method-values/CANDIDATES.md) |
-| Minimal and public-repository reproduction | [Verifier](investigations/go-method-values/reproduction/verify.py), [measurements](investigations/go-method-values/evidence/verification.json) |
-| Root cause, causal controls, regression checks, reference correction | [Source analysis](investigations/go-method-values/ROOT_CAUSE.md), [correction](investigations/go-method-values/solution/method_values.py) |
-| Compiler and normal CLI cross-check | [CI provenance](investigations/go-method-values/evidence/ci-snapshot.json), [CLI equality](investigations/go-method-values/evidence/cli-verification.json) |
-| Latest-client observation and remaining context limits | [Captured comparison](investigations/go-method-values/evidence/latest-client-verification.json), [budget audit](investigations/go-method-values/evidence/context-selection-audit.json) |
-| Merged evidence and passing regression checks | [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4), [Linux and Windows CI](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43190530178) at `fc632c9340057296053f0bdd1ca6b9db4097042b` |
-| Official nine-section issue draft | [Prepared for review](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
-| Form answers and owner-only fields | [Prepared; private/personal fields remain for the owner](investigations/go-method-values/submission/FORM_RESPONSE.md) |
-| Official issue publication and form submission | **Not performed — owner approval remains required** |
+| Technical depth and root cause | [Source stages and causal controls](investigations/go-method-values/ROOT_CAUSE.md), [reference correction](investigations/go-method-values/solution/method_values.py) |
+| Reproducibility | [Compiling fixtures and public-project verifier](investigations/go-method-values/reproduction/verify.py), [recorded measurements](investigations/go-method-values/evidence/verification.json) |
+| Developer impact | [Full technical report](investigations/go-method-values/README.md), [exact focused-context coverage and capacity control](investigations/go-method-values/evidence/context-selection-audit.json) |
+| Independent validation | [Go compiler identities](investigations/go-method-values/evidence/verification-compiler-cases.json), [ordinary CLI cross-check](investigations/go-method-values/evidence/cli-verification.json) |
+| Current-client behavior | [Captured 0.4.0 comparison](investigations/go-method-values/evidence/latest-client-verification.json), [offline replay](investigations/go-method-values/reproduction/check_current_client.py) |
+| Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
+| Issue report | [Nine-section Track 1 report](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
+| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43203777303) at `fcfe9ca49869d0015aa4af29e4d2d6dd79305a29`; downloadable logs and generated artifacts |
 
-The [official form](https://docs.google.com/forms/d/e/1FAIpQLScsQCDsPQvUg9QEQxRJvk7Utq4o5xmuwcaPTz622XKkJZ70Dg/viewform) states a deadline of **15 November 2026, 23:59 IST**. The evidence PR and a competitor's issue must not be substituted for our eventual official issue URL.
+## Scope and limitations
 
-Earlier JSONC and named-result investigations remain preserved in Git history and excluded from this submission because #451 and #596 cover their causes. No official ranking, shipped correction, general indirect-call analysis, current hosted go-redis recovery count, or improved business-risk verdict is claimed.
+The proposed correction is a tested reference implementation; it is not a shipped UnvibeCode fix. The public-project recovery counts apply to the inspectable 0.3.15 engine. The 0.4.0 evidence covers a matched minimal fixture, with an undisclosed hosted backend revision and partial business analysis.
 
-**Engineering package: merged and prepared for submission. Official challenge entry: not yet submitted.**
+This investigation establishes a static method-reference omission and its focused-context impact. It does not establish general indirect-call resolution, ecosystem prevalence, or a changed business-risk verdict. The two selection scopes share inputs. Originality is assessed against the dated issue inventory, rather than guaranteed against later reports.
+
+Earlier JSONC and named-result investigations are preserved in Git history and excluded because upstream #451 and #596 cover their causes.

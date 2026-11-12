@@ -1,6 +1,6 @@
 # Candidate decisions and preserved history
 
-The [original screens and decisions](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/b641dbf3c46b0fa84ca9b469e81d1ca31450c5ba/investigations/go-method-values/CANDIDATES.md) remain in Git history. The focused repository cleanup is preserved.
+The [original screens and decisions](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/b641dbf3c46b0fa84ca9b469e81d1ca31450c5ba/investigations/go-method-values/CANDIDATES.md) remain in Git history. They record earlier measurements and exclusion decisions.
 
 | Candidate | Observation and decision |
 |---|---|
@@ -17,5 +17,3 @@ The [original screens and decisions](https://github.com/Sohamgaonkhadkar/UnvibeC
 A bounded screen considered Gin, go-redis, bbolt, GORM and LevelDB. Raw typed selectors include ordinary fields, so their counts are not reported as missing methods. Actual cross-file production references and exported definitions determine the impact claim.
 
 The selected cause is narrower than general callback execution: a static method-definition reference is omitted before owner-aware resolution. The reference correction repairs that loss; the separate selection-capacity experiment explains why graph recovery does not guarantee every method body fits into a bounded export.
-
-Strong competing reports include #360, #364, #395, #409, #436 and #455, with several naturally captured model outputs and runtime checks. No official ranking or first-place claim is made.

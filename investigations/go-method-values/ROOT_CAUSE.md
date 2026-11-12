@@ -45,4 +45,5 @@ The complete target audit is exhaustive over seven distinct source-specific
 production callee identities; every nonblank source line must match selected
 target source. It exposes the two incomplete/control targets as well as the five
 restored targets. No source, threshold, token budget, or installed file is edited
-in the correction experiments. Tracked public files are hashed before and after.
+in the reference-extraction correction experiments. The separate capacity control
+changes only an in-memory scope maximum, as documented in the context audit. Tracked public files are hashed before and after.
