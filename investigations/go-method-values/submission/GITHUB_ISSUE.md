@@ -11,11 +11,11 @@ This is a missing **method reference**, not evidence that merely forming a metho
 - **Affected product:** published `unvibecode==0.3.15`, Fast Lane and Normal Lane graph implementations
 - **Local validation:** Python 3.12+/Go (Linux and Windows CI); original investigation on Windows, Python 3.14.5, Go 1.27.3
 - **Public repository:** [redis/go-redis](https://github.com/redis/go-redis), pinned at [`5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466)
-- **Engine scope:** 0.3.15 local analysis. The current 0.4.0 hosted engine has not been independently verified for this defect.
+- **Version scope:** 0.3.15 source-level/public-project proof; two genuine 0.4.0 client code-map captures on 12 November reproduce the small-fixture omission and matched wrapper control. The hosted backend revision is not exposed.
 
 ## 3. Steps to reproduce
 
-Clone the [reproducible investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/codex/track1-original-investigation) and check out its `codex/track1-original-investigation` branch.
+Clone the [reproducible investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/codex/readme-evidence-closure) and check out its `codex/track1-original-investigation` branch.
 
 ```sh
 python -m pip install -r investigations/go-method-values/reproduction/requirements.txt
@@ -48,11 +48,13 @@ The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Eng
 
 Detailed records: [verification JSON](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/verification.json), [compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/reproduction/compiler_oracle.go), [CI provenance](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/ci-snapshot.json).
 
+The [current-client replay](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/readme-evidence-closure/investigations/go-method-values/reproduction/check_current_client.py) checks two captured 0.4.0 ZIPs: original callback 0 method links/no store.go; matched wrapper 1 method link/store.go at Optimal and Wider. Only that expression differs in recovered source text. Code understanding completed; both overall reviews were PARTIAL because business analysis failed.
+
 ## 7. Impact and scope
 
 Focused context for MultiDB callback initialization can omit `multidbCore.processPipeline`; ring fan-out context can omit `Ring.ForEachShard`. The source is still present in the **complete** repository ZIP; the observed defect is specifically an omission of method implementation evidence from selected focused context.
 
-No hosted final-report change, arbitrary indirect-call resolution, ecosystem prevalence, or Go runtime bug is claimed.
+A budget-only control explains the two remaining bodies: the default MultiDB selections fill 44,997/45,000 and 74,999/75,000 tokens; increasing only each scope’s maximum to 200,000 makes both bodies complete. The primary 5/7 figure keeps original budgets. No hosted business-risk verdict change, arbitrary indirect-call resolution, ecosystem prevalence, or Go runtime bug is claimed.
 
 ## 8. Suspected cause / suggested fix
 
@@ -62,7 +64,7 @@ A tested reference correction emits `method_reference` for typed local selector 
 
 ## 9. Duplicate check
 
-A complete historical snapshot of 485 open/closed issues through #596 was reviewed, followed by #597. On **11 November 2026**, a fresh open-and-closed issue sweep reached **#680** and searched 568 visible issue bodies for method-value, typed-receiver, and callback mechanisms. No issue matching this particular non-call, typed method-value selector failure was found.
+A complete historical snapshot of 485 open/closed issues through #596 was reviewed, followed by #597. On **12 November 2026**, the refreshed audit covers **570 open/closed issue records through #682** (567 nonempty bodies, 3 empty), plus nearest-report comments. No matching typed method-value mechanism was identified. The [audit and digests](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/readme-evidence-closure/investigations/go-method-values/evidence/issue-audit-2026-11-12.json) preserve the search scope.
 
 Closest distinct reports: [#360](https://github.com/FinanceFlash/unvibecode/issues/360) (wrong receiver's target for a resolved call); [#415](https://github.com/FinanceFlash/unvibecode/issues/415) (factory-expression receiver); [#573](https://github.com/FinanceFlash/unvibecode/issues/573) (interface dispatch); [#596](https://github.com/FinanceFlash/unvibecode/issues/596) (named-result binding); [#625](https://github.com/FinanceFlash/unvibecode/issues/625) (unresolved Go diagnostics not exported); [#662](https://github.com/FinanceFlash/unvibecode/issues/662) (0.4.0 uploader omits `go.mod`).
 

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" role="img" aria-labelledby="title desc">
+<title id="title">Why a typed Go callback loses its implementation relationship</title>
+<desc id="desc">The stock visitor sends a known local receiver to a package-only helper and drops the reference. The correction preserves the typed method reference and resolves its owner. Forming the callback does not invoke it.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#94a3b8"/></marker></defs>
+<rect width="1000" height="380" rx="12" fill="#0d1117"/>
+<g font-family="Arial, sans-serif" fill="#e6edf3">
+<text x="28" y="35" font-size="22" font-weight="700">One known receiver, two different extraction paths</text>
+<g fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)">
+<path d="M208 175H238"/><path d="M430 175H452V96H478"/><path d="M430 175H452V270H478"/>
+<path d="M690 96H736"/><path d="M690 270H736"/>
+</g>
+<g stroke-width="1.5">
+<rect x="28" y="140" width="180" height="70" rx="8" fill="#172233" stroke="#60a5fa"/>
+<rect x="240" y="140" width="190" height="70" rx="8" fill="#172233" stroke="#60a5fa"/>
+<rect x="480" y="56" width="210" height="80" rx="8" fill="#301b24" stroke="#f87171"/>
+<rect x="738" y="56" width="234" height="80" rx="8" fill="#301b24" stroke="#f87171"/>
+<rect x="480" y="230" width="210" height="80" rx="8" fill="#123026" stroke="#4ade80"/>
+<rect x="738" y="230" width="234" height="80" rx="8" fill="#123026" stroke="#4ade80"/>
+</g>
+<g font-size="16" text-anchor="middle">
+<text x="118" y="167" font-weight="700">Known receiver</text><text x="118" y="193" font-family="monospace">s: *Store</text>
+<text x="335" y="167" font-weight="700">Non-call selector</text><text x="335" y="193" font-family="monospace">callback := s.Save</text>
+<text x="585" y="83" font-weight="700">Stock: package helper</text><text x="585" y="111">Skips known locals</text>
+<text x="855" y="83" font-weight="700">No method-reference edge</text><text x="855" y="111">Body can be omitted</text>
+<text x="585" y="257" font-weight="700">Correction: typed reference</text><text x="585" y="285">Resolve the method owner</text>
+<text x="855" y="257" font-weight="700">Reference edge retained</text><text x="855" y="285">Context can recover</text>
+</g>
+<text x="28" y="352" font-size="15" fill="#b6c2d2">Method-value formation is a static reference. It is not a direct method invocation.</text>
+</g></svg>

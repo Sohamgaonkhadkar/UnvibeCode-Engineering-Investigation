@@ -1,0 +1,62 @@
+{
+  "client_version": "0.4.0",
+  "hosted_backend_revision": "not exposed",
+  "capture_date": "2026-11-12",
+  "states": {
+    "original": {
+      "bundle_sha256": "4d45b52e80e9551a216013b3d272f7630e966a30691ac2f612995e726d16a36c",
+      "source_files": 4,
+      "exported_relationship_records": 4,
+      "Store_Save_relationships": 0,
+      "source_go_selected_files": {
+        "1": [
+          "source.go",
+          "source_test.go"
+        ],
+        "2": [
+          "source.go",
+          "source_test.go"
+        ]
+      },
+      "recovered_source_text_sha256": {
+        "remote/remote.go": "35512a8cea9e90a3245d65b9f5b003cf14601da03f136ba2bfae8b4a3b8c3040",
+        "source.go": "14d5460217af3e974f6fd5ba2f2d94b23bfae2e71ba4199797c199a8e27c792d",
+        "source_test.go": "1dea09df49745de99f7e130e6f7029ed20ac032e6fe0510e647e3e7d8da99b8a",
+        "store.go": "020e93e5cac4d0d23539272e522c8c15af02c7f9599701d5070dba2d83227e41"
+      },
+      "overall_review_status": "PARTIAL",
+      "code_understanding_status": "COMPLETED",
+      "business_analysis_status": "FAILED"
+    },
+    "wrapper": {
+      "bundle_sha256": "6602e66266780e12413c1ddda69ff7657c7e544dc60432cfe10b8c069b265555",
+      "source_files": 4,
+      "exported_relationship_records": 6,
+      "Store_Save_relationships": 1,
+      "source_go_selected_files": {
+        "1": [
+          "source.go",
+          "source_test.go",
+          "store.go"
+        ],
+        "2": [
+          "source.go",
+          "source_test.go",
+          "store.go"
+        ]
+      },
+      "recovered_source_text_sha256": {
+        "remote/remote.go": "35512a8cea9e90a3245d65b9f5b003cf14601da03f136ba2bfae8b4a3b8c3040",
+        "source.go": "a7c1b34d2dd975eefe36b0fa56b389f4ffaec64ca31dc77ce0db66c228ae8dd5",
+        "source_test.go": "1dea09df49745de99f7e130e6f7029ed20ac032e6fe0510e647e3e7d8da99b8a",
+        "store.go": "020e93e5cac4d0d23539272e522c8c15af02c7f9599701d5070dba2d83227e41"
+      },
+      "overall_review_status": "PARTIAL",
+      "code_understanding_status": "COMPLETED",
+      "business_analysis_status": "FAILED"
+    }
+  },
+  "boundary": "Only completed code-understanding outputs are used; no completed business/risk review is claimed.",
+  "input_difference": "Exactly one callback expression in source.go; other uploaded source text identical",
+  "status": "passed"
+}

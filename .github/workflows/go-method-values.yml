@@ -36,6 +36,8 @@ jobs:
         run: python -m pip install -r investigations/go-method-values/reproduction/requirements.txt
       - name: Verify both parser copies and compiling controls
         run: python investigations/go-method-values/reproduction/verify.py --work ci-logs/method-values-minimal --output ci-logs/method-values-minimal.json
+      - name: Replay captured current-client code-map evidence offline
+        run: python investigations/go-method-values/reproduction/check_current_client.py --output ci-logs/current-client-replay.json
       - name: Pin unchanged public go-redis source
         if: runner.os == 'Linux'
         run: |
@@ -46,6 +48,7 @@ jobs:
         run: |
           set -o pipefail
           python investigations/go-method-values/reproduction/verify.py --repo ci-logs/redis --work ci-logs/method-values --output ci-logs/method-values.json | tee ci-logs/method-values.log
+          python investigations/go-method-values/reproduction/explain_context.py --repo ci-logs/redis --artifacts ci-logs/method-values/public/00a --verification ci-logs/method-values.json --budget-control-work ci-logs/budget-control --output ci-logs/context-audit.json
           go build -o ci-logs/compiler-oracle investigations/go-method-values/reproduction/compiler_oracle.go
           ci-logs/compiler-oracle -repo ci-logs/redis -package . -cases ci-logs/method-values-compiler-cases.json -output ci-logs/compiler-method-values.json
           cd ci-logs/redis

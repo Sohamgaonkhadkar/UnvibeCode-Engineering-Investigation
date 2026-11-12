@@ -2,6 +2,8 @@
 
 **Affected published engine:** UnvibeCode `0.3.15` (both Fast Lane and Normal Lane graph copies)  
 **Public source:** [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466)  
+**Current client check:** 0.4.0 code-map captures on 12 November reproduce the small fixture’s omission; [offline evidence](evidence/latest-client-verification.json). Overall hosted reviews were partial; business outputs are not used.
+
 **Main claim:** A known local receiver used as a Go method value is omitted before owner-aware resolution, sometimes excluding the implementation from focused code context.
 
 ## Failure and cause
@@ -40,9 +42,9 @@ The pinned go-redis source remains unchanged.
 | Measure | Stock | Corrected | Restored |
 |---|---:|---:|---:|
 | Total graph relationships per shipped copy | 23,448 | 23,527 | 23,448 |
-| Additional production references | — | 13 | — |
-| Additional test references | — | 66 | — |
-| Existing relationships removed | — | 0 | — |
+| Production references gained versus stock | 0 | 13 | 0 |
+| Test references gained versus stock | 0 | 66 | 0 |
+| Existing relationships removed | 0 | 0 | 0 |
 
 The 13 production selector positions are checked against Go's actual resolved method identities (receiver, target source file, method span). A clean Linux CI run verified **13/13**. The 66 test references are not independently claimed as real-world production impact.
 
@@ -61,6 +63,18 @@ The selected output is checked line-by-line against all nonblank lines of each t
 | `multidbCore.processTxPipeline` from `multidb.go` | Incomplete | Incomplete | Incomplete |
 
 Thus **5/7** full source definitions become newly available in both audited selection scopes. The two exceptions are documented; the complete repository ZIP still contains the original code.
+
+## Why the two unchanged rows are expected limits
+
+The exact line audit finds 0/215 matching nonblank lines for `process` at Optimal and 215/215 at Wider in all three states. `processTxPipeline` has 0/135 in both scopes throughout. The corrected ZIP contains their resolved reference edges, but selection estimates are already 44,997/45,000 and 74,999/75,000 tokens.
+
+A separate diagnostic changes only a scope’s maximum to 200,000 tokens. Both bodies then become complete. Source, corrected graph, chunking and ranking remain unchanged. This isolates a capacity limit; the main **5/7** recovery result still uses original budgets. These are omitted product-context lines, not missing investigation files. See [the exact audit](evidence/context-selection-audit.json) and [reproducer](reproduction/explain_context.py).
+
+## Current client capture
+
+Two ordinary 0.4.0 client reviews produce completed code-understanding artifacts: the original method value has no Store.Save edge or store.go in either focused scope; a matched one-expression wrapper has one edge and includes store.go. The other three uploaded Go files match. [The offline replay](reproduction/check_current_client.py) verifies the [captured ZIPs](evidence/latest-client-0.4.0) and [results](evidence/latest-client-verification.json).
+
+Both overall reviews are PARTIAL: business analysis stopped at Step 04 with no evidence-valid business path fragments. No complete business review or identical hosted backend source is claimed. This is a fresh small-fixture observation, not a current hosted go-redis recovery count.
 
 ## Reproduction
 
@@ -98,8 +112,12 @@ Requires Python 3.12+, a compatible Go toolchain (CI: Go 1.27.3), and first-use 
 
 ## Validated boundaries
 
-- The local installed 0.3.15 graph, selectors and ZIP were tested; **hosted UnvibeCode 0.4.0 behavior was not**.
+- Local installed 0.3.15 source, graphs and ZIPs establish the root cause and public-project metrics. Two current 0.4.0 client code-map artifacts independently reproduce the small-fixture symptom; the hosted backend revision is not exposed.
 - Method values are **references**, not direct invocations. No general function-pointer dispatch, method-expression support, or interface-dispatch correctness is asserted.
 - All claims use pinned commits, measured artifact contents, and explicit denominators; the selected scopes are correlated.
 - Experiments preserve the tracked public source and restore the in-memory patched methods in a `finally` block.
-- A full 0.4.0 hosted review needs separate validation. In particular, [upstream #662](https://github.com/FinanceFlash/unvibecode/issues/662) reports that the new uploader omits `go.mod`; that separate defect must not be confused with the method-value cause.
+- Full 0.4.0 business review did not complete. Separately, [upstream #662](https://github.com/FinanceFlash/unvibecode/issues/662) reports that the new uploader omits `go.mod`; that separate defect must not be confused with the method-value cause.
+
+## Submission readiness
+
+The engineering package is prepared for owner review. The official issue and form remain unsubmitted. [Current originality review](DUPLICATE_CHECK.md) and [form fields](submission/FORM_RESPONSE.md) record the final review and owner-only steps.
