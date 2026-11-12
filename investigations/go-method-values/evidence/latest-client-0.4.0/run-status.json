@@ -1,0 +1,23 @@
+{
+  "client_version": "0.4.0",
+  "backend_revision": "not exposed; no backend source equivalence assumed",
+  "date": "2026-11-12",
+  "states": {
+    "original": {
+      "overall_status": "PARTIAL",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "FAILED",
+      "business_error": "Step 04 returned exit code 1.",
+      "updated_at": "2026-11-12T08:56:03.653420+00:00"
+    },
+    "wrapper": {
+      "overall_status": "PARTIAL",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "FAILED",
+      "business_error": "Step 04 returned exit code 1.",
+      "updated_at": "2026-11-12T08:58:09.611313+00:00"
+    }
+  },
+  "business_log_diagnostic": "CompilerError: No evidence-valid business path fragments are present",
+  "boundary": "Only completed code-understanding outputs are used; no completed business/risk review is claimed."
+}

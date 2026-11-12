@@ -1,186 +1,152 @@
-<div align="center">
+# UnvibeCode: typed Go callbacks lose implementation context
 
-# UnvibeCode — Go Method-Value Graph Integrity
+A reproducible Track 1 engineering investigation, with a reference correction and measured limits.
 
-**A reproducible investigation of missing Go callback-to-implementation relationships**
+[![Go evidence](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml/badge.svg?branch=main)](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml)
 
-[![Go verification](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml/badge.svg?branch=codex%2Ftrack1-original-investigation)](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml)
-[![UnvibeCode](https://img.shields.io/badge/UnvibeCode-0.3.15-253b59)](https://github.com/FinanceFlash/unvibecode)
-[![Go source verified](https://img.shields.io/badge/Go%20compiler-13%2F13%20verified-165e53)](investigations/go-method-values/evidence/ci-snapshot.json)
+**[Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Completion status](#completion-status)**
 
-**[The defect](#the-defect) · [Results](#measured-impact) · [Reproduce](#reproduce) · [Evidence](#verification-and-evidence) · [Limitations](#scope-and-limitations)**
-
-</div>
-
----
-
-## Overview
-
-UnvibeCode builds a source-code relationship graph and exports focused context for developers inspecting unfamiliar repositories. This investigation identifies a specific blind spot in its Go parser: **a method used as a function value does not retain the method-definition relationship, even when the receiver type is already known.**
-
-The failure is demonstrated on UnvibeCode **0.3.15** using compiling Go fixtures and an unchanged, pinned [redis/go-redis](https://github.com/redis/go-redis) checkout. We isolate the failing visitor branch, verify the correct method owners with Go's type checker, test a conservative reference correction against both shipped graph implementations, and inspect actual exported context.
-
-This is an **independent engineering investigation**, not a patch released by UnvibeCode. The current 0.4.0 hosted engine has **not** been independently verified by these tests; conclusions below apply to the published 0.3.15 engine.
-
-### Investigation at a glance
-
-| Dimension | Evidence |
-|---|---|
-| Failure | Go typed method values disappear from the resolved source graph |
-| Root cause | Non-call `selector_expression` bypasses typed owner resolution |
-| Target | UnvibeCode `0.3.15`, both shipped Go graph implementations |
-| Public fixture | [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466) |
-| Reproducibility | Original → repeat → wrapper control → corrected → restored |
-| Independent oracle | Go compiler, **13/13** production selector identities checked |
-| User-visible outcome | **5/7** complete source-specific method definitions newly available in focused context |
-| Technical detail | [Investigation report](investigations/go-method-values/README.md) · [Root cause](investigations/go-method-values/ROOT_CAUSE.md) |
-| Maintainer-ready report | [Nine-section issue report](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
+> **Status checked 12 November 2026:** the engineering evidence and submission drafts are prepared for owner review. The official challenge submission is still pending approval: no upstream issue or Google Form has been submitted by this investigation. A validated reference correction is included; no shipped UnvibeCode fix is claimed.
 
 ## The defect
 
-This is valid Go:
+An explicitly typed receiver loses its implementation relationship when its method becomes a callback:
 
 ```go
-func run(s *Store) {
-    callback := s.Save // form a bound method value
-    callback()         // invoke the stored value later
+func Run(s *Store) {
+    callback := s.Save
+    callback()
 }
 ```
 
-A direct `s.Save()` call is resolved to `Store.Save`. In UnvibeCode 0.3.15, however, the non-call selector `s.Save` is processed via `package_selector()`, which returns early when `s` is a known local variable. The method's receiver type is already in the environment but no typed usage reaches the owner-aware resolver.
+In the published 0.3.15 engine, a direct `s.Save()` emits a typed method usage. The non-call selector `s.Save` instead goes through `package_selector()`, which returns for known local variables. The receiver's correct type never reaches owner-aware method resolution.
 
-```mermaid
-flowchart LR
-    A["Go: callback := s.Save"] --> B["Known receiver: *Store"]
-    B --> C["Non-call selector"]
-    C --> D["Stock visitor discards local qualifier"]
-    D --> E["No method-definition edge"]
-    E --> F["Missing method body in focused context"]
-    C -. "Conservative correction" .-> G["Typed method reference"]
-    G --> H["Owner-aware resolver"]
-    H --> I["Reference edge + implementation context"]
-```
+![Stock extraction drops a known local callback reference; the correction preserves it and resolves its owner.](assets/go-method-values-flow.svg)
 
-The correction records a **reference**, not a direct invocation. This distinction follows [Go's method-value semantics](https://go.dev/ref/spec#Method_values).
+**Text alternative:** known receiver → non-call selector → stock package-only helper drops the reference → no method-definition edge. The correction preserves a typed reference and resolves its method owner.
 
-## Measured impact
+The correction records a reference. Forming a method value does not invoke it; see [Go's method-value semantics](https://go.dev/ref/spec#Method_values).
 
-### Graph-level results
+## What was verified
 
-Both shipped engine copies reproduce the same reversible comparison on the unchanged go-redis commit.
+| Verification layer | Scope and result |
+|---|---|
+| Root cause and reference correction | Installed UnvibeCode **0.3.15**, both shipped graph implementations |
+| Harmless compiling controls | Stock, repeat, wrapper control, corrected, restored; package-value and function-field controls |
+| Public-repository replication | Unchanged [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466) |
+| Independent type check | **13/13** production source/receiver/definition identities verified by Go |
+| Current-client check | Two genuine **0.4.0 client** code-map exports captured on 12 November; same observable omission and matched wrapper control |
+| Originality refresh | **570** open/closed issue records through **#682**: 567 nonempty bodies and 3 empty bodies; nearest-report comments checked |
+
+The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference public-project measurements belong to 0.3.15; the current-client check independently verifies the small fixture's observable behavior.
+
+## Measured results
+
+### Graph relationships on the public go-redis commit
+
+Both 0.3.15 graph copies reproduce these results:
 
 | Metric | Stock | Corrected | Restored |
 |---|---:|---:|---:|
-| Graph relationships | 23,448 | **23,527** | 23,448 |
-| Additional production method references | — | **13** | — |
-| Additional test references | — | 66 | — |
-| Existing relationships removed | — | **0** | — |
+| Total relationships | 23,448 | **23,527** | 23,448 |
+| Production references gained versus stock | 0 | **13** | 0 |
+| Test references gained versus stock | 0 | 66 | 0 |
+| Stock relationships removed | 0 | **0** | 0 |
 
-The 79 additions are **not** 79 new runtime calls. They are 13 production references and 66 test references; an independent compiler check validates all 13 production source/receiver/definition identities.
+**Stock** is the affected release. **Corrected** applies only the transient reference correction. **Restored** removes that correction and intentionally reproduces the original omission. Zeros in the delta rows are measured baselines, not missing results.
 
-### Actual focused-context results
+The 79 additions are 13 production references across six file pairs and 66 test references. They are not 79 proven runtime calls or application defects.
 
-For seven distinct production caller→callee identities, we checked that **every nonblank line of the full method definition** appears in the selected source, not merely that its file is present.
+### Complete method bodies in focused context
 
-| Production caller → required method | Stock | Corrected |
+A body counts as complete only when every required nonblank source line matches the actual selected code. These five targets have the same result at both Optimal and Wider:
+
+| Caller → required method | Stock | Corrected | Restored |
+|---|---:|---:|---:|
+| `autopipeline_cluster_fd.go` → `ClusterClient.processPipelineRetries` | 0/72 | **72/72** | 0/72 |
+| `himport_cluster.go` → `ClusterClient.ForEachMaster` | 0/31 | **31/31** | 0/31 |
+| `himport_cluster.go` → `Ring.ForEachShard` | 0/32 | **32/32** | 0/32 |
+| `multidb.go` → `multidbCore.processPipeline` | 0/3 | **3/3** | 0/3 |
+| `osscluster_router.go` → `ClusterClient.ForEachMaster` | 0/31 | **31/31** | 0/31 |
+
+Thus **5 of 7** distinct source-specific method definitions are newly recovered in each scope. The scopes share inputs and are not independent tasks. The complete-repository ZIP contains every source file throughout; the measured loss is in the selected focused context.
+
+## Why two bodies remain missing
+
+“Absent” in the earlier table meant no matching method-body lines in the focused selection. “Unchanged” meant the complete-body result did not improve after repairing the graph. Neither label described missing investigation files.
+
+The new [line-coverage and budget audit](investigations/go-method-values/evidence/context-selection-audit.json) makes these limits explicit:
+
+| Target from `multidb.go` | Optimal: stock → corrected → restored | Wider: stock → corrected → restored |
 |---|---|---|
-| `autopipeline_cluster_fd.go` → `ClusterClient.processPipelineRetries` | Absent | **Complete** |
-| `himport_cluster.go` → `ClusterClient.ForEachMaster` | Absent | **Complete** |
-| `himport_cluster.go` → `Ring.ForEachShard` | Absent | **Complete** |
-| `multidb.go` → `multidbCore.processPipeline` | Absent | **Complete** |
-| `osscluster_router.go` → `ClusterClient.ForEachMaster` | Absent | **Complete** |
-| `multidb.go` → `multidbCore.process` | Incomplete at Optimal; complete at Wider | Unchanged |
-| `multidb.go` → `multidbCore.processTxPipeline` | Incomplete | Unchanged |
+| `multidbCore.process` | 0/215 → 0/215 → 0/215 | 215/215 → 215/215 → 215/215 |
+| `multidbCore.processTxPipeline` | 0/135 → 0/135 → 0/135 | 0/135 → 0/135 → 0/135 |
 
-**Five of seven** complete implementations are newly recovered at both Optimal and Wider scopes. The remaining two bound the result honestly; we do not call a partial implementation a success. The complete-repository ZIP still contains the source, so the observed defect is **focused-context omission**, not source-code deletion.
+The corrected export **does contain the resolved reference edges** for these methods. Its fixed-size selector still excludes their bodies: the saved MultiDB selections estimate **44,997/45,000** tokens at Optimal and **74,999/75,000** at Wider.
 
-For example, a developer exploring MultiDB callback installation can see a reference without the actual `processPipeline` implementation in `multidb_pipeline.go`. The correction restores that implementation in the focused export.
+A controlled experiment leaves source, corrected graph, chunking and selection ranking unchanged and increases only one scope's maximum to 200,000 tokens. Both bodies then become complete in both scopes. This diagnoses a separate selection-capacity limit. **The main 5/7 result still uses the original budgets.** Raising the diagnostic budget is not presented as a production fix.
+
+The investigation is complete for its stated claim: it establishes the reference-extraction defect, verifies a narrow correction, and measures both recovered context and remaining limits.
+
+## Current 0.4.0 client: actual downloaded evidence
+
+[Two small captured ZIPs and their offline checker](investigations/go-method-values/evidence/latest-client-verification.json) reproduce the observable issue without new service requests:
+
+| Input | `Store.Save` relationship | `store.go` in Optimal and Wider |
+|---|---:|---|
+| `callback := s.Save` | 0 | Absent |
+| `callback := func() { s.Save() }` | 1 | Included |
+
+The uploaded source texts differ in exactly that expression. The other three Go files match. This does not establish general wrapper equivalence when a receiver can be reassigned.
+
+Both downloaded runs mark code understanding **COMPLETED** and the overall review **PARTIAL**. Business analysis stopped at Step 04 with no evidence-valid business path fragments. That lane is not used to establish this code-graph defect, and no completed business-risk review is claimed. [#682](https://github.com/FinanceFlash/unvibecode/issues/682) separately announces a business-risk API hold through 16 November; its causal role in these particular failures is not established.
 
 ## Reproduce
 
-**Prerequisites:** Python 3.12+, Git, Go on PATH, and a network connection for initial dependency/grammar installation. The pinned go-redis checkout requires a compatible Go release; CI uses Go 1.27.3.
+From this checkout, with Python 3.12+, Git and Go on PATH (CI uses Go 1.27.3):
 
-```bash
-git clone https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation.git
-cd UnvibeCode-Engineering-Investigation
-git switch codex/track1-original-investigation
-
-python -m venv .venv
-# Activate .venv for your shell
+```sh
 python -m pip install -r investigations/go-method-values/reproduction/requirements.txt
 
-# Minimal reproducible failure, controls, correction and restoration
-python investigations/go-method-values/reproduction/verify.py \
-  --work ci-logs/minimal --output ci-logs/minimal.json
+# Compiling fixture, both parsers, correction and restoration
+python investigations/go-method-values/reproduction/verify.py --work ci-logs/minimal --output ci-logs/minimal.json
 
-# Public-repository replication at a fixed revision
+# Unchanged public source and actual focused exports
 git clone https://github.com/redis/go-redis.git .local-go-investigation/redis
 git -C .local-go-investigation/redis checkout 5cba5e182946cf18a757718938bc43910e589466
-python investigations/go-method-values/reproduction/verify.py \
-  --repo .local-go-investigation/redis \
-  --work ci-logs/redis --output ci-logs/redis.json
+python investigations/go-method-values/reproduction/verify.py --repo .local-go-investigation/redis --work ci-logs/redis --output ci-logs/redis.json
 
-# Independent Go type-checker validation of production source positions
+# Independent compiler oracle
 go build -o ci-logs/compiler-oracle investigations/go-method-values/reproduction/compiler_oracle.go
-ci-logs/compiler-oracle -repo .local-go-investigation/redis \
-  -package . -cases ci-logs/redis-compiler-cases.json \
-  -output ci-logs/compiler-results.json
+ci-logs/compiler-oracle -repo .local-go-investigation/redis -package . -cases ci-logs/redis-compiler-cases.json -output ci-logs/compiler-results.json
+
+# Replay the captured current-client evidence; no network or service required
+python investigations/go-method-values/reproduction/check_current_client.py --output ci-logs/current-client.json
+
+# Explain line coverage and the separate capacity limit
+python investigations/go-method-values/reproduction/explain_context.py --repo .local-go-investigation/redis --artifacts ci-logs/redis/public/00a --verification ci-logs/redis.json --budget-control-work ci-logs/budget-control --output ci-logs/context-audit.json
 ```
 
-On Windows, name the Go oracle executable `compiler-oracle.exe`. The verifier fails on missing grammar setup or unexpected graph/selection differences; it does not turn setup failures into passing results.
+On Windows, give the compiler executable an `.exe` suffix. First-use parser setup needs network access. Setup failures fail verification. Public Redis tests are compiled in CI; server-dependent integration tests are not executed.
 
-## Verification and evidence
+The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler results and actual exported ZIPs. A green affected-version verification means the defect and controls reproduced as expected; it does not mean stock UnvibeCode was fixed.
 
-| Question | Reproducible record |
+## Completion status
+
+| Requirement | Status / record |
 |---|---|
-| Can the failure be recreated locally? | [Verifier](investigations/go-method-values/reproduction/verify.py) and [compiling fixtures](investigations/go-method-values/reproduction/fixtures/source.go) |
-| Which stage drops the reference? | [Source-level root cause](investigations/go-method-values/ROOT_CAUSE.md) |
-| What actually changed in the graph/context? | [Machine-readable measurements](investigations/go-method-values/evidence/verification.json) |
-| Are the production targets type-correct? | [Go compiler oracle](investigations/go-method-values/reproduction/compiler_oracle.go), [CI provenance](investigations/go-method-values/evidence/ci-snapshot.json) |
-| Does the standard local CLI produce the same stock export? | [CLI export comparison](investigations/go-method-values/evidence/cli-verification.json) |
-| Is the proposed correction narrowly scoped? | [Reference correction](investigations/go-method-values/solution/method_values.py) |
-| What should maintainers reproduce? | [Maintainer issue report](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
+| One original, bounded defect | [Fresh mechanism-level audit](investigations/go-method-values/DUPLICATE_CHECK.md) |
+| Candidate screening and preserved prior work | [Candidate decisions and historical evidence links](investigations/go-method-values/CANDIDATES.md) |
+| Minimal and public-repository reproduction | [Verifier](investigations/go-method-values/reproduction/verify.py), [measurements](investigations/go-method-values/evidence/verification.json) |
+| Root cause, causal controls, regression checks, reference correction | [Source analysis](investigations/go-method-values/ROOT_CAUSE.md), [correction](investigations/go-method-values/solution/method_values.py) |
+| Compiler and normal CLI cross-check | [CI provenance](investigations/go-method-values/evidence/ci-snapshot.json), [CLI equality](investigations/go-method-values/evidence/cli-verification.json) |
+| Latest-client observation and remaining context limits | [Captured comparison](investigations/go-method-values/evidence/latest-client-verification.json), [budget audit](investigations/go-method-values/evidence/context-selection-audit.json) |
+| Official nine-section issue draft | [Prepared for review](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
+| Form answers and owner-only fields | [Prepared; private/personal fields remain for the owner](investigations/go-method-values/submission/FORM_RESPONSE.md) |
+| Official issue publication and form submission | **Not performed — owner approval remains required** |
 
-The [GitHub Actions workflow](.github/workflows/go-method-values.yml) runs compiling controls on Linux and Windows, public graph/context validation on Linux, and the Go compiler oracle. CI artifacts contain detailed logs and generated local bundles.
+The [official form](https://docs.google.com/forms/d/e/1FAIpQLScsQCDsPQvUg9QEQxRJvk7Utq4o5xmuwcaPTz622XKkJZ70Dg/viewform) states a deadline of **15 November 2026, 23:59 IST**. The evidence PR and a competitor's issue must not be substituted for our eventual official issue URL.
 
-### Repository structure
+Earlier JSONC and named-result investigations remain preserved in Git history and excluded from this submission because #451 and #596 cover their causes. No official ranking, shipped correction, general indirect-call analysis, current hosted go-redis recovery count, or improved business-risk verdict is claimed.
 
-```text
-.
-├── README.md
-├── .github/workflows/go-method-values.yml
-└── investigations/go-method-values/
-    ├── README.md
-    ├── ROOT_CAUSE.md
-    ├── reproduction/
-    │   ├── verify.py
-    │   ├── helpers.py
-    │   ├── compiler_oracle.go
-    │   ├── requirements.txt
-    │   └── fixtures/
-    ├── solution/method_values.py
-    ├── evidence/
-    │   ├── verification.json
-    │   ├── verification-compiler-cases.json
-    │   ├── cli-verification.json
-    │   └── ci-snapshot.json
-    └── submission/GITHUB_ISSUE.md
-```
-
-## Scope and limitations
-
-- **Version boundary:** All verified engine claims target `0.3.15`. The 0.4.0 client uses hosted analysis; no current hosted-service equivalence or resolved/unresolved verdict is claimed.
-- **Correct semantics:** Method-value formation is a static reference, not proof of immediate execution; this is not general higher-order control-flow analysis.
-- **Complete vs. focused ZIP:** The complete ZIP retains source; only some per-file Optimal/Wider selections omit needed implementations.
-- **Negative controls:** Package-function values and unrelated function-valued fields remain unchanged; two source-specific method definitions are not fully recovered.
-- **Source integrity:** Public repository and installed engine source hashes are compared before and after experiments. The test correction is transient.
-- **No inflated impact:** Graph edge counts, test references, and overlapping selection scopes are not presented as independent developer outcomes.
-- **Other research:** Earlier independent experiments remain traceable in [the repository's Git history](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/commits/main); these are deliberately excluded from this focused submission tree.
-
-## Reproducibility contract
-
-This repository is a **technical evidence package**. It is not an upstream UnvibeCode fork, a shipped production patch, or proof of a change in hosted risk findings. The issue report describes one narrowly scoped defect and includes its causal controls, bounded impact, and closest reported neighboring mechanisms.
-
----
-
-<sub>Independent engineering research · [Source product](https://github.com/FinanceFlash/unvibecode) · [Technical issue report](investigations/go-method-values/submission/GITHUB_ISSUE.md)</sub>
+**Engineering package: ready for owner review. Official challenge entry: not yet submitted.**
