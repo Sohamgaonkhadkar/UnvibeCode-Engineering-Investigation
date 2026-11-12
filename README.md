@@ -4,7 +4,7 @@ A reproducible Track 1 engineering investigation, with a reference correction an
 
 [![Go evidence](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml/badge.svg?branch=main)](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/workflows/go-method-values.yml)
 
-**[Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Evidence guide](#evidence-guide)**
+**[Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716) · [Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Evidence guide](#evidence-guide)**
 
 > **Finding:** typed Go method values can lose their method-definition links and implementation context. Controlled experiments recover 13 production references and five complete method bodies on a pinned go-redis checkout. A matched 0.4.0 client comparison independently reproduces the minimal symptom.
 
@@ -139,7 +139,7 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Independent validation | [Go compiler identities](investigations/go-method-values/evidence/verification-compiler-cases.json), [ordinary CLI cross-check](investigations/go-method-values/evidence/cli-verification.json) |
 | Current-client behavior | [Captured 0.4.0 comparison](investigations/go-method-values/evidence/latest-client-verification.json), [offline replay](investigations/go-method-values/reproduction/check_current_client.py) |
 | Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
-| Issue report | [Nine-section Track 1 report](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
+| Issue report | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716), [report copy](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
 | Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43203777303) at `fcfe9ca49869d0015aa4af29e4d2d6dd79305a29`; downloadable logs and generated artifacts |
 
 ## Scope and limitations

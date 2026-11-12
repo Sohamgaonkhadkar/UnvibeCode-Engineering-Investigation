@@ -120,4 +120,4 @@ Requires Python 3.12+, a compatible Go toolchain (CI: Go 1.27.3), and first-use 
 
 ## Report and originality
 
-The [nine-section issue report](submission/GITHUB_ISSUE.md) provides an immutable reproduction checkout and expected-versus-actual results. The [dated originality review](DUPLICATE_CHECK.md) distinguishes the extraction mechanism from the closest existing reports.
+The [official Track 1 issue #716](https://github.com/FinanceFlash/unvibecode/issues/716) and its [local report copy](submission/GITHUB_ISSUE.md) provide an immutable reproduction checkout and expected-versus-actual results. The [dated originality review](DUPLICATE_CHECK.md) distinguishes the extraction mechanism from the closest existing reports.

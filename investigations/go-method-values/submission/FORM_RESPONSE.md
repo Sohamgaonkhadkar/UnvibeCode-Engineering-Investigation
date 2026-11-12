@@ -12,7 +12,7 @@ Deadline: **15 November 2026, 23:59 IST**.
 | Name or team | Owner to provide; do not publish private details in this repository. |
 | Email | Owner to enter privately in the form. |
 | Brief feedback, fewer than 200 words | Owner-written wording remains pending. The form explicitly requests authentic personal feedback. Verified talking points appear below. |
-| Track 1 GitHub issue URL | **PENDING — publish the approved issue first, then use its actual public URL.** |
+| Track 1 GitHub issue URL | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716) |
 | Track 2 answer | Not applicable to this Track 1 submission. |
 | Optional five-word bonus | “Typed callbacks need connected context.” |
 | Final originality/privacy confirmation | Owner to review and affirm in the form; no confirmation has been submitted. |
@@ -42,12 +42,10 @@ Use these facts to write your own concise feedback; do not imply a successful fu
 
 **Review links:** [Issue draft](GITHUB_ISSUE.md), [technical report](../README.md), [current-client capture](../evidence/latest-client-verification.json), [originality audit](../DUPLICATE_CHECK.md).
 
-## Publication handoff
+## Published Track 1 deliverable
 
-Evidence is merged in [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4); [Linux and Windows checks passed](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43190530178). The issue draft pins reproduction and evidence to verified commit `fc632c9340057296053f0bdd1ca6b9db4097042b`.
+The official issue is [FinanceFlash/unvibecode#716](https://github.com/FinanceFlash/unvibecode/issues/716), published on 12 November 2026. Use this URL in the Track 1 field. The [publication record](../evidence/official-issue.json) and [pre-publication duplicate check](../evidence/publication-duplicate-check.json) preserve the evidence provenance.
 
-Before publication, refresh the open/closed issue search against the same mechanism and review the sanitized draft. After explicit authorization, publish that one issue and insert its actual URL above. Enter the owner-only fields privately, then submit the form only when authorized. A merged personal-repository PR completes evidence preparation, not the official challenge entry.
+## Remaining form-only work
 
-## Final authorized boundary
-
-The engineering package and draft are prepared. The owner must review the issue, provide personal form fields and authentic feedback, authorize publication, and then authorize form submission. No competitor issue or personal evidence PR may stand in for our official challenge issue URL. Nothing has been published upstream or submitted to the form by this work.
+The Google Form has not been opened, filled or submitted by this publication task. Personal details, college/year, referral, authentic personal feedback and the final confirmation remain for the participant to enter privately. The repository URL and the contribution summary above are ready to use alongside the official issue URL.
