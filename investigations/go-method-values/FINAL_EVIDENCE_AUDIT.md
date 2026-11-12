@@ -87,3 +87,9 @@ python investigations/go-method-values/reproduction/check_boundaries.py --work c
 ```
 
 On Windows, use an `.exe` suffix for the compiler executable. The [workflow](../../.github/workflows/go-method-values.yml) runs boundary checks and current-artifact replay on Linux and Windows; Linux additionally performs both public-repository experiments, compiler oracles and public Go controls. Hosted reviews are never run in CI.
+
+## CI conclusions and report provenance
+
+[Linux and Windows CI passed](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641) at `edb1aa3a7c744b8c396eea34282aef87dfbdd913`. [Per-step conclusions](evidence/final-ci.json) record the exact scope: both OS jobs run compiling fixture/boundary checks and both current-client replays; Linux additionally runs go-redis correction exports, the capacity/question audits, 13/13 go-redis and 2/2 MySQL compiler identities, public A/B/C compilation/behavior checks and independent MySQL replication. No live service request runs in CI.
+
+[PR #5](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/5) contains the new artifacts, independent verification scripts, evaluator-facing reports and the expanded nine-section copy of [official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716). The [pre-update duplicate inventory](evidence/issue-update-duplicate-check.json) records the final originality refresh.

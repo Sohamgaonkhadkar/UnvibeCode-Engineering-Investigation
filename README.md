@@ -37,7 +37,7 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Independent type check | **13/13** go-redis and **2/2** MySQL production source/receiver/definition identities verified by Go |
 | Current-client check | Three full-public-repository **0.4.0 client** captures on 12 November; original, receiver-preserving wrapper and no-method control |
 | Independent repository | Complete pinned go-sql-driver/mysql checkout: two missing cross-file references and two recovered method bodies in both 0.3.15 graph implementations |
-| Originality refresh | **603** open/closed issue records through **#715**: 600 nonempty bodies and 3 empty bodies; historical nearest-report comments checked separately |
+| Originality refresh | **607 other** open/closed issue records through **#720** before the evidence update (#716 excluded); historical nearest-report comments checked separately |
 
 [PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference correction experiment belong to 0.3.15. The current-client comparison independently measures the same symptom on the complete pinned public go-redis checkout.
 
@@ -178,7 +178,7 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Experiment coverage | [Evidence audit and live-review reproduction](investigations/go-method-values/FINAL_EVIDENCE_AUDIT.md) |
 | Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
 | Issue report | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716), [report copy](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
-| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43256116749) at `788af8ca6f21cbe8279ae600ab8347a4bdce99d3`; downloadable logs and generated artifacts |
+| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641) at `edb1aa3a7c744b8c396eea34282aef87dfbdd913`; downloadable logs and generated artifacts |
 
 ## Scope and limitations
 
