@@ -40,6 +40,12 @@ Use these facts to write your own concise feedback; do not imply a successful fu
 
 **Review links:** [Issue draft](GITHUB_ISSUE.md), [technical report](../README.md), [current-client capture](../evidence/latest-client-verification.json), [originality audit](../DUPLICATE_CHECK.md).
 
+## Publication handoff
+
+Evidence is merged in [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4); [Linux and Windows checks passed](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43190530178). The issue draft pins reproduction and evidence to verified commit `fc632c9340057296053f0bdd1ca6b9db4097042b`.
+
+Before publication, refresh the open/closed issue search against the same mechanism and review the sanitized draft. After explicit authorization, publish that one issue and insert its actual URL above. Enter the owner-only fields privately, then submit the form only when authorized. A merged personal-repository PR completes evidence preparation, not the official challenge entry.
+
 ## Final authorized boundary
 
 The engineering package and draft are prepared. The owner must review the issue, provide personal form fields and authentic feedback, authorize publication, and then authorize form submission. No competitor issue or personal evidence PR may stand in for our official challenge issue URL. Nothing has been published upstream or submitted to the form by this work.

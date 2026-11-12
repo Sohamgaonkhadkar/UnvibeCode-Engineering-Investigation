@@ -15,9 +15,12 @@ This is a missing **method reference**, not evidence that merely forming a metho
 
 ## 3. Steps to reproduce
 
-Clone the [reproducible investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/codex/readme-evidence-closure) and check out its `codex/track1-original-investigation` branch.
+Clone the [reproducible investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/fc632c9340057296053f0bdd1ca6b9db4097042b) at the immutable verified commit below. Run these commands in a new working directory:
 
 ```sh
+git clone https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation.git
+cd UnvibeCode-Engineering-Investigation
+git checkout fc632c9340057296053f0bdd1ca6b9db4097042b
 python -m pip install -r investigations/go-method-values/reproduction/requirements.txt
 python investigations/go-method-values/reproduction/verify.py --work ci-logs/minimal --output ci-logs/minimal.json
 git clone https://github.com/redis/go-redis.git .local-go-investigation/redis
@@ -25,7 +28,9 @@ git -C .local-go-investigation/redis checkout 5cba5e182946cf18a757718938bc43910e
 python investigations/go-method-values/reproduction/verify.py --repo .local-go-investigation/redis --work ci-logs/redis --output ci-logs/redis.json
 ```
 
-The script uses installed engine code, compiling Go fixtures, passing/negative controls, a transient correction and restoration. Inspect `ci-logs/redis.json` and the emitted actual context ZIPs. The [Go compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/reproduction/compiler_oracle.go) independently checks method owners and definition locations.
+Prerequisites: Python 3.12+, Git and Go on PATH (CI uses Go 1.27.3). The requirements deliberately pin the inspectable 0.3.15 engine; do not replace it with the hosted-only 0.4.0 client for this source-level experiment.
+
+The script uses installed engine code, compiling Go fixtures, passing/negative controls, a transient correction and restoration. Inspect `ci-logs/redis.json` and the emitted actual context ZIPs. The [Go compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/reproduction/compiler_oracle.go) independently checks method owners and definition locations.
 
 ## 4. Expected behavior
 
@@ -39,16 +44,22 @@ Both graph copies on unchanged go-redis yield **23,448 → 23,527 → 23,448** r
 
 ## 6. Evidence
 
-The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
+The [technical investigation](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/README.md) documents source digests, both engine copies, the reversible experiment, independent type checks, and actual exported ZIP comparisons.
 
 - Go type checker: **13/13** exact production source-position/receiver/definition identities verified in clean Linux CI.
 - Seven source-specific production callee identities checked line-by-line in actual Optimal and Wider selections.
 - **Five of seven** complete implementations newly recovered in both scopes; the other two remain bounded exceptions.
 - Stock ordinary CLI and local-pipeline exports agree: **11,284 chunks, 24,191 exported relationship records, 536 selections**.
 
-Detailed records: [verification JSON](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/verification.json), [compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/reproduction/compiler_oracle.go), [CI provenance](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/66f769892aebbf69a2a6f4e417e8c637d4cb4119/investigations/go-method-values/evidence/ci-snapshot.json).
+Detailed records: [verification JSON](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/evidence/verification.json), [compiler oracle](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/reproduction/compiler_oracle.go), [CI provenance](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/evidence/ci-snapshot.json).
 
-The [current-client replay](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/readme-evidence-closure/investigations/go-method-values/reproduction/check_current_client.py) checks two captured 0.4.0 ZIPs: original callback 0 method links/no store.go; matched wrapper 1 method link/store.go at Optimal and Wider. Only that expression differs in recovered source text. Code understanding completed; both overall reviews were PARTIAL because business analysis failed.
+The [current-client replay](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/reproduction/check_current_client.py) checks two captured 0.4.0 ZIPs: original callback 0 method links/no store.go; matched wrapper 1 method link/store.go at Optimal and Wider. Only that expression differs in recovered source text. Code understanding completed; both overall reviews were PARTIAL because business analysis failed.
+
+Offline replay of the preserved current-client results (no service request required):
+
+```sh
+python investigations/go-method-values/reproduction/check_current_client.py --output ci-logs/current-client.json
+```
 
 ## 7. Impact and scope
 
@@ -64,7 +75,7 @@ A tested reference correction emits `method_reference` for typed local selector 
 
 ## 9. Duplicate check
 
-A complete historical snapshot of 485 open/closed issues through #596 was reviewed, followed by #597. On **12 November 2026**, the refreshed audit covers **570 open/closed issue records through #682** (567 nonempty bodies, 3 empty), plus nearest-report comments. No matching typed method-value mechanism was identified. The [audit and digests](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/codex/readme-evidence-closure/investigations/go-method-values/evidence/issue-audit-2026-11-12.json) preserve the search scope.
+A complete historical snapshot of 485 open/closed issues through #596 was reviewed, followed by #597. On **12 November 2026**, the refreshed audit covers **570 open/closed issue records through #682** (567 nonempty bodies, 3 empty), plus nearest-report comments. No matching typed method-value mechanism was identified. The [audit and digests](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/fc632c9340057296053f0bdd1ca6b9db4097042b/investigations/go-method-values/evidence/issue-audit-2026-11-12.json) preserve the search scope.
 
 Closest distinct reports: [#360](https://github.com/FinanceFlash/unvibecode/issues/360) (wrong receiver's target for a resolved call); [#415](https://github.com/FinanceFlash/unvibecode/issues/415) (factory-expression receiver); [#573](https://github.com/FinanceFlash/unvibecode/issues/573) (interface dispatch); [#596](https://github.com/FinanceFlash/unvibecode/issues/596) (named-result binding); [#625](https://github.com/FinanceFlash/unvibecode/issues/625) (unresolved Go diagnostics not exported); [#662](https://github.com/FinanceFlash/unvibecode/issues/662) (0.4.0 uploader omits `go.mod`).
 

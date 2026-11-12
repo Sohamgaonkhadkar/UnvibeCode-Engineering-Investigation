@@ -6,7 +6,7 @@ A reproducible Track 1 engineering investigation, with a reference correction an
 
 **[Results](#measured-results) · [Why two bodies remain missing](#why-two-bodies-remain-missing) · [Reproduce](#reproduce) · [Completion status](#completion-status)**
 
-> **Status checked 12 November 2026:** the engineering evidence and submission drafts are prepared for owner review. The official challenge submission is still pending approval: no upstream issue or Google Form has been submitted by this investigation. A validated reference correction is included; no shipped UnvibeCode fix is claimed.
+> **Status checked 12 November 2026:** [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4) is merged into `main` as `b775f240b284132e8e7cb8964bb65363e2bb266a`. The engineering evidence and submission drafts are prepared. The official challenge submission is still pending approval: no upstream issue or Google Form has been submitted by this investigation. A validated reference correction is included; no shipped UnvibeCode fix is claimed.
 
 ## The defect
 
@@ -38,7 +38,7 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Current-client check | Two genuine **0.4.0 client** code-map exports captured on 12 November; same observable omission and matched wrapper control |
 | Originality refresh | **570** open/closed issue records through **#682**: 567 nonempty bodies and 3 empty bodies; nearest-report comments checked |
 
-The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference public-project measurements belong to 0.3.15; the current-client check independently verifies the small fixture's observable behavior.
+[PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference public-project measurements belong to 0.3.15; the current-client check independently verifies the small fixture's observable behavior.
 
 ## Measured results
 
@@ -141,6 +141,7 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Root cause, causal controls, regression checks, reference correction | [Source analysis](investigations/go-method-values/ROOT_CAUSE.md), [correction](investigations/go-method-values/solution/method_values.py) |
 | Compiler and normal CLI cross-check | [CI provenance](investigations/go-method-values/evidence/ci-snapshot.json), [CLI equality](investigations/go-method-values/evidence/cli-verification.json) |
 | Latest-client observation and remaining context limits | [Captured comparison](investigations/go-method-values/evidence/latest-client-verification.json), [budget audit](investigations/go-method-values/evidence/context-selection-audit.json) |
+| Merged evidence and passing regression checks | [PR #4](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/4), [Linux and Windows CI](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43190530178) at `fc632c9340057296053f0bdd1ca6b9db4097042b` |
 | Official nine-section issue draft | [Prepared for review](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
 | Form answers and owner-only fields | [Prepared; private/personal fields remain for the owner](investigations/go-method-values/submission/FORM_RESPONSE.md) |
 | Official issue publication and form submission | **Not performed — owner approval remains required** |
@@ -149,4 +150,4 @@ The [official form](https://docs.google.com/forms/d/e/1FAIpQLScsQCDsPQvUg9QEQxRJ
 
 Earlier JSONC and named-result investigations remain preserved in Git history and excluded from this submission because #451 and #596 cover their causes. No official ranking, shipped correction, general indirect-call analysis, current hosted go-redis recovery count, or improved business-risk verdict is claimed.
 
-**Engineering package: ready for owner review. Official challenge entry: not yet submitted.**
+**Engineering package: merged and prepared for submission. Official challenge entry: not yet submitted.**
