@@ -1,0 +1,165 @@
+{
+  "commit": "edb1aa3a7c744b8c396eea34282aef87dfbdd913",
+  "run_id": 43265840641,
+  "url": "https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641",
+  "jobs": [
+    {
+      "id": 131349035373,
+      "name": "verify (windows-latest)",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned published parser dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify both parser copies and compiling controls",
+          "conclusion": "success"
+        },
+        {
+          "name": "Replay captured current-client code-map evidence offline",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check receiver and negative-control boundaries",
+          "conclusion": "success"
+        },
+        {
+          "name": "Replay current public-repository A-B-C evidence offline",
+          "conclusion": "success"
+        },
+        {
+          "name": "Pin unchanged public go-redis source",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify both public graphs and actual focused exports",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Compile public A-B-C controls and test A-B behavior",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Replicate independently on pinned MySQL driver",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Preserve generated evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 131349035458,
+      "name": "verify (ubuntu-latest)",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned published parser dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify both parser copies and compiling controls",
+          "conclusion": "success"
+        },
+        {
+          "name": "Replay captured current-client code-map evidence offline",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check receiver and negative-control boundaries",
+          "conclusion": "success"
+        },
+        {
+          "name": "Replay current public-repository A-B-C evidence offline",
+          "conclusion": "success"
+        },
+        {
+          "name": "Pin unchanged public go-redis source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify both public graphs and actual focused exports",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile public A-B-C controls and test A-B behavior",
+          "conclusion": "success"
+        },
+        {
+          "name": "Replicate independently on pinned MySQL driver",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preserve generated evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

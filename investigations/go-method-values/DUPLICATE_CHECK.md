@@ -33,3 +33,11 @@ The prior JSONC and named-result findings are excluded because #451 and #596 cov
 ## Pre-publication refresh
 
 An all-pages REST refresh on 12 November reviewed **603 open/closed issue records through #715**: 600 nonempty bodies and 3 empty bodies. [The publication inventory](evidence/publication-duplicate-check.json) records body digests, retrieval time, screening terms and review boundaries. No matching typed method-value extraction mechanism was identified. New #710 addresses promoted method calls through embedding; this case uses a directly declared method. New #709 addresses primary-file section expansion; it does not report the missing cross-file method reference. Nearest historical comments retain their separately documented check time.
+
+## Evidence-update refresh
+
+Immediately before updating #716, [a new eight-page inventory](evidence/issue-update-duplicate-check.json) reviewed **607 other issue records through #720** (604 nonempty bodies, 3 empty). The already-published #716 and pull requests are excluded. No matching typed method-value extraction mechanism was identified. The historical nearest-comment checks retain their original timestamps; this refresh checks current titles and bodies.
+
+## 13 November refresh before the issue edit
+
+The [resumed update inventory](evidence/issue-update-duplicate-check-2026-11-13.json) checks **612 other issues through #725** (609 nonempty bodies, 3 empty), excluding #716 and pull requests. It preserves the preceding full inventory and records new/changed body digests rather than duplicating unchanged records. No matching typed method-value extraction mechanism was identified. New reports #721–#725 concern JS namespace imports, a workflow report, output/build-directory ingestion and CLI polling.

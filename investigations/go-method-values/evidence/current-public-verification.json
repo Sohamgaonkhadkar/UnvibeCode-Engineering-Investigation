@@ -1,0 +1,1038 @@
+{
+  "repository": "https://github.com/redis/go-redis",
+  "commit": "5cba5e182946cf18a757718938bc43910e589466",
+  "client_version": "0.4.0",
+  "hosted_backend_revision": "not exposed",
+  "states": {
+    "A": {
+      "bundle_sha256": "f3832e69d44a858327232dd276c02ea9439d456e6ff33adee2af728d88193fce",
+      "chunks": 11263,
+      "relationships": 12189,
+      "selections": 532,
+      "overall_status": "PARTIAL",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "SKIPPED_LARGE_REPOSITORY",
+      "updated_at_utc": "2026-11-12T16:54:26.088391+00:00"
+    },
+    "B": {
+      "bundle_sha256": "241b3ad862d8e86efea53df6f6ee5170a47c4b292bb98a4c3ad60fd83b741416",
+      "chunks": 11263,
+      "relationships": 12204,
+      "selections": 532,
+      "overall_status": "PARTIAL",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "SKIPPED_LARGE_REPOSITORY",
+      "updated_at_utc": "2026-11-12T16:52:48.336744+00:00"
+    },
+    "C": {
+      "bundle_sha256": "be3785f0876940dad6961e9fbe9c906e5ebe18687bedb769443a96a06df75586",
+      "chunks": 11263,
+      "relationships": 12189,
+      "selections": 532,
+      "overall_status": "PARTIAL",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "SKIPPED_LARGE_REPOSITORY",
+      "updated_at_utc": "2026-11-12T16:54:56.338818+00:00"
+    }
+  },
+  "targets": [
+    {
+      "source": "himport_cluster.go",
+      "target": "osscluster.go",
+      "symbol": "ForEachMaster",
+      "definition_lines": [
+        2341,
+        2375
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 31,
+              "coverage": "absent",
+              "missing_lines": [
+                2341,
+                2342,
+                2343,
+                2344,
+                2345,
+                2346,
+                2347,
+                2348,
+                2350,
+                2351,
+                2353,
+                2354,
+                2355,
+                2356,
+                2357,
+                2358,
+                2359,
+                2360,
+                2361,
+                2362,
+                2363,
+                2364,
+                2365,
+                2367,
+                2369,
+                2370,
+                2371,
+                2372,
+                2373,
+                2374,
+                2375
+              ],
+              "estimated_tokens": 37582,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 31,
+              "coverage": "absent",
+              "missing_lines": [
+                2341,
+                2342,
+                2343,
+                2344,
+                2345,
+                2346,
+                2347,
+                2348,
+                2350,
+                2351,
+                2353,
+                2354,
+                2355,
+                2356,
+                2357,
+                2358,
+                2359,
+                2360,
+                2361,
+                2362,
+                2363,
+                2364,
+                2365,
+                2367,
+                2369,
+                2370,
+                2371,
+                2372,
+                2373,
+                2374,
+                2375
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 3,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 31,
+              "required_nonblank_lines": 31,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 38530,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 31,
+              "required_nonblank_lines": 31,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 31,
+              "coverage": "absent",
+              "missing_lines": [
+                2341,
+                2342,
+                2343,
+                2344,
+                2345,
+                2346,
+                2347,
+                2348,
+                2350,
+                2351,
+                2353,
+                2354,
+                2355,
+                2356,
+                2357,
+                2358,
+                2359,
+                2360,
+                2361,
+                2362,
+                2363,
+                2364,
+                2365,
+                2367,
+                2369,
+                2370,
+                2371,
+                2372,
+                2373,
+                2374,
+                2375
+              ],
+              "estimated_tokens": 37822,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 31,
+              "coverage": "absent",
+              "missing_lines": [
+                2341,
+                2342,
+                2343,
+                2344,
+                2345,
+                2346,
+                2347,
+                2348,
+                2350,
+                2351,
+                2353,
+                2354,
+                2355,
+                2356,
+                2357,
+                2358,
+                2359,
+                2360,
+                2361,
+                2362,
+                2363,
+                2364,
+                2365,
+                2367,
+                2369,
+                2370,
+                2371,
+                2372,
+                2373,
+                2374,
+                2375
+              ],
+              "estimated_tokens": 74998,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "source": "himport_cluster.go",
+      "target": "ring.go",
+      "symbol": "ForEachShard",
+      "definition_lines": [
+        815,
+        848
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 32,
+              "coverage": "absent",
+              "missing_lines": [
+                815,
+                816,
+                817,
+                818,
+                819,
+                820,
+                821,
+                822,
+                823,
+                824,
+                825,
+                826,
+                828,
+                829,
+                830,
+                831,
+                832,
+                833,
+                834,
+                835,
+                836,
+                837,
+                838,
+                839,
+                840,
+                842,
+                843,
+                844,
+                845,
+                846,
+                847,
+                848
+              ],
+              "estimated_tokens": 37582,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": false
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 32,
+              "coverage": "absent",
+              "missing_lines": [
+                815,
+                816,
+                817,
+                818,
+                819,
+                820,
+                821,
+                822,
+                823,
+                824,
+                825,
+                826,
+                828,
+                829,
+                830,
+                831,
+                832,
+                833,
+                834,
+                835,
+                836,
+                837,
+                838,
+                839,
+                840,
+                842,
+                843,
+                844,
+                845,
+                846,
+                847,
+                848
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": false
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 3,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 32,
+              "required_nonblank_lines": 32,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 38530,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 32,
+              "required_nonblank_lines": 32,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 32,
+              "coverage": "absent",
+              "missing_lines": [
+                815,
+                816,
+                817,
+                818,
+                819,
+                820,
+                821,
+                822,
+                823,
+                824,
+                825,
+                826,
+                828,
+                829,
+                830,
+                831,
+                832,
+                833,
+                834,
+                835,
+                836,
+                837,
+                838,
+                839,
+                840,
+                842,
+                843,
+                844,
+                845,
+                846,
+                847,
+                848
+              ],
+              "estimated_tokens": 37822,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": false
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 32,
+              "coverage": "absent",
+              "missing_lines": [
+                815,
+                816,
+                817,
+                818,
+                819,
+                820,
+                821,
+                822,
+                823,
+                824,
+                825,
+                826,
+                828,
+                829,
+                830,
+                831,
+                832,
+                833,
+                834,
+                835,
+                836,
+                837,
+                838,
+                839,
+                840,
+                842,
+                843,
+                844,
+                845,
+                846,
+                847,
+                848
+              ],
+              "estimated_tokens": 74998,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "source": "autopipeline_cluster_fd.go",
+      "target": "osscluster.go",
+      "symbol": "processPipelineRetries",
+      "definition_lines": [
+        2962,
+        3040
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 72,
+              "coverage": "absent",
+              "missing_lines": [
+                2962,
+                2963,
+                2964,
+                2965,
+                2966,
+                2967,
+                2968,
+                2969,
+                2970,
+                2971,
+                2973,
+                2974,
+                2975,
+                2976,
+                2977,
+                2978,
+                2979,
+                2980,
+                2981,
+                2982,
+                2983,
+                2984,
+                2985,
+                2986,
+                2987,
+                2988,
+                2989,
+                2990,
+                2991,
+                2992,
+                2993,
+                2994,
+                2996,
+                2997,
+                2998,
+                2999,
+                3000,
+                3001,
+                3002,
+                3003,
+                3004,
+                3005,
+                3006,
+                3007,
+                3008,
+                3010,
+                3011,
+                3013,
+                3014,
+                3015,
+                3016,
+                3017,
+                3018,
+                3019,
+                3021,
+                3022,
+                3023,
+                3024,
+                3025,
+                3026,
+                3027,
+                3029,
+                3030,
+                3031,
+                3032,
+                3033,
+                3034,
+                3035,
+                3036,
+                3037,
+                3039,
+                3040
+              ],
+              "estimated_tokens": 37900,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 72,
+              "coverage": "absent",
+              "missing_lines": [
+                2962,
+                2963,
+                2964,
+                2965,
+                2966,
+                2967,
+                2968,
+                2969,
+                2970,
+                2971,
+                2973,
+                2974,
+                2975,
+                2976,
+                2977,
+                2978,
+                2979,
+                2980,
+                2981,
+                2982,
+                2983,
+                2984,
+                2985,
+                2986,
+                2987,
+                2988,
+                2989,
+                2990,
+                2991,
+                2992,
+                2993,
+                2994,
+                2996,
+                2997,
+                2998,
+                2999,
+                3000,
+                3001,
+                3002,
+                3003,
+                3004,
+                3005,
+                3006,
+                3007,
+                3008,
+                3010,
+                3011,
+                3013,
+                3014,
+                3015,
+                3016,
+                3017,
+                3018,
+                3019,
+                3021,
+                3022,
+                3023,
+                3024,
+                3025,
+                3026,
+                3027,
+                3029,
+                3030,
+                3031,
+                3032,
+                3033,
+                3034,
+                3035,
+                3036,
+                3037,
+                3039,
+                3040
+              ],
+              "estimated_tokens": 74994,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 1,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 72,
+              "required_nonblank_lines": 72,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 37559,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 72,
+              "required_nonblank_lines": 72,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 72,
+              "coverage": "absent",
+              "missing_lines": [
+                2962,
+                2963,
+                2964,
+                2965,
+                2966,
+                2967,
+                2968,
+                2969,
+                2970,
+                2971,
+                2973,
+                2974,
+                2975,
+                2976,
+                2977,
+                2978,
+                2979,
+                2980,
+                2981,
+                2982,
+                2983,
+                2984,
+                2985,
+                2986,
+                2987,
+                2988,
+                2989,
+                2990,
+                2991,
+                2992,
+                2993,
+                2994,
+                2996,
+                2997,
+                2998,
+                2999,
+                3000,
+                3001,
+                3002,
+                3003,
+                3004,
+                3005,
+                3006,
+                3007,
+                3008,
+                3010,
+                3011,
+                3013,
+                3014,
+                3015,
+                3016,
+                3017,
+                3018,
+                3019,
+                3021,
+                3022,
+                3023,
+                3024,
+                3025,
+                3026,
+                3027,
+                3029,
+                3030,
+                3031,
+                3032,
+                3033,
+                3034,
+                3035,
+                3036,
+                3037,
+                3039,
+                3040
+              ],
+              "estimated_tokens": 37539,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 72,
+              "coverage": "absent",
+              "missing_lines": [
+                2962,
+                2963,
+                2964,
+                2965,
+                2966,
+                2967,
+                2968,
+                2969,
+                2970,
+                2971,
+                2973,
+                2974,
+                2975,
+                2976,
+                2977,
+                2978,
+                2979,
+                2980,
+                2981,
+                2982,
+                2983,
+                2984,
+                2985,
+                2986,
+                2987,
+                2988,
+                2989,
+                2990,
+                2991,
+                2992,
+                2993,
+                2994,
+                2996,
+                2997,
+                2998,
+                2999,
+                3000,
+                3001,
+                3002,
+                3003,
+                3004,
+                3005,
+                3006,
+                3007,
+                3008,
+                3010,
+                3011,
+                3013,
+                3014,
+                3015,
+                3016,
+                3017,
+                3018,
+                3019,
+                3021,
+                3022,
+                3023,
+                3024,
+                3025,
+                3026,
+                3027,
+                3029,
+                3030,
+                3031,
+                3032,
+                3033,
+                3034,
+                3035,
+                3036,
+                3037,
+                3039,
+                3040
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "source": "multidb.go",
+      "target": "multidb_pipeline.go",
+      "symbol": "processPipeline",
+      "definition_lines": [
+        265,
+        267
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 3,
+              "coverage": "absent",
+              "missing_lines": [
+                265,
+                266,
+                267
+              ],
+              "estimated_tokens": 45000,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": false
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 3,
+              "coverage": "absent",
+              "missing_lines": [
+                265,
+                266,
+                267
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 1,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 3,
+              "required_nonblank_lines": 3,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 44999,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 3,
+              "required_nonblank_lines": 3,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 75000,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 3,
+              "coverage": "absent",
+              "missing_lines": [
+                265,
+                266,
+                267
+              ],
+              "estimated_tokens": 44934,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 3,
+              "coverage": "absent",
+              "missing_lines": [
+                265,
+                266,
+                267
+              ],
+              "estimated_tokens": 74995,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "boundary": "A original, B receiver-preserving direct-call wrapper, C intentionally non-equivalent no-method callback. No hosted correction or business-risk improvement claimed.",
+  "verified_source_changes": {
+    "B": [
+      {
+        "file": "autopipeline_cluster_fd.go",
+        "line": 119
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 135
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 151
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 167
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 182
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 196
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 210
+      },
+      {
+        "file": "multidb.go",
+        "line": 751
+      }
+    ],
+    "C": [
+      {
+        "file": "autopipeline_cluster_fd.go",
+        "line": 119
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 135
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 151
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 167
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 182
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 196
+      },
+      {
+        "file": "himport_cluster.go",
+        "line": 210
+      },
+      {
+        "file": "multidb.go",
+        "line": 751
+      }
+    ]
+  },
+  "normalized_relationship_delta": {
+    "identity_fields": [
+      "source_file",
+      "target_file",
+      "source_line",
+      "target_line",
+      "relationship",
+      "symbol",
+      "confidence"
+    ],
+    "B_gained": 15,
+    "B_lost": 0,
+    "B_gained_by_kind": {
+      "file_import": 7,
+      "method_call": 8
+    },
+    "C_equals_A": true,
+    "boundary": "Chunk IDs change with edited text; comparison preserves file, source/target lines, relationship kind, symbol and confidence."
+  }
+}

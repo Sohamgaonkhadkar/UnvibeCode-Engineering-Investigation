@@ -1,0 +1,48 @@
+{
+  "go": "go1.27.3",
+  "server_required": false,
+  "results": [
+    {
+      "project": "redis/go-redis",
+      "state": "A",
+      "validation": "two mock-backed routing/failover tests",
+      "test_names": [
+        "TestMultiDBPipelineRoutesToActive",
+        "TestMultiDBPipelineFailoverRetry"
+      ],
+      "log_sha256": "0f29add87ac87bc8e30e3ba2a9cff6345b7bd1283b25d4f76560eb9320ea0a28",
+      "log_excerpt": "go: downloading golang.org/x/sys v0.49.0\ngo: downloading github.com/bsm/ginkgo/v2 v2.12.0\ngo: downloading github.com/bsm/gomega v1.27.10\ngo: downloading go.uber.org/atomic v1.12.0\ngo: downloading github.com/cespare/xxhash/v2 v2.3.0\ngo: downloading github.com/zeebo/xxh3 v1.1.0\ngo: downloading github.com/klauspost/cpuid/v2 v2.4.0\n=== RUN   TestMultiDBPipelineRoutesToActive\n--- PASS: TestMultiDBPipelineRoutesToActive (0.00s)\n=== RUN   TestMultiDBPipelineFailoverRetry\n--- PASS: TestMultiDBPipelineFailoverRetry (0.00s)\nPASS\nok  \tgithub.com/redis/go-redis/v9\t1.050s"
+    },
+    {
+      "project": "redis/go-redis",
+      "state": "B",
+      "validation": "two mock-backed routing/failover tests",
+      "test_names": [
+        "TestMultiDBPipelineRoutesToActive",
+        "TestMultiDBPipelineFailoverRetry"
+      ],
+      "log_sha256": "d359ebe440b2bb43fa3f97468d2771a352ad297ab3a37a51424e99a7f0052e5b",
+      "log_excerpt": "=== RUN   TestMultiDBPipelineRoutesToActive\n--- PASS: TestMultiDBPipelineRoutesToActive (0.00s)\n=== RUN   TestMultiDBPipelineFailoverRetry\n--- PASS: TestMultiDBPipelineFailoverRetry (0.00s)\nPASS\nok  \tgithub.com/redis/go-redis/v9\t0.643s"
+    },
+    {
+      "project": "redis/go-redis",
+      "state": "C",
+      "validation": "compile only",
+      "test_names": [],
+      "log_sha256": "4574b75e9381b4bb95895264e9b12a29534b1d1ae8fdac78269844e7a3cff463",
+      "log_excerpt": "testing: warning: no tests to run\nPASS\nok  \tgithub.com/redis/go-redis/v9\t0.805s [no tests to run]"
+    },
+    {
+      "project": "go-sql-driver/mysql",
+      "validation": "four mock-backed packet tests",
+      "test_names": [
+        "TestWriteExecutePacketValidatesArgsBeforeWriting",
+        "TestReadPacketSingleByte",
+        "TestReadPacketWrongSequenceID",
+        "TestReadPacketSplit"
+      ],
+      "log_sha256": "14059e2c149f0f9aac0c2857325d41677ae9814ffc1743478e28d57211f8d738",
+      "log_excerpt": "go: downloading filippo.io/edwards25519 v1.2.0\n=== RUN   TestWriteExecutePacketValidatesArgsBeforeWriting\n--- PASS: TestWriteExecutePacketValidatesArgsBeforeWriting (0.00s)\n=== RUN   TestReadPacketSingleByte\n--- PASS: TestReadPacketSingleByte (0.00s)\n=== RUN   TestReadPacketWrongSequenceID\n[mysql] 2026/11/12 22:23:46 packets.go:69 [warn] unexpected sequence nr: expected 1, got 0\n[mysql] 2026/11/12 22:23:46 packets.go:69 [warn] unexpected sequence nr: expected 0, got 66\n--- PASS: TestReadPacketWrongSequenceID (0.00s)\n=== RUN   TestReadPacketSplit\n--- PASS: TestReadPacketSplit (0.06s)\nPASS\nok  \tgithub.com/go-sql-driver/mysql\t7.010s"
+    }
+  ]
+}

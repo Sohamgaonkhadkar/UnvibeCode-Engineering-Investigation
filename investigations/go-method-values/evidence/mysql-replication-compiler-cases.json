@@ -1,0 +1,16 @@
+[
+  {
+    "source": "packets.go",
+    "target": "connection.go",
+    "line": 33,
+    "symbol": "readWithTimeout",
+    "owner": "mysqlConn"
+  },
+  {
+    "source": "packets.go",
+    "target": "connection.go",
+    "line": 133,
+    "symbol": "writeWithTimeout",
+    "owner": "mysqlConn"
+  }
+]
