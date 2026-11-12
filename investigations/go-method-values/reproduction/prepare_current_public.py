@@ -19,6 +19,18 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def target_sources(files):
+    result=[]
+    for file,symbol,start,end in (("osscluster.go","ForEachMaster",2341,2375),
+            ("ring.go","ForEachShard",815,848),("osscluster.go","processPipelineRetries",2962,3040),
+            ("multidb_pipeline.go","processPipeline",265,267)):
+        lines=files[file].decode("utf-8").splitlines()
+        required={str(n):lines[n-1] for n in range(start,end+1) if lines[n-1].strip()}
+        assert any("func " in value and symbol in value for value in required.values())
+        result.append({"file":file,"symbol":symbol,"definition_lines":[start,end],"nonblank_source_lines":required})
+    return result
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--repo", type=Path, required=True)
@@ -42,7 +54,7 @@ def main():
         ("multidb.go", "core.processPipeline", "multidbCore", "func(context.Context, []Cmder) error", "ctx context.Context, cmds []Cmder", "ctx, cmds", 1),
     ]
     result = {"repository":"https://github.com/redis/go-redis", "commit":PIN,
-              "input_archive_sha256":digest(raw), "states":{}, "edits":[]}
+              "input_archive_sha256":digest(raw), "states":{}, "edits":[],"target_sources":target_sources(files)}
     variants = {k:dict(files) for k in ("A", "B", "C")}
     for file, old, owner, returns, params, args, count in edits:
         # Avoid matching the longer core.processPipelineRetries selector.

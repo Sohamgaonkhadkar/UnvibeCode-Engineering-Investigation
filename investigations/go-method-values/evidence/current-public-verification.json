@@ -1029,8 +1029,8 @@
     "B_gained": 15,
     "B_lost": 0,
     "B_gained_by_kind": {
-      "method_call": 8,
-      "file_import": 7
+      "file_import": 7,
+      "method_call": 8
     },
     "C_equals_A": true,
     "boundary": "Chunk IDs change with edited text; comparison preserves file, source/target lines, relationship kind, symbol and confidence."

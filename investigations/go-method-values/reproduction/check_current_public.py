@@ -69,7 +69,7 @@ def main():
     gained=normalized["B"]-normalized["A"]
     assert not normalized["A"]-normalized["B"]
     assert normalized["C"]==normalized["A"]
-    kinds={kind:sum(e[4]==kind for e in gained) for kind in {e[4] for e in gained}}
+    kinds={kind:sum(e[4]==kind for e in gained) for kind in sorted({e[4] for e in gained})}
     assert kinds=={"method_call":8,"file_import":7},kinds
     result["normalized_relationship_delta"]={"identity_fields":fields,"B_gained":15,"B_lost":0,"B_gained_by_kind":kinds,"C_equals_A":True,
         "boundary":"Chunk IDs change with edited text; comparison preserves file, source/target lines, relationship kind, symbol and confidence."}
@@ -77,6 +77,9 @@ def main():
         # Target implementations must be identical in all three downloaded inputs.
         base=sources["A"][target]
         assert all(sources[x][target]==base for x in "BC")
+        expected=next(t for t in manifest["inputs"]["target_sources"] if t["file"]==target and t["symbol"]==symbol)
+        assert expected["definition_lines"]==[start,end]
+        assert all(base.get(int(n))==text for n,text in expected["nonblank_source_lines"].items()),"Downloaded implementation differs from pinned source"
         text=[base.get(n,"") for n in range(1,max(base)+1)]
         assert any("func " in base.get(n,"") and symbol in base.get(n,"") for n in range(start,min(start+5,end+1)))
         row={"source":source,"target":target,"symbol":symbol,"definition_lines":[start,end],"states":{}}
