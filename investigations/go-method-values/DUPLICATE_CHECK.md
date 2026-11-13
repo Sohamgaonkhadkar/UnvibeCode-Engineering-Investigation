@@ -41,3 +41,7 @@ Immediately before updating #716, [a new eight-page inventory](evidence/issue-up
 ## 13 November refresh before the issue edit
 
 The [resumed update inventory](evidence/issue-update-duplicate-check-2026-11-13.json) checks **612 other issues through #725** (609 nonempty bodies, 3 empty), excluding #716 and pull requests. It preserves the preceding full inventory and records new/changed body digests rather than duplicating unchanged records. No matching typed method-value extraction mechanism was identified. New reports #721–#725 concern JS namespace imports, a workflow report, output/build-directory ingestion and CLI polling.
+
+## Current MySQL extension refresh
+
+The [current MySQL inventory delta](evidence/current-mysql-duplicate-check.json) checks **626 other issues through #739** (623 nonempty bodies, 3 empty), excluding #716 and pull requests. It extends the prior inventory without duplicating unchanged bodies. No matching typed method-value extraction mechanism was identified. This is additional evidence for the existing #716; no new issue is proposed. Historical comment-check times remain distinct.

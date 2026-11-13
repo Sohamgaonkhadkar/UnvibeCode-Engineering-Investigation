@@ -1,0 +1,117 @@
+{
+  "checked_at_utc": "2026-11-13T04:55:49.057Z",
+  "source": "Eight REST pages covering open and closed issues; #716 and PRs excluded",
+  "reviewed_other_issue_records": 626,
+  "nonempty_bodies": 623,
+  "empty_bodies": 3,
+  "newest_issue": 739,
+  "snapshot_sha256": "1f10a96a7b6c783dd8e8dc17d2bd6ea190c4741db107443d919b6c74f5e44511",
+  "prior_inventory": "issue-update-duplicate-check-2026-11-13.json",
+  "prior_inventory_sha256": "f19c02db43dd2494598a1dcc46656958b13f6797b1b667ae462efe9efeb32d5c",
+  "new_records": [
+    {
+      "number": 739,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/739",
+      "title": "[Bug] Python AST & Linker \u2014 Module-level functional type factories (NewType, namedtuple, functional Enum & TypedDict) are dropped from symbol index, severing cross-file symbol edges",
+      "updated_at": "2026-11-13T04:32:00Z",
+      "body_sha256": "9d21eb92c9b90453ceddad4b25f795cb599c7c8447f2dbcb30c915c74035d842"
+    },
+    {
+      "number": 738,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/738",
+      "title": "[Bug] Business Workflow Map \u2014 Dual-protocol exception workflow omits WebSocket handler (ExceptionMiddleware.websocket_exception) despite explicit title and summary promise",
+      "updated_at": "2026-11-13T04:17:26Z",
+      "body_sha256": "be40b98cae56c87f5a02ea71afa6e977b5225c5e6100f98ad17683345a40edf7"
+    },
+    {
+      "number": 737,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/737",
+      "title": "[Bug] Ruby require_relative fails to resolve valid nested file dependencies",
+      "updated_at": "2026-11-13T04:03:45Z",
+      "body_sha256": "acbf3d681774bb52ad31af78768dc2e67f6995a7cf748691cb96dc05a061867a"
+    },
+    {
+      "number": 736,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/736",
+      "title": "[Bug] Business Workflow Map \u2014 Config workflow omits Config.from_object() although its own title promises object-based loading",
+      "updated_at": "2026-11-13T03:43:36Z",
+      "body_sha256": "b716958f0fad6bb0a3f31e73b6b34e980e00e64201d742ee11e489a118b5a49e"
+    },
+    {
+      "number": 735,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/735",
+      "title": "[Bug] Python Linker / Connected Code Map \u2014 Global symbol index overwrites subpackage symbols across monorepo roots, cross-wiring active imports and selections.jsonl to legacy files",
+      "updated_at": "2026-11-12T21:56:36Z",
+      "body_sha256": "65db3a25418598d7dffdc89795c842cc7448746b319124f7866595dbef5d74ce"
+    },
+    {
+      "number": 734,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/734",
+      "title": "[Bug] Flawed k-hop BFS traversal, duplicate vertex mutations, and label state collision in Connected Code Map (connected-code.html)",
+      "updated_at": "2026-11-12T21:44:31Z",
+      "body_sha256": "dbc58a017d325bfb95b35fba9eedaf33c6bfe4d40ba9b240889c30f995438980"
+    },
+    {
+      "number": 733,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/733",
+      "title": "[Bug] Business Risk Findings \u2014 silently absent from a COMPLETE review with no user-facing disclosure (risk_findings: DISABLED_BY_SERVER_POLICY)",
+      "updated_at": "2026-11-12T21:32:57Z",
+      "body_sha256": "acc6b010e373c560f57ebd2b557bcf856a782d3978e26bbc8680d37b16c0a44c"
+    },
+    {
+      "number": 732,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/732",
+      "title": "[Bug] archive.source_files() \u2014 `.env` virtualenv directory silently ingested as source code",
+      "updated_at": "2026-11-12T21:18:58Z",
+      "body_sha256": "d0a92395bb17bc4ade4f07242b66c75290665f01f2f110288c40f14aa76659f3"
+    },
+    {
+      "number": 731,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/731",
+      "title": "[Bug] Python Linker \u2014 Submodule imports via 'from <pkg> import <submodule>' and explicit '__init__.py' re-exports fail symbol resolution, severing cross-module edges",
+      "updated_at": "2026-11-12T21:13:04Z",
+      "body_sha256": "2cf64d769611f0faf9e22a7d3a296454fb5e437888208b1fc530664e4ce73a1e"
+    },
+    {
+      "number": 730,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/730",
+      "title": "[Bug] Upload archiver (archive.py) \u2014 a small project is refused as \"too big\" because .env/ and .mypy_cache/ are counted, even though the engine ignores those folders",
+      "updated_at": "2026-11-12T20:42:26Z",
+      "body_sha256": "277e57aafce9d340f571473b7c616b6ad177ff8b6e9d26c347f958e7f8a0654f"
+    },
+    {
+      "number": 729,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/729",
+      "title": "[Challenge 2026][Cohort 3][Track 1] [Bug] CLI recovery handler \u2014 unconditional resume advice creates self-referential error loops on terminal failures",
+      "updated_at": "2026-11-12T20:09:27Z",
+      "body_sha256": "a0b50f0f90a954c8ab65aaf6a147e2a88799ce5a70f68a46824eecc37319822e"
+    },
+    {
+      "number": 728,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/728",
+      "title": "[Bug] Source archive \u2014 unreadable source directories are silently omitted from uploads",
+      "updated_at": "2026-11-12T20:00:24Z",
+      "body_sha256": "cd1fc87b7b7bd0ade5e18b2f138b0dcc18189c66b1042bff449b3d60aa13efee"
+    },
+    {
+      "number": 727,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/727",
+      "title": "[Bug] JavaScript/TypeScript resolver \u2014 internal JSON module imports are silently dropped because .json files are excluded from workspace scanning",
+      "updated_at": "2026-11-12T19:49:24Z",
+      "body_sha256": "cf2c3d0f15a6ff8dfb0cf895f9f49e656ec984e5eb642754768e1a61603817d5"
+    },
+    {
+      "number": 726,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/726",
+      "title": "[Bug] html-report/workflows \u2014 Workflow Area badge count mismatch when rendering single-workflow areas on Python codebases",
+      "updated_at": "2026-11-12T19:33:24Z",
+      "body_sha256": "2bffb404dca3fa0fd4ed5667c86dce57b55eb322140d5a70da8b36cd0bb72215"
+    }
+  ],
+  "changed_records": [],
+  "removed_records": [],
+  "unchanged_record_count": 612,
+  "screening_regex": "method.?value|method_reference|package_selector|typed.{0,40}callback|ForEachShard|processTxPipeline",
+  "matching_other_issues": [],
+  "conclusion": "No matching typed method-value extraction mechanism identified. This current MySQL extension strengthens existing #716 rather than proposing a new issue. Historical comment checks retain their original scope/time."
+}

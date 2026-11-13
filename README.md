@@ -37,7 +37,7 @@ The correction records a reference. Forming a method value does not invoke it; s
 | Independent type check | **13/13** go-redis and **2/2** MySQL production source/receiver/definition identities verified by Go |
 | Current-client check | Three **0.4.0** public go-redis captures on 12 November and three public MySQL-driver captures on 13 November (IST); original, bound wrapper and no-method controls |
 | Independent repository | Pinned go-sql-driver/mysql: two missing links and two omitted bodies in three completed **0.4.0** reviews, plus the same mechanism in both inspectable **0.3.15** engines |
-| Originality refresh | **612 other** open/closed issue records through **#725** before the evidence update (#716 excluded); historical nearest-report comments checked separately |
+| Originality refresh | **626 other** open/closed issue records through **#739** before the evidence update (#716 excluded); historical nearest-report comments checked separately |
 
 [PyPI lists 0.4.0 as the latest published release](https://pypi.org/project/unvibecode/) (checked 12 November 2026). The 0.4.0 hosted backend revision is not exposed. Source-level causal inspection and the 13-reference correction experiment belong to 0.3.15. The current-client comparison independently measures the same symptom on the complete pinned public go-redis checkout.
 
@@ -195,7 +195,8 @@ The [workflow](.github/workflows/go-method-values.yml) preserves logs, compiler 
 | Experiment coverage | [Evidence audit and live-review reproduction](investigations/go-method-values/FINAL_EVIDENCE_AUDIT.md) |
 | Originality | [Mechanism-level duplicate review](investigations/go-method-values/DUPLICATE_CHECK.md), [candidate decisions](investigations/go-method-values/CANDIDATES.md) |
 | Issue report | [Official issue #716](https://github.com/FinanceFlash/unvibecode/issues/716), [report copy](investigations/go-method-values/submission/GITHUB_ISSUE.md) |
-| Continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641) at `edb1aa3a7c744b8c396eea34282aef87dfbdd913`; downloadable logs and generated artifacts |
+| Current MySQL CI | [Linux and Windows checks for PR #6](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/pull/6/checks) |
+| Baseline continuous verification | [Passing Linux and Windows run](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641) at `edb1aa3a7c744b8c396eea34282aef87dfbdd913`; downloadable logs and generated artifacts |
 
 ## Scope and limitations
 
