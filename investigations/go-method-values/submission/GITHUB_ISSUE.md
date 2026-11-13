@@ -113,6 +113,8 @@ Additional verification records at the immutable evidence commit:
 
 [Linux and Windows CI passed](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43265840641) at `edb1aa3a7c744b8c396eea34282aef87dfbdd913`, including the offline current-public audit and receiver boundaries. Linux additionally verified both public-repository experiments, compiler identities and Go behavior controls.
 
+The current MySQL extension and the existing go-redis evidence also pass [Linux and Windows CI](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/actions/runs/43369245932) at `99c9382789f096970210e22f39c828dd51407568`. Both OS jobs replay all captured current-version comparisons; Linux additionally runs the original/wrapper MySQL packet tests and the strict historical coverage assertions.
+
 ## 7. Impact and scope
 
 Focused context for MultiDB callback initialization can omit `multidbCore.processPipeline`; ring fan-out context can omit `Ring.ForEachShard`. The source is still present in the **complete** repository ZIP; the observed defect is specifically an omission of method implementation evidence from selected focused context.
@@ -155,6 +157,6 @@ Immediately before publication on 12 November, an all-pages REST refresh reviewe
 
 Immediately before this evidence update on **13 November 2026**, a fresh all-pages search reviewed **612 other issue records through #725** (609 nonempty bodies, 3 empty; #716 itself excluded). No matching typed method-value extraction mechanism was identified. This refresh retains the same distinctions from #710 (embedded promoted calls) and #709 (primary-file scope expansion).
 
-The independent current MySQL extension was also screened against **626 other issues through #739** (623 nonempty bodies, 3 empty), excluding #716 itself. No matching extraction mechanism was identified; the extension adds evidence to the existing issue rather than a separate submission.
+The independent current MySQL extension was also screened against **627 other issues through #740** (624 nonempty bodies, 3 empty), excluding #716 itself. No matching extraction mechanism was identified; the extension adds evidence to the existing issue rather than a separate submission.
 
 The earlier JSONC investigation matched [#451](https://github.com/FinanceFlash/unvibecode/issues/451) and is **not** the subject of this report. Duplicate checking is time-bound; the inventory above records the pre-publication check.

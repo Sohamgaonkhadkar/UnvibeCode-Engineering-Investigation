@@ -45,3 +45,7 @@ The [resumed update inventory](evidence/issue-update-duplicate-check-2026-11-13.
 ## Current MySQL extension refresh
 
 The [current MySQL inventory delta](evidence/current-mysql-duplicate-check.json) checks **626 other issues through #739** (623 nonempty bodies, 3 empty), excluding #716 and pull requests. It extends the prior inventory without duplicating unchanged bodies. No matching typed method-value extraction mechanism was identified. This is additional evidence for the existing #716; no new issue is proposed. Historical comment-check times remain distinct.
+
+## Final MySQL-update refresh
+
+Immediately before editing #716, [the final delta](evidence/current-mysql-final-duplicate-check.json) checks **627 other issues through #740** (624 nonempty bodies, 3 empty). No matching extraction mechanism was identified. New #740 concerns CLI placeholder expansion, unrelated to typed Go method values. Earlier inventories and their comment-check timestamps are preserved.
