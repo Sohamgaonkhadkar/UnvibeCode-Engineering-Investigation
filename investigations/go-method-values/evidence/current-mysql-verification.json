@@ -1,0 +1,392 @@
+{
+  "repository": "https://github.com/go-sql-driver/mysql",
+  "commit": "4cdf75e9037ffccf63a981d10f5c2e669edbfc49",
+  "client_version": "0.4.0",
+  "hosted_backend_revision": "not exposed",
+  "states": {
+    "A": {
+      "bundle_sha256": "5419a405b06f5189ff00b6062040b2cb3e34e4a9048abe1758e35ad640c656ef",
+      "chunks": 542,
+      "relationships": 814,
+      "selections": 60,
+      "overall_status": "COMPLETE",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "COMPLETED",
+      "updated_at_utc": "2026-11-12T20:38:15.337237+00:00",
+      "local_go_validation": {
+        "result": "passed",
+        "kind": "six mock-backed packet tests",
+        "test_names": [
+          "TestWriteExecutePacketValidatesArgsBeforeWriting",
+          "TestWriteExecutePacketSendsLongDataBeforeExecute",
+          "TestWriteExecutePacketResetsStmtAfterLongDataError",
+          "TestReadPacketSingleByte",
+          "TestReadPacketWrongSequenceID",
+          "TestReadPacketSplit"
+        ],
+        "log_sha256": "ea53b5865eaf4e24c6ef727251323b666d556e42a3e03645f86e45c8c0888538",
+        "log_excerpt": "=== RUN   TestWriteExecutePacketValidatesArgsBeforeWriting\n--- PASS: TestWriteExecutePacketValidatesArgsBeforeWriting (0.00s)\n=== RUN   TestWriteExecutePacketSendsLongDataBeforeExecute\n--- PASS: TestWriteExecutePacketSendsLongDataBeforeExecute (0.00s)\n=== RUN   TestWriteExecutePacketResetsStmtAfterLongDataError\n[mysql] 2026/11/13 02:06:17 packets.go:156 long data write failed\n--- PASS: TestWriteExecutePacketResetsStmtAfterLongDataError (0.00s)\n=== RUN   TestReadPacketSingleByte\n--- PASS: TestReadPacketSingleByte (0.00s)\n=== RUN   TestReadPacketWrongSequenceID\n[mysql] 2026/11/13 02:06:17 packets.go:69 [warn] unexpected sequence nr: expected 1, got 0\n[mysql] 2026/11/13 02:06:17 packets.go:69 [warn] unexpected sequence nr: expected 0, got 66\n--- PASS: TestReadPacketWrongSequenceID (0.00s)\n=== RUN   TestReadPacketSplit\n--- PASS: TestReadPacketSplit (0.07s)\nPASS\nok  \tgithub.com/go-sql-driver/mysql\t4.169s"
+      },
+      "listed_customer_outputs": [
+        "business_workflow_map",
+        "complete_repository_context",
+        "connected_code_map",
+        "interim_results_page",
+        "results_landing_page"
+      ],
+      "risk_findings_output_listed": false
+    },
+    "B": {
+      "bundle_sha256": "393ce4171ee9edad5e958123c969b3ee06bc00c4edffd5d500e8afc9c8c838c6",
+      "chunks": 542,
+      "relationships": 817,
+      "selections": 60,
+      "overall_status": "COMPLETE",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "COMPLETED",
+      "updated_at_utc": "2026-11-12T20:40:04.021273+00:00",
+      "local_go_validation": {
+        "result": "passed",
+        "kind": "six mock-backed packet tests",
+        "test_names": [
+          "TestWriteExecutePacketValidatesArgsBeforeWriting",
+          "TestWriteExecutePacketSendsLongDataBeforeExecute",
+          "TestWriteExecutePacketResetsStmtAfterLongDataError",
+          "TestReadPacketSingleByte",
+          "TestReadPacketWrongSequenceID",
+          "TestReadPacketSplit"
+        ],
+        "log_sha256": "9da32c5792b17b64e8399beff2085646c7f85f964b1713e9bf478ff1e58ed938",
+        "log_excerpt": "=== RUN   TestWriteExecutePacketValidatesArgsBeforeWriting\n--- PASS: TestWriteExecutePacketValidatesArgsBeforeWriting (0.00s)\n=== RUN   TestWriteExecutePacketSendsLongDataBeforeExecute\n--- PASS: TestWriteExecutePacketSendsLongDataBeforeExecute (0.00s)\n=== RUN   TestWriteExecutePacketResetsStmtAfterLongDataError\n[mysql] 2026/11/13 02:06:28 packets.go:156 long data write failed\n--- PASS: TestWriteExecutePacketResetsStmtAfterLongDataError (0.00s)\n=== RUN   TestReadPacketSingleByte\n--- PASS: TestReadPacketSingleByte (0.00s)\n=== RUN   TestReadPacketWrongSequenceID\n[mysql] 2026/11/13 02:06:28 packets.go:69 [warn] unexpected sequence nr: expected 1, got 0\n[mysql] 2026/11/13 02:06:28 packets.go:69 [warn] unexpected sequence nr: expected 0, got 66\n--- PASS: TestReadPacketWrongSequenceID (0.00s)\n=== RUN   TestReadPacketSplit\n--- PASS: TestReadPacketSplit (0.07s)\nPASS\nok  \tgithub.com/go-sql-driver/mysql\t5.144s"
+      },
+      "listed_customer_outputs": [
+        "business_workflow_map",
+        "complete_repository_context",
+        "connected_code_map",
+        "interim_results_page",
+        "results_landing_page"
+      ],
+      "risk_findings_output_listed": false
+    },
+    "C": {
+      "bundle_sha256": "7b28ff34b987873ba9321dd91876c3ac5a46ff1ee6d183facd08714429dad7ea",
+      "chunks": 542,
+      "relationships": 814,
+      "selections": 60,
+      "overall_status": "COMPLETE",
+      "FAST_LANE": "COMPLETED",
+      "FULL_ANALYSIS": "COMPLETED",
+      "updated_at_utc": "2026-11-12T20:41:14.534677+00:00",
+      "local_go_validation": {
+        "result": "passed",
+        "kind": "compile only",
+        "test_names": [],
+        "log_sha256": "e43e7d93354cab614cbe14106a198037a1d98856c441a6126a118c4d12af5a05",
+        "log_excerpt": "testing: warning: no tests to run\nPASS\nok  \tgithub.com/go-sql-driver/mysql\t4.806s [no tests to run]"
+      },
+      "listed_customer_outputs": [
+        "business_workflow_map",
+        "complete_repository_context",
+        "connected_code_map",
+        "interim_results_page",
+        "results_landing_page"
+      ],
+      "risk_findings_output_listed": false
+    }
+  },
+  "targets": [
+    {
+      "source": "packets.go",
+      "target": "connection.go",
+      "symbol": "readWithTimeout",
+      "definition_lines": [
+        67,
+        75
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75
+              ],
+              "estimated_tokens": 43177,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 1,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 9,
+              "required_nonblank_lines": 9,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 43450,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 9,
+              "required_nonblank_lines": 9,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 74887,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75
+              ],
+              "estimated_tokens": 43235,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75
+              ],
+              "estimated_tokens": 74925,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "source": "packets.go",
+      "target": "connection.go",
+      "symbol": "writeWithTimeout",
+      "definition_lines": [
+        77,
+        85
+      ],
+      "states": {
+        "A": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85
+              ],
+              "estimated_tokens": 43177,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85
+              ],
+              "estimated_tokens": 74997,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "B": {
+          "method_relationships": 1,
+          "relationship_kinds": [
+            "method_call"
+          ],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 9,
+              "required_nonblank_lines": 9,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 43450,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 9,
+              "required_nonblank_lines": 9,
+              "coverage": "complete",
+              "missing_lines": [],
+              "estimated_tokens": 74887,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        },
+        "C": {
+          "method_relationships": 0,
+          "relationship_kinds": [],
+          "scopes": {
+            "1": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85
+              ],
+              "estimated_tokens": 43235,
+              "maximum_tokens": 45000,
+              "target_file_in_selection": true
+            },
+            "2": {
+              "matching_nonblank_lines": 0,
+              "required_nonblank_lines": 9,
+              "coverage": "absent",
+              "missing_lines": [
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85
+              ],
+              "estimated_tokens": 74925,
+              "maximum_tokens": 75000,
+              "target_file_in_selection": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "boundary": "A original, B receiver-preserving direct-call wrapper, C intentionally non-equivalent no-method callback. No hosted correction or business-risk improvement claimed.",
+  "verified_source_changes": {
+    "B": [
+      {
+        "file": "packets.go",
+        "line": 33
+      },
+      {
+        "file": "packets.go",
+        "line": 133
+      }
+    ],
+    "C": [
+      {
+        "file": "packets.go",
+        "line": 33
+      },
+      {
+        "file": "packets.go",
+        "line": 133
+      }
+    ]
+  },
+  "overlapping_source_lines_consistent": true,
+  "normalized_relationship_delta": {
+    "identity_fields": [
+      "source_file",
+      "target_file",
+      "source_line",
+      "target_line",
+      "relationship",
+      "symbol",
+      "confidence"
+    ],
+    "B_gained": 3,
+    "B_lost": 0,
+    "B_gained_by_kind": {
+      "file_import": 1,
+      "method_call": 2
+    },
+    "C_equals_A": true,
+    "boundary": "Chunk IDs change with edited text; comparison preserves file, source/target lines, relationship kind, symbol and confidence."
+  }
+}

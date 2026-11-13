@@ -1,4 +1,4 @@
-"""Prepare disposable, pinned go-redis A/B/C inputs without editing the checkout.
+"""Prepare disposable, pinned public Go A/B/C inputs without editing the checkout.
 
 B binds the receiver at callback formation, then forwards the exact arguments.
 C is an intentionally different no-op callback: an extraction negative control,
@@ -13,17 +13,21 @@ import subprocess
 import tarfile
 
 PIN = "5cba5e182946cf18a757718938bc43910e589466"
+MYSQL_PIN = "4cdf75e9037ffccf63a981d10f5c2e669edbfc49"
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def target_sources(files):
+def target_sources(files, project="redis"):
     result=[]
-    for file,symbol,start,end in (("osscluster.go","ForEachMaster",2341,2375),
+    targets=(("osscluster.go","ForEachMaster",2341,2375),
             ("ring.go","ForEachShard",815,848),("osscluster.go","processPipelineRetries",2962,3040),
-            ("multidb_pipeline.go","processPipeline",265,267)):
+            ("multidb_pipeline.go","processPipeline",265,267))
+    if project=="mysql":
+        targets=(("connection.go","readWithTimeout",67,75),("connection.go","writeWithTimeout",77,85))
+    for file,symbol,start,end in targets:
         lines=files[file].decode("utf-8").splitlines()
         required={str(n):lines[n-1] for n in range(start,end+1) if lines[n-1].strip()}
         assert any("func " in value and symbol in value for value in required.values())
@@ -35,10 +39,12 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--repo", type=Path, required=True)
     p.add_argument("--work", type=Path, required=True)
+    p.add_argument("--project", choices=("redis","mysql"), default="redis")
     a = p.parse_args()
     repo = a.repo.resolve()
     git = ["git", "-c", "safe.directory="+repo.as_posix(), "-C", str(repo)]
-    assert subprocess.check_output(git+["rev-parse", "HEAD"], text=True).strip() == PIN
+    pin=MYSQL_PIN if a.project=="mysql" else PIN
+    assert subprocess.check_output(git+["rev-parse", "HEAD"], text=True).strip() == pin
     assert not subprocess.check_output(git+["status", "--porcelain"], text=True).strip()
     raw = subprocess.check_output(git+["archive", "HEAD"])
     files = {}
@@ -53,8 +59,14 @@ def main():
         ("autopipeline_cluster_fd.go", "cc.processPipelineRetries", "ClusterClient", "func(context.Context, []Cmder, int) error", "ctx context.Context, cmds []Cmder, retries int", "ctx, cmds, retries", 1),
         ("multidb.go", "core.processPipeline", "multidbCore", "func(context.Context, []Cmder) error", "ctx context.Context, cmds []Cmder", "ctx, cmds", 1),
     ]
-    result = {"repository":"https://github.com/redis/go-redis", "commit":PIN,
-              "input_archive_sha256":digest(raw), "states":{}, "edits":[],"target_sources":target_sources(files)}
+    if a.project=="mysql":
+        edits=[("packets.go","mc.readWithTimeout","mysqlConn","func([]byte) (int, error)","b []byte","b",1),
+               ("packets.go","mc.writeWithTimeout","mysqlConn","func([]byte) (int, error)","b []byte","b",1)]
+    result_type="(int, error)" if a.project=="mysql" else "error"
+    zero="0, nil" if a.project=="mysql" else "nil"
+    repository="https://github.com/go-sql-driver/mysql" if a.project=="mysql" else "https://github.com/redis/go-redis"
+    result = {"repository":repository, "commit":pin,"project":a.project,
+              "input_archive_sha256":digest(raw), "states":{}, "edits":[],"target_sources":target_sources(files,a.project)}
     variants = {k:dict(files) for k in ("A", "B", "C")}
     for file, old, owner, returns, params, args, count in edits:
         # Avoid matching the longer core.processPipelineRetries selector.
@@ -62,8 +74,8 @@ def main():
         pattern = re.escape(old)+r"(?![A-Za-z0-9_])"
         symbol = old.split(".")[1]
         receiver = old.split(".")[0]
-        wrapper = f"func(receiver *{owner}) {returns} {{ return func({params}) error {{ return receiver.{symbol}({args}) }} }}({receiver})"
-        negative = f"func(receiver *{owner}) {returns} {{ return func({params}) error {{ return nil }} }}({receiver})"
+        wrapper = f"func(receiver *{owner}) {returns} {{ return func({params}) {result_type} {{ return receiver.{symbol}({args}) }} }}({receiver})"
+        negative = f"func(receiver *{owner}) {returns} {{ return func({params}) {result_type} {{ return {zero} }} }}({receiver})"
         original = files[file].decode("utf-8")
         assert len(re.findall(pattern, original)) == count
         for state, value in (("B",wrapper), ("C",negative)):
@@ -80,16 +92,16 @@ def main():
             output.parent.mkdir(parents=True, exist_ok=True)
             output.write_bytes(data)
         changed = [f for f in files if files[f] != contents[f]]
-        assert len(changed) == (0 if state=="A" else 3)
+        assert len(changed) == (0 if state=="A" else 1 if a.project=="mysql" else 3)
         result["states"][state] = {"changed_files":changed,"files":len(contents),
             "source_hashes":{f:digest(v) for f,v in contents.items() if f.endswith(".go")},
             "go_mod_sha256":digest(contents["go.mod"])}
-    result["boundaries"] = ["Eight original selector occurrences in three files; single-line edits preserve target definition coordinates.",
+    result["boundaries"] = [f"{sum(e[-1] for e in edits)} original selector occurrences; single-line edits preserve target definition coordinates.",
         "B freezes each pointer receiver at formation; no function runs until invocation.",
         "C changes behavior deliberately and is used only as a negative extraction control.",
         "The 0.4.0 uploader omits go.mod in every state; same-package targets isolate this from #662."]
     (a.work/"inputs.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
-    print("Prepared pinned A/B/C copies: 8 selector changes in B/C; original checkout unchanged")
+    print(f"Prepared pinned {a.project} A/B/C copies: {sum(e[-1] for e in edits)} selector changes in B/C; original checkout unchanged")
 
 
 if __name__ == "__main__":

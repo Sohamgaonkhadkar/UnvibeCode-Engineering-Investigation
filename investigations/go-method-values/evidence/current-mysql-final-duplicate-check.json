@@ -1,0 +1,26 @@
+{
+  "checked_at_utc": "2026-11-13T05:08:15.956Z",
+  "source": "All eight REST pages, open and closed; #716 and PRs excluded",
+  "reviewed_other_issue_records": 627,
+  "nonempty_bodies": 624,
+  "empty_bodies": 3,
+  "newest_issue": 740,
+  "snapshot_sha256": "e9351f5641e494f3eb35424cec0e55f30146cd7358df077af18bcd6a72b817db",
+  "prior_inventory": "current-mysql-duplicate-check.json",
+  "prior_inventory_sha256": "009f7d9e6b39b7ebf00b2b91321c932258d770791532c661202ddbf17b4f3504",
+  "new_records": [
+    {
+      "number": 740,
+      "url": "https://github.com/FinanceFlash/unvibecode/issues/740",
+      "title": "[Bug] CLI local_text() \u2014 Greedy placeholder regex r'@@RESULTS@@([^\\n]*)' corrupts multiple paths and appends trailing prose/markdown delimiters on Windows/Linux",
+      "updated_at": "2026-11-13T05:02:17Z",
+      "body_sha256": "a131dff6cb53b3077d42f1f4caa9e7e7cf227be978331fb4f6d8afc12b9b782d"
+    }
+  ],
+  "changed_records": [],
+  "removed_records": [],
+  "unchanged_record_count": 626,
+  "screening_regex": "method.?value|method_reference|package_selector|typed.{0,40}callback|ForEachShard|processTxPipeline",
+  "matching_other_issues": [],
+  "conclusion": "No matching typed method-value extraction mechanism identified immediately before the existing-issue update. The only new report since the preceding snapshot is CLI placeholder expansion #740, a distinct mechanism."
+}
