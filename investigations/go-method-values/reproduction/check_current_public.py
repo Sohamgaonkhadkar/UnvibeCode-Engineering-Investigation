@@ -1,4 +1,4 @@
-"""Offline audit of three actual 0.4.0 go-redis code-map downloads.
+"""Offline audit of three actual 0.4.0 public Go code-map downloads.
 
 No installed-engine patch or hosted request. Optional scope extracts copy actual
 selection metadata and selected chunks; they are not browser-generated exports.
@@ -10,16 +10,26 @@ import re
 import zipfile
 from helpers import records,sha
 from explain_context import describe,indexed_lines
+from prepare_current_public import PIN,MYSQL_PIN
 
 ROOT=Path(__file__).resolve().parents[1]
 TARGETS=[("himport_cluster.go","osscluster.go","ForEachMaster",3,2341,2375),
          ("himport_cluster.go","ring.go","ForEachShard",3,815,848),
          ("autopipeline_cluster_fd.go","osscluster.go","processPipelineRetries",1,2962,3040),
          ("multidb.go","multidb_pipeline.go","processPipeline",1,265,267)]
+MYSQL_TARGETS=[("packets.go","connection.go","readWithTimeout",1,67,75),
+               ("packets.go","connection.go","writeWithTimeout",1,77,85)]
 
 
 def all_lines(chunks):
-    return {file:indexed_lines(chunks,file) for file in sorted({c["file"] for c in chunks})}
+    files={}
+    for chunk in chunks:
+        file=chunk["file"]
+        lines=files.setdefault(file,{})
+        for number,text in indexed_lines([chunk],file).items():
+            assert number not in lines or lines[number]==text,(file,number,"conflicting overlapping source lines")
+            lines[number]=text
+    return {file:files[file] for file in sorted(files)}
 
 
 def main():
@@ -30,8 +40,13 @@ def main():
     a=p.parse_args()
     manifest=json.loads((a.artifacts/"manifest.json").read_text(encoding="utf-8"))
     assert manifest["client_version"]=="0.4.0"
+    project=manifest["inputs"].get("project","redis")
+    assert project in {"redis","mysql"}
+    assert manifest["inputs"]["commit"]==(MYSQL_PIN if project=="mysql" else PIN)
+    targets=MYSQL_TARGETS if project=="mysql" else TARGETS
+    expected_edits,expected_files=(2,1) if project=="mysql" else (8,3)
     states={};sources={}
-    result={"repository":"https://github.com/redis/go-redis","commit":manifest["inputs"]["commit"],
+    result={"repository":manifest["inputs"]["repository"],"commit":manifest["inputs"]["commit"],
         "client_version":"0.4.0","hosted_backend_revision":"not exposed","states":{},"targets":[],
         "boundary":"A original, B receiver-preserving direct-call wrapper, C intentionally non-equivalent no-method callback. No hosted correction or business-risk improvement claimed."}
     for phase in "ABC":
@@ -39,6 +54,9 @@ def main():
         with zipfile.ZipFile(path) as archive:
             states[phase]={n:records(archive,n) for n in ("chunks.jsonl","connections.jsonl","selections.jsonl")}
         assert manifest["states"][phase]["FAST_LANE"]=="COMPLETED"
+        if project=="mysql":
+            assert manifest["states"][phase]["overall_status"]=="COMPLETE"
+            assert manifest["states"][phase]["FULL_ANALYSIS"]=="COMPLETED"
         sources[phase]=all_lines(states[phase]["chunks.jsonl"])
         inputs=manifest["inputs"]["states"][phase]
         assert inputs["go_mod_uploaded"] is False
@@ -61,19 +79,23 @@ def main():
                         expected=re.sub(re.escape(edit["selector"])+r"(?![A-Za-z0-9_])",lambda _:edit["wrapper" if phase=="B" else "negative"],expected)
                 assert expected==actual,(phase,file,n,"unexplained source difference")
                 changes.append({"file":file,"line":n})
-        assert len(changes)==8 and len({x["file"] for x in changes})==3,changes
+        assert len(changes)==expected_edits and len({x["file"] for x in changes})==expected_files,changes
         changed[phase]=changes
     result["verified_source_changes"]=changed
+    result["overlapping_source_lines_consistent"]=True
     fields=("source_file","target_file","source_line","target_line","relationship","symbol","confidence")
     normalized={phase:{tuple(e.get(k) for k in fields) for e in bundle["connections.jsonl"]} for phase,bundle in states.items()}
     gained=normalized["B"]-normalized["A"]
     assert not normalized["A"]-normalized["B"]
     assert normalized["C"]==normalized["A"]
     kinds={kind:sum(e[4]==kind for e in gained) for kind in sorted({e[4] for e in gained})}
-    assert kinds=={"method_call":8,"file_import":7},kinds
-    result["normalized_relationship_delta"]={"identity_fields":fields,"B_gained":15,"B_lost":0,"B_gained_by_kind":kinds,"C_equals_A":True,
+    if project=="redis":
+        assert kinds=={"method_call":8,"file_import":7},kinds
+    else:
+        assert kinds=={"method_call":2,"file_import":1},kinds
+    result["normalized_relationship_delta"]={"identity_fields":fields,"B_gained":len(gained),"B_lost":0,"B_gained_by_kind":kinds,"C_equals_A":True,
         "boundary":"Chunk IDs change with edited text; comparison preserves file, source/target lines, relationship kind, symbol and confidence."}
-    for source,target,symbol,count,start,end in TARGETS:
+    for source,target,symbol,count,start,end in targets:
         # Target implementations must be identical in all three downloaded inputs.
         base=sources["A"][target]
         assert all(sources[x][target]==base for x in "BC")
@@ -93,7 +115,7 @@ def main():
             row["states"][phase]={"method_relationships":len(edges),"relationship_kinds":sorted({e["relationship"] for e in edges}),"scopes":observations}
         result["targets"].append(row)
     # Core current-version outcome, independently of unrelated module edges.
-    assert sum(t["states"]["B"]["method_relationships"] for t in result["targets"])==8
+    assert sum(t["states"]["B"]["method_relationships"] for t in result["targets"])==expected_edits
     for t in result["targets"]:
         for scope in ("1","2"):
             assert t["states"]["B"]["scopes"][scope]["coverage"]=="complete",(t["symbol"],scope)
@@ -103,16 +125,18 @@ def main():
         a.focused_output.parent.mkdir(parents=True,exist_ok=True)
         with zipfile.ZipFile(a.focused_output,"w",compression=zipfile.ZIP_DEFLATED) as z:
             for phase,bundle in states.items():
-                selected=next(s for s in bundle["selections.jsonl"] if s["file"]=="himport_cluster.go")
+                source="packets.go" if project=="mysql" else "himport_cluster.go"
+                selected=next(s for s in bundle["selections.jsonl"] if s["file"]==source)
                 for scope in ("1","2"):
                     metadata=selected["scopes"][scope];ids=set(metadata["chunk_ids"])
                     content={"basis":"Extracted unchanged from downloaded code-map ZIP; not a browser export",
-                        "source_bundle_sha256":result["states"][phase]["bundle_sha256"],"selected_file":"himport_cluster.go",
+                        "source_bundle_sha256":result["states"][phase]["bundle_sha256"],"selected_file":source,
                         "scope":scope,"selection":metadata,"chunks":[c for c in bundle["chunks.jsonl"] if c["chunk_id"] in ids]}
-                    z.writestr(phase+"-himport-scope-"+scope+".json",json.dumps(content,indent=2)+"\n")
+                    label="packets" if project=="mysql" else "himport"
+                    z.writestr(phase+"-"+label+"-scope-"+scope+".json",json.dumps(content,indent=2)+"\n")
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
-    print("PASS current public A/B/C: eight method links and four complete bodies only in wrapper; same upload inventory; eight source edits")
+    print(f"PASS current {project} A/B/C: {expected_edits} method links and {len(targets)} complete bodies only in wrapper; same upload inventory; {expected_edits} source edits")
 
 
 if __name__=="__main__":main()

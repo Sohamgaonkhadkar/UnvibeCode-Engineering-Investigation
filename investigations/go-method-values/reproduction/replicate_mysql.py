@@ -40,6 +40,7 @@ def main():
                     graph=linker.resolved_document
             graphs.append(graph)
         sets=[{key(e) for e in g["symbol_edges"]} for g in graphs]
+        assert [len(s) for s in sets]==[656,658,656],"Pinned graph-count regression"
         assert sets[0]==sets[2] and not sets[0]-sets[1]
         production={e for e in sets[1]-sets[0] if not e[0].endswith("_test.go")}
         assert production==EXPECTED,production
@@ -50,9 +51,13 @@ def main():
                 defs=[d for d in graphs[1]["global_symbol_index"][symbol] if d["source_file"]==target and d.get("owner")==owner]
                 assert len(defs)==1
                 span=defs[0]["line_range"];lines=(repo/target).read_text(encoding="utf-8").splitlines()
-                row["coverage"].append({"source":source,"target":target,"symbol":symbol,"definition_lines":span,
+                observation={"source":source,"target":target,"symbol":symbol,"definition_lines":span,
                     "complete_body":{scope:[coverage(selections(b,source,scope),target,span["start_line"],span["end_line"],lines) for b in bundles] for scope in ("1","2")},
-                    "line_coverage":{scope:[describe(b["chunks.jsonl"],next(s for s in b["selections.jsonl"] if s["file"]==source)["scopes"][scope],target,span["start_line"],span["end_line"],lines) for b in bundles] for scope in ("1","2")}})
+                    "line_coverage":{scope:[describe(b["chunks.jsonl"],next(s for s in b["selections.jsonl"] if s["file"]==source)["scopes"][scope],target,span["start_line"],span["end_line"],lines) for b in bundles] for scope in ("1","2")}}
+                for scope in ("1","2"):
+                    assert observation["complete_body"][scope]==[False,True,False],(symbol,scope,observation)
+                    assert [x["matching_nonblank_lines"] for x in observation["line_coverage"][scope]]==[0,9,0]
+                row["coverage"].append(observation)
         assert sha(path)==digest
         result["engines"].append(row)
     assert before=={f:sha(repo/f) for f in before}

@@ -2,7 +2,7 @@
 
 **Affected published engine:** UnvibeCode `0.3.15` (both Fast Lane and Normal Lane graph copies)  
 **Public source:** [redis/go-redis at `5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466)  
-**Current client check:** three 0.4.0 code-map captures on the complete pinned go-redis tree reproduce eight missing method links and four missing implementations; [offline evidence](evidence/current-public-verification.json). Code understanding completed; business analysis was skipped for repository size.
+**Current client check:** three 0.4.0 code-map captures on the complete pinned go-redis tree reproduce eight missing method links and four missing implementations; [offline evidence](evidence/current-public-verification.json). Code understanding completed; business analysis was skipped for go-redis size. Independent 0.4.0 MySQL A/B/C reviews completed both lanes and reproduce two additional missing method links and bodies.
 
 **Main claim:** A known local receiver used as a Go method value is omitted before owner-aware resolution, sometimes excluding the implementation from focused code context.
 
@@ -99,7 +99,7 @@ The [question audit](evidence/developer-impact.json) includes implementation exc
 
 The complete [go-sql-driver/mysql checkout](https://github.com/go-sql-driver/mysql/tree/4cdf75e9037ffccf63a981d10f5c2e669edbfc49) contains two cross-file typed method values in `packets.go`: `mc.readWithTimeout` and `mc.writeWithTimeout`. Both definitions are in `connection.go`. The same extraction-stage mechanism is reproduced by both installed 0.3.15 engines.
 
-Relationships are **656 → 658 → 656**, with zero original relationships lost. Both bodies are absent → complete → absent in both scopes. [Go's type checker](evidence/mysql-compiler.json) confirms both method identities; four mock-backed packet tests pass. [The replay script](reproduction/replicate_mysql.py) measures the entire pinned repository. No current hosted MySQL run is claimed.
+Relationships are **656 → 658 → 656**, with zero original relationships lost. Both bodies are absent → complete → absent in both scopes. [Go's type checker](evidence/mysql-compiler.json) confirms both method identities; four mock-backed packet tests pass. [The replay script](reproduction/replicate_mysql.py) measures the entire pinned repository. [Three independent 0.4.0 captures](evidence/current-mysql-0.4.0) now reproduce the same two missing method links. Each original/control review reports overall COMPLETE with both lanes COMPLETED. No risk-findings output is listed; this is evidence from completed code/workflow reviews, not proof of a completed risk review. Only two lines in `packets.go` differ across inputs; original/wrapper/no-method body coverage is 0/9 → 9/9 → 0/9 for each method at both scopes. All audited selections include `connection.go`, so file presence alone is insufficient. [The exact audit](evidence/current-mysql-verification.json) checks source identity, three normalized added relationships, zero losses and the negative control. Six mock-backed packet tests pass in both A and B; C compiles only.
 
 ## Regression boundaries
 
@@ -145,7 +145,7 @@ Requires Python 3.12+, a compatible Go toolchain (CI: Go 1.27.3), and first-use 
 - Method values are **references**, not direct invocations. No general function-pointer dispatch, method-expression support, or interface-dispatch correctness is asserted.
 - All claims use pinned commits, measured artifact contents, and explicit denominators; the selected scopes are correlated.
 - Experiments preserve the tracked public source and restore the in-memory patched methods in a `finally` block.
-- Full 0.4.0 business review was skipped for go-redis size. Separately, [upstream #662](https://github.com/FinanceFlash/unvibecode/issues/662) reports that the new uploader omits `go.mod`; that separate defect must not be confused with the method-value cause.
+- Full 0.4.0 business review was skipped for go-redis size; both MySQL lanes completed in all three captures. Completion status is not a measured improvement in business-risk verdicts. Separately, [upstream #662](https://github.com/FinanceFlash/unvibecode/issues/662) reports that the new uploader omits `go.mod`; that separate defect must not be confused with the method-value cause.
 
 ## Report and originality
 

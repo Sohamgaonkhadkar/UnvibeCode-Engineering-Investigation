@@ -2,7 +2,7 @@
 
 ## 1. Problem summary
 
-Three ordinary **0.4.0 client** reviews of the complete pinned public go-redis tree reproduce eight targeted missing method links and four missing implementations in both focused scopes. Receiver-preserving wrappers expose all eight links and all four bodies; no-method callbacks expose none. The client's six Python source files were checked byte-for-byte against the official published wheel.
+Three ordinary **0.4.0 client** reviews of the complete pinned public go-redis tree reproduce eight targeted missing method links and four missing implementations in both focused scopes. Receiver-preserving wrappers expose all eight links and all four bodies; no-method callbacks expose none. The client's six Python source files were checked byte-for-byte against the official published wheel. Three independent 0.4.0 MySQL-driver reviews additionally reproduce two missing timeout-method links and bodies, with all three review statuses COMPLETE.
 
 A Go method value such as `callback := s.Save` does not produce a relationship to `Store.Save` in UnvibeCode 0.3.15 even when `s *Store` is explicitly declared. The corresponding direct call `s.Save()` is resolved. On a real go-redis checkout, this drops callback implementations from per-file focused context.
 
@@ -13,8 +13,8 @@ This is a missing **method reference**, not evidence that merely forming a metho
 - **Affected product:** official `unvibecode==0.4.0` client, observed hosted code-map output; inspectable `0.3.15` Fast Lane and Normal Lane engines for root cause/correction
 - **Local validation:** Python 3.12+/Go (Linux and Windows CI); original investigation on Windows, Python 3.14.5, Go 1.27.3
 - **Public repository:** [redis/go-redis](https://github.com/redis/go-redis), pinned at [`5cba5e182946cf18a757718938bc43910e589466`](https://github.com/redis/go-redis/tree/5cba5e182946cf18a757718938bc43910e589466)
-- **Version scope:** three full-public-repository 0.4.0 captures on 12 November; 0.3.15 source-level correction and independent MySQL-driver replication. Hosted backend revision is not exposed.
-- **Independent repository:** [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql/tree/4cdf75e9037ffccf63a981d10f5c2e669edbfc49), pinned at `4cdf75e9037ffccf63a981d10f5c2e669edbfc49`; both installed 0.3.15 engines and Go compiler oracle.
+- **Version scope:** three full-public-repository 0.4.0 captures on 12 November; 0.3.15 source-level correction and independent MySQL-driver replication; three completed current MySQL A/B/C reviews captured on 13 November (IST). Hosted backend revision is not exposed.
+- **Independent repository:** [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql/tree/4cdf75e9037ffccf63a981d10f5c2e669edbfc49), pinned at `4cdf75e9037ffccf63a981d10f5c2e669edbfc49`; both installed 0.3.15 engines and Go compiler oracle, plus three independent 0.4.0 client captures.
 
 ## 3. Steps to reproduce
 
@@ -44,6 +44,15 @@ python investigations/go-method-values/reproduction/check_current_public.py --ou
 
 The [current A/B/C artifacts and replay](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/tree/edb1aa3a7c744b8c396eea34282aef87dfbdd913/investigations/go-method-values/evidence/current-public-0.4.0) and [full reproduction/audit](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/edb1aa3a7c744b8c396eea34282aef87dfbdd913/investigations/go-method-values/FINAL_EVIDENCE_AUDIT.md) contain separate commands for fresh official-client reviews, public Go tests, independent replication and receiver boundaries. The explicit checkout selects the verified evidence commit after the historical reproduction steps above.
 
+The independent current MySQL artifacts use the same replay with a separate artifact directory:
+
+```sh
+git checkout codex/current-mysql-evidence
+python investigations/go-method-values/reproduction/check_current_public.py --artifacts investigations/go-method-values/evidence/current-mysql-0.4.0 --output ci-logs/current-mysql.json
+```
+
+The MySQL comparison uses a separate captured artifact set with its own source and status manifest.
+
 ## 4. Expected behavior
 
 A known receiver's bound method value should preserve a statically justified link to its method definition as a **reference**. Go's [method-value specification](https://go.dev/ref/spec#Method_values) distinguishes formation of a bound method value from calling that value.
@@ -63,6 +72,16 @@ For `callback := s.Save; callback()`, the stock extractor emits no `Save` usage,
 B adds eight method-call and seven coarse file-import records, with no normalized relationships removed. C's normalized inventory equals A's. All states upload the same 619 paths and omit `go.mod`; the targeted methods are same-package, isolating this matched observation from #662 without repairing module imports.
 
 All three code-understanding lanes completed. Overall status is PARTIAL because business analysis is SKIPPED_LARGE_REPOSITORY. One initial A connection failure produced no artifacts; one later attempt completed. No changed business-risk verdict is claimed.
+
+**Independent current MySQL reviews:** the same client analyzed complete original, wrapper and no-method trees at `4cdf75e9037ffccf63a981d10f5c2e669edbfc49`. Only two lines in `packets.go` differ. A and C have zero targeted method links; B has one each for `mysqlConn.readWithTimeout` and `mysqlConn.writeWithTimeout`. Both target implementations are identical in all states.
+
+| MySQL measure | A | B | C |
+|---|---:|---:|---:|
+| Targeted timeout-method links | 0 | 2 | 0 |
+| Each complete method body, both scopes | 0/9 | 9/9 | 0/9 |
+| All exported relationships | 814 | 817 | 814 |
+
+B adds two method-call records and one coarse file-import record with no normalized losses. C equals A's normalized inventory. All 68 upload paths match and omit `go.mod`; these targets are same-package. Each review reports overall COMPLETE and both lanes COMPLETED. Thus the symptom also occurs in completed code/workflow reviews, independently of go-redis's size skip. No risk-findings output is listed in these captures; COMPLETE is the service status and does not establish risk-review completion. No changed business-risk verdict is inferred.
 
 **Historical reference correction:** Both graph copies on unchanged go-redis yield **23,448 → 23,527 → 23,448** relationships. The 79 additions comprise **13 production method references** (six file pairs) and **66 test references**. No stock relationships are removed.
 
@@ -107,7 +126,7 @@ Four source-backed maintenance questions quantify current focused-context loss:
 | Down-shard filtering / `Ring.ForEachShard` | 0/32 → 32/32 → 0/32 |
 | MultiDB retry-setting delegation / `multidbCore.processPipeline` | 0/3 → 3/3 → 0/3 |
 
-The [question-to-source audit](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/edb1aa3a7c744b8c396eea34282aef87dfbdd913/investigations/go-method-values/evidence/developer-impact.json) retains implementation excerpts and verifies corresponding historical correction exports. These results establish missing answer-relevant context, not demonstrated incorrect AI answers. Independent MySQL replication adds two real same-mechanism callbacks; it is an installed 0.3.15 result, not a hosted MySQL review.
+The [question-to-source audit](https://github.com/Sohamgaonkhadkar/UnvibeCode-Engineering-Investigation/blob/edb1aa3a7c744b8c396eea34282aef87dfbdd913/investigations/go-method-values/evidence/developer-impact.json) retains implementation excerpts and verifies corresponding historical correction exports. These results establish missing answer-relevant context, not demonstrated incorrect AI answers. Independent MySQL replication adds two real same-mechanism callbacks in both the inspectable engine and current completed hosted reviews. When investigating whether packet reads/writes apply configured deadlines, the needed nine-line methods are absent in original focused context even though `connection.go` itself is included. Six mock-backed packet tests pass on both original and wrapper inputs; the no-method input compiles only. This establishes missing implementation evidence, not incorrect AI answers.
 
 A budget-only control explains the two remaining bodies: the default MultiDB selections fill 44,997/45,000 and 74,999/75,000 tokens; increasing only each scope’s maximum to 200,000 makes both bodies complete. The primary 5/7 figure keeps original budgets. No hosted business-risk verdict change, arbitrary indirect-call resolution, ecosystem prevalence, or Go runtime bug is claimed.
 
